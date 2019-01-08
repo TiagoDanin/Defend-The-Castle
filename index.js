@@ -114,6 +114,7 @@ const processError = (error, ctx, plugin) => {
 
 var inline = []
 var callback = []
+var msg_reply = []
 
 bot.use((ctx, next) => telegrafStart(ctx, next))
 
@@ -145,7 +146,7 @@ config.plugins.forEach(p => {
 
 	if (_.plugin) {
 		bot.hears(_.regex, async (ctx) => {
-			dlogPlugins(`Runnig cmd plugin: ${_.name}`)
+			dlogPlugins(`Runnig cmd plugin: ${_.id}`)
 			try {
 				await _.plugin(ctx)
 			} catch (e) {
@@ -161,6 +162,25 @@ config.plugins.forEach(p => {
 	if (_.callback) {
 		callback.push(_)
 	}
+
+	if (_.reply) {
+		reply.push(_)
+	}
+})
+
+bot.on('message', async (ctx) => {
+	var msg = ctx.message
+	if (msg.reply_to_message && msg.reply_to_message.text) {
+		for (var _ of reply) {
+			dlogReply(`Runnig Reply plugin: ${_.id}`)
+			ctx.match = msg.reply_to_message.text
+			try {
+				await _.reply(ctx)
+			} catch (e) {
+				processError(e, ctx, _)
+			}
+		}
+	}
 })
 
 bot.on('callback_query', async (ctx) => {
@@ -169,7 +189,7 @@ bot.on('callback_query', async (ctx) => {
 		for (var _ of callback) {
 			if (data.startsWith(_.id)) {
 				ctx.match = [].concat(data, data.split(':'))
-				dlogCallback(`Runnig callback plugin: ${_.name}`)
+				dlogCallback(`Runnig callback plugin: ${_.id}`)
 				try {
 					await _.callback(ctx)
 				} catch (e) {
