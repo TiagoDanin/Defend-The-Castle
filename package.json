@@ -1,0 +1,38 @@
+{
+  "name": "defend-the-castle",
+  "main": "index.js",
+  "version": "1.0.0",
+  "description": "Telegram bot @defendthecastlebot",
+  "author": {
+    "name": "Tiago Danin",
+    "email": "TiagoDanin@outlook.com",
+    "url": "https://TiagoDanin.github.io"
+  },
+  "license": "MIT",
+  "keywords": [
+    "bot",
+    "telegram",
+    "telegraf"
+  ],
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Nice Test :)\""
+  },
+  "private": true,
+  "repository": "https://github.com/TiagoDanin/Defend-The-Castle.git",
+  "homepage": "https://TiagoDanin.github.io/Defend-The-Castle",
+  "bugs": "https://github.com/TiagoDanin/Defend-The-Castle/issues",
+  "github": {
+    "name": "Defend-The-Castle",
+    "owner": "TiagoDanin"
+  },
+  "files": [
+    "LICENSE",
+    "README.md"
+  ],
+  "dependencies": {
+    "nodejs-i18n": "^1.0.1",
+    "telegraf": "^3.25.5",
+    "telegraf-start-parts": "^1.0.0"
+  }
+}
