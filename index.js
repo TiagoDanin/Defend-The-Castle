@@ -10,6 +10,7 @@ const bot = new Telegraf(process.env.telegram_token, {
 })
 const dlogBot = debug("bot")
 const dlogPlugins = debug("bot:plugins")
+const dlogReply = debug("bot:reply")
 const dlogInline = debug("bot:inline")
 const dlogCallback = debug("bot:callback")
 const dlogError = debug("bot:error")
@@ -114,7 +115,7 @@ const processError = (error, ctx, plugin) => {
 
 var inline = []
 var callback = []
-var msg_reply = []
+var reply = []
 
 bot.use((ctx, next) => telegrafStart(ctx, next))
 
@@ -170,10 +171,13 @@ config.plugins.forEach(p => {
 
 bot.on('message', async (ctx) => {
 	var msg = ctx.message
-	if (msg.reply_to_message && msg.reply_to_message.text) {
+	if (msg.reply_to_message && msg.reply_to_message.text && msg.text) {
 		for (var _ of reply) {
 			dlogReply(`Runnig Reply plugin: ${_.id}`)
-			ctx.match = msg.reply_to_message.text
+			ctx.match = [
+				msg.reply_to_message.text,
+				msg.text
+			]
 			try {
 				await _.reply(ctx)
 			} catch (e) {
