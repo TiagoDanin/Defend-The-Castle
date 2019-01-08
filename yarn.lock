@@ -22,7 +22,7 @@ crypto-random-string@^1.0.0:
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
   integrity sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4=
 
-debug@^4.0.1, debug@^4.1.1:
+debug@4.1.1, debug@^4.0.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
   integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
@@ -62,7 +62,7 @@ isarray@~1.0.0:
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
   integrity sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=
 
-json-stringify-safe@^5.0.1:
+json-stringify-safe@5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
   integrity sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=
@@ -77,7 +77,7 @@ node-fetch@^2.2.0:
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.3.0.tgz#1a1d940bbfb916a1d3e0219f037e89e71f8c5fa5"
   integrity sha512-MOd8pV3fxENbryESLgVIeaGKrdl+uaYhCSSVkjeOb/31/njTpcis5aWfdqgNlHIrKOLRbMnfPINPOML2CIFeXA==
 
-nodejs-i18n@^1.0.1:
+nodejs-i18n@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/nodejs-i18n/-/nodejs-i18n-1.0.1.tgz#a0e84097e22b3fd732fd3c3a36959bb03da18304"
   integrity sha512-Z6HNdodCVzXe0vcoqjIXLu48eDl2N4a8debm9M1jplQAZBR7BAHme/KcM0k2PXEsdTs4OFpO+KLzh3ac6H36Kw==
@@ -110,7 +110,7 @@ pg-types@~1.12.1:
     postgres-date "~1.0.0"
     postgres-interval "^1.1.0"
 
-pg@^7.7.1:
+pg@7.7.1:
   version "7.7.1"
   resolved "https://registry.yarnpkg.com/pg/-/pg-7.7.1.tgz#546b192ff484322b69689391f885de3ba91a30d4"
   integrity sha512-p3I0mXOmUvCoVlCMFW6iYSrnguPol6q8He15NGgSIdM3sPGjFc+8JGCeKclw8ZR4ETd+Jxy2KNiaPUcocHZeMw==
@@ -204,12 +204,12 @@ string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
-telegraf-start-parts@^1.0.0:
+telegraf-start-parts@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/telegraf-start-parts/-/telegraf-start-parts-1.0.0.tgz#0412f5ea8f9e0bce7cc50dc7063f971c7140259f"
   integrity sha512-NSTV4t5HUwoylPmw59FrXrZk1RkDUyDiVI4/cwccEysY0rBkt3WxTqfl7aNE02bZQfQS0tsjw4NU958C5RvEcw==
 
-telegraf@^3.25.5:
+telegraf@3.25.5:
   version "3.25.5"
   resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-3.25.5.tgz#d10c57e98085136866614e40c583aa4e607e1d85"
   integrity sha512-gGyyAl5b+jVwR8L2YXxUYCgDqF3LUlXIlt2+sWozdKiVuWliPgATmdk/dp9I0Rw+fIePJVX/lQfgd8MfuSSwRA==
