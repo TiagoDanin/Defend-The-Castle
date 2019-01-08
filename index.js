@@ -130,6 +130,17 @@ bot.use((ctx, next) => {
 	var i18n = new Translation(langCode)
 	ctx._ = i18n._.bind(i18n)
 	ctx.langCode = langCode
+	//TODO GET DB
+	ctx.db = {
+		name: 'TiagoCity',
+		id: 89198119,
+		level: 1,
+		xp: 65,
+		life: 100,
+		money: 840,
+		troops: 4,
+		troops_time: 100
+	}
 	return next(ctx)
 })
 

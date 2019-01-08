@@ -1,7 +1,9 @@
 module.exports = {
 	plugins: [
-		'singup'
+		'singup',
+		'menu'
 	],
+	maxlevel: 10,
 	defaultLang: 'en',
 	locales: []
 }

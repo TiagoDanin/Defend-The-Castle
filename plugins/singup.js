@@ -20,6 +20,7 @@ const callback = async (ctx) => {
 
 const reply = async (ctx) => {
 	if (ctx.match[0].match(text)) {
+		//TODO Valid name
 		return ctx.reply(`Are you sure the name of your city is ${ctx.match[1]}?.`, {
 			reply_markup: {
 				inline_keyboard:
