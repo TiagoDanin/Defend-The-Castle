@@ -31,6 +31,8 @@
     "README.md"
   ],
   "dependencies": {
+    "debug": "^4.1.1",
+    "json-stringify-safe": "^5.0.1",
     "nodejs-i18n": "^1.0.1",
     "telegraf": "^3.25.5",
     "telegraf-start-parts": "^1.0.0"
