@@ -1,4 +1,4 @@
-const callback = async (ctx) => {
+const base = async (ctx) => {
 	//TODO level >= maxlevel return 'max'
 	var text = `
 <b>🏰 City:</b> ${ctx.db.name}
@@ -9,8 +9,8 @@ const callback = async (ctx) => {
 👮<b>‍♀️ Troops:</b> ${ctx.db.troops}/10
 	`
 	var keyboard = [
-		[{text: '⚔️ Fight' , callback_data: 'menu:fight' }],
-		[{text: '🏰 City' , callback_data: 'menu:city' }],
+		[{text: '⚔️ Fight' , callback_data: 'fight' }],
+		[{text: '🏰 City' , callback_data: 'city' }],
 		[{text: '🥇 Rank' , callback_data: 'menu:rank' }],
 		[{text: '📔 About' , callback_data: 'menu:about' }]
 	]
@@ -42,6 +42,15 @@ const callback = async (ctx) => {
 		]
 	}
 
+	console.log(ctx.updateType)
+	if (ctx.updateType == 'callback_query') {
+		return ctx.editMessageText(text, {
+			parse_mode: 'HTML',
+			reply_markup: {
+				inline_keyboard: keyboard
+			}
+		})
+	}
 	return ctx.replyWithHTML(text, {
 		reply_markup: {
 			inline_keyboard: keyboard
@@ -51,5 +60,14 @@ const callback = async (ctx) => {
 
 module.exports = {
 	id: 'menu',
-	callback
+	plugin: base,
+	callback: base,
+	onlyUser: true,
+	regex: [
+		/^\/start/i,
+		/^\/about/i,
+		/^\/help/i,
+		/^\/sobre/i,
+		/^\/ajuda/i
+	]
 }

@@ -5,6 +5,8 @@ const stringify = require('json-stringify-safe')
 const { Resources, Translation } = require('nodejs-i18n')
 
 const config = require('./config')
+const database = require('./database')
+
 const bot = new Telegraf(process.env.telegram_token, {
 	username: 'DefendTheCastleBot'
 })
@@ -130,19 +132,39 @@ bot.use((ctx, next) => {
 	var i18n = new Translation(langCode)
 	ctx._ = i18n._.bind(i18n)
 	ctx.langCode = langCode
-	//TODO GET DB
-	ctx.db = {
-		name: 'TiagoCity',
-		id: 89198119,
-		level: 1,
-		xp: 65,
-		life: 100,
-		money: 840,
-		troops: 4,
-		troops_time: 100
-	}
 	return next(ctx)
 })
+
+bot.context.database = database
+bot.context.userInfo = async (ctx, onlyUser) => {
+	if (typeof ctx != 'object') {
+		ctx = {
+			from: ctx //ctx == id
+		}
+	}
+	let db = await database.getUser(ctx.from.id)
+	if (!db) {
+		if (typeof ctx == 'object' && onlyUser) {
+			await ctx.replyWithMarkdown('*What\'s the name of your town?*', {
+				reply_markup: {
+					force_reply: true
+				}
+			})
+		}
+		return false
+	}
+	return {
+		maxLevel: config.maxLevel,
+		maxTroops: 5,
+		plusAtack: 0,
+		plusShield: 0,
+		plusLife: 0,
+		plusXp: 0,
+		plusMoney: 0,
+		...db,
+		...config.class[db.type]
+	}
+}
 
 config.plugins.forEach(p => {
 	var _ = require(`./plugins/${p}`)
@@ -160,6 +182,9 @@ config.plugins.forEach(p => {
 		bot.hears(_.regex, async (ctx) => {
 			dlogPlugins(`Runnig cmd plugin: ${_.id}`)
 			try {
+				ctx.db = await ctx.userInfo(ctx, _.onlyUser)
+				console.log('>>>>>', ctx.db)
+				if (!ctx.db && _.onlyUser) return false
 				await _.plugin(ctx)
 			} catch (e) {
 				processError(e, ctx, _)
@@ -190,6 +215,8 @@ bot.on('message', async (ctx) => {
 				msg.text
 			]
 			try {
+				ctx.db = await ctx.userInfo(ctx)
+				//if (!ctx.db) return false
 				await _.reply(ctx)
 			} catch (e) {
 				processError(e, ctx, _)
@@ -206,6 +233,8 @@ bot.on('callback_query', async (ctx) => {
 				ctx.match = [].concat(data, data.split(':'))
 				dlogCallback(`Runnig callback plugin: ${_.id}`)
 				try {
+					ctx.db = await ctx.userInfo(ctx)
+					//if (!ctx.db) return false
 					await _.callback(ctx)
 				} catch (e) {
 					processError(e, ctx, _)

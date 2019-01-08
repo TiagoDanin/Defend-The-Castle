@@ -1,5 +1,6 @@
 const text = 'What\'s the name of your town?'
 const callback = async (ctx) => {
+	console.log(ctx)
 	if (ctx.match[2] == 'yes') {
 		//TODO Salve name and id in DB
 		return ctx.reply('💾 Saved Name', {
@@ -21,6 +22,7 @@ const callback = async (ctx) => {
 const reply = async (ctx) => {
 	if (ctx.match[0].match(text)) {
 		//TODO Valid name
+		ctx.database.setUser(ctx.from.id, ctx.match[1], 'warrior')
 		return ctx.reply(`Are you sure the name of your city is ${ctx.match[1]}?.`, {
 			reply_markup: {
 				inline_keyboard:

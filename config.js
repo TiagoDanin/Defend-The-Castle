@@ -1,9 +1,16 @@
 module.exports = {
 	plugins: [
-		'singup',
-		'menu'
+		//'city',
+		//'fight',
+		'menu',
+		'singup'
 	],
 	maxlevel: 10,
 	defaultLang: 'en',
-	locales: []
+	locales: [],
+	class: {
+		warrior: {
+			//...
+		}
+	}
 }
