@@ -183,7 +183,6 @@ config.plugins.forEach(p => {
 			dlogPlugins(`Runnig cmd plugin: ${_.id}`)
 			try {
 				ctx.db = await ctx.userInfo(ctx, _.onlyUser)
-				console.log('>>>>>', ctx.db)
 				if (!ctx.db && _.onlyUser) return false
 				await _.plugin(ctx)
 			} catch (e) {

@@ -1,9 +1,7 @@
 const text = 'What\'s the name of your town?'
 const callback = async (ctx) => {
-	console.log(ctx)
 	if (ctx.match[2] == 'yes') {
-		//TODO Salve name and id in DB
-		return ctx.reply('💾 Saved Name', {
+		return ctx.reply('💾 Saved', {
 			reply_markup: {
 				inline_keyboard:
 				[
@@ -21,8 +19,20 @@ const callback = async (ctx) => {
 
 const reply = async (ctx) => {
 	if (ctx.match[0].match(text)) {
-		//TODO Valid name
-		ctx.database.setUser(ctx.from.id, ctx.match[1], 'warrior')
+		if (!ctx.match[1].match(/^([a-zA-Z0-9-]{1,12})$/)) {
+			return ctx.replyWithMarkdown(`
+*Name must have only letter and number with a maximum of 12 characters!*
+${text}
+			`, {
+				reply_markup: {
+					force_reply: true
+				}
+			})
+		}
+		let db = await ctx.database.setUser(ctx.from.id, ctx.match[1])
+		if (!db) {
+			await ctx.database.updateUser(ctx.from.id, 'name', ctx.match[1])
+		}
 		return ctx.reply(`Are you sure the name of your city is ${ctx.match[1]}?.`, {
 			reply_markup: {
 				inline_keyboard:

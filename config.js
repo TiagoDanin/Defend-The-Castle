@@ -2,6 +2,7 @@ module.exports = {
 	plugins: [
 		//'city',
 		//'fight',
+		//'invite',
 		'menu',
 		'singup'
 	],

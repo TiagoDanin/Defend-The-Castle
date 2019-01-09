@@ -1,3 +1,16 @@
+const showRank = async (ctx, type) => {
+	let db = await ctx.database.topUsers(type, ctx.db[type])
+	var text = `🥇 You Rank is: ${db.length}\n`
+	var n = 0
+	for (var user of db) {
+		if (n <= 10) {
+			n++
+			text += `<b>${n}.</b> ${user.name} <b>(${user[type]})</b>\n`
+		}
+	}
+	return text
+}
+
 const base = async (ctx) => {
 	//TODO level >= maxlevel return 'max'
 	var text = `
@@ -21,13 +34,13 @@ const base = async (ctx) => {
 		`
 		keyboard = [
 			[{text: '🏅 Level' , callback_data: 'menu:rank:level' }],
-			[{text: '💰 Money' , callback_data: 'menu:rank:' }],
+			[{text: '💰 Money' , callback_data: 'menu:rank:money' }],
 			[{text: '📜 Menu' , callback_data: 'menu:main' }]
 		]
 		if (ctx.match[3] == 'level') {
-			//TODO Rank level
+			text = await showRank(ctx, 'level')
 		} else if (ctx.match[3] == 'money') {
-			//TODO Rank money
+			text = await showRank(ctx, 'money')
 		}
 	} else if (ctx.match[2] == 'about') {
 		text = `
@@ -42,7 +55,6 @@ const base = async (ctx) => {
 		]
 	}
 
-	console.log(ctx.updateType)
 	if (ctx.updateType == 'callback_query') {
 		return ctx.editMessageText(text, {
 			parse_mode: 'HTML',
