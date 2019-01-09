@@ -79,10 +79,10 @@ const topUsers = async (row, value) => {
 	data = await client.query(`
 		SELECT *
 		FROM users
-		WHERE ${row} >= $1
 		ORDER BY ${row} DESC, xp DESC
 	`, [value]).catch(error)
 	//LIMITE 15; ?
+	//WHERE ${row} >= $1
 	client.release()
 	return data.rows
 }
