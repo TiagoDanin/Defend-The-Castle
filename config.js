@@ -12,6 +12,12 @@ module.exports = {
 	locales: [],
 	castles: ['🕌', '⛪️', '🏛', '🏩', '🏢', '🕍', '🏰'],
 	items: {
+		'0': {
+			icon: '🚧',
+			name: 'Null',
+			city: true,
+			battle: true
+		},
 		'1': {
 			icon: '💣',
 			name: 'Bomb',

@@ -87,10 +87,54 @@ const topUsers = async (row, value) => {
 	return data.rows
 }
 
+
+
+const setCity = async (ctx, pos, id) => {
+	let data = {}
+	let city = ctx.db.city
+	city[pos] = id
+	var client = await pool.connect()
+	data = await client.query(`
+		UPDATE users
+			SET city = $1
+			WHERE id = $2
+		RETURNING *;
+	`, [city, ctx.from.id]).catch(error)
+	client.release()
+	if (data.rowCount != 1) {
+		return false
+	}
+	return data.rows[0]
+}
+
+const replaceInventory = async (ctx, pos, to) => {
+	let data = {}
+	var inventory = ctx.db.inventory.map(e => Number(e))
+	var index = inventory.indexOf(to)
+	if (index < 0) {
+		return false
+	}
+	inventory[index] = ctx.db.city[pos]
+	var client = await pool.connect()
+	data = await client.query(`
+		UPDATE users
+			SET inventory = $1
+			WHERE id = $2
+		RETURNING *;
+	`, [inventory, ctx.from.id]).catch(error)
+	client.release()
+	if (data.rowCount != 1) {
+		return false
+	}
+	return data.rows[0]
+}
+
 module.exports = {
 	getUser,
 	setUser,
 	updateUser,
 	topUsers,
-	randomUser
+	randomUser,
+	setCity,
+	replaceInventory
 }

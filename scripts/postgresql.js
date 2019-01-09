@@ -21,6 +21,14 @@ const main = async () => {
 			xp               INT     DEFAULT 0,
 			troops           INT     DEFAULT 5,
 			troops_time      DATE    DEFAULT now(),
+			inventory        INT[]   DEFAULT '{}',
+			city             INT[]   DEFAULT '{
+				0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0
+			}',
 			PRIMARY KEY (id)
 		);
 	`, []).catch(log)

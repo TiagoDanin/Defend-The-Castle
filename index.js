@@ -155,7 +155,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		}
 		return false
 	}
-	return {
+	var data = {
 		maxLevel: config.maxLevel,
 		maxTroops: 5,
 		plusAtack: 0,
@@ -163,16 +163,16 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		plusLife: 0,
 		plusXp: 0,
 		plusMoney: 0,
-		city: [
-			8, 9, 3, 4, 5,
-			1, 3, 4, 5, 1,
-			8, 8, 0, 5, 9,
-			8, 8, 8, 8, 8,
-			9, 3, 9, 8, 8
-		],
 		...db,
 		...config.class[db.type]
 	}
+	data.inventory = data.inventory.reduce((total, id) => {
+		if (id != 0) {
+			total.push(id)
+		}
+		return total
+	}, [0])
+	return data
 }
 
 config.plugins.forEach(p => {
