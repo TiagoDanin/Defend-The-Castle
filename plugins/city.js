@@ -3,7 +3,7 @@ const city = (ctx) => {
 		var key = {}
 		if (index == 12) {
 			key = {
-				text: ctx.castles[id] || 'X',
+				text: ctx.db.castle,
 				callback_data: 'city:castle'
 			}
 		} else {
@@ -64,7 +64,7 @@ const showCastle = (ctx) => {
 
 const base = async (ctx) => {
 	var text = `
-<b>🏰 City:</b> ${ctx.db.name}
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>💰 Money:</b> ${ctx.db.money} Coin
 ---------------------------------------
 `
@@ -74,8 +74,14 @@ const base = async (ctx) => {
 		text += '<b>Select your new castle:</b>'
 	} else if (ctx.match[2] == 'castle' && ctx.match[3]) {
 		ctx.db = await ctx.database.setCity(ctx, 12, ctx.match[3].toString())
+		ctx.db.castle = ctx.castles[Number(ctx.match[3])] || '🏰'
 		mainKeyboard = city(ctx)
-		text += '<b>New castle!</b>'
+		text = `
+	<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+	<b>💰 Money:</b> ${ctx.db.money} Coin
+	---------------------------------------
+	<b>New castle!</b>
+		`
 	} else if (ctx.match[2] == 'inv' && ctx.match[3]) {
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
 		text += '<b>Select:</b>'

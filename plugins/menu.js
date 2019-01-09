@@ -14,7 +14,7 @@ const showRank = async (ctx, type) => {
 const base = async (ctx) => {
 	//TODO level >= maxlevel return 'max'
 	var text = `
-<b>🏰 City:</b> ${ctx.db.name}
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.db.xp}
 ---------------------------------------
@@ -23,7 +23,7 @@ const base = async (ctx) => {
 	`
 	var keyboard = [
 		[{text: '⚔️ Fight' , callback_data: 'fight' }],
-		[{text: '🏰 City' , callback_data: 'city' }],
+		[{text: `${ctx.db.castle} City` , callback_data: 'city' }],
 		[{text: '🥇 Rank' , callback_data: 'menu:rank' }],
 		[{text: '📔 About' , callback_data: 'menu:about' }]
 	]

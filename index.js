@@ -38,10 +38,11 @@ const processError = (error, ctx, plugin) => {
 		logId += 'NoUpdate'
 	}
 
-	var errorMsg = `ERROR \`ID:${logId}\``
+	var errorMsg = 'ERROR'
 	if (ctx && ctx._) {
-		errorMsg += ctx._(errorMsg)
+		errorMsg = ctx._('ERROR')
 	}
+	errorMsg += ` \`ID:${logId}\``
 
 	if (ctx && ctx.updateType) {
 		if (ctx.updateType == 'message') {
@@ -164,7 +165,8 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		plusXp: 0,
 		plusMoney: 0,
 		...db,
-		...config.class[db.type]
+		...config.class[db.type],
+		castle: config.castles[db.city[12]] || '🏰'
 	}
 	data.inventory = data.inventory.reduce((total, id) => {
 		if (id != 0) {
