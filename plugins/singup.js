@@ -1,6 +1,7 @@
 const text = 'What\'s the name of your town?'
 const callback = async (ctx) => {
 	if (ctx.match[2] == 'yes') {
+		//TODO Select Class
 		return ctx.reply('💾 Saved', {
 			reply_markup: {
 				inline_keyboard:

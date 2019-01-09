@@ -1,7 +1,7 @@
 module.exports = {
 	plugins: [
 		//'box',
-		//'city',
+		'city',
 		//'fight',
 		//'invite',
 		'menu',
@@ -10,52 +10,61 @@ module.exports = {
 	maxlevel: 10,
 	defaultLang: 'en',
 	locales: [],
-	castles: {
-		'1': {
-			icon: '🕌'
-		},
-		'2': {
-			icon: '⛪️'
-		},
-		'3': {
-			icon: '🏛'
-		},
-		'4': {
-			icon: '💒'
-		}
-	},
+	castles: ['🕌', '⛪️', '🏛', '🏩', '🏢', '🕍', '🏰'],
 	items: {
 		'1': {
+			icon: '💣',
 			name: 'Bomb',
 			city: true
 		},
 		'2': {
+			icon: '🛡',
 			name: 'Supreme Shield',
 			battle: true,
 			sell: true
 		},
 		'3': {
+			icon: '🏦',
 			name: 'Bank',
 			city: true
 		},
 		'4': {
+			icon: '🗿',
 			name: 'Tower Defense',
 			city: true
 		},
 		'5': {
+			icon: '🏨',
 			name: 'Hospital',
 			city: true
 		},
 		'6': {
+			icon: '👽',
 			name: 'Clone',
 			epic: true,
 			sell: true,
 			city: true
 		},
 		'7': {
+			icon: '💎',
 			name: 'Diamond',
 			epic: true,
 			sell: true
+		},
+		'8': {
+			icon: '⚔️',
+			name: 'Zone War',
+			city: true
+		},
+		'9': {
+			icon: '🛡',
+			name: 'Zone Defense',
+			city: true
+		},
+		'10': {
+			icon: '🚀',
+			name: 'Rocket',
+			city: true
 		}
 	},
 	class: {

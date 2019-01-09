@@ -136,6 +136,8 @@ bot.use((ctx, next) => {
 })
 
 bot.context.database = database
+bot.context.castles = config.castles
+bot.context.items = config.items
 bot.context.userInfo = async (ctx, onlyUser) => {
 	if (typeof ctx != 'object') {
 		ctx = {
@@ -161,6 +163,13 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		plusLife: 0,
 		plusXp: 0,
 		plusMoney: 0,
+		city: [
+			8, 9, 3, 4, 5,
+			1, 3, 4, 5, 1,
+			8, 8, 0, 5, 9,
+			8, 8, 8, 8, 8,
+			9, 3, 9, 8, 8
+		],
 		...db,
 		...config.class[db.type]
 	}
