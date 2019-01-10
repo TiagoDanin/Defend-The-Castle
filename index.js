@@ -7,6 +7,12 @@ const { Resources, Translation } = require('nodejs-i18n')
 const config = require('./config')
 const database = require('./database')
 
+const items = {
+	...require('./items/null'), //0
+	...require('./items/city'),
+	...require('./items/bank') //5
+}
+
 const bot = new Telegraf(process.env.telegram_token, {
 	username: 'DefendTheCastleBot'
 })
@@ -122,23 +128,25 @@ var reply = []
 
 bot.use((ctx, next) => telegrafStart(ctx, next))
 
+/*
 const r = new Resources({
 	lang: config.defaultLang
 })
 config.locales.forEach((id) => {
 	r.load(id, `locales/${id}.po`)
 })
+*/
 bot.use((ctx, next) => {
-	var langCode = 'en' //checkLanguage(ctx)
-	var i18n = new Translation(langCode)
-	ctx._ = i18n._.bind(i18n)
-	ctx.langCode = langCode
+	//var langCode = 'en' //checkLanguage(ctx)
+	//var i18n = new Translation(langCode)
+	ctx._ = (t) => t //i18n._.bind(i18n)
+	//ctx.langCode = langCode
 	return next(ctx)
 })
 
 bot.context.database = database
 bot.context.castles = config.castles
-bot.context.items = config.items
+bot.context.items = items
 bot.context.userInfo = async (ctx, onlyUser) => {
 	if (typeof ctx != 'object') {
 		ctx = {
@@ -164,6 +172,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		plusLife: 0,
 		plusXp: 0,
 		plusMoney: 0,
+		moneyPerHour: 0,
 		...db,
 		...config.class[db.type],
 		castle: config.castles[db.city[12]] || '🏰'
@@ -174,6 +183,32 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		}
 		return total
 	}, [0])
+	data.allItems = data.city.reduce((total, id, index) => {
+		if (id != 12) {
+			total.push({
+				...items[id],
+				city: true
+			})
+		}
+		return total
+	}, data.inventory.map((id) => {
+		return {
+			...items[id],
+			inventory: true
+		}
+	}))
+	for (var item of data.allItems) {
+		if (item.doDb) {
+			data = item.doDb(data)
+		}
+		if (data.run && item.doTime) {
+			data = item.doTime(data)
+		}
+	}
+	data.money = Math.round(data.money)
+	if (data.run) {
+		//TODO Update db
+	}
 	return data
 }
 
