@@ -1,5 +1,5 @@
 const debug = require('debug')
-const { Pool } = require('pg')
+const { Pool } = require('pg').native
 const pool = new Pool({
 	database: 'test'
 })
@@ -18,7 +18,10 @@ const getUser = async (id) => {
 	let data = {}
 	var client = await pool.connect()
 	data = await client.query(`
-		SELECT *
+		SELECT
+			*,
+			EXTRACT(EPOCH FROM ( now() - time ) ) as timerunning,
+			EXTRACT(EPOCH FROM ( now() - time ) ) > 90 as run
 		FROM users
 		WHERE id = $1;
 	`, [id]).catch(error)
