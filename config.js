@@ -2,7 +2,7 @@ module.exports = {
 	plugins: [
 		//'box',
 		'city',
-		//'fight',
+		'fight',
 		//'invite',
 		'menu',
 		'singup'

@@ -109,6 +109,7 @@ const base = async (ctx) => {
 	} else if (ctx.match[2] == 'up' && ctx.match[3]) {
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
 		text += infoText(ctx)
+		//TODO upgrade
 	} else if (ctx.match[2] == 'inv' && ctx.match[3]) {
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
 		text += infoText(ctx)
