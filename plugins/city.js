@@ -33,10 +33,24 @@ const showInventory = (ctx, pos) => {
 		}
 		return total
 	}, [[]])
+	var upgrade = []
+	if (ctx.items[ctx.db.city[pos.toString()].toString()].upgrade) {
+		upgrade = [
+			[{
+				text: '✅ Upgrade (+1)',
+				callback_data: `city:up:${pos}:1`
+			},
+			{
+				text: '✅ Upgrade (Max)',
+				callback_data: `city:up:${pos}:max`
+			}]
+		]
+	}
 	return [
+		...upgrade,
 		...keys,
 		[{
-			text: '📜 City',
+			text: `${ctx.db.castle} City`,
 			callback_data: 'city'
 		}]
 	]
@@ -56,16 +70,26 @@ const showCastle = (ctx) => {
 	return [
 		...keys,
 		[{
-			text: '📜 City',
+			text: `${ctx.db.castle} City`,
 			callback_data: 'city'
 		}]
 	]
 }
 
+const infoText = (ctx) => {
+	var item = ctx.items[ctx.db.city[ctx.match[3].toString()].toString()]
+	var info = `<b>${item.icon} ${item.name}</b>\n`
+	info += item.desc
+	if (item.upgrade) {
+		info += `\n<b>💶 Upgrade:</b> ${item.price(ctx.db).upgrade} Coin`
+	}
+	return info
+}
+
 const base = async (ctx) => {
 	var text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
-<b>💰 Money:</b> ${ctx.db.money} Coin
+<b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
 ---------------------------------------
 `
 	var mainKeyboard = []
@@ -78,19 +102,22 @@ const base = async (ctx) => {
 		mainKeyboard = city(ctx)
 		text = `
 	<b>${ctx.db.castle} City:</b> ${ctx.db.name}
-	<b>💰 Money:</b> ${ctx.db.money} Coin
+	<b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
 	---------------------------------------
 	<b>New castle!</b>
 		`
+	} else if (ctx.match[2] == 'up' && ctx.match[3]) {
+		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
+		text += infoText(ctx)
 	} else if (ctx.match[2] == 'inv' && ctx.match[3]) {
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
-		text += '<b>Select:</b>'
+		text += infoText(ctx)
 	} else if (ctx.match[2] == 'set' && ctx.match[3] && ctx.match[4]) {
 		let valid = await ctx.database.replaceInventory(ctx, Number(ctx.match[3]), Number(ctx.match[4]))
 		if (valid) {
 			await ctx.database.setCity(ctx, Number(ctx.match[3]), Number(ctx.match[4]))
 			ctx.db = await ctx.userInfo(ctx)
-			text += ctx.items[ctx.match[4].toString()].desc
+			text += infoText(ctx)
 		} else {
 			text += 'Hack?'
 		}

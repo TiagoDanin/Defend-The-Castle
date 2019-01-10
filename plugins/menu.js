@@ -18,8 +18,8 @@ const base = async (ctx) => {
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.db.xp}
 ---------------------------------------
-<b>💰 Money:</b> ${ctx.db.money} Coin
-👮<b>‍♀️ Troops:</b> ${ctx.db.troops}/10
+<b>💰 Money:</b> ${ctx.db.money} (${ctx.db.moneyPerHour}/hour)
+👮<b>‍♀️ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 	`
 	var keyboard = [
 		[{text: '⚔️ Fight' , callback_data: 'fight' }],
