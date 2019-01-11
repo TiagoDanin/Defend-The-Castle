@@ -272,10 +272,10 @@ telegraf-start-parts@1.0.0:
   resolved "https://registry.yarnpkg.com/telegraf-start-parts/-/telegraf-start-parts-1.0.0.tgz#0412f5ea8f9e0bce7cc50dc7063f971c7140259f"
   integrity sha512-NSTV4t5HUwoylPmw59FrXrZk1RkDUyDiVI4/cwccEysY0rBkt3WxTqfl7aNE02bZQfQS0tsjw4NU958C5RvEcw==
 
-telegraf@3.25.5:
-  version "3.25.5"
-  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-3.25.5.tgz#d10c57e98085136866614e40c583aa4e607e1d85"
-  integrity sha512-gGyyAl5b+jVwR8L2YXxUYCgDqF3LUlXIlt2+sWozdKiVuWliPgATmdk/dp9I0Rw+fIePJVX/lQfgd8MfuSSwRA==
+telegraf@3.26.0:
+  version "3.26.0"
+  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-3.26.0.tgz#6102280c7971431a8a8a96fe0502285cc1a223c9"
+  integrity sha512-mADDeKoSBbfcOntV0/78vyNNO59/eNQiY8V3xUfrxCOwZsDxtV0dkU53Zu7k7xPPddViLUzl3EENil97CDgbpw==
   dependencies:
     "@types/node" "^10.1.2"
     debug "^4.0.1"
