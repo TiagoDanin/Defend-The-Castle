@@ -41,6 +41,7 @@ const main = async () => {
 		CREATE TABLE stats(
 			id               INT        NOT NULL,
 			time             TIMESTAMP  DEFAULT now(),
+			invite           INT        DEFAULT 1,
 			PRIMARY KEY (id)
 		);
 	`, []).catch(log)

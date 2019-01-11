@@ -217,7 +217,40 @@ const getStats24 = () => {
 	data = await client.query(`
 		SELECT *
 		FROM users
-		WHERE SELECT EXTRACT( EPOCH FROM ( time ) ) < ( EXTRACT( EPOCH FROM ( now() ) ) - EXTRACT( EPOCH FROM ( INTERVAL '24 hour' ) ) );
+		WHERE
+			EXTRACT( EPOCH FROM ( time ) )
+			<
+				( EXTRACT( EPOCH FROM ( now() ) )
+				-
+				EXTRACT( EPOCH FROM ( INTERVAL '24 hour' ) ) );
+	`, [max]).catch(error)
+	client.release()
+	return data.rows
+}
+
+const getJoin24 = () => {
+	let data = {}
+	let client = await pool.connect()
+	data = await client.query(`
+		SELECT *
+		FROM stats
+		WHERE
+			EXTRACT( EPOCH FROM ( time ) )
+			<
+				( EXTRACT( EPOCH FROM ( now() ) )
+				-
+				EXTRACT( EPOCH FROM ( INTERVAL '24 hour' ) ) );
+	`, [max]).catch(error)
+	client.release()
+	return data.rows
+}
+
+const getAllUsers = () => {
+	let data = {}
+	let client = await pool.connect()
+	data = await client.query(`
+		SELECT *
+		FROM users;
 	`, [max]).catch(error)
 	client.release()
 	return data.rows
@@ -233,5 +266,7 @@ module.exports = {
 	replaceInventory,
 	saveUser,
 	saveAtack,
-	getStats24
+	getStats24,
+	getJoin24,
+	getAllUsers
 }
