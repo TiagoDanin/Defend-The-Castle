@@ -41,13 +41,11 @@ const setUser = async (id, name, type) => {
 			VALUES ($1, $2, $3)
 		RETURNING *;
 	`, [id, name, type]).catch(error)
-	/*
 	client.query(`
 		INSERT
-		INTO stars(id, time)
+		INTO stats(id, time)
 		VALUES ($1, now());
 	`, [id, name, type]).catch(error)
-	*/
 	client.release()
 	if (data.rowCount != 1) {
 		return false
@@ -71,14 +69,14 @@ const updateUser = async (id, row, value) => {
 	return data.rows[0]
 }
 
-const randomUser = async () => {
+const randomUser = async (max = 10) => {
 	let data = {}
 	let client = await pool.connect()
 	data = await client.query(`
 		SELECT *
 		FROM users
-		TABLESAMPLE SYSTEM_ROWS(4);
-	`, []).catch(error)
+		TABLESAMPLE SYSTEM_ROWS($1);
+	`, [max]).catch(error)
 	client.release()
 	return data.rows
 }
@@ -213,6 +211,18 @@ const saveAtack = async (playId, playXp, ctx) => {
 	return data.rows[0]
 }
 
+const getStats24 = () => {
+	let data = {}
+	let client = await pool.connect()
+	data = await client.query(`
+		SELECT *
+		FROM users
+		WHERE SELECT EXTRACT( EPOCH FROM ( time ) ) < ( EXTRACT( EPOCH FROM ( now() ) ) - EXTRACT( EPOCH FROM ( INTERVAL '24 hour' ) ) );
+	`, [max]).catch(error)
+	client.release()
+	return data.rows
+}
+
 module.exports = {
 	getUser,
 	setUser,
@@ -222,5 +232,6 @@ module.exports = {
 	setCity,
 	replaceInventory,
 	saveUser,
-	saveAtack
+	saveAtack,
+	getStats24
 }

@@ -5,7 +5,8 @@ module.exports = {
 		'fight',
 		//'invite',
 		'menu',
-		'singup'
+		'singup',
+		//'stats'
 	],
 	maxlevel: 10,
 	defaultLang: 'en',

@@ -38,7 +38,7 @@ const main = async () => {
 			}',
 			PRIMARY KEY (id)
 		);
-		CREATE TABLE stas(
+		CREATE TABLE stats(
 			id               INT        NOT NULL,
 			time             TIMESTAMP  DEFAULT now(),
 			PRIMARY KEY (id)

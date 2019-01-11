@@ -12,10 +12,9 @@ const showRank = async (ctx, type) => {
 }
 
 const base = async (ctx) => {
-	//TODO level >= maxlevel return 'max'
 	var text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
-<b>🏅 Level:</b> ${ctx.db.level}
+<b>🏅 Level:</b> ${ctx.db.level >= ctx.db.maxLevel ? 'MAX' : ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.db.xp}
 ---------------------------------------
 <b>💰 Money:</b> ${ctx.db.money} (${ctx.db.moneyPerHour}/hour)
@@ -51,7 +50,13 @@ const base = async (ctx) => {
 		`
 		keyboard = [
 			[{text: '📜 Menu' , callback_data: 'menu:main' }],
-			//TODO Add me twitter and site
+			[{
+				text: 'Twitter @_TiagoEDGE',
+				url: 'https://twitter/_tiagoedge'
+			}, {
+				text: 'TiagoDanin.github.io',
+				url: 'https://TiagoDanin.github.io/'
+			}]
 		]
 	}
 
