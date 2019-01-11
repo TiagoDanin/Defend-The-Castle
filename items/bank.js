@@ -9,7 +9,7 @@ module.exports = {
 		icon: '🏦',
 		name: 'Bank',
 		city: true,
-		desc: 'Gerar dinheiro para o castelo.',
+		desc: 'Generate money for the castle.',
 		price: price,
 		doDb: (data) => {
 			var banks = data.city.filter((e) => e == 5).length

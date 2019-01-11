@@ -4,6 +4,6 @@ module.exports = {
 		name: 'Null',
 		city: true,
 		battle: true,
-		desc: 'Eu não sei o que isso faz...'
+		desc: 'I don\'t know what that does...'
 	}
 }

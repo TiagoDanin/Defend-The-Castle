@@ -3,14 +3,14 @@ module.exports = {
 		icon: '🚀',
 		name: 'Rocket',
 		city: true,
-		desc: 'Tropa espicializada em derruba drones e aviões.',
+		desc: 'Troop focused on knocking down drones and airplanes.',
 		doDefend: (data, ctx) => {
 			ctx.db.log.push([
-				'Nosso avião está caido!',
-				'Acho que conseguimos escapa a tempo'
+				'Our airplane is down!',
+				'I think we can escape in time.'
 			])
-			data.
-			data.atack += Math.floor(Math.pow(100, Math.pow(data.qt_rocket, 0.16))) / (Math.floor((Math.random() * 3)) + 3)
+			data.attack += Math.floor(Math.pow(100, Math.pow(data.qt_rocket, 0.16))) / (Math.floor((Math.random() * 3)) + 3)
+			return data
 		},
 		upgrade: [800, 0.2, 'rocket']
 	}

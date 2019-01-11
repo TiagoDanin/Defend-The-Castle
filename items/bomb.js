@@ -3,25 +3,25 @@ module.exports = {
 		icon: '💣',
 		name: 'Bomb',
 		city: true,
-		desc: 'Causa um grande dano a quem pisa nela e pode até acapa com toda a tropa inimiga.',
+		desc: 'Great damage! Perfect trap for enemy troop. But the shields can suffer damage.',
 		doDefend: (data, ctx) => {
 			const pos = Number(ctx.match[3])
 			if (data.city[pos] == '1') {
 				ctx.db.log.push([
-					'Recruta pisou na mina!',
-					'Nossas escolharas não foram boas.',
-					'Eu avisei para você não ir...',
-					'Estamos praticamente desimados.'
+					'Recruit stepped on the mine!',
+					'Our choices were not good.',,
+					'We\'re practically disimated.'
 				])
-				data.atack += Math.floor(Math.pow(100, Math.pow(data.qt_bomb, 0.16)))
+				data.attack += Math.floor(Math.pow(100, Math.pow(data.qt_bomb, 0.16)))
 				data.shield = (data.shield / 2) + (ctx.db.shield / 3)
 			} else {
-				ctx.db.log([
-					'Esse foi por pouco.',
-					'Agora só temos a sorte!'
+				ctx.db.log.push([
+					'We\'re lucky.',
+					'There\'s a bomb with problems'
 				])
-				data.atack += ctx.db.atack / 11
+				data.attack += ctx.db.attack / 11
 			}
+			return data
 		},
 		upgrade: [210, 0.2, 'bomb']
 	}

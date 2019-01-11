@@ -3,20 +3,21 @@ module.exports = {
 		icon: '⚔️',
 		name: 'Zone War',
 		city: true,
-		desc: 'Solados vão proteger essa aréa até o último supiro de vida!',
+		desc: 'Military will protect this area with their lives!',
 		doDefend: (data, ctx) => {
 			if (Math.floor((Math.random() * 3)) == 0) {
 				ctx.db.log.push([
-					'Tomamos a zona com falicidade!',
-					'No final comseguimos obter a zona!'
+					'We take the zone with the falicity!',
+					'Easy!'
 				])
 			} else {
 				ctx.db.log.push([
-					'Caimos em uma armadilha.',
-					'Execito para bem preparado.'
+					'Trap....',
+					'Oh! No... Trap..'
 				])
-				data.atack = data.atack * Math.floor(Math.pow(100, Math.pow(data.qt_zonewar, 0.08)))
+				data.attack += Math.floor(Math.pow(100, Math.pow(data.qt_zonewar, 0.08)))
 			}
+			return data
 		},
 		upgrade: [120.60, 0.2, 'zonewar']
 	},
@@ -24,17 +25,19 @@ module.exports = {
 		icon: '🛡',
 		name: 'Zone Defense',
 		city: true,
-		desc: 'O avanço da tropa inimiga não serar pareo para esse grupo treinado em defensa.',
+		desc: 'Military will protect this area with their lives!',
 		doDefend: (data, ctx) => {
 			if (Math.floor((Math.random() * 3)) == 0) {
 				ctx.db.log.push([
-					'Defesa da zona foi quebrada!',
-					'Estamos conseguindo entra na cidade.'
+					'... ?'
 				])
 			} else {
-				ctx.db.log.push('Defesa da zona parace muito fonte para nossas tropas!')
-				data.shield = data.shield * Math.floor(Math.pow(80, Math.pow(data.qt_zonewar, 0.123)))
+				ctx.db.log.push([
+					'The defense is down!'
+				])
+				data.shield += Math.floor(Math.pow(100, Math.pow(data.qt_zonedefense, 0.08)))
 			}
+			return data
 		},
 		upgrade: [120.60, 0.2, 'zonedefense']
 	}
