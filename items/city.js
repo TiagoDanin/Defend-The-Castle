@@ -1,11 +1,4 @@
 module.exports = {
-	'4': {
-		icon: '🚀',
-		name: 'Rocket',
-		city: true,
-		desc: 'Tropa espicializada em derruba drones e aviões.',
-
-	},
 	'6': {
 		icon: '🗿',
 		name: 'Tower Defense',

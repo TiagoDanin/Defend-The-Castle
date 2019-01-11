@@ -70,27 +70,36 @@ const base = async (ctx) => {
 	if (ctx.match[2] == 'ack' && ctx.match[3] && ctx.match[4]) {
 		const v = Math.floor((Number(ctx.match[3]))/5)
 		const h = (Number(ctx.match[3])) % 5
-		//const play = await ctx.database.getPlay(ctx.match[4])
-		const data = showMap(ctx, opponent, h, v)
+		const play = await ctx.database.getUser(ctx.match[4])
+		const data = showMap(ctx, play, h, v)
 		for (let item of data.items) {
 			if (item.doDefend) {
 				data = item.doDefend(data, ctx)
 			}
 		}
-		for (let item of ctx.db) {
+		for (let item of ctx.db.inventory) {
 			if (item.doAtack) {
 				ctx.db = item.doAtack(ctx.db)
 			}
 		}
-		ctx.database.saveAtack(ctx)
+		ctx.database.saveAtack(play.id, play.xp, ctx)
 		//TODO add xp in opponent
 		//TODO Send result to opponent
 		//TODO send new message of battle
 		text += `
 ---------------------------------------
-....
+<b>-</b>${ctx.db.log.join('\n<b>-</b>')}
 `
 		map = data.map
+		ctx.telegram.sendMessage(play.id, `
+<b>Reply attack:</b>
+${text}
+`, {
+			parse_mode: 'HTML',
+			reply_markup: {
+				inline_keyboard: keyboard
+			}
+		})
 	} else {
 		map = mapHide(ctx, opponent)
 	}

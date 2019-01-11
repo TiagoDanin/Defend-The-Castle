@@ -13,16 +13,16 @@ module.exports = {
 					'Eu avisei para você não ir...',
 					'Estamos praticamente desimados.'
 				])
-				data.atack = ctx.db.atack / 3
+				data.atack += Math.floor(Math.pow(100, Math.pow(data.qt_bomb, 0.16)))
 				data.shield = (data.shield / 2) + (ctx.db.shield / 3)
 			} else {
 				ctx.db.log([
 					'Esse foi por pouco.',
 					'Agora só temos a sorte!'
 				])
+				data.atack += ctx.db.atack / 11
 			}
-			data.atack = data.atack * Math.floor(Math.pow(100, Math.pow(data.qt_bomb, 0.16)))
 		},
-		upgrade: [210, 0.2]
+		upgrade: [210, 0.2, 'bomb']
 	}
 }

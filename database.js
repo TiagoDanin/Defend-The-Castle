@@ -190,8 +190,27 @@ const saveUser = async (ctx) => {
 	return data.rows[0]
 }
 
-const saveAtack = async () => {
-	return
+const saveAtack = async (playId, playXp, ctx) => {
+	let data = {}
+	let client = await pool.connect()
+	data = await client.query(`
+		UPDATE users
+			SET xp = $1
+			WHERE id = $2
+		RETURNING *;
+	`, [playXp, playId]).catch(error)
+	await client.query(`
+		UPDATE users
+			SET xp = $1,
+				money = $1
+			WHERE id = $3
+		RETURNING *;
+	`, [ctx.db.xp, ctx.db.money, ctx.from.id]).catch(error)
+	client.release()
+	if (data.rowCount != 1) {
+		return false
+	}
+	return data.rows[0]
 }
 
 module.exports = {

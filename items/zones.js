@@ -18,7 +18,7 @@ module.exports = {
 				data.atack = data.atack * Math.floor(Math.pow(100, Math.pow(data.qt_zonewar, 0.08)))
 			}
 		},
-		upgrade: [120.60, 0.2]
+		upgrade: [120.60, 0.2, 'zonewar']
 	},
 	'3': {
 		icon: '🛡',
@@ -36,6 +36,6 @@ module.exports = {
 				data.shield = data.shield * Math.floor(Math.pow(80, Math.pow(data.qt_zonewar, 0.123)))
 			}
 		},
-		upgrade: [120.60, 0.2]
+		upgrade: [120.60, 0.2, 'zonedefense']
 	}
 }

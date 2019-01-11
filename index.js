@@ -13,6 +13,7 @@ const items = {
 	...require('./items/bomb'),
 	...require('./items/city'),
 	...require('./items/null'),
+	...require('./items/rocket'),
 	...require('./items/zones')
 }
 

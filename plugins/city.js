@@ -41,7 +41,7 @@ const showInventory = (ctx, pos) => {
 				callback_data: `city:up:${pos}:1`
 			},
 			{
-				text: '✅ Upgrade (Max)',
+				text: '✅ Upgrade (+10)',
 				callback_data: `city:up:${pos}:max`
 			}]
 		]
@@ -109,7 +109,28 @@ const base = async (ctx) => {
 	} else if (ctx.match[2] == 'up' && ctx.match[3]) {
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
 		text += infoText(ctx)
-		//TODO upgrade
+		const item = ctx.items[ctx.db.city[Number(ctx.match[3])]]
+		const row = `qt_${item.upgrade[2]}`
+		const value = Number(ctx.db[row]) + 1
+		const price = Math.floor(
+			Math.pow(
+				item.upgrade[0],
+				Math.pow(value, item.upgrade[1])
+			)
+		)
+		if (ctx.db.money >= price) {
+			ctx.db.money -= price
+			ctx.db.money = Math.floor(ctx.db.money)
+			text += 'Upgraded!'
+			ctx.database.updateUser(ctx.from.id, row, value).then((res) => {
+				if (res) {
+					ctx.database.updateUser(ctx.from.id, 'money', ctx.db.money)
+				}
+			})
+			ctx.database.updateUser(ctx.from.id, 'money', value)
+		} else {
+			text += 'Falid!'
+		}
 	} else if (ctx.match[2] == 'inv' && ctx.match[3]) {
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
 		text += infoText(ctx)
