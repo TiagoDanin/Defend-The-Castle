@@ -6,7 +6,8 @@ module.exports = {
 		//'invite',
 		'menu',
 		'singup',
-		//'stats'
+		//'stats',
+		//'tutorial'
 	],
 	maxlevel: 10,
 	defaultLang: 'en',
