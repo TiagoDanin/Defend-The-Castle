@@ -1,5 +1,5 @@
 const hack = (ctx) => {
-	return ctx.answerInlineQuery(':) Start a new game!') //FORCE
+	return ctx.answerCbQuery(':) Start a new game!', true)
 }
 
 const doAtack = (p1, p2) => {
@@ -8,9 +8,6 @@ const doAtack = (p1, p2) => {
 
 const atack = async (ctx, opponent) => {
 	const playId = ctx.match[4]
-	if (ctx.db.opponent == playId) {
-		return hack(ctx)
-	}
 	let play = await ctx.database.getUser(playId)
 	let text = `<b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
@@ -22,7 +19,7 @@ const atack = async (ctx, opponent) => {
 <b>🎖 Experience:</b> ${play.xp}
 <b>💰 Money:</b> ${play.money}`
 
-	ctx.db.opponent = opponent.id
+	//ctx.db.opponent = opponent.id
 
 	const xps = {
 		play: play.xp,
@@ -63,7 +60,7 @@ ${ctx.db.shield} 🛡 ${play.shield}
 ${ctx.db.life} ❤️ ${play.life}
 ---------------------------------------
 <b>-</b>${ctx.db.log.join('\n<b>-</b>')}`
-	ctx.db.life = Math.floor(doAtack(play, ctx.db))
+	ctx.db.life = Math.floor(doAtack(play, ctx.db)) //Math.floor(doAtack(ctx.db, play))
 	play.life = Math.floor(doAtack(ctx.db, play))
 
 	console.log(ctx.db.life, play.life)
@@ -97,8 +94,17 @@ ${text}`
 	ctx.db.xp = Math.floor(ctx.db.xp)
 	play.xp = Math.floor(play.xp)
 
-	const res = await ctx.database.saveAtack(play.id, play.xp, ctx)
+	const res = await ctx.database.saveAtack(play.id, play.xp, ctx, opponent)
+	console.log(res)
+	console.log(play.id)
+	console.log(opponent.id)
+	console.log(ctx.db.opponent)
 	if (!res) {
+		console.log(22222222)
+		console.log(res)
+		console.log(play.id)
+		console.log(opponent.id)
+		console.log(ctx.db.opponent)
 		return hack(ctx)
 	}
 
@@ -186,7 +192,7 @@ const showMap = (ctx, opponent, h, v) => {
 
 const base = async (ctx) => {
 	let _new = false
-	let opponent = await ctx.database.randomUser()
+	let opponent = await ctx.database.randomUser(1)
 	opponent = opponent[0]
 	let text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}

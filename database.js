@@ -45,7 +45,7 @@ const setUser = async (id, name, type) => {
 		INSERT
 		INTO stats(id, time)
 		VALUES ($1, now());
-	`, [id, invite]).catch(error)
+	`, [id]).catch(error)
 	client.release()
 	if (data.rowCount != 1) {
 		return false
@@ -75,7 +75,8 @@ const randomUser = async (max = 10) => {
 	data = await client.query(`
 		SELECT *
 		FROM users
-		TABLESAMPLE SYSTEM_ROWS($1);
+		ORDER BY random()
+		limit $1;
 	`, [max]).catch(error)
 	client.release()
 	return data.rows
@@ -187,19 +188,20 @@ const saveUser = async (ctx) => {
 	return data.rows[0]
 }
 
-const saveAtack = async (playId, playXp, ctx) => {
+const saveAtack = async (playId, playXp, ctx, opponent) => {
 	let data = {}
 	let client = await pool.connect()
 	data = await client.query(`
 		UPDATE users
 			SET xp = $1,
-				money = $2
+				money = $2,
+				opponent = $5
 			WHERE
 				id = $3
 				AND
 				opponent = $4
 		RETURNING *;
-	`, [ctx.db.xp, ctx.db.money, ctx.from.id, playId, ctx.db.opponent]).catch(error)
+	`, [ctx.db.xp, ctx.db.money, ctx.from.id, ctx.db.opponent, opponent.id]).catch(error)
 	if (data.rowCount == 1) {
 		await client.query(`
 			UPDATE users
@@ -267,7 +269,7 @@ const joinUserInvite = async (id, invite) => {
 		INSERT
 		INTO stats(id, time, invite)
 		VALUES ($1, now(), $2);
-	`, [max]).catch(error)
+	`, [id, invite]).catch(error)
 	client.release()
 	if (data.rowCount != 1) {
 		return false

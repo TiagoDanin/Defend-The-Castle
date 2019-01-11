@@ -58,7 +58,7 @@ const processError = (error, ctx, plugin) => {
 		if (ctx.updateType == 'message') {
 			ctx.replyWithMarkdown(errorMsg)
 		} else if (ctx.updateType == 'callback_query' || ctx.updateType == 'edited_message') {
-			ctx.editMessageText(errorMsg, {
+			ctx.reply(errorMsg, { //editMessageText
 				parse_mode: 'Markdown'
 			})
 		} else if (ctx.updateType == '') {
