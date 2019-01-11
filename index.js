@@ -169,6 +169,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		return false
 	}
 	var data = {
+		opponent: 0,
 		maxLevel: config.maxLevel,
 		maxTroops: 5,
 		plusAtack: 0,

@@ -121,7 +121,7 @@ const base = async (ctx) => {
 		if (ctx.db.money >= price) {
 			ctx.db.money -= price
 			ctx.db.money = Math.floor(ctx.db.money)
-			text += 'Upgraded!'
+			text += '\nUpgraded!'
 			ctx.database.updateUser(ctx.from.id, row, value).then((res) => {
 				if (res) {
 					ctx.database.updateUser(ctx.from.id, 'money', ctx.db.money)
@@ -129,7 +129,7 @@ const base = async (ctx) => {
 			})
 			ctx.database.updateUser(ctx.from.id, 'money', value)
 		} else {
-			text += 'Falid!'
+			text += '\nFalid!'
 		}
 	} else if (ctx.match[2] == 'inv' && ctx.match[3]) {
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
