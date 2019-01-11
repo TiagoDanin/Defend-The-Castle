@@ -1,13 +1,12 @@
 const hack = (ctx) => {
-	return //TODO
+	return ctx.answerInlineQuery(':) Start a new game!') //FORCE
 }
 
 const doAtack = (p1, p2) => {
-	//TODO
-	return p1
+	return p1.life - ((p2.attack / (p1.shield / 100)) / 1.2)
 }
 
-const atack = async (ctx) => {
+const atack = async (ctx, opponent) => {
 	const playId = ctx.match[4]
 	if (ctx.db.opponent == playId) {
 		return hack(ctx)
@@ -22,6 +21,8 @@ const atack = async (ctx) => {
 <b>🏅 Level:</b> ${play.level}
 <b>🎖 Experience:</b> ${play.xp}
 <b>💰 Money:</b> ${play.money}`
+
+	ctx.db.opponent = opponent.id
 
 	const xps = {
 		play: play.xp,
@@ -62,8 +63,10 @@ ${ctx.db.shield} 🛡 ${play.shield}
 ${ctx.db.life} ❤️ ${play.life}
 ---------------------------------------
 <b>-</b>${ctx.db.log.join('\n<b>-</b>')}`
-	ctx.life = Math.floor(doAtack(play))
-	play.life = Math.floor(doAtack(ctx))
+	ctx.db.life = Math.floor(doAtack(play, ctx.db))
+	play.life = Math.floor(doAtack(ctx.db, play))
+
+	console.log(ctx.db.life, play.life)
 
 	//TODO XP with base level
 	const xp = 100
@@ -74,7 +77,7 @@ ${ctx.db.name} LOST!
 ---------------------------------------
 ${text}`
 		play.xp += xp/15
-	} else if (ctx.life > play.life) {
+	} else if (ctx.db.life > play.life) {
 		ctx.db.xp += xp
 		play.xp += xp/10
 		text = `

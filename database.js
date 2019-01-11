@@ -45,7 +45,7 @@ const setUser = async (id, name, type) => {
 		INSERT
 		INTO stats(id, time)
 		VALUES ($1, now());
-	`, [id]).catch(error)
+	`, [id, invite]).catch(error)
 	client.release()
 	if (data.rowCount != 1) {
 		return false
@@ -143,7 +143,6 @@ const saveUser = async (ctx) => {
 		'key',
 		'id',
 		'time',
-		'inventory',
 		'city',
 		'type',
 		'run',
@@ -200,7 +199,7 @@ const saveAtack = async (playId, playXp, ctx) => {
 				AND
 				opponent = $4
 		RETURNING *;
-	`, [ctx.db.xp, ctx.db.money, ctx.from.id, playId]).catch(error)
+	`, [ctx.db.xp, ctx.db.money, ctx.from.id, playId, ctx.db.opponent]).catch(error)
 	if (data.rowCount == 1) {
 		await client.query(`
 			UPDATE users
@@ -261,6 +260,21 @@ const getAllUsers = async () => {
 	return data.rows
 }
 
+const joinUserInvite = async (id, invite) => {
+	let data = {}
+	let client = await pool.connect()
+	data = await client.query(`
+		INSERT
+		INTO stats(id, time, invite)
+		VALUES ($1, now(), $2);
+	`, [max]).catch(error)
+	client.release()
+	if (data.rowCount != 1) {
+		return false
+	}
+	return data.rows;
+}
+
 module.exports = {
 	getUser,
 	setUser,
@@ -273,5 +287,6 @@ module.exports = {
 	saveAtack,
 	getStats24,
 	getJoin24,
-	getAllUsers
+	getAllUsers,
+	joinUserInvite
 }

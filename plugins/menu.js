@@ -86,6 +86,7 @@ module.exports = {
 		/^\/about/i,
 		/^\/help/i,
 		/^\/sobre/i,
-		/^\/ajuda/i
+		/^\/ajuda/i,
+		/^\/join/i
 	]
 }

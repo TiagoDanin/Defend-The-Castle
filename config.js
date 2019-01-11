@@ -3,7 +3,7 @@ module.exports = {
 		//'box',
 		'city',
 		'fight',
-		//'invite',
+		'invite',
 		'menu',
 		'singup',
 		//'stats',
