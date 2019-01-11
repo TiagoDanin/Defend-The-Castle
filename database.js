@@ -45,7 +45,7 @@ const setUser = async (id, name, type) => {
 		INSERT
 		INTO stats(id, time)
 		VALUES ($1, now());
-	`, [id, name, type]).catch(error)
+	`, [id]).catch(error)
 	client.release()
 	if (data.rowCount != 1) {
 		return false
@@ -81,14 +81,14 @@ const randomUser = async (max = 10) => {
 	return data.rows
 }
 
-const topUsers = async (row, value) => {
+const topUsers = async (row) => {
 	let data = {}
 	let client = await pool.connect()
 	data = await client.query(`
 		SELECT *
 		FROM users
 		ORDER BY ${row} DESC, xp DESC
-	`, [value]).catch(error)
+	`, []).catch(error)
 	//LIMITE 15; ?
 	//WHERE ${row} >= $1
 	client.release()
@@ -193,17 +193,22 @@ const saveAtack = async (playId, playXp, ctx) => {
 	let client = await pool.connect()
 	data = await client.query(`
 		UPDATE users
-			SET xp = $1
-			WHERE id = $2
-		RETURNING *;
-	`, [playXp, playId]).catch(error)
-	await client.query(`
-		UPDATE users
 			SET xp = $1,
-				money = $1
-			WHERE id = $3
+				money = $2
+			WHERE
+				id = $3
+				AND
+				opponent = $4
 		RETURNING *;
-	`, [ctx.db.xp, ctx.db.money, ctx.from.id]).catch(error)
+	`, [ctx.db.xp, ctx.db.money, ctx.from.id, playId]).catch(error)
+	if (data.rowCount == 1) {
+		await client.query(`
+			UPDATE users
+				SET xp = $1
+				WHERE id = $2
+			RETURNING *;
+		`, [playXp, playId]).catch(error)
+	}
 	client.release()
 	if (data.rowCount != 1) {
 		return false
@@ -211,7 +216,7 @@ const saveAtack = async (playId, playXp, ctx) => {
 	return data.rows[0]
 }
 
-const getStats24 = () => {
+const getStats24 = async () => {
 	let data = {}
 	let client = await pool.connect()
 	data = await client.query(`
@@ -228,7 +233,7 @@ const getStats24 = () => {
 	return data.rows
 }
 
-const getJoin24 = () => {
+const getJoin24 = async () => {
 	let data = {}
 	let client = await pool.connect()
 	data = await client.query(`
@@ -236,7 +241,7 @@ const getJoin24 = () => {
 		FROM stats
 		WHERE
 			EXTRACT( EPOCH FROM ( time ) )
-			<
+			>
 				( EXTRACT( EPOCH FROM ( now() ) )
 				-
 				EXTRACT( EPOCH FROM ( INTERVAL '24 hour' ) ) );
@@ -245,7 +250,7 @@ const getJoin24 = () => {
 	return data.rows
 }
 
-const getAllUsers = () => {
+const getAllUsers = async () => {
 	let data = {}
 	let client = await pool.connect()
 	data = await client.query(`

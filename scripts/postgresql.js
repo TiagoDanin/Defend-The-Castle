@@ -12,9 +12,10 @@ const main = async () => {
 		CREATE TABLE users(
 			id               INT        NOT NULL,
 			name             TEXT       NOT NULL,
+			opponent         INT        DEFAULT 1,
 			type             TEXT       DEFAULT 'warrior',
 			level            INT        DEFAULT 1,
-			atack            INT        DEFAULT 50,
+			attack           INT        DEFAULT 50,
 			shield           INT        DEFAULT 50,
 			life             INT        DEFAULT 50,
 			money            INT        DEFAULT 100,
@@ -28,12 +29,14 @@ const main = async () => {
 			xp               INT        DEFAULT 0,
 			troops           INT        DEFAULT 5,
 			time             TIMESTAMP  DEFAULT now(),
-			inventory        INT[]      DEFAULT '{}',
+			inventory        INT[]      DEFAULT '{
+				3, 2, 3, 2, 3, 2, 7, 7, 6, 6
+			}',
 			city             INT[]      DEFAULT '{
-				5, 0, 0, 0, 0,
-				1, 0, 0, 0, 0,
-				2, 0, 0, 0, 0,
-				3, 0, 0, 0, 0,
+				5, 0, 0, 0, 4,
+				0, 1, 0, 3, 0,
+				0, 0, 0, 0, 0,
+				0, 0, 2, 0, 0,
 				4, 0, 0, 0, 5
 			}',
 			PRIMARY KEY (id)
