@@ -8,9 +8,12 @@ const config = require('./config')
 const database = require('./database')
 
 const items = {
-	...require('./items/null'), //0
+	...require('./items/bank'),
+	//...require('./items/battle'),
+	...require('./items/bomb'),
 	...require('./items/city'),
-	...require('./items/bank') //5
+	...require('./items/null'),
+	...require('./items/zones')
 }
 
 const bot = new Telegraf(process.env.telegram_token, {
@@ -173,6 +176,8 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		plusXp: 0,
 		plusMoney: 0,
 		moneyPerHour: 0,
+		log: [],
+		old: db,
 		...db,
 		...config.class[db.type],
 		castle: config.castles[db.city[12]] || '🏰'
@@ -207,7 +212,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	}
 	data.money = Math.round(data.money)
 	if (data.run) {
-		//TODO Update db
+		database.saveUser(ctx)
 	}
 	return data
 }

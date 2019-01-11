@@ -16,7 +16,7 @@ const error = (res) => {
 
 const getUser = async (id) => {
 	let data = {}
-	var client = await pool.connect()
+	let client = await pool.connect()
 	data = await client.query(`
 		SELECT
 			*,
@@ -34,13 +34,20 @@ const getUser = async (id) => {
 
 const setUser = async (id, name, type) => {
 	let data = {}
-	var client = await pool.connect()
+	let client = await pool.connect()
 	data = await client.query(`
 		INSERT
 			INTO users(id, name, type)
 			VALUES ($1, $2, $3)
 		RETURNING *;
 	`, [id, name, type]).catch(error)
+	/*
+	client.query(`
+		INSERT
+		INTO stars(id, time)
+		VALUES ($1, now());
+	`, [id, name, type]).catch(error)
+	*/
 	client.release()
 	if (data.rowCount != 1) {
 		return false
@@ -50,7 +57,7 @@ const setUser = async (id, name, type) => {
 
 const updateUser = async (id, row, value) => {
 	let data = {}
-	var client = await pool.connect()
+	let client = await pool.connect()
 	data = await client.query(`
 		UPDATE users
 			SET ${row} = $1
@@ -66,7 +73,7 @@ const updateUser = async (id, row, value) => {
 
 const randomUser = async () => {
 	let data = {}
-	var client = await pool.connect()
+	let client = await pool.connect()
 	data = await client.query(`
 		SELECT *
 		FROM users
@@ -78,7 +85,7 @@ const randomUser = async () => {
 
 const topUsers = async (row, value) => {
 	let data = {}
-	var client = await pool.connect()
+	let client = await pool.connect()
 	data = await client.query(`
 		SELECT *
 		FROM users
@@ -90,13 +97,11 @@ const topUsers = async (row, value) => {
 	return data.rows
 }
 
-
-
 const setCity = async (ctx, pos, id) => {
 	let data = {}
 	let city = ctx.db.city
 	city[pos] = id
-	var client = await pool.connect()
+	let client = await pool.connect()
 	data = await client.query(`
 		UPDATE users
 			SET city = $1
@@ -118,7 +123,7 @@ const replaceInventory = async (ctx, pos, to) => {
 		return false
 	}
 	inventory[index] = ctx.db.city[pos]
-	var client = await pool.connect()
+	let client = await pool.connect()
 	data = await client.query(`
 		UPDATE users
 			SET inventory = $1
@@ -132,6 +137,63 @@ const replaceInventory = async (ctx, pos, to) => {
 	return data.rows[0]
 }
 
+const saveUser = async (ctx) => {
+	let data = {}
+	let client = await pool.connect()
+	const blackList = [
+		'name',
+		'key',
+		'id',
+		'time',
+		'inventory',
+		'city',
+		'type',
+		'run',
+		'timerunning'
+	]
+	let listKeys = Object.keys(ctx.db.old).filter((e) => (!blackList.includes(e)) ? e : false)
+	listKeys = listKeys.reduce((total, key, index) => {
+		if (ctx.db.old[key] != ctx.db[key]) {
+			console.log('-----', key)
+			total.push(key)
+		}
+		return total
+	}, [])
+
+	const query = `
+		UPDATE users
+			SET
+				${listKeys.reduce((total, e, index) => `${total},
+				${e} = $${index+2}`, 'time = now()')}
+			WHERE id = $1
+		RETURNING *;
+	`
+
+	console.log(query)
+
+	console.log(listKeys.reduce((total, e) => {
+		total.push(ctx.db[e])
+		return total
+	}, [ctx.from.id]))
+
+	data = await client.query(
+		query,
+		listKeys.reduce((total, e) => {
+			total.push(ctx.db[e])
+			return total
+		}, [ctx.from.id])
+	).catch(error)
+	client.release()
+	if (data.rowCount != 1) {
+		return false
+	}
+	return data.rows[0]
+}
+
+const saveAtack = async () => {
+	return
+}
+
 module.exports = {
 	getUser,
 	setUser,
@@ -139,5 +201,7 @@ module.exports = {
 	topUsers,
 	randomUser,
 	setCity,
-	replaceInventory
+	replaceInventory,
+	saveUser,
+	saveAtack
 }

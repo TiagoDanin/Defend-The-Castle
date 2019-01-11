@@ -64,15 +64,32 @@ const base = async (ctx) => {
 <b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
 <b>🏅 Level:</b> ${opponent.level}
 <b>🎖 Experience:</b> ${opponent.xp}
-<b>💰 Money:</b> ${opponent.money}
-	`
+<b>💰 Money:</b> ${opponent.money}`
 
 	var map = []
 	if (ctx.match[2] == 'ack' && ctx.match[3] && ctx.match[4]) {
 		const v = Math.floor((Number(ctx.match[3]))/5)
 		const h = (Number(ctx.match[3])) % 5
+		//const play = await ctx.database.getPlay(ctx.match[4])
 		const data = showMap(ctx, opponent, h, v)
-		//TODO batle
+		for (let item of data.items) {
+			if (item.doDefend) {
+				data = item.doDefend(data, ctx)
+			}
+		}
+		for (let item of ctx.db) {
+			if (item.doAtack) {
+				ctx.db = item.doAtack(ctx.db)
+			}
+		}
+		ctx.database.saveAtack(ctx)
+		//TODO add xp in opponent
+		//TODO Send result to opponent
+		//TODO send new message of battle
+		text += `
+---------------------------------------
+....
+`
 		map = data.map
 	} else {
 		map = mapHide(ctx, opponent)

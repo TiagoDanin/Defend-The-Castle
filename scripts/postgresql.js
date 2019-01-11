@@ -38,6 +38,11 @@ const main = async () => {
 			}',
 			PRIMARY KEY (id)
 		);
+		CREATE TABLE stas(
+			id               INT        NOT NULL,
+			time             TIMESTAMP  DEFAULT now(),
+			PRIMARY KEY (id)
+		);
 	`, []).catch(log)
 	await client.end()
 }
