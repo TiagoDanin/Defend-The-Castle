@@ -181,7 +181,8 @@ const showMap = (ctx, opponent, h, v) => {
 
 const base = async (ctx) => {
 	let _new = false
-	let opponent = await ctx.database.randomUser(1)
+	let opponent = await ctx.database.randomUser(4)
+	opponent = opponent.filter((e) => e.id != ctx.from.id && e.id != ctx.match[4])
 	opponent = opponent[0]
 	let text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}

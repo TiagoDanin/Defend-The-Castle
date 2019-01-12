@@ -25,6 +25,7 @@ const base = async (ctx) => {
 	var keyboard = [
 		[{text: '⚔️ Fight' , callback_data: 'fight' }],
 		[{text: `${ctx.db.castle} City` , callback_data: 'city' }],
+		[{text: '🛰 Military base', callback_data: 'base'}],
 		[{text: '🥇 Rank' , callback_data: 'menu:rank' }],
 		[{text: '📔 About' , callback_data: 'menu:about' }]
 	]
@@ -49,6 +50,8 @@ const base = async (ctx) => {
 🗣 <b>Channel:</b> @DefendTheCastle
 👥 <b>Group EN:</b> @DefendTheCastleEN
 👥 <b>Group PT:</b> @DefendTheCastlePT
+
+Invite URL: https://telegram.me/DefendTheCastleBot?start=join-${ctx.from.id}
 		`
 		keyboard = [
 			[{text: '📜 Menu' , callback_data: 'menu:main' }],

@@ -1,5 +1,6 @@
 module.exports = {
 	plugins: [
+		'base',
 		//'box',
 		'city',
 		'fight',
