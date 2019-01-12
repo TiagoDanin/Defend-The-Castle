@@ -12,9 +12,10 @@ const items = {
 	...require('./items/bank'),
 	//...require('./items/battle'),
 	...require('./items/bomb'),
-	...require('./items/city'),
+	...require('./items/hospital'),
 	...require('./items/null'),
 	...require('./items/rocket'),
+	...require('./items/zones'),
 	...require('./items/zones')
 }
 

@@ -13,7 +13,15 @@ module.exports = {
 		price: price,
 		doDb: (data) => {
 			var banks = data.city.filter((e) => e == 5).length
-			data.moneyPerHour = Math.floor((Math.pow(100, Math.pow(data.qt_bank, 0.092)) * banks))
+			data.moneyPerHour = Math.floor(Math.pow(100, Math.pow(data.qt_bank, 0.092)) * banks)
+			return data
+		},
+		doDefend: (data, ctx) => {
+			ctx.db.log.push([
+				'Found money!',
+				'MONEEEEY!'
+			])
+			ctx.db.money += Math.floor(Math.pow(100, Math.pow(data.qt_bank, 0.092)) / 90)
 			return data
 		},
 		doTime: (data) => {

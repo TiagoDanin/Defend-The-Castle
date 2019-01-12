@@ -23,6 +23,6 @@ module.exports = {
 			}
 			return data
 		},
-		upgrade: [210, 0.2, 'bomb']
+		upgrade: [300, 0.2, 'bomb']
 	}
 }

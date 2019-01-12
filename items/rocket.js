@@ -12,6 +12,6 @@ module.exports = {
 			data.attack += Math.floor(Math.pow(100, Math.pow(data.qt_rocket, 0.16))) / (Math.floor((Math.random() * 3)) + 3)
 			return data
 		},
-		upgrade: [800, 0.2, 'rocket']
+		upgrade: [690, 0.2, 'rocket']
 	}
 }
