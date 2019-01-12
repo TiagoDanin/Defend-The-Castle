@@ -7,6 +7,10 @@ const doAtack = (p1, p2) => {
 }
 
 const atack = async (ctx, opponent) => {
+	if (ctx.db.troops <= 0) {
+		return ctx.answerCbQuery('You have no troops, wait a minute!', true)
+	}
+
 	const playId = ctx.match[4]
 	let play = await ctx.database.getUser(playId)
 	let text = `<b>${ctx.db.castle} City:</b> ${ctx.db.name}
@@ -27,6 +31,10 @@ const atack = async (ctx, opponent) => {
 		play: play.xp,
 		user: ctx.db.xp
 	}
+
+	play.attack = play.attack / 3
+	play.shield = play.shield / 2.4
+
 	const v = Math.floor((Number(ctx.match[3]))/5)
 	const h = (Number(ctx.match[3])) % 5
 	const data = showMap(ctx, play, h, v)
@@ -91,6 +99,7 @@ ${text}`
 	ctx.db.money = Math.floor(ctx.db.money)
 	ctx.db.xp = Math.floor(ctx.db.xp)
 	play.xp = Math.floor(play.xp)
+	ctx.db.troops--
 
 	const res = await ctx.database.saveAtack(play.id, play.xp, ctx, opponent)
 	if (!res) {

@@ -37,7 +37,7 @@ const getUser = async (id) => {
 		SELECT
 			*,
 			EXTRACT(EPOCH FROM ( now() - time ) ) as timerunning,
-			EXTRACT(EPOCH FROM ( now() - time ) ) > 90 as run
+			EXTRACT(EPOCH FROM ( now() - time ) ) > 50 as run
 		FROM users
 		WHERE id = $1;
 	`, [id]).catch(error)
@@ -112,8 +112,8 @@ const topUsers = async (row, id) => {
 					   ROW_NUMBER() OVER(ORDER BY ${row} DESC, xp DESC) AS position
 				FROM users
 			) users
-		WHERE users.id = 89198119 OR position <= 10;
-	`, []).catch(error)
+		WHERE users.id = $1 OR position <= 10;
+	`, [id]).catch(error)
 	//LIMIT 15; ?
 	//WHERE ${row} >= $1
 	client.release()
@@ -210,13 +210,16 @@ const saveAtack = async (playId, playXp, ctx, opponent) => {
 		UPDATE users
 			SET xp = $1,
 				money = $2,
-				opponent = $5
+				opponent = $5,
+				troops = $6
 			WHERE
 				id = $3
 				AND
 				opponent = $4
 		RETURNING *;
-	`, [ctx.db.xp, ctx.db.money, ctx.from.id, ctx.db.opponent, opponent.id]).catch(error)
+	`, [
+		ctx.db.xp, ctx.db.money, ctx.from.id, ctx.db.opponent, opponent.id, ctx.db.troops
+	]).catch(error)
 	if (data.rowCount == 1) {
 		await client.query(`
 			UPDATE users

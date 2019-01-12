@@ -1,5 +1,5 @@
 const showRank = async (ctx, type) => {
-	let db = await ctx.database.topUsers(type)
+	let db = await ctx.database.topUsers(type, ctx.from.id)
 	var text = `🥇 You Rank is: ${db.filter((e) => {
 		if (e.id == ctx.from.id) return true
 	})[0].position}\n`

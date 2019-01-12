@@ -229,6 +229,17 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	}
 	data.money = Math.round(data.money)
 	if (data.run) {
+		if (data.troops < data.maxTroops) {
+			if (data.timerunning >= 60) {
+				const winTroops = Math.floor(data.timerunning / 60)
+				data.troops += winTroops
+				if (data.troops > data.maxTroops) {
+					data.troops = data.maxTroops
+				}
+			} else {
+				data.troops++
+			}
+		}
 		database.saveUser(ctx)
 	}
 	return data
