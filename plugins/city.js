@@ -136,7 +136,6 @@ const base = async (ctx) => {
 						Math.pow(value, item.upgrade[1])
 					)
 				)
-				console.log(price)
 				if (ctx.db.money >= (addPrice + price)) {
 					price += addPrice
 				} else {

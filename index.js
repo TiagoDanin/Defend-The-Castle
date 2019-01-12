@@ -42,6 +42,14 @@ bot.telegram.sendMessage(process.env.log_chat,
 )
 
 const processError = (error, ctx, plugin) => {
+	if (error) {
+		if (`${error}`.match('400: Bad Request: message is not modified')) {
+			return ctx.answerCbQuery('You have already selected is option!', true).catch((e) => {
+				return dlogError(e)
+			})
+		}
+	}
+
 	var fulllog = []
 	var logId = `${+ new Date()}_`
 	if (ctx && ctx.update && ctx.update.update_id) {
@@ -76,7 +84,7 @@ const processError = (error, ctx, plugin) => {
 			type: 'error',
 			data: error
 		})
-		dlogError(`Oooops ${error}`)
+		dlogError(`Oooops`, error)
 	}
 	if (ctx) {
 		fulllog.push({
