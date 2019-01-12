@@ -2,7 +2,7 @@ const text = 'What\'s the name of your town?'
 const callback = async (ctx) => {
 	if (ctx.match[2] == 'yes') {
 		//TODO Select Class
-		return ctx.reply('💾 Saved', {
+		return ctx.reply('💾 Saved' + ctx.fixKeyboard, {
 			reply_markup: {
 				inline_keyboard:
 				[
@@ -34,7 +34,7 @@ ${text}
 		if (!db) {
 			await ctx.database.updateUser(ctx.from.id, 'name', ctx.match[1])
 		}
-		return ctx.reply(`Are you sure the name of your city is ${ctx.match[1]}?.`, {
+		return ctx.reply(`Are you sure the name of your city is ${ctx.match[1]}?.${ctx.fixKeyboard}`, {
 			reply_markup: {
 				inline_keyboard:
 				[
@@ -44,7 +44,7 @@ ${text}
 			}
 		})
 	}
-	return ctx.reply('Use the `/start`', {
+	return ctx.reply('Use the `/start`' + ctx.fixKeyboard, {
 		reply_markup: {
 			inline_keyboard:
 			[

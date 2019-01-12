@@ -15,7 +15,7 @@ const items = {
 	...require('./items/hospital'),
 	...require('./items/null'),
 	...require('./items/rocket'),
-	...require('./items/zones'),
+	...require('./items/tower'),
 	...require('./items/zones')
 }
 
@@ -157,6 +157,7 @@ bot.use((ctx, next) => {
 bot.context.database = database
 bot.context.castles = config.castles
 bot.context.items = items
+bot.context.fixKeyboard = Array(90).join('\u0020') + '\u200B'
 bot.context.userInfo = async (ctx, onlyUser) => {
 	if (typeof ctx != 'object') {
 		ctx = {

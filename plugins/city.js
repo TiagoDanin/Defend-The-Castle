@@ -41,7 +41,7 @@ const showInventory = (ctx, pos) => {
 				callback_data: `city:up:${pos}:1`
 			},
 			{
-				text: '✅ Upgrade (+10)',
+				text: '✅ Upgrade (+15)',
 				callback_data: `city:up:${pos}:max`
 			}]
 		]
@@ -81,7 +81,15 @@ const infoText = (ctx) => {
 	var info = `<b>${item.icon} ${item.name}</b>\n`
 	info += item.desc
 	if (item.upgrade) {
-		info += `\n<b>💶 Upgrade:</b> ${item.price(ctx.db).upgrade} Coin`
+		const row = `qt_${item.upgrade[2]}`
+		const value = Number(ctx.db[row]) + 1
+		const price = Math.floor(
+			Math.pow(
+				item.upgrade[0],
+				Math.pow(value, item.upgrade[1])
+			)
+		)
+		info += `\n<b>💶 Upgrade:</b> ${price} Coin`
 	}
 	return info
 }
@@ -106,18 +114,38 @@ const base = async (ctx) => {
 	---------------------------------------
 	<b>New castle!</b>
 		`
-	} else if (ctx.match[2] == 'up' && ctx.match[3]) {
+	} else if (ctx.match[2] == 'up' && ctx.match[3] && ctx.match[4]) {
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
 		text += infoText(ctx)
 		const item = ctx.items[ctx.db.city[Number(ctx.match[3])]]
 		const row = `qt_${item.upgrade[2]}`
-		const value = Number(ctx.db[row]) + 1
-		const price = Math.floor(
+		let value = Number(ctx.db[row]) + 1
+		let price = Math.floor(
 			Math.pow(
 				item.upgrade[0],
 				Math.pow(value, item.upgrade[1])
 			)
 		)
+
+		if (ctx.match[4] == 'max') {
+			for (let i = 0; i < 14; i++) {
+				value++
+				let addPrice = Math.floor(
+					Math.pow(
+						item.upgrade[0],
+						Math.pow(value, item.upgrade[1])
+					)
+				)
+				console.log(price)
+				if (ctx.db.money >= (addPrice + price)) {
+					price += addPrice
+				} else {
+					value--
+					break
+				}
+			}
+		}
+
 		if (ctx.db.money >= price) {
 			ctx.db.money -= price
 			ctx.db.money = Math.floor(ctx.db.money)
@@ -127,8 +155,9 @@ const base = async (ctx) => {
 					ctx.database.updateUser(ctx.from.id, 'money', ctx.db.money)
 				}
 			})
-			ctx.database.updateUser(ctx.from.id, 'money', value)
+			ctx.answerCbQuery('Upgraded!')
 		} else {
+			ctx.answerCbQuery(`❌ Your money ${ctx.db.money} | Price ${price}`, true)
 			text += '\nFalid!'
 		}
 	} else if (ctx.match[2] == 'inv' && ctx.match[3]) {
@@ -155,7 +184,7 @@ const base = async (ctx) => {
 		}]
 	]
 
-	return ctx.editMessageText(text, {
+	return ctx.editMessageText(text + ctx.fixKeyboard, {
 		parse_mode: 'HTML',
 		reply_markup: {
 			inline_keyboard: keyboard

@@ -62,14 +62,14 @@ const base = async (ctx) => {
 	}
 
 	if (ctx.updateType == 'callback_query') {
-		return ctx.editMessageText(text, {
+		return ctx.editMessageText(text + ctx.fixKeyboard, {
 			parse_mode: 'HTML',
 			reply_markup: {
 				inline_keyboard: keyboard
 			}
 		})
 	}
-	return ctx.replyWithHTML(text, {
+	return ctx.replyWithHTML(text + ctx.fixKeyboard, {
 		reply_markup: {
 			inline_keyboard: keyboard
 		}

@@ -98,7 +98,7 @@ ${text}`
 	}
 
 	map = data.map
-	await ctx.editMessageText(text, {
+	await ctx.editMessageText(text + ctx.fixKeyboard, {
 		parse_mode: 'HTML',
 		reply_markup: {
 			inline_keyboard: [...map, [
@@ -111,7 +111,7 @@ ${text}`
 	})
 	return await ctx.telegram.sendMessage(play.id, `
 <b>Reply attack of ${ctx.db.name} (${ctx.db.id}):</b>
-${text}
+${text}${ctx.fixKeyboard}
 `, {
 		parse_mode: 'HTML',
 		reply_markup: {
@@ -210,7 +210,7 @@ const base = async (ctx) => {
 	]
 
 	if (_new) {
-		return ctx.replyWithHTML(text, {
+		return ctx.replyWithHTML(text + ctx.fixKeyboard, {
 			reply_markup: {
 				inline_keyboard: keyboard
 			}
@@ -219,7 +219,7 @@ const base = async (ctx) => {
 		await ctx.database.updateUser(ctx.from.id, 'opponent', opponent.id)
 	}
 
-	return ctx.editMessageText(text, {
+	return ctx.editMessageText(text + ctx.fixKeyboard, {
 		parse_mode: 'HTML',
 		reply_markup: {
 			inline_keyboard: keyboard
