@@ -19,7 +19,9 @@ const atack = async (ctx, opponent) => {
 <b>🎖 Experience:</b> ${play.xp}
 <b>💰 Money:</b> ${play.money}`
 
-	//ctx.db.opponent = opponent.id
+	if(ctx.db.opponent != play.id) {
+		return hack(ctx)
+	}
 
 	const xps = {
 		play: play.xp,
@@ -206,7 +208,9 @@ const base = async (ctx) => {
 <b>💰 Money:</b> ${opponent.money}`
 
 	var map = []
-	if (ctx.match[2] == 'ack' && ctx.match[3] && ctx.match[4]) {
+	if (ctx.match[2] == 'done') {
+		hack(ctx)
+	} else if (ctx.match[2] == 'ack' && ctx.match[3] && ctx.match[4]) {
 		await atack(ctx, opponent)
 		_new = true
 	}

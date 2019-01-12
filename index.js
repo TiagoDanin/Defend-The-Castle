@@ -3,6 +3,7 @@ const telegrafStart = require('telegraf-start-parts')
 const debug = require('debug')
 const stringify = require('json-stringify-safe')
 const { Resources, Translation } = require('nodejs-i18n')
+const session = require('telegraf/session')
 
 const config = require('./config')
 const database = require('./database')
@@ -131,7 +132,11 @@ var callback = []
 var reply = []
 
 bot.use((ctx, next) => telegrafStart(ctx, next))
-
+bot.use(session({
+	getSessionKey: (ctx) => {
+		return ctx.from.id
+	}
+}))
 /*
 const r = new Resources({
 	lang: config.defaultLang
@@ -179,7 +184,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		plusMoney: 0,
 		moneyPerHour: 0,
 		log: [],
-		old: db,
+		old: {...db},
 		...db,
 		...config.class[db.type],
 		castle: config.castles[db.city[12]] || '🏰'
@@ -305,4 +310,4 @@ bot.catch((err) => {
 	}
 })
 
-bot.startPolling()
+bot.launch()
