@@ -168,7 +168,6 @@ const saveUser = async (ctx) => {
 	let listKeys = Object.keys(ctx.db.old).filter((e) => (!blackList.includes(e)) ? e : false)
 	listKeys = listKeys.reduce((total, key, index) => {
 		if (ctx.db.old[key] != ctx.db[key]) {
-			console.log('-----', key)
 			total.push(key)
 		}
 		return total
@@ -182,14 +181,6 @@ const saveUser = async (ctx) => {
 			WHERE id = $1
 		RETURNING *;
 	`
-
-	console.log(query)
-
-	console.log(listKeys.reduce((total, e) => {
-		total.push(ctx.db[e])
-		return total
-	}, [ctx.from.id]))
-
 	data = await client.query(
 		query,
 		listKeys.reduce((total, e) => {

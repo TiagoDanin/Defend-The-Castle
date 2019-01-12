@@ -32,13 +32,11 @@ const atack = async (ctx, opponent) => {
 	const data = showMap(ctx, play, h, v)
 	for (let item of data.items) {
 		if (item.doDefend) {
-			console.log(item)
 			play = item.doDefend(play, ctx)
 		}
 	}
 	for (let item of ctx.db.inventory) {
 		if (item.doAtack) {
-			console.log(doAtack)
 			ctx.db = item.doAtack(ctx.db)
 		}
 	}
@@ -62,10 +60,8 @@ ${ctx.db.shield} 🛡 ${play.shield}
 ${ctx.db.life} ❤️ ${play.life}
 ---------------------------------------
 <b>-</b>${ctx.db.log.join('\n<b>-</b>')}`
-	ctx.db.life = Math.floor(doAtack(play, ctx.db)) //Math.floor(doAtack(ctx.db, play))
-	play.life = Math.floor(doAtack(ctx.db, play))
-
-	console.log(ctx.db.life, play.life)
+	ctx.db.life = Math.floor(doAtack(ctx.db, play))
+	play.life = Math.floor(doAtack(play, ctx.db))
 
 	//TODO XP with base level
 	const xp = 100
@@ -97,16 +93,7 @@ ${text}`
 	play.xp = Math.floor(play.xp)
 
 	const res = await ctx.database.saveAtack(play.id, play.xp, ctx, opponent)
-	console.log(res)
-	console.log(play.id)
-	console.log(opponent.id)
-	console.log(ctx.db.opponent)
 	if (!res) {
-		console.log(22222222)
-		console.log(res)
-		console.log(play.id)
-		console.log(opponent.id)
-		console.log(ctx.db.opponent)
 		return hack(ctx)
 	}
 
