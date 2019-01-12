@@ -1,7 +1,8 @@
 const showRank = async (ctx, type) => {
 	let db = await ctx.database.topUsers(type)
-	//TODO get rank user
-	var text = `🥇 You Rank is: ${db.length}\n`
+	var text = `🥇 You Rank is: ${db.filter((e) => {
+		if (e.id == ctx.from.id) return true
+	})[0].position}\n`
 	var n = 0
 	for (var user of db) {
 		if (n <= 10) {
@@ -53,10 +54,10 @@ const base = async (ctx) => {
 			[{text: '📜 Menu' , callback_data: 'menu:main' }],
 			[{
 				text: 'Twitter @_TiagoEDGE',
-				url: 'http://twitter/_tiagoedge'
+				url: 'twitter.com/_tiagoedge'
 			}, {
 				text: 'TiagoDanin.github.io',
-				url: 'http://TiagoDanin.github.io'
+				url: 'tiagoDanin.github.io'
 			}]
 		]
 	}

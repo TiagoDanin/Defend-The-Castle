@@ -98,15 +98,23 @@ const randomUser = async (max = 10) => {
 	return data.rows
 }
 
-const topUsers = async (row) => {
+const topUsers = async (row, id) => {
 	let data = {}
 	let client = await pool.connect()
 	data = await client.query(`
 		SELECT *
-		FROM users
-		ORDER BY ${row} DESC, xp DESC
+			FROM (
+				SELECT id,
+					   name,
+					   xp,
+					   level,
+					   money,
+					   ROW_NUMBER() OVER(ORDER BY ${row} DESC, xp DESC) AS position
+				FROM users
+			) users
+		WHERE users.id = 89198119 OR position <= 10;
 	`, []).catch(error)
-	//LIMITE 15; ?
+	//LIMIT 15; ?
 	//WHERE ${row} >= $1
 	client.release()
 	return data.rows
