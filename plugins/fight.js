@@ -124,22 +124,24 @@ ${text}`
 			]]
 		}
 	})
-	await ctx.telegram.sendMessage(play.id, `
+	if (res.reply && res.run) {
+		await ctx.telegram.sendMessage(play.id, `
 <b>Reply attack of ${ctx.db.name} (${ctx.db.id}):</b>
-${text}${ctx.fixKeyboard}
-`, {
-		parse_mode: 'HTML',
-		reply_markup: {
-			inline_keyboard: [...map, [
-				{
-					text: `✨XP ${play.xp - xps.play}`,
-					callback_data: 'fight:done'
-				}
-			]]
-		}
-	}).catch((e) => {
-		//TODO DISABLE NOTIFICATION
-	})
+${text}${ctx.fixKeyboard}`,
+		{
+			parse_mode: 'HTML',
+			reply_markup: {
+				inline_keyboard: [...map, [
+					{
+						text: `✨XP ${play.xp - xps.play}`,
+						callback_data: 'fight:done'
+					}
+				]]
+			}
+		}).catch((e) => {
+			ctx.database.updateUser(play.id, 'reply', false)
+		})
+	}
 	return true
 }
 

@@ -5,6 +5,7 @@ const client = new Client({
 
 const log = (text) => console.log('>>', text)
 
+//ALTER TABLE users ADD COLUMN reply BOOLEAN DEFAULT true;
 const main = async () => {
 	await client.connect()
 	await client.query(`
@@ -13,6 +14,8 @@ const main = async () => {
 			id               INT        NOT NULL,
 			name             TEXT       NOT NULL,
 			opponent         INT        DEFAULT 1,
+			reply            BOOLEAN    DEFAULT true,
+			notification     BOOLEAN    DEFAULT true,
 			type             TEXT       DEFAULT 'warrior',
 			level            INT        DEFAULT 1,
 			attack           INT        DEFAULT 50,

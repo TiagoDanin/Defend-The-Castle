@@ -221,11 +221,13 @@ const saveAtack = async (playId, playXp, ctx, opponent) => {
 		ctx.db.xp, ctx.db.money, ctx.from.id, ctx.db.opponent, opponent.id, ctx.db.troops
 	]).catch(error)
 	if (data.rowCount == 1) {
-		await client.query(`
+		data = await client.query(`
 			UPDATE users
 				SET xp = $1
 				WHERE id = $2
-			RETURNING *;
+			RETURNING *,
+					 EXTRACT(EPOCH FROM ( now() - time ) ) as timerunning,
+					 EXTRACT(EPOCH FROM ( now() - time ) ) > 120 as run;
 		`, [playXp, playId]).catch(error)
 	}
 	client.release()

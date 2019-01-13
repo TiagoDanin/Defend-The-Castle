@@ -3,6 +3,7 @@ module.exports = {
 		'base',
 		//'box',
 		'city',
+		'config',
 		'fight',
 		'invite',
 		'menu',

@@ -27,6 +27,7 @@ const base = async (ctx) => {
 		[{text: `${ctx.db.castle} City` , callback_data: 'city' }],
 		[{text: '🛰 Military base', callback_data: 'base'}],
 		[{text: '🥇 Rank' , callback_data: 'menu:rank' }],
+		[{text: '⚙️ Settings', callback_data: 'config'}],
 		[{text: '📔 About' , callback_data: 'menu:about' }]
 	]
 
