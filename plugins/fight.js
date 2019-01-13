@@ -8,7 +8,7 @@ const doAtack = (p1, p2) => {
 
 const atack = async (ctx, opponent) => {
 	if (ctx.db.troops <= 0) {
-		return ctx.answerCbQuery('You have no troops, wait a minute!', true)
+		return ctx.answerCbQuery('You have no troops, wait two minutos!', true)
 	}
 
 	const playId = ctx.match[4]
@@ -32,8 +32,8 @@ const atack = async (ctx, opponent) => {
 		user: ctx.db.xp
 	}
 
-	play.attack = play.attack / 3.1
-	play.shield = play.shield / 2.3
+	play.attack = play.attack / 2.9
+	play.shield = play.shield / 2.2
 
 	const v = Math.floor((Number(ctx.match[3]))/5)
 	const h = (Number(ctx.match[3])) % 5

@@ -5,7 +5,7 @@ const showRank = async (ctx, type) => {
 	})[0].position}\n`
 	var n = 0
 	for (var user of db) {
-		if (n <= 10) {
+		if (n <= 9) {
 			n++
 			text += `<b>${n}.</b> ${user.name} <b>(${user[type]})</b>\n`
 		}
