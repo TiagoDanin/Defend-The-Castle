@@ -10,7 +10,6 @@ module.exports = {
 		//'stats',
 		'tutorial'
 	],
-	maxlevel: 10,
 	defaultLang: 'en',
 	locales: [],
 	castles: ['🕌', '⛪️', '🏛', '🏩', '🏢', '🕍', '🏰'],

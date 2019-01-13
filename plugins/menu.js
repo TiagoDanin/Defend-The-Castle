@@ -16,7 +16,7 @@ const showRank = async (ctx, type) => {
 const base = async (ctx) => {
 	var text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
-<b>🏅 Level:</b> ${ctx.db.level >= ctx.db.maxLevel ? 'MAX' : ctx.db.level}
+<b>🏅 Level:</b> ${ctx.db.level+1 >= ctx.db.maxLevel ? `${ctx.db.level} (MAX)` : ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.db.xp}
 ---------------------------------------
 <b>💰 Money:</b> ${ctx.db.money} (${ctx.db.moneyPerHour}/hour)

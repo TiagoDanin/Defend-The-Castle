@@ -7,6 +7,7 @@ const session = require('telegraf/session')
 
 const config = require('./config')
 const database = require('./database')
+const levels = require('./levels')
 
 const items = {
 	...require('./items/bank'),
@@ -187,7 +188,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	}
 	var data = {
 		opponent: 0,
-		maxLevel: config.maxLevel,
+		maxLevel: levels.length,
 		maxTroops: 7,
 		plusAtack: 0,
 		plusShield: 0,
@@ -241,6 +242,11 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 			} else {
 				data.troops++
 			}
+		}
+
+		if (data.level < data.maxLevel && data.xp >= levels[data.level+1]) {
+			data.level++
+			data.xp -= levels[data.level]
 		}
 		database.saveUser(ctx)
 	}
