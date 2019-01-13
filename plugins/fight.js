@@ -76,7 +76,7 @@ ${ctx.db.life} ❤️ ${play.life}
 	if (data.items.length <= 6) {
 		text = `
 ${ctx.db.name} LOST!
-<b>CASTLE WITHOUT DAMAGE</b>
+<b>‼️ CASTLE WITHOUT DAMAGE ‼️</b>
 ---------------------------------------
 ${text}`
 		play.xp += xp/15
