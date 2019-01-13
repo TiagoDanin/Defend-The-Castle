@@ -6,7 +6,8 @@ const callback = async (ctx) => {
 			reply_markup: {
 				inline_keyboard:
 				[
-					[{text: 'Let\'s Go!' , callback_data: 'menu:main' }],
+					[{text: 'Tutorial' , callback_data: 'tutorial' }],
+					[{text: 'Let\'s Go!' , callback_data: 'menu:main' }]
 				]
 			}
 		})

@@ -8,7 +8,7 @@ module.exports = {
 		'menu',
 		'singup',
 		//'stats',
-		//'tutorial'
+		'tutorial'
 	],
 	maxlevel: 10,
 	defaultLang: 'en',

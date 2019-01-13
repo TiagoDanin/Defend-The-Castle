@@ -55,6 +55,7 @@ Invite URL: https://telegram.me/DefendTheCastleBot?start=join-${ctx.from.id}
 		`
 		keyboard = [
 			[{text: '📜 Menu' , callback_data: 'menu:main' }],
+			[{text: '❓ Tutorial' , callback_data: 'tutorial' }],
 			[{
 				text: 'Twitter @_TiagoEDGE',
 				url: 'twitter.com/_tiagoedge'

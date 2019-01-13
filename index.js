@@ -47,6 +47,8 @@ const processError = (error, ctx, plugin) => {
 			return ctx.answerCbQuery('You have already selected is option!', true).catch((e) => {
 				return dlogError(e)
 			})
+		} else if (`${error}`.match('Error: 403: Forbidden: bot was blocked by the user')) {
+			return true //TODO FIx
 		}
 	}
 
