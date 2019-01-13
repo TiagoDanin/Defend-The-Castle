@@ -124,7 +124,7 @@ ${text}`
 			]]
 		}
 	})
-	return await ctx.telegram.sendMessage(play.id, `
+	await ctx.telegram.sendMessage(play.id, `
 <b>Reply attack of ${ctx.db.name} (${ctx.db.id}):</b>
 ${text}${ctx.fixKeyboard}
 `, {
@@ -137,7 +137,10 @@ ${text}${ctx.fixKeyboard}
 				}
 			]]
 		}
+	}).catch((e) => {
+		//TODO DISABLE NOTIFICATION
 	})
+	return true
 }
 
 const mapHide = (ctx, opponent) => {
