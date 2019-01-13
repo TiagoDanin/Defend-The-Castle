@@ -232,6 +232,18 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	}
 	data.money = Math.round(data.money)
 	if (data.run) {
+		if (data.timerunning >= 259200) {//3 days in s
+			data.xp = 0
+			data.level--
+			if (data.level < 1) {
+				data.level = 1
+			}
+			data.money = Math.floor(data.money / 5)
+			database.saveUser(ctx)
+			ctx.replyWithMarkdown('*‼️ The villagers are gone! (3 Days Offline)*')
+			return data
+		}
+
 		if (data.troops < data.maxTroops) {
 			if (data.timerunning >= 120) {
 				const winTroops = Math.floor(data.timerunning / 120)
