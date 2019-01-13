@@ -9,7 +9,7 @@ module.exports = {
 				'... ?'
 			])
 			data.life += Math.floor(
-				Math.pow(100, Math.pow(data.qt_hospital, 0.05)) / 1.2
+				Math.pow(100, Math.pow(data.qt_hospital, 0.05))
 			)
 			return data
 		},

@@ -16,7 +16,7 @@ module.exports = {
 					'Oh! No... Trap..'
 				])
 				data.attack += Math.floor(
-					Math.pow(100, Math.pow(data.qt_zonewar, 0.08)) / 4
+					Math.pow(100, Math.pow(data.qt_zonewar, 0.08)) / 2
 				)
 			}
 			return data
@@ -38,7 +38,7 @@ module.exports = {
 					'The defense is down!'
 				])
 				data.shield += Math.floor(
-					Math.pow(100, Math.pow(data.qt_zonedefense, 0.08)) / 4
+					Math.pow(100, Math.pow(data.qt_zonedefense, 0.08)) / 2
 				)
 			}
 			return data
