@@ -110,7 +110,7 @@ const base = async (ctx) => {
 		mainKeyboard = city(ctx)
 		text = `
 	<b>${ctx.db.castle} City:</b> ${ctx.db.name}
-	<b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
+	<b>💰 Money:</b> ${ctx.db.money} Coin
 	---------------------------------------
 	<b>New castle!</b>
 		`

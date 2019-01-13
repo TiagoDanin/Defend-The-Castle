@@ -14,40 +14,45 @@ const base = async (ctx) => {
 			icon: '⚔️',
 			name: 'Attack',
 			value: 'attack',
-			upgrade: 0.3
+			upgrade: 0.09
 		},
 		'2': {
 			icon: '🛡',
 			name: 'Shield',
 			value: 'shield',
-			upgrade: 0.5
+			upgrade: 0.07
 		},
 		'3': {
 			icon: '❤️',
 			name: 'Life',
 			value: 'life',
-			upgrade: 0.7
+			upgrade: 0.05
 		}
 	}
+	Object.keys(items).map((e) => {
+		items[e].price = Math.floor(
+			Math.pow(
+				100,
+				Math.pow(ctx.db[items[e].value]+10, items[e].upgrade)
+			)
+		)
+	})
 
-	//TODO Reply with value
 	if (ctx.match[2] && ctx.match[3] == 'up') {
 		let item = items[ctx.match[2].toString()]
-		if (ctx.match[4] == 'max') {
-			if (ctx.db.money <= 100) {
-				ctx.answerCbQuery(`❌ Your money ${ctx.db.money} | Price 100`, true)
-			} else {
-				price = ctx.db.money
-				ctx.db[item.value] = ctx.db[item.value] + Math.floor(ctx.db.money * item.upgrade)
-			}
-		} else {
-			ctx.db[item.value] += Math.floor(100 * item.upgrade)
-		}
-		if (ctx.db.money >= price) {
-			ctx.db.money -= price
+		if (item && ctx.db.money >= item.price) {
+			ctx.db.money -= item.price
 			ctx.db.money = Math.floor(ctx.db.money)
-			ctx.db[item.value] = Math.floor(ctx.db[item.value])
-			text += '\nUpgraded!'
+			ctx.db[item.value] = Math.floor(ctx.db[item.value] + 10)
+			text = `
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
+---------------------------------------
+⚔️ ${ctx.db.attack}
+🛡 ${ctx.db.shield}
+❤️ ${ctx.db.life}
+
+Upgraded!`
 			ctx.database.updateUser(ctx.from.id, item.value, ctx.db[item.value]).then((res) => {
 				if (res) {
 					ctx.database.updateUser(ctx.from.id, 'money', ctx.db.money)
@@ -65,12 +70,9 @@ const base = async (ctx) => {
 			text: `${items[id.toString()].icon} ${items[id.toString()].name}`,
 			callback_data: `base:${id}`
 		}, {
-			text: '💶 100',
+			text: `💶 ${items[id.toString()].price}`,
 			callback_data: `base:${id}:up`
-		}, {
-			text: '💶 Max',
-			callback_data: `base:${id}:up:max`
-		},])
+		}])
 		return total
 	}, [])
 	const keyboard = [

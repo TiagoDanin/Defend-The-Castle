@@ -32,8 +32,8 @@ const atack = async (ctx, opponent) => {
 		user: ctx.db.xp
 	}
 
-	play.attack = play.attack / 3
-	play.shield = play.shield / 2.4
+	play.attack = play.attack / 3.1
+	play.shield = play.shield / 2.3
 
 	const v = Math.floor((Number(ctx.match[3]))/5)
 	const h = (Number(ctx.match[3])) % 5
