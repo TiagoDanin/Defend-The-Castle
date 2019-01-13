@@ -37,7 +37,7 @@ const getUser = async (id) => {
 		SELECT
 			*,
 			EXTRACT(EPOCH FROM ( now() - time ) ) as timerunning,
-			EXTRACT(EPOCH FROM ( now() - time ) ) > 50 as run
+			EXTRACT(EPOCH FROM ( now() - time ) ) > 120 as run
 		FROM users
 		WHERE id = $1;
 	`, [id]).catch(error)

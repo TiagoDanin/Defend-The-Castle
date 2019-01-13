@@ -188,7 +188,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	var data = {
 		opponent: 0,
 		maxLevel: config.maxLevel,
-		maxTroops: 5,
+		maxTroops: 7,
 		plusAtack: 0,
 		plusShield: 0,
 		plusLife: 0,
@@ -232,8 +232,8 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	data.money = Math.round(data.money)
 	if (data.run) {
 		if (data.troops < data.maxTroops) {
-			if (data.timerunning >= 60) {
-				const winTroops = Math.floor(data.timerunning / 60)
+			if (data.timerunning >= 120) {
+				const winTroops = Math.floor(data.timerunning / 120)
 				data.troops += winTroops
 				if (data.troops > data.maxTroops) {
 					data.troops = data.maxTroops
