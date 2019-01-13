@@ -8,7 +8,9 @@ module.exports = {
 			ctx.db.log.push([
 				'... ?'
 			])
-			data.life += Math.floor(Math.pow(100, Math.pow(data.qt_hospital, 0.05)))
+			data.life += Math.floor(
+				Math.pow(100, Math.pow(data.qt_hospital, 0.05)) / 1.2
+			)
 			return data
 		},
 		upgrade: [190, 0.2, 'bank']
