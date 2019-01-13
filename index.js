@@ -238,7 +238,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 			if (data.level < 1) {
 				data.level = 1
 			}
-			data.money = Math.floor(data.money / 5)
+			data.money = Math.floor(data.money / 1.4)
 			database.saveUser(ctx)
 			ctx.replyWithMarkdown('*‼️ The villagers are gone! (3 Days Offline)*')
 			return data
