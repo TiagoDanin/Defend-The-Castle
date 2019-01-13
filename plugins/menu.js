@@ -1,3 +1,4 @@
+const moment = require('moment')
 const showRank = async (ctx, type) => {
 	let db = await ctx.database.topUsers(type, ctx.from.id)
 	var text = `🥇 You Rank is: ${db.filter((e) => {
@@ -14,7 +15,7 @@ const showRank = async (ctx, type) => {
 }
 
 const base = async (ctx) => {
-	var text = `
+	let text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level+1 >= ctx.db.maxLevel ? `${ctx.db.level} (MAX)` : ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.db.xp}
@@ -22,13 +23,20 @@ const base = async (ctx) => {
 <b>💰 Money:</b> ${ctx.db.money} (${ctx.db.moneyPerHour}/hour)
 👮<b>‍♀️ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 	`
-	var keyboard = [
+	if (!ctx.session.box) {
+		ctx.session.box = +new Date()
+	}
+	const boxTime = moment(ctx.session.box).calendar()
+	let keyboard = [
 		[{text: '⚔️ Fight' , callback_data: 'fight' }],
 		[{text: `${ctx.db.castle} City` , callback_data: 'city' }],
 		[{text: '🛰 Military base', callback_data: 'base'}],
 		[{text: '🥇 Rank' , callback_data: 'menu:rank' }],
 		[{text: '⚙️ Settings', callback_data: 'config'}],
-		[{text: '📔 About' , callback_data: 'menu:about' }]
+		[
+			{text: `🎁 ${boxTime}` , callback_data: 'box' },
+			{text: '📔 About' , callback_data: 'menu:about' }
+		]
 	]
 
 	if (ctx.match[2] == 'rank') {

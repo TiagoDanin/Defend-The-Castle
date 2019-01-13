@@ -1,7 +1,7 @@
 module.exports = {
 	plugins: [
 		'base',
-		//'box',
+		'box',
 		'city',
 		'config',
 		'fight',

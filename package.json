@@ -33,6 +33,7 @@
   "dependencies": {
     "debug": "4.1.1",
     "json-stringify-safe": "5.0.1",
+    "moment": "2.23.0",
     "nodejs-i18n": "1.0.1",
     "pg": "7.8.0",
     "pg-native": "3.0.0",
