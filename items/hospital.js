@@ -13,6 +13,6 @@ module.exports = {
 			)
 			return data
 		},
-		upgrade: [190, 0.2, 'bank']
+		upgrade: [170, 0.18, 'bank']
 	}
 }

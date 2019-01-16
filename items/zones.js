@@ -21,7 +21,7 @@ module.exports = {
 			}
 			return data
 		},
-		upgrade: [120.60, 0.2, 'zonewar']
+		upgrade: [220, 0.18, 'zonewar']
 	},
 	'3': {
 		icon: '🛡',
@@ -43,6 +43,6 @@ module.exports = {
 			}
 			return data
 		},
-		upgrade: [120.60, 0.2, 'zonedefense']
+		upgrade: [200, 0.18, 'zonedefense']
 	}
 }

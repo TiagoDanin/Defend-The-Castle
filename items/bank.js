@@ -6,7 +6,12 @@ module.exports = {
 		desc: 'Generate money for the castle.',
 		doDb: (data) => {
 			var banks = data.city.filter((e) => e == 5).length
-			data.moneyPerHour = Math.floor((Math.pow(100, Math.pow(data.qt_bank, 0.092)) * banks) / 2.3)
+			data.moneyPerHour = Math.floor(
+				Math.pow(
+					50,
+					Math.pow(data.qt_bank, 0.092)
+				) * banks
+			)
 			return data
 		},
 		doDefend: (data, ctx) => {
@@ -14,7 +19,12 @@ module.exports = {
 				'Found money!',
 				'MONEEEEY!'
 			])
-			ctx.db.money += Math.floor(Math.pow(100, Math.pow(data.qt_bank, 0.092)) / 95)
+			ctx.db.money += Math.floor(
+				Math.pow(
+					50,
+					Math.pow(data.qt_bank, 0.092)
+				) * 22
+			)
 			return data
 		},
 		doTime: (data) => {
@@ -22,6 +32,6 @@ module.exports = {
 			data.money += (data.timerunning * moneyPerSecond)
 			return data
 		},
-		upgrade: [100, 0.2, 'bank']
+		upgrade: [100, 0.18, 'bank']
 	}
 }

@@ -26,6 +26,6 @@ module.exports = {
 			}
 			return data
 		},
-		upgrade: [130.60, 0.2, 'towerdefense']
+		upgrade: [160, 0.18, 'towerdefense']
 	}
 }

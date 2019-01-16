@@ -19,10 +19,10 @@ module.exports = {
 					'We\'re lucky.',
 					'There\'s a bomb with problems'
 				])
-				data.attack += ctx.db.attack / 11
+				data.attack += ctx.db.attack / 12
 			}
 			return data
 		},
-		upgrade: [300, 0.2, 'bomb']
+		upgrade: [200, 0.18, 'bomb']
 	}
 }
