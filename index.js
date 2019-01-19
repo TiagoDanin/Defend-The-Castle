@@ -264,7 +264,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		database.saveUser(ctx)
 	}
 	data.levelPoc = Math.floor(
-		data.xp * (
+		data.xp / (
 			(levels[data.level+1] || 9999999999999999) / 100
 		)
 	)
