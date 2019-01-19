@@ -54,15 +54,16 @@ Best possition to drop of troops!
 - Upgrade ou Change Zone`
 	} else if (id == 3) {
 		text = `
-* Edit Troops of Attack
+* Edit Attack Troops
 - Open menu
 - Click in "Military Base"
 - Upgrade Life, Shield or Attack
 TIP: +1 troop per 120s`
 	} else if (id == 4) {
 		text = `
-TODO: Offline
-TODO: Troop of Attack vs City`
+* NOTE
+- Offline for 3 days causes penalties to the castle
+- Attack Troops are not used to defend the castle`
 	}
 
 	let back = []
