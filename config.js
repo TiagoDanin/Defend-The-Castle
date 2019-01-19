@@ -1,5 +1,6 @@
 module.exports = {
 	plugins: [
+		'backup',
 		'base',
 		'box',
 		'city',

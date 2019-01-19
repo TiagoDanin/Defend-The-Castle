@@ -296,6 +296,17 @@ const joinUserInvite = async (id, invite) => {
 	return data.rows;
 }
 
+const findAllTable = async (name) => {
+	let data = {}
+	let client = await pool.connect()
+	data = await client.query(`
+		SELECT *
+		FROM ${name};
+	`, []).catch(error)
+	client.release()
+	return data.rows
+}
+
 module.exports = {
 	getUser,
 	setUser,
@@ -309,5 +320,6 @@ module.exports = {
 	getStats24,
 	getJoin24,
 	getAllUsers,
-	joinUserInvite
+	joinUserInvite,
+	findAllTable
 }
