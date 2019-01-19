@@ -95,12 +95,12 @@ const infoText = (ctx) => {
 }
 
 const base = async (ctx) => {
-	var text = `
+	let text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
 ---------------------------------------
 `
-	var mainKeyboard = []
+	let mainKeyboard = []
 	if (ctx.match[0] == 'city:castle') {
 		mainKeyboard = showCastle(ctx)
 		text += '<b>Select your new castle:</b>'
@@ -148,12 +148,18 @@ const base = async (ctx) => {
 		if (ctx.db.money >= price) {
 			ctx.db.money -= price
 			ctx.db.money = Math.floor(ctx.db.money)
-			text += '\nUpgraded!'
+			text = `
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
+---------------------------------------
+${infoText(ctx)}
+Upgraded!`
 			ctx.database.updateUser(ctx.from.id, row, value).then((res) => {
 				if (res) {
 					ctx.database.updateUser(ctx.from.id, 'money', ctx.db.money)
 				}
 			})
+			mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
 			ctx.answerCbQuery('Upgraded!')
 		} else {
 			ctx.answerCbQuery(`❌ Your money ${ctx.db.money} | Price ${price}`, true)

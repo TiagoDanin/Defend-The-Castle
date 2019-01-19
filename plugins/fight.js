@@ -221,6 +221,16 @@ const base = async (ctx) => {
 	} else if (ctx.match[2] == 'ack' && ctx.match[3] && ctx.match[4]) {
 		await atack(ctx, opponent)
 		_new = true
+		text = `
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>🏅 Level:</b> ${ctx.db.level}
+<b>🎖 Experience:</b> ${ctx.db.xp}
+👮<b>‍♀️ Troops:</b> ${ctx.db.troops-1 < 0 ? 0 : ctx.db.troops-1}/${ctx.db.maxTroops}
+-------------------vs--------------------
+<b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
+<b>🏅 Level:</b> ${opponent.level}
+<b>🎖 Experience:</b> ${opponent.xp}
+<b>💰 Money:</b> ${opponent.money}`
 	}
 	map = mapHide(ctx, opponent)
 

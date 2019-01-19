@@ -59,16 +59,30 @@ Best possition to drop of troops!
 - Click in "Military Base"
 - Upgrade Life, Shield or Attack
 TIP: +1 troop per 120s`
+	} else if (id == 4) {
+		text = `
+TODO: Offline
+TODO: Troop of Attack vs City`
 	}
 
+	let back = []
+	if (id > 0) {
+		back = [
+			{text: '◀️ Back' , callback_data: `tutorial:${Number(id)-1}` }
+		]
+	}
 	keyboard = [
 		...keyboard,
-		[{text: '✅ Next' , callback_data: `tutorial:${Number(id)+1}` }]
+		[
+			...back,
+			{text: '▶️ Next' , callback_data: `tutorial:${Number(id)+1}` }
+		]
 	]
-	if (id >= 4) {
+	if (id >= 5) {
 		text = 'Finalized!'
 		keyboard = [
-			[{text: '📜 Menu' , callback_data: 'menu:main' }]
+			[{text: '◀️ Back' , callback_data: `tutorial:${Number(id)-1}` }],
+			[{text: '✅ Let\'s Go!' , callback_data: 'menu:main' }]
 		]
 	}
 	if (ctx.updateType == 'callback_query') {
