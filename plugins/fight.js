@@ -71,14 +71,12 @@ ${ctx.db.life} ❤️ ${play.life}
 	ctx.db.life = Math.floor(doAtack(ctx.db, play))
 	play.life = Math.floor(doAtack(play, ctx.db))
 
+
 	const xp = (
-		(
-			(
-				((play.xp + 10) * play.level) /
-				((ctx.db.xp + 10) * ctx.db.level)
-			) / 8.4
-		)+ 50
+		400 *
+		((play.level / ctx.db.level) / 8.4)
 	)
+
 	if (data.items.length <= 6) {
 		text = `
 ${ctx.db.name} LOST!
