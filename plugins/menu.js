@@ -21,7 +21,7 @@ const base = async (ctx) => {
 <b>🎖 Experience:</b> ${ctx.db.xp}
 ---------------------------------------
 <b>💰 Money:</b> ${ctx.db.money} (${ctx.db.moneyPerHour}/hour)
-👮<b>‍♀️ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
+<b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 	`
 	if (!ctx.session.box) {
 		ctx.session.box = +new Date()
