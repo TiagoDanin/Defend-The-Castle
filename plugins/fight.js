@@ -1,5 +1,5 @@
 const forest = () => {
-	const items = ['🌲','🌳','🌴','🌻','🌺','🍂','🌵','🕸']
+	const items = ['🌲', '🌳', '🌴', '🌻', '🌺', '🍂', '🌵', '🕸']
 	return items[Math.floor((Math.random() * items.length))]
 }
 
@@ -11,7 +11,7 @@ const doAtack = (p1, p2) => {
 	return p1.life - ((p2.attack / (p1.shield / 100)) / 1.2)
 }
 
-const atack = async (ctx, opponent) => {
+const atack = async(ctx, opponent) => {
 	if (ctx.db.troops <= 0) {
 		return ctx.answerCbQuery('You have no troops, wait two minutos!', true)
 	}
@@ -28,7 +28,7 @@ const atack = async (ctx, opponent) => {
 <b>🎖 Experience:</b> ${play.xp}
 <b>💰 Money:</b> ${play.money}`
 
-	if(ctx.db.opponent != play.id) {
+	if (ctx.db.opponent != play.id) {
 		return hack(ctx)
 	}
 
@@ -40,7 +40,7 @@ const atack = async (ctx, opponent) => {
 	play.attack = play.attack / 2.9
 	play.shield = play.shield / 2.2
 
-	const v = Math.floor((Number(ctx.match[3]))/5)
+	const v = Math.floor((Number(ctx.match[3])) / 5)
 	const h = (Number(ctx.match[3])) % 5
 	const data = showMap(ctx, play, h, v)
 	for (let item of data.items) {
@@ -88,17 +88,17 @@ ${ctx.db.name} LOST!
 <b>‼️ CASTLE WITHOUT DAMAGE ‼️</b>
 ---------------------------------------
 ${text}`
-		play.xp += xp/15
+		play.xp += xp / 15
 	} else if (ctx.db.life > play.life) {
 		ctx.db.xp += xp
-		play.xp += xp/10
+		play.xp += xp / 10
 		text = `
 ${ctx.db.name} WIN!
 ---------------------------------------
 ${text}`
 	} else {
-		ctx.db.xp += xp/9
-		play.xp += xp/4
+		ctx.db.xp += xp / 9
+		play.xp += xp / 4
 		text = `
 ${ctx.db.name} LOST!
 ---------------------------------------
@@ -110,7 +110,7 @@ ${text}`
 	play.xp = Math.floor(play.xp)
 	ctx.db.troops--
 
-	const res = await ctx.database.saveAtack(play.id, play.xp, ctx, opponent)
+		const res = await ctx.database.saveAtack(play.id, play.xp, ctx, opponent)
 	if (!res) {
 		return hack(ctx)
 	}
@@ -119,27 +119,22 @@ ${text}`
 	await ctx.editMessageText(text + ctx.fixKeyboard, {
 		parse_mode: 'HTML',
 		reply_markup: {
-			inline_keyboard: [...map, [
-				{
-					text: `✨XP ${ctx.db.xp - xps.user} : ⚖️ ${text.match('WIN') ? 'WIN!' : 'LOST!'}`,
-					callback_data: 'fight:done'
-				}
-			]]
+			inline_keyboard: [...map, [{
+				text: `✨XP ${ctx.db.xp - xps.user} : ⚖️ ${text.match('WIN') ? 'WIN!' : 'LOST!'}`,
+				callback_data: 'fight:done'
+			}]]
 		}
 	})
 	if (res.reply && res.run) {
 		await ctx.telegram.sendMessage(play.id, `
 <b>Reply attack of ${ctx.db.name} (${ctx.db.id}):</b>
-${text}${ctx.fixKeyboard}`,
-		{
+${text}${ctx.fixKeyboard}`, {
 			parse_mode: 'HTML',
 			reply_markup: {
-				inline_keyboard: [...map, [
-					{
-						text: `✨XP ${play.xp - xps.play}`,
-						callback_data: 'fight:done'
-					}
-				]]
+				inline_keyboard: [...map, [{
+					text: `✨XP ${play.xp - xps.play}`,
+					callback_data: 'fight:done'
+				}]]
 			}
 		}).catch((e) => {
 			ctx.database.updateUser(play.id, 'reply', false)
@@ -163,11 +158,13 @@ const mapHide = (ctx, opponent) => {
 			}
 		}
 		total[total.length - 1].push(key)
-		if (total[total.length - 1].length >= 5 && !(index >= opponent.city.length-1)) {
+		if (total[total.length - 1].length >= 5 && !(index >= opponent.city.length - 1)) {
 			total.push([])
 		}
 		return total
-	}, [[]])
+	}, [
+		[]
+	])
 }
 
 const showMap = (ctx, opponent, h, v) => {
@@ -181,8 +178,8 @@ const showMap = (ctx, opponent, h, v) => {
 	map = map.reduce((totalV, keys, indexV) => {
 		totalV = [...totalV, [...(
 			keys.reduce((totalH, key, indexH) => {
-				if (indexV == v || indexV-1 == v || indexV+1 == v) {
-					if (indexH == h || indexH-1 == h || indexH+1 == h) {
+				if (indexV == v || indexV - 1 == v || indexV + 1 == v) {
+					if (indexH == h || indexH - 1 == h || indexH + 1 == h) {
 						let id = opponent.city[index]
 						items.push(ctx.items[id])
 						if (id == 0) {
@@ -207,11 +204,46 @@ const showMap = (ctx, opponent, h, v) => {
 	}
 }
 
-const base = async (ctx) => {
+const fightTypes = [{
+	name: 'Random',
+	select: (data) => {
+		return data
+	}
+}, {
+	name: 'Max Money',
+	select: (data) => {
+		return data.sort((a, b) => b.money - a.money)
+	}
+}, {
+	name: 'Max Level',
+	select: (data) => {
+		return data.sort((a, b) => b.level - a.level)
+	}
+}, {
+	name: 'Min Level',
+	select: (data) => {
+		return data.sort((a, b) => a.level - b.level)
+	}
+}]
+
+const base = async(ctx) => {
 	let _new = false
 	let opponent = await ctx.database.randomUser(4)
 	opponent = opponent.filter((e) => e.id != ctx.from.id && e.id != ctx.match[4])
-	opponent = opponent[0]
+
+	if (!ctx.session.ftype) {
+		ctx.session.ftype = 0
+	}
+	if (ctx.match[2] == 'type') {
+		ctx.session.ftype++
+			if (ctx.session.ftype >= fightTypes.length) {
+				ctx.session.ftype = 0
+			}
+	}
+
+	opponent = fightTypes[ctx.session.ftype].select(opponent)
+	opponent = opponent[Math.floor(Math.random() * (4 - 0))]
+
 	let text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
@@ -243,9 +275,17 @@ const base = async (ctx) => {
 	map = mapHide(ctx, opponent)
 
 	var keyboard = [
-		...map,
-		[{text: '⚔️ Next' , callback_data: 'fight' }],
-		[{text: '📜 Menu' , callback_data: 'menu' }]
+		...map, [{
+			text: '⚔️ Next',
+			callback_data: 'fight'
+		}, {
+			text: `🔍 ${fightTypes[ctx.session.ftype].name}`,
+			callback_data: 'fight:type'
+		}],
+		[{
+			text: '📜 Menu',
+			callback_data: 'menu'
+		}]
 	]
 
 	if (_new) {
