@@ -1,3 +1,8 @@
+const forest = () => {
+	const items = ['🌲','🌳','🌴','🌻','🌺','🍂','🌵','🕸']
+	return items[Math.floor((Math.random() * items.length))]
+}
+
 const hack = (ctx) => {
 	return ctx.answerCbQuery(':) Start a new game!', true)
 }
@@ -178,8 +183,13 @@ const showMap = (ctx, opponent, h, v) => {
 			keys.reduce((totalH, key, indexH) => {
 				if (indexV == v || indexV-1 == v || indexV+1 == v) {
 					if (indexH == h || indexH-1 == h || indexH+1 == h) {
-						items.push(ctx.items[opponent.city[index]])
-						key.text = ctx.items[opponent.city[index]].icon
+						let id = opponent.city[index]
+						items.push(ctx.items[id])
+						if (id == 0) {
+							key.text = forest()
+						} else {
+							key.text = ctx.items[id].icon
+						}
 					}
 				}
 				index++
