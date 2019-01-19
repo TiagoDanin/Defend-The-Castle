@@ -228,7 +228,7 @@ const fightTypes = [{
 
 const base = async(ctx) => {
 	let _new = false
-	let opponent = await ctx.database.randomUser(4)
+	let opponent = await ctx.database.randomUser(6)
 	opponent = opponent.filter((e) => e.id != ctx.from.id && e.id != ctx.match[4])
 
 	if (!ctx.session.ftype) {
