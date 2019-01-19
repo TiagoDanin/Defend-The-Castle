@@ -21,7 +21,7 @@ const atack = async(ctx, opponent) => {
 	let text = `<b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.db.xp}
-👮<b>‍♀️ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
+<b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 -------------------vs--------------------
 <b>${ctx.castles[Number(play.city[12])]} City:</b> ${play.name}
 <b>🏅 Level:</b> ${play.level}
@@ -248,7 +248,7 @@ const base = async(ctx) => {
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.db.xp}
-👮<b>‍♀️ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
+<b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 -------------------vs--------------------
 <b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
 <b>🏅 Level:</b> ${opponent.level}
@@ -265,7 +265,7 @@ const base = async(ctx) => {
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.db.xp}
-👮<b>‍♀️ Troops:</b> ${ctx.db.troops-1 < 0 ? 0 : ctx.db.troops-1}/${ctx.db.maxTroops}
+<b>‍👮‍ Troops:</b> ${ctx.db.troops-1 < 0 ? 0 : ctx.db.troops-1}/${ctx.db.maxTroops}
 -------------------vs--------------------
 <b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
 <b>🏅 Level:</b> ${opponent.level}
