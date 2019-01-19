@@ -8,6 +8,7 @@ module.exports = {
 		'fight',
 		'invite',
 		'menu',
+		'ping',
 		'singup',
 		'stats',
 		'tutorial'
