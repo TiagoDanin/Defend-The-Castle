@@ -8,7 +8,7 @@ module.exports = {
 		'invite',
 		'menu',
 		'singup',
-		//'stats',
+		'stats',
 		'tutorial'
 	],
 	defaultLang: 'en',

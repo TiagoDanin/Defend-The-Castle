@@ -36,8 +36,8 @@ const getUser = async (id) => {
 	data = await client.query(`
 		SELECT
 			*,
-			EXTRACT(EPOCH FROM ( now() - time ) ) as timerunning,
-			EXTRACT(EPOCH FROM ( now() - time ) ) > 120 as run
+			EXTRACT(EPOCH FROM ( now() - time ) ) AS timerunning,
+			EXTRACT(EPOCH FROM ( now() - time ) ) > 120 AS run
 		FROM users
 		WHERE id = $1;
 	`, [id]).catch(error)
@@ -226,8 +226,8 @@ const saveAtack = async (playId, playXp, ctx, opponent) => {
 				SET xp = $1
 				WHERE id = $2
 			RETURNING *,
-					 EXTRACT(EPOCH FROM ( now() - time ) ) as timerunning,
-					 EXTRACT(EPOCH FROM ( now() - time ) ) > 120 as run;
+					 EXTRACT(EPOCH FROM ( now() - time ) ) AS timerunning,
+					 EXTRACT(EPOCH FROM ( now() - time ) ) > 120 AS run;
 		`, [playXp, playId]).catch(error)
 	}
 	client.release()
@@ -261,12 +261,9 @@ const getJoin24 = async () => {
 		SELECT *
 		FROM stats
 		WHERE
-			EXTRACT( EPOCH FROM ( time ) )
-			>
-				( EXTRACT( EPOCH FROM ( now() ) )
-				-
-				EXTRACT( EPOCH FROM ( INTERVAL '24 hour' ) ) );
-	`, [max]).catch(error)
+			EXTRACT(EPOCH FROM ( now() - time ) ) < 86400;
+	`, []).catch(error)
+	//86400 = EXTRACT( EPOCH FROM ( INTERVAL '24 hour' );
 	client.release()
 	return data.rows
 }
@@ -275,9 +272,11 @@ const getAllUsers = async () => {
 	let data = {}
 	let client = await pool.connect()
 	data = await client.query(`
-		SELECT *
+		SELECT
+			*,
+			EXTRACT(EPOCH FROM ( now() - time ) ) < 86400 AS online
 		FROM users;
-	`, [max]).catch(error)
+	`, []).catch(error)
 	client.release()
 	return data.rows
 }
