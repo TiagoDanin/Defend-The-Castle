@@ -80,7 +80,7 @@ ${ctx.db.life} ❤️ ${play.life}
 	const xp = (
 		400 *
 		((play.level / ctx.db.level) / 8.4)
-	)
+	) + 25
 
 	if (data.items.length <= 6) {
 		text = `

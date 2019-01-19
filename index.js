@@ -189,6 +189,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	var data = {
 		opponent: 0,
 		maxLevel: levels.length,
+		levelPoc: 0,
 		maxTroops: 7,
 		plusAtack: 0,
 		plusShield: 0,
@@ -230,7 +231,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 			data = item.doTime(data)
 		}
 	}
-	data.money = Math.round(data.money)
+	data.money = Math.floor(data.money)
 	if (data.run) {
 		if (data.timerunning >= 259200) {//3 days in s
 			data.xp = 0
@@ -261,6 +262,14 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 			data.xp -= levels[data.level]
 		}
 		database.saveUser(ctx)
+	}
+	data.levelPoc = Math.floor(
+		data.xp * (
+			(levels[data.level+1] || 9999999999999999) / 100
+		)
+	)
+	if (data.levelPoc >= 100) {
+		data.levelPoc = 99
 	}
 	return data
 }
