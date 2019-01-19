@@ -1,3 +1,49 @@
+const citys = [
+	[
+		5, 0, 0, 0, 4,
+		0, 1, 0, 3, 0,
+		0, 0, 0, 0, 0,
+		0, 0, 2, 0, 0,
+		4, 0, 0, 0, 5
+	], [
+		0, 0, 0, 0, 4,
+		0, 1, 0, 3, 0,
+		0, 5, 1, 0, 0,
+		0, 0, 0, 2, 0,
+		0, 4, 0, 5, 0
+	], [
+		4, 0, 0, 0, 5,
+		0, 1, 0, 3, 0,
+		0, 0, 2, 0, 0,
+		0, 0, 2, 0, 0,
+		5, 0, 0, 0, 4
+	], [
+		0, 0, 0, 0, 0,
+		0, 1, 0, 3, 5,
+		0, 4, 3, 0, 0,
+		5, 0, 2, 4, 0,
+		0, 0, 0, 0, 0
+	], [
+		0, 0, 0, 0, 4,
+		0, 0, 0, 3, 0,
+		0, 0, 4, 5, 0,
+		0, 0, 2, 5, 0,
+		4, 0, 0, 0, 1
+	], [
+		0, 0, 0, 0, 0,
+		0, 4, 0, 3, 0,
+		0, 0, 5, 5, 0,
+		0, 4, 2, 5, 0,
+		0, 0, 0, 0, 1
+	], [
+		5, 0, 0, 0, 0,
+		0, 4, 0, 3, 0,
+		0, 4, 6, 0, 0,
+		5, 0, 2, 1, 0,
+		0, 0, 0, 0, 0
+	]
+]
+
 const text = 'What\'s the name of your town?'
 const callback = async (ctx) => {
 	if (ctx.match[2] == 'yes') {
@@ -34,6 +80,9 @@ ${text}
 		let db = await ctx.database.setUser(ctx.from.id, ctx.match[1])
 		if (!db) {
 			await ctx.database.updateUser(ctx.from.id, 'name', ctx.match[1])
+		} else {
+			const city = citys[Math.floor((Math.random() * citys.length))]
+			ctx.database.updateUser(ctx.from.id, 'city', city)
 		}
 		return ctx.reply(`Are you sure the name of your city is ${ctx.match[1]}?.${ctx.fixKeyboard}`, {
 			reply_markup: {
