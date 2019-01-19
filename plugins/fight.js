@@ -72,7 +72,7 @@ ${ctx.db.attack} ⚔️ ${play.attack}
 ${ctx.db.shield} 🛡 ${play.shield}
 ${ctx.db.life} ❤️ ${play.life}
 ---------------------------------------
-<b>-</b>${ctx.db.log.join('\n<b>-</b>')}`
+<b>- </b>${ctx.db.log.join('\n<b>- </b>')}`
 	ctx.db.life = Math.floor(doAtack(ctx.db, play))
 	play.life = Math.floor(doAtack(play, ctx.db))
 
@@ -110,7 +110,7 @@ ${text}`
 	play.xp = Math.floor(play.xp)
 	ctx.db.troops--
 
-		const res = await ctx.database.saveAtack(play.id, play.xp, ctx, opponent)
+	const res = await ctx.database.saveAtack(play.id, play.xp, ctx, opponent)
 	if (!res) {
 		return hack(ctx)
 	}

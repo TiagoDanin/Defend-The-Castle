@@ -58,6 +58,14 @@ Upgraded!`
 					ctx.database.updateUser(ctx.from.id, 'money', ctx.db.money)
 				}
 			})
+			Object.keys(items).map((e) => {
+				items[e].price = Math.floor(
+					Math.pow(
+						100,
+						Math.pow(ctx.db[items[e].value]+10, items[e].upgrade)
+					)
+				)
+			})
 			ctx.answerCbQuery('Upgraded!')
 		} else {
 			ctx.answerCbQuery(`❌ Your money ${ctx.db.money} | Price ${price}`, true)
