@@ -25,7 +25,7 @@ const base = async (ctx) => {
 			icon: '❤️',
 			name: 'Life',
 			value: 'life',
-			upgrade: 0.05
+			upgrade: 0.057
 		}
 	}
 	Object.keys(items).map((e) => {

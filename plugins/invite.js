@@ -16,14 +16,14 @@ const base = async (ctx) => {
 			db: play
 		}
 		user.db.old = {...user.db}
-		user.db.xp += 100
-		user.db.money += 1000
+		user.db.xp += 1200
+		user.db.money += 5000
 		user.db.inventory.push('7')
 		await ctx.database.saveUser(user)
 		await ctx.telegram.sendMessage(user.db.id, `
 <b>Join ${ctx.from.id} via your invite link.</b>
-+ 100 XP
-+ 1000 Money
++ 1200 XP
++ 5000 Money
 + 1 Diamond
 		`, {
 			parse_mode: 'HTML'
