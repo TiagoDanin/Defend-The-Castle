@@ -9,7 +9,6 @@ const log = (text) => console.log('>>', text)
 const main = async () => {
 	await client.connect()
 	await client.query(`
-		CREATE EXTENSION tsm_system_rows;
 		CREATE TABLE users(
 			id               INT        NOT NULL,
 			name             TEXT       NOT NULL,
