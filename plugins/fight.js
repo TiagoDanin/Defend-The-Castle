@@ -140,8 +140,8 @@ ${text}${ctx.fixKeyboard}`, {
 			ctx.database.updateUser(play.id, 'reply', false)
 		})
 	}
-	await ctx.sleep(2000) //await 2s
-	return 'Done!'
+	await ctx.sleep(1300) //await 1.3s
+	return true
 }
 
 const mapHide = (ctx, opponent) => {
@@ -261,11 +261,8 @@ const base = async(ctx) => {
 		hack(ctx)
 	} else if (ctx.match[2] == 'ack' && ctx.match[3] && ctx.match[4]) {
 		checkAttack = await attack(ctx, opponent)
-		if (checkAttack == 'Done!') {
-			ctx.db.troops--
-			if (ctx.db.troops < 0) {
-				ctx.db.troops = 0
-			}
+		if (ctx.db.troops < 0) {
+			ctx.db.troops = 0
 		}
 		text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
