@@ -169,6 +169,13 @@ bot.context.database = database
 bot.context.castles = config.castles
 bot.context.items = items
 bot.context.fixKeyboard = Array(90).join('\u0020') + '\u200B'
+bot.context.sleep = async (time) => {
+	await new Promise((resolve) => setTimeout(
+		resolve,
+		time
+	))
+	return true
+}
 bot.context.userInfo = async (ctx, onlyUser) => {
 	if (typeof ctx != 'object') {
 		ctx = {

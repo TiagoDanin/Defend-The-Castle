@@ -140,6 +140,7 @@ ${text}${ctx.fixKeyboard}`, {
 			ctx.database.updateUser(play.id, 'reply', false)
 		})
 	}
+	await ctx.sleep(2000) //await 2s
 	return 'Done!'
 }
 
