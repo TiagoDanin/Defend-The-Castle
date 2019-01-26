@@ -7,11 +7,11 @@ const hack = (ctx) => {
 	return ctx.answerCbQuery(':) Start a new game!', true)
 }
 
-const doAtack = (p1, p2) => {
+const doAttack = (p1, p2) => {
 	return p1.life - ((p2.attack / (p1.shield / 100)) / 1.2)
 }
 
-const atack = async(ctx, opponent) => {
+const attack = async(ctx, opponent) => {
 	if (ctx.db.troops <= 0) {
 		return ctx.answerCbQuery('You have no troops, wait two minutos!', true)
 	}
@@ -37,8 +37,8 @@ const atack = async(ctx, opponent) => {
 		user: ctx.db.xp
 	}
 
-	play.attack = play.attack / 2.9
-	play.shield = play.shield / 2.2
+	play.attack = play.attack / 3.2
+	play.shield = play.shield / 2.4
 
 	const v = Math.floor((Number(ctx.match[3])) / 5)
 	const h = (Number(ctx.match[3])) % 5
@@ -49,8 +49,8 @@ const atack = async(ctx, opponent) => {
 		}
 	}
 	for (let item of ctx.db.inventory) {
-		if (item.doAtack) {
-			ctx.db = item.doAtack(ctx.db)
+		if (item.doAttack) {
+			ctx.db = item.doAttack(ctx.db)
 		}
 	}
 
@@ -73,8 +73,8 @@ ${ctx.db.shield} 🛡 ${play.shield}
 ${ctx.db.life} ❤️ ${play.life}
 ---------------------------------------
 <b>- </b>${ctx.db.log.join('\n<b>- </b>')}`
-	ctx.db.life = Math.floor(doAtack(ctx.db, play))
-	play.life = Math.floor(doAtack(play, ctx.db))
+	ctx.db.life = Math.floor(doAttack(ctx.db, play))
+	play.life = Math.floor(doAttack(play, ctx.db))
 
 
 	const xp = (
@@ -140,7 +140,7 @@ ${text}${ctx.fixKeyboard}`, {
 			ctx.database.updateUser(play.id, 'reply', false)
 		})
 	}
-	return true
+	return 'Done!'
 }
 
 const mapHide = (ctx, opponent) => {
@@ -227,7 +227,7 @@ const fightTypes = [{
 }]
 
 const base = async(ctx) => {
-	let _new = false
+	let checkAttack = false
 	let opponent = await ctx.database.randomUser(22)
 	opponent = opponent.filter((e) => e.id != ctx.from.id && e.id != ctx.match[4])
 
@@ -259,13 +259,15 @@ const base = async(ctx) => {
 	if (ctx.match[2] == 'done') {
 		hack(ctx)
 	} else if (ctx.match[2] == 'ack' && ctx.match[3] && ctx.match[4]) {
-		await atack(ctx, opponent)
-		_new = true
+		checkAttack = await attack(ctx, opponent)
+		if (checkAttack == 'Done!') {
+			ctx.db.troops--
+		}
 		text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.db.xp}
-<b>‍👮‍ Troops:</b> ${ctx.db.troops-1 < 0 ? 0 : ctx.db.troops-1}/${ctx.db.maxTroops}
+<b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 -------------------vs--------------------
 <b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
 <b>🏅 Level:</b> ${opponent.level}
@@ -288,7 +290,7 @@ const base = async(ctx) => {
 		}]
 	]
 
-	if (_new) {
+	if (checkAttack) {
 		return ctx.replyWithHTML(text + ctx.fixKeyboard, {
 			reply_markup: {
 				inline_keyboard: keyboard
