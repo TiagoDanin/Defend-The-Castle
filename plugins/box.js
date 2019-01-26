@@ -1,16 +1,22 @@
-const money = (data) => {
-	data.money += 1000
+const money = (data, numb) => {
+	data.money += 1000 * numb
 	return data
 }
 
-const xp = (data) => {
-	data.xp += 1000
+const xp = (data, numb) => {
+	data.xp += 115 * (numb + 1)
+	return data
+}
+
+const troops = (data, numb) => {
+	data.troops += numb
 	return data
 }
 
 const presents = [
 	money,
-	xp
+	xp,
+	troops
 ]
 
 const base = async (ctx) => {
@@ -22,9 +28,14 @@ const base = async (ctx) => {
 			date.setDate(date.getDate() + 1)
 			ctx.session.box = +date
 			const present = presents[Math.floor((Math.random() * presents.length))]
-			ctx.db = present(ctx.db)
+			ctx.db = present(
+				ctx.db,
+				Math.floor(Math.random() * (6 - 1) + 1) //Range: 1-5
+			)
 			await ctx.database.saveUser(ctx)
-			ctx.answerCbQuery(`Present: ${present.name}`, true)
+			ctx.answerCbQuery(`
+Present(${present.name}): +${ctx.db[present.name] - ctx.db.old[present.name]}
+			`, true)
 		} else {
 			boxs = [
 				[

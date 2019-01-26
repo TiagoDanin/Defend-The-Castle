@@ -10,13 +10,16 @@ module.exports = {
 					'We take the zone with the falicity!',
 					'Easy!'
 				])
+				data.attack += Math.floor(
+					Math.pow(100, Math.pow(data.qt_zonewar, 0.03)) / 1.6
+				)
 			} else {
 				ctx.db.log.push([
 					'Trap....',
 					'Oh! No... Trap..'
 				])
 				data.attack += Math.floor(
-					Math.pow(100, Math.pow(data.qt_zonewar, 0.08)) / 2
+					Math.pow(100, Math.pow(data.qt_zonewar, 0.08)) / 1.6
 				)
 			}
 			return data
@@ -33,12 +36,15 @@ module.exports = {
 				ctx.db.log.push([
 					'... ?'
 				])
+				data.shield += Math.floor(
+					Math.pow(100, Math.pow(data.qt_zonedefense, 0.03)) / 1.6
+				)
 			} else {
 				ctx.db.log.push([
 					'The defense is down!'
 				])
 				data.shield += Math.floor(
-					Math.pow(100, Math.pow(data.qt_zonedefense, 0.08)) / 2
+					Math.pow(100, Math.pow(data.qt_zonedefense, 0.08)) / 1.6
 				)
 			}
 			return data

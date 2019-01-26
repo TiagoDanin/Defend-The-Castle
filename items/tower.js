@@ -5,23 +5,20 @@ module.exports = {
 		city: true,
 		desc: '',
 		doDefend: (data, ctx) => {
-			if (Math.floor((Math.random() * 1)) == 0) {
-				ctx.db.log.push([
-					'... ?'
-				])
+			if (Math.floor((Math.random() * 2)) == 0) {
 				ctx.db.log.push([
 					'Trap....',
 					'Oh! No... Trap..'
 				])
 				data.attack += Math.floor(
-					Math.pow(100, Math.pow(data.qt_towerdefense, 0.08)) / 1.3
+					Math.pow(100, Math.pow(data.qt_towerdefense, 0.08)) / 1.2
 				)
 			} else {
 				ctx.db.log.push([
 					'The defense is down!'
 				])
 				data.shield += Math.floor(
-					Math.pow(100, Math.pow(data.qt_towerdefense, 0.08)) / 1.3
+					Math.pow(100, Math.pow(data.qt_towerdefense, 0.08)) / 1.2
 				)
 			}
 			return data
