@@ -149,6 +149,7 @@ bot.use(session({
 		return ctx.from.id
 	}
 }))
+
 /*
 const r = new Resources({
 	lang: config.defaultLang
@@ -157,6 +158,7 @@ config.locales.forEach((id) => {
 	r.load(id, `locales/${id}.po`)
 })
 */
+
 bot.use((ctx, next) => {
 	//var langCode = 'en' //checkLanguage(ctx)
 	//var i18n = new Translation(langCode)
