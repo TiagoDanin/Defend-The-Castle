@@ -9,7 +9,7 @@ const xp = (data, numb) => {
 }
 
 const troops = (data, numb) => {
-	data.troops += numb
+	data.troops += numb + 2
 	return data
 }
 
