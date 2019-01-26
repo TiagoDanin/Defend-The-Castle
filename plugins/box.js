@@ -20,7 +20,9 @@ const presents = [
 ]
 
 const base = async (ctx) => {
-	const text = '<b>🎁 Present</b>'
+	const text = `
+<b>🎁 Present</b>
+${ctx.tips(ctx)}`
 	const date = new Date()
 	let boxs = []
 	if (ctx.session.box < +date) {

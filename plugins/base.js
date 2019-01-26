@@ -2,6 +2,7 @@ const base = async (ctx) => {
 	let text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
+${ctx.tips(ctx)}
 ---------------------------------------
 ⚔️ ${ctx.db.attack}
 🛡 ${ctx.db.shield}
@@ -46,6 +47,7 @@ const base = async (ctx) => {
 			text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
+${ctx.tips(ctx)}
 ---------------------------------------
 ⚔️ ${ctx.db.attack}
 🛡 ${ctx.db.shield}

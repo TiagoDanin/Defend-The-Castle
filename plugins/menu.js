@@ -22,7 +22,8 @@ const base = async (ctx) => {
 ---------------------------------------
 <b>💰 Money:</b> ${ctx.db.money} (${ctx.db.moneyPerHour}/hour)
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
-	`
+
+${ctx.tips(ctx)}`
 	if (!ctx.session.box) {
 		ctx.session.box = +new Date()
 	}
@@ -55,11 +56,12 @@ const base = async (ctx) => {
 		}
 	} else if (ctx.match[2] == 'about') {
 		text = `
-👤 <b>Developer:</b> @TiagoDanin
+👤 <b>Developer:</b> @TiagoEDGE (Tiago Danin)
 🗣 <b>Channel:</b> @DefendTheCastle
 👥 <b>Group EN:</b> @DefendTheCastleEN
 👥 <b>Group PT:</b> @DefendTheCastlePT
 
+Invite your friends to earn Money & Xp!
 Invite URL: https://telegram.me/DefendTheCastleBot?start=join-${ctx.from.id}
 		`
 		keyboard = [

@@ -98,6 +98,7 @@ const base = async (ctx) => {
 	let text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
+${ctx.tips(ctx)}
 ---------------------------------------
 `
 	let mainKeyboard = []
@@ -109,10 +110,11 @@ const base = async (ctx) => {
 		ctx.db.castle = ctx.castles[Number(ctx.match[3])] || '🏰'
 		mainKeyboard = city(ctx)
 		text = `
-	<b>${ctx.db.castle} City:</b> ${ctx.db.name}
-	<b>💰 Money:</b> ${ctx.db.money} Coin
-	---------------------------------------
-	<b>New castle!</b>
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>💰 Money:</b> ${ctx.db.money} Coin
+${ctx.tips(ctx)}
+---------------------------------------
+<b>New castle!</b>
 		`
 	} else if (ctx.match[2] == 'up' && ctx.match[3] && ctx.match[4]) {
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
@@ -151,6 +153,7 @@ const base = async (ctx) => {
 			text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
+${ctx.tips(ctx)}
 ---------------------------------------
 ${infoText(ctx)}
 Upgraded!`

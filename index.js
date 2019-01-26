@@ -8,6 +8,7 @@ const session = require('telegraf/session')
 const config = require('./config')
 const database = require('./database')
 const levels = require('./levels')
+const tips = require('./tips')
 
 const items = {
 	...require('./items/bank'),
@@ -171,6 +172,9 @@ bot.context.database = database
 bot.context.castles = config.castles
 bot.context.items = items
 bot.context.fixKeyboard = Array(90).join('\u0020') + '\u200B'
+bot.context.tips = (ctx) => {
+	return '💡 ' + tips[Math.floor((Math.random() * tips.length))](ctx)
+}
 bot.context.sleep = async (time) => {
 	await new Promise((resolve) => setTimeout(
 		resolve,
