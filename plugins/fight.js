@@ -263,6 +263,9 @@ const base = async(ctx) => {
 		checkAttack = await attack(ctx, opponent)
 		if (checkAttack == 'Done!') {
 			ctx.db.troops--
+			if (ctx.db.troops < 0) {
+				ctx.db.troops = 0
+			}
 		}
 		text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
