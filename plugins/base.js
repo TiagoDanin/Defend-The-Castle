@@ -8,7 +8,6 @@ const base = async (ctx) => {
 ❤️ ${ctx.db.life}
 `
 
-	let price = 100 //Anti - hack
 	let items = {
 		'1': {
 			icon: '⚔️',
@@ -68,7 +67,7 @@ Upgraded!`
 			})
 			ctx.answerCbQuery('Upgraded!')
 		} else {
-			ctx.answerCbQuery(`❌ Your money ${ctx.db.money} | Price ${price}`, true)
+			ctx.answerCbQuery(`❌ Your money ${ctx.db.money} | Price ${item.price}`, true)
 			text += '\nFalid!'
 		}
 	}
