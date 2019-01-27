@@ -27,7 +27,7 @@ ${ctx.tips(ctx)}`
 	if (!ctx.session.box) {
 		ctx.session.box = +new Date()
 	}
-	const boxTime = moment(ctx.session.box).calendar()
+	const boxTime = moment(+new Date()).to(ctx.session.box)
 	let keyboard = [
 		[{text: '⚔️ Fight' , callback_data: 'fight' }],
 		[{text: `${ctx.db.castle} City` , callback_data: 'city' }],
