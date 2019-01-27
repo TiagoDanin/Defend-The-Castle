@@ -39,5 +39,10 @@ module.exports = {
 			plusShield: 5,
 			inventory: [1, 2]
 		}
+	},
+	ids: {
+		log: '-1001089887511',
+		admins: [89198119, 61029284],
+		mods: []
 	}
 }
