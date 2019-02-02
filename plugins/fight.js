@@ -303,7 +303,8 @@ const base = async(ctx) => {
 		return ctx.replyWithHTML(text + ctx.fixKeyboard, {
 			reply_markup: {
 				inline_keyboard: keyboard
-			}
+			},
+			disable_web_page_preview: true
 		})
 	} else {
 		await ctx.database.updateUser(ctx.from.id, 'opponent', opponent.id)
@@ -313,7 +314,8 @@ const base = async(ctx) => {
 		parse_mode: 'HTML',
 		reply_markup: {
 			inline_keyboard: keyboard
-		}
+		},
+		disable_web_page_preview: true
 	})
 }
 

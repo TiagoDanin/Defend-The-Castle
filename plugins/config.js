@@ -22,13 +22,15 @@ const base = async (ctx) => {
 			parse_mode: 'HTML',
 			reply_markup: {
 				inline_keyboard: keyboard
-			}
+			},
+			disable_web_page_preview: true
 		})
 	}
 	return ctx.replyWithHTML(text + ctx.fixKeyboard, {
 		reply_markup: {
 			inline_keyboard: keyboard
-		}
+		},
+		disable_web_page_preview: true
 	})
 	return
 }

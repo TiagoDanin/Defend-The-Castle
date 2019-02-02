@@ -57,7 +57,8 @@ Present(${present.name}): +${ctx.db[present.name] - ctx.db.old[present.name]}
 		parse_mode: 'HTML',
 		reply_markup: {
 			inline_keyboard: keyboard
-		}
+		},
+		disable_web_page_preview: true
 	})
 }
 
