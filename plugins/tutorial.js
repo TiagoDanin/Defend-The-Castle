@@ -19,9 +19,9 @@ const base = async (ctx) => {
 		text = `
 Welcome to <b>defend the castle</b>
 * How to attack a castle
-- Open the Menu
-- Click on "Fight "
-- Select a zone to drop the troops
+• Open the Menu
+• Click on "Fight "
+• Select a zone to drop the troops
 TIP: A 3x3 zone is selected!
 Map:`
 		const map = buildMap([
@@ -48,22 +48,25 @@ Best possition to drop of troops!
 	} else if (id == 2) {
 		text = `
 * Edit City
-- Open menu
-- Click in "City"
-- Select an zone
-- Upgrade ou Change Zone`
+• Open menu
+• Click in "City"
+• Select an zone
+• Upgrade ou Change Zone`
 	} else if (id == 3) {
 		text = `
 * Edit Attack Troops
-- Open menu
-- Click in "Military Base"
-- Upgrade Life, Shield or Attack
+• Open menu
+• Click in "Military Base"
+• Upgrade Life, Shield or Attack
 TIP: +1 troop per 120s`
 	} else if (id == 4) {
 		text = `
 * NOTE
-- Offline for 3 days causes penalties to the castle
-- Attack Troops are not used to defend the castle`
+• Offline for 7 days causes penalties to the castle:
+- Loss of money (E.g 100 ~> 71 "100 / 1.4 = 71")
+- Reset XP (Xp = 0)
+- -1 Level (E.g lvl10 ~> lvl9)
+• Attack Troops are not used to defend the castle`
 	}
 
 	let back = []

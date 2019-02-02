@@ -257,7 +257,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	}
 	data.money = Math.floor(data.money)
 	if (data.run) {
-		if (data.timerunning >= 259200) {//3 days in s
+		if (data.timerunning >= 604800) {//7 days in s
 			data.xp = 0
 			data.level--
 			if (data.level < 1) {
@@ -265,7 +265,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 			}
 			data.money = Math.floor(data.old.money / 1.4)
 			database.saveUser(ctx)
-			ctx.replyWithMarkdown('*‼️ The villagers are gone! (3 Days Offline)*')
+			ctx.replyWithMarkdown('*‼️ The villagers are gone! (7 Days Offline)*')
 			return data
 		}
 

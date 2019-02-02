@@ -6,7 +6,7 @@ const invite = (ctx) => {
 }
 const tellMe = () => 'Suggestions & Bugs! Tell me @TiagoEDGE'
 const tutorial = () => 'Tutorial: /tutorial'
-const offline = () => 'Offline for 3 days causes penalties to the castle!'
+const offline = () => 'Offline for 7 days causes penalties to the castle!'
 const attackTroops = () => 'Attack Troops are not used to defend the castle!'
 const castles = () => '' //TODO
 
