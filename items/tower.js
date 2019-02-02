@@ -1,3 +1,4 @@
+const range = 1.2
 module.exports = {
 	'6': {
 		icon: '🗿',
@@ -11,14 +12,14 @@ module.exports = {
 					'Oh! No... Trap..'
 				])
 				data.attack += Math.floor(
-					Math.pow(100, Math.pow(data.qt_towerdefense, 0.08)) / 1.2
+					Math.pow(100, Math.pow(data.qt_towerdefense, 0.08)) / range
 				)
 			} else {
 				ctx.db.log.push([
 					'The defense is down!'
 				])
 				data.shield += Math.floor(
-					Math.pow(100, Math.pow(data.qt_towerdefense, 0.08)) / 1.2
+					Math.pow(100, Math.pow(data.qt_towerdefense, 0.08)) / range
 				)
 			}
 			return data

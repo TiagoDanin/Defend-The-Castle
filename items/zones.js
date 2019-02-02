@@ -1,3 +1,4 @@
+const range = 1.34
 module.exports = {
 	'2': {
 		icon: '⚔️',
@@ -11,7 +12,7 @@ module.exports = {
 					'Easy!'
 				])
 				data.attack += Math.floor(
-					Math.pow(100, Math.pow(data.qt_zonewar, 0.03)) / 1.6
+					Math.pow(100, Math.pow(data.qt_zonewar, 0.03)) / range
 				)
 			} else {
 				ctx.db.log.push([
@@ -19,7 +20,7 @@ module.exports = {
 					'Oh! No... Trap..'
 				])
 				data.attack += Math.floor(
-					Math.pow(100, Math.pow(data.qt_zonewar, 0.08)) / 1.6
+					Math.pow(100, Math.pow(data.qt_zonewar, 0.08)) / range
 				)
 			}
 			return data
@@ -37,14 +38,14 @@ module.exports = {
 					'... ?'
 				])
 				data.shield += Math.floor(
-					Math.pow(100, Math.pow(data.qt_zonedefense, 0.03)) / 1.6
+					Math.pow(100, Math.pow(data.qt_zonedefense, 0.03)) / range
 				)
 			} else {
 				ctx.db.log.push([
 					'The defense is down!'
 				])
 				data.shield += Math.floor(
-					Math.pow(100, Math.pow(data.qt_zonedefense, 0.08)) / 1.6
+					Math.pow(100, Math.pow(data.qt_zonedefense, 0.08)) / range
 				)
 			}
 			return data

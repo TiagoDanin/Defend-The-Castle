@@ -88,7 +88,7 @@ ${ctx.db.name} LOST!
 <b>‼️ CASTLE WITHOUT DAMAGE ‼️</b>
 ---------------------------------------
 ${text}`
-		play.xp += xp / 15
+		play.xp += xp / 16
 	} else if (ctx.db.life > play.life) {
 		ctx.db.xp += xp
 		play.xp += xp / 10
@@ -98,7 +98,7 @@ ${ctx.db.name} WIN!
 ${text}`
 	} else {
 		ctx.db.xp += xp / 9
-		play.xp += xp / 4
+		play.xp += xp / 3.3
 		text = `
 ${ctx.db.name} LOST!
 ---------------------------------------

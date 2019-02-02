@@ -9,7 +9,16 @@ module.exports = {
 				'Our airplane is down!',
 				'I think we can escape in time.'
 			])
-			data.attack += Math.floor(Math.pow(100, Math.pow(data.qt_rocket, 0.16))) / (Math.floor((Math.random() * 3)) + 3)
+			data.attack += Math.floor(
+				(
+					Math.pow(
+					100,
+					Math.pow(data.qt_rocket, 0.16)
+					)
+				) / (
+					Math.floor((Math.random() * 3)) + 3 //random
+				)
+			)
 			return data
 		},
 		upgrade: [550, 0.18, 'rocket']
