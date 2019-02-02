@@ -79,7 +79,7 @@ const showCastle = (ctx) => {
 const infoText = (ctx) => {
 	var item = ctx.items[ctx.db.city[ctx.match[3].toString()].toString()]
 	var info = `<b>${item.icon} ${item.name}</b>\n`
-	info += item.desc
+	info += `${item.desc}\n`
 	if (item.upgrade) {
 		const row = `qt_${item.upgrade[2]}`
 		const value = Number(ctx.db[row]) + 1
@@ -89,7 +89,8 @@ const infoText = (ctx) => {
 				Math.pow(value, item.upgrade[1])
 			)
 		)
-		info += `\n<b>💶 Upgrade:</b> ${price} Coin`
+		info += `<b>⚡️ Level:</b> ${value-1}\n`
+		info += `<b>💶 Upgrade:</b> ${price} Coin\n`
 	}
 	return info
 }
