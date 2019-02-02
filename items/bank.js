@@ -23,7 +23,7 @@ module.exports = {
 				Math.pow(
 					50,
 					Math.pow(data.qt_bank, 0.092)
-				) * 22
+				) * 22 / 3.2
 			)
 			return data
 		},
