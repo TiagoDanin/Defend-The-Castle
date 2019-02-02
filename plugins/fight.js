@@ -32,6 +32,7 @@ const attack = async(ctx, opponent) => {
 		return hack(ctx)
 	}
 
+	const oldMoney = ctx.db.money
 	const xps = {
 		play: play.xp,
 		user: ctx.db.xp
@@ -115,12 +116,19 @@ ${text}`
 		return hack(ctx)
 	}
 
+	let money = ''
+	const addMoney = Math.floor(ctx.db.money - oldMoney)
+	if (addMoney > 0) {
+		money = `: 💰 ${addMoney}`
+	}
+
+
 	map = data.map
 	await ctx.editMessageText(text + ctx.fixKeyboard, {
 		parse_mode: 'HTML',
 		reply_markup: {
 			inline_keyboard: [...map, [{
-				text: `✨XP ${ctx.db.xp - xps.user} : ⚖️ ${text.match('WIN') ? 'WIN!' : 'LOST!'}`,
+				text: `✨XP ${ctx.db.xp - xps.user}${money} : ⚖️ ${text.match('WIN') ? 'WIN!' : 'LOST!'}`,
 				callback_data: 'fight:done'
 			}]]
 		}
