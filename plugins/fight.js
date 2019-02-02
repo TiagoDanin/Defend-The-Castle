@@ -214,6 +214,11 @@ const showMap = (ctx, opponent, h, v) => {
 }
 
 const fightTypes = [{
+	name: 'Balanced',
+	select: (data, ctx) => {
+		return data.sort((a, b) => Math.abs(a.level - ctx.db.level) - Math.abs(b.level - ctx.db.level))
+	}
+}, {
 	name: 'Random',
 	select: (data) => {
 		return data
@@ -250,7 +255,7 @@ const base = async(ctx) => {
 			}
 	}
 
-	opponent = fightTypes[ctx.session.ftype].select(opponent)
+	opponent = fightTypes[ctx.session.ftype].select(opponent, ctx)
 	opponent = opponent[Math.floor(Math.random() * (4 - 0))]
 
 	let text = `
