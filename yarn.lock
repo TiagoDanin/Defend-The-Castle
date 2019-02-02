@@ -85,7 +85,7 @@ libpq@^1.7.0:
     bindings "1.2.1"
     nan "^2.10.0"
 
-moment-timezone@^0.5.23:
+moment-timezone@0.5.23:
   version "0.5.23"
   resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.23.tgz#7cbb00db2c14c71b19303cb47b0fb0a6d8651463"
   integrity sha512-WHFH85DkCfiNMDX5D3X7hpNH3/PUhjTGcD0U1SgfBGZxJ3qUmJh5FdvaFjcClxOvB3rzdfj4oRffbI38jEnC1w==
@@ -290,10 +290,10 @@ telegraf-start-parts@1.0.0:
   resolved "https://registry.yarnpkg.com/telegraf-start-parts/-/telegraf-start-parts-1.0.0.tgz#0412f5ea8f9e0bce7cc50dc7063f971c7140259f"
   integrity sha512-NSTV4t5HUwoylPmw59FrXrZk1RkDUyDiVI4/cwccEysY0rBkt3WxTqfl7aNE02bZQfQS0tsjw4NU958C5RvEcw==
 
-telegraf@3.26.0:
-  version "3.26.0"
-  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-3.26.0.tgz#6102280c7971431a8a8a96fe0502285cc1a223c9"
-  integrity sha512-mADDeKoSBbfcOntV0/78vyNNO59/eNQiY8V3xUfrxCOwZsDxtV0dkU53Zu7k7xPPddViLUzl3EENil97CDgbpw==
+telegraf@3.27.0:
+  version "3.27.0"
+  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-3.27.0.tgz#03d12bc60d2313f178d4a77cbb35b68872316bff"
+  integrity sha512-of0TBbIPqud8sQCl8sqi31eivJhQfaX3AVoFWurSgk9+BUTy99CoBdwCD8kqLHu7XYX40DQI6Q+FQVm6zCkKOg==
   dependencies:
     "@types/node" "^10.1.2"
     debug "^4.0.1"
