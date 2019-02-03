@@ -163,17 +163,30 @@ const replaceInventory = async (ctx, pos, to) => {
 const saveUser = async (ctx) => {
 	let data = {}
 	let client = await pool.connect()
-	const blackList = [
-		'name',
-		'key',
-		'id',
-		'time',
-		'city',
+	const whiteList = [
+		'opponent',
+		'reply',
+		'notification',
 		'type',
-		'run',
-		'timerunning'
+		'level',
+		'attack',
+		'shield',
+		'life',
+		'money',
+		'qt_bank',
+		'qt_hospital',
+		'qt_bomb',
+		'qt_rocket',
+		'qt_towerdefense',
+		'qt_zonewar',
+		'qt_zonedefense',
+		'xp',
+		'troops',
+		'inventory',
+		'city',
+		'invite'
 	]
-	let listKeys = Object.keys(ctx.db.old).filter((e) => (!blackList.includes(e)) ? e : false)
+	let listKeys = Object.keys(ctx.db.old).filter((e) => whiteList.includes(e))
 	listKeys = listKeys.reduce((total, key, index) => {
 		if (ctx.db.old[key] != ctx.db[key]) {
 			total.push(key)
