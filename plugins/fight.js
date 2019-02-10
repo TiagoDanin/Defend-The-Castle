@@ -242,7 +242,7 @@ const fightTypes = [{
 
 const base = async(ctx) => {
 	let checkAttack = false
-	let opponent = await ctx.database.randomUser(22)
+	let opponent = await ctx.database.randomUser(37)
 	opponent = opponent.filter((e) => e.id != ctx.from.id && e.id != ctx.match[4])
 
 	if (!ctx.session.ftype) {
@@ -256,7 +256,7 @@ const base = async(ctx) => {
 	}
 
 	opponent = fightTypes[ctx.session.ftype].select(opponent, ctx)
-	opponent = opponent[Math.floor(Math.random() * (4 - 0))]
+	opponent = opponent[Math.floor(Math.random() * (5 - 0))]
 
 	let text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}

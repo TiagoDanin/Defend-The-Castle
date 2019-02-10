@@ -164,6 +164,7 @@ const saveUser = async (ctx) => {
 	let data = {}
 	let client = await pool.connect()
 	const whiteList = [
+		'inventory',
 		'opponent',
 		'reply',
 		'notification',
@@ -188,7 +189,9 @@ const saveUser = async (ctx) => {
 	]
 	let listKeys = Object.keys(ctx.db.old).filter((e) => whiteList.includes(e))
 	listKeys = listKeys.reduce((total, key, index) => {
-		if (ctx.db.old[key] != ctx.db[key]) {
+		if (typeof ctx.db[key] == 'object') {
+			total.push(key)
+		} else if (ctx.db.old[key] != ctx.db[key]) {
 			total.push(key)
 		}
 		return total
