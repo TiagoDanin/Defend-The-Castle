@@ -17,7 +17,8 @@ module.exports = {
 			} else {
 				ctx.db.log.push([
 					'Trap....',
-					'Oh! No... Trap..'
+					'Oh! No... Trap..',
+					'⚔️'
 				])
 				data.attack += Math.floor(
 					Math.pow(100, Math.pow(data.qt_zonewar, 0.08)) / range
@@ -35,7 +36,7 @@ module.exports = {
 		doDefend: (data, ctx) => {
 			if (Math.floor((Math.random() * 3)) == 0) {
 				ctx.db.log.push([
-					'... ?'
+					'🛡'
 				])
 				data.shield += Math.floor(
 					Math.pow(100, Math.pow(data.qt_zonedefense, 0.03)) / range

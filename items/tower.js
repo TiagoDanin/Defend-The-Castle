@@ -9,7 +9,8 @@ module.exports = {
 			if (Math.floor((Math.random() * 2)) == 0) {
 				ctx.db.log.push([
 					'Trap....',
-					'Oh! No... Trap..'
+					'Oh! No... Trap..',
+					'🗿'
 				])
 				data.attack += Math.floor(
 					Math.pow(100, Math.pow(data.qt_towerdefense, 0.08)) / range

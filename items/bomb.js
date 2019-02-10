@@ -10,7 +10,8 @@ module.exports = {
 				ctx.db.log.push([
 					'Recruit stepped on the mine!',
 					'Our choices were not good.',,
-					'We\'re practically disimated.'
+					'We\'re practically disimated.',
+					'💣'
 				])
 				data.attack += Math.floor(Math.pow(100, Math.pow(data.qt_bomb, 0.16)))
 				data.shield = (data.shield / 2) + (ctx.db.shield / 3)
