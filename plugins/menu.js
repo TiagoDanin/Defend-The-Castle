@@ -21,6 +21,7 @@ const base = async (ctx) => {
 <b>🎖 Experience:</b> ${ctx.db.xp}
 ---------------------------------------
 <b>💰 Money:</b> ${ctx.db.money} (${ctx.db.moneyPerHour}/hour)
+<b>💎 Diamonds:</b> ${ctx.db.inventory.filter(id => id == '7').length}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 
 ${ctx.tips(ctx)}`
