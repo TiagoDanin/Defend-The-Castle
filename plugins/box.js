@@ -13,10 +13,16 @@ const troops = (data, numb) => {
 	return data
 }
 
+const diamond = (data) => {
+	data.inventory.push('7')
+	return data
+}
+
 const presents = [
 	money,
 	xp,
-	troops
+	troops,
+	diamond
 ]
 
 const base = async (ctx) => {
@@ -35,9 +41,14 @@ ${ctx.tips(ctx)}`
 				Math.floor(Math.random() * (6 - 1) + 1) //Range: 1-5
 			)
 			await ctx.database.saveUser(ctx)
-			ctx.answerCbQuery(`
-Present(${present.name}): +${ctx.db[present.name] - ctx.db.old[present.name]}
-			`, true)
+			if (ctx.db[present.name]) {
+				ctx.answerCbQuery(`
+	Present(${present.name}): +${ctx.db[present.name] - ctx.db.old[present.name]}
+				`, true)
+			} else {
+				ctx.answerCbQuery(`Present: +1 ${present.name}!`, true)
+			}
+
 		} else {
 			boxs = [
 				[
