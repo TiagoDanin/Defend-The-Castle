@@ -5,6 +5,15 @@ module.exports = {
 		name: 'Zone War',
 		city: true,
 		desc: 'Military will protect this area with their lives!',
+		doDb: (data) => {
+			let zones = data.city.filter((e) => e == 2).length
+			data.attack += Math.floor(
+				(
+					Math.pow(20, Math.pow(data.qt_zonewar, 0.03)) / range
+				) * zones
+			)
+			return data
+		},
 		doDefend: (data, ctx) => {
 			if (Math.floor((Math.random() * 3)) == 0) {
 				ctx.db.log.push([
@@ -33,6 +42,15 @@ module.exports = {
 		name: 'Zone Defense',
 		city: true,
 		desc: 'Military will protect this area with their lives!',
+		doDb: (data) => {
+			let zones = data.city.filter((e) => e == 3).length
+			data.shield += Math.floor(
+				(
+					Math.pow(20, Math.pow(data.qt_zonedefense, 0.03)) / range
+				) * zones
+			)
+			return data
+		},
 		doDefend: (data, ctx) => {
 			if (Math.floor((Math.random() * 3)) == 0) {
 				ctx.db.log.push([
