@@ -38,6 +38,6 @@ module.exports = {
 			data.money += (data.timerunning * moneyPerSecond)
 			return data
 		},
-		upgrade: [100, 0.18, 'bank']
+		upgrade: [100, 0.087, 'bank']
 	}
 }
