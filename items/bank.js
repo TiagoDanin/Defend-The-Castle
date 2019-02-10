@@ -19,12 +19,17 @@ module.exports = {
 				'Found money!',
 				'MONEEEEY!'
 			])
-			ctx.db.money += Math.floor(
+			let moreMoney = Math.floor(
 				Math.pow(
 					50,
 					Math.pow(data.qt_bank, 0.092)
 				) * 22 / 3.2
 			)
+			if (moreMoney > data.money) {
+				moreMoney = data.money / 3
+			}
+			ctx.db.money += moreMoney
+			ctx.db.money = Math.floor(ctx.db.money)
 			return data
 		},
 		doTime: (data) => {
