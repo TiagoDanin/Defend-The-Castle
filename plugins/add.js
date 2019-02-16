@@ -3,7 +3,7 @@ const base = async (ctx) => {
 		return
 	}
 
-	const id = ctx.message.reply_to_message.from.id
+	const id = ctx.message.reply_to_message.forward_from.id
 	const play = await ctx.database.getUser(id)
 	if (play && id) {
 		let user = {
@@ -15,7 +15,7 @@ const base = async (ctx) => {
 		user.db.old = {...user.db}
 		user.db.xp += 1200
 		user.db.money += 5000
-		user.db.inventory.push('7')
+		user.db.inventory.push('11')
 		await ctx.database.saveUser(user)
 		return ctx.replyWithHTML(`
 <b>Thanks!</b>
