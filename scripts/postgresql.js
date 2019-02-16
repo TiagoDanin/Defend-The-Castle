@@ -32,7 +32,7 @@ const main = async () => {
 			troops           INT        DEFAULT 5,
 			time             TIMESTAMP  DEFAULT now(),
 			inventory        INT[]      DEFAULT '{
-				3, 2, 3, 2, 3, 2, 7, 7, 6, 6
+				3, 2, 3, 2, 3, 2, 7, 7, 6, 6, 10, 11
 			}',
 			city             INT[]      DEFAULT '{
 				5, 0, 0, 0, 4,

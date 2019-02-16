@@ -70,7 +70,7 @@ Upgraded!`
 			ctx.answerCbQuery('Upgraded!')
 		} else {
 			ctx.answerCbQuery(`❌ Your money ${ctx.db.money} | Price ${item.price}`, true)
-			text += '\nFalid!'
+			text += '\nFailed!'
 		}
 	}
 

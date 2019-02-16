@@ -167,7 +167,7 @@ Upgraded!`
 			ctx.answerCbQuery('Upgraded!')
 		} else {
 			ctx.answerCbQuery(`❌ Your money ${ctx.db.money} | Price ${price}`, true)
-			text += '\nFalid!'
+			text += '\nFailed!'
 		}
 	} else if (ctx.match[2] == 'inv' && ctx.match[3]) {
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
