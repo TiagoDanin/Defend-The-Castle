@@ -1,16 +1,16 @@
-'9': {
+'10': {
 	icon: '👽',
 	name: 'Clone',
 	epic: true,
 	sell: true
 },
-'10': {
+'11': {
 	icon: '💎',
 	name: 'Diamond',
 	epic: true,
 	sell: true
 }
-'11': {
+'13': {
 	icon: '🛡',
 	name: 'Supreme Shield',
 	battle: true,
