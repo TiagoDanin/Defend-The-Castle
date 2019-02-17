@@ -30,10 +30,9 @@ ${ctx.tips(ctx)}`
 	}
 	const boxTime = moment(+new Date()).to(ctx.session.box)
 	let keyboard = [
-		[{text: '⚔️ Fight' , callback_data: 'fight' }],
 		[
-			{text: `${ctx.db.castle} City` , callback_data: 'city' },
-			{text: '🛰 Military base', callback_data: 'base'}
+			{text: '⚔️ Fight' , callback_data: 'fight' },
+			{text: `${ctx.db.castle} City` , callback_data: 'city'}
 		],
 		[
 			{text: `🎁 ${boxTime}` , callback_data: 'box'},
