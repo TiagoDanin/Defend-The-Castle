@@ -1,7 +1,7 @@
 module.exports = {
 	'12': {
 		icon: '🛡',
-		name: 'Supreme Shield',
+		name: 'Super Shield',
 		desc: '3x +Shield & +150 Xp',
 		city: false,
 		battle: true,

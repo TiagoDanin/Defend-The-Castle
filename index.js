@@ -12,11 +12,13 @@ const tips = require('./tips')
 
 const items = {
 	...require('./items/bank'),
-	...require('./items/battle'),
 	...require('./items/bomb'),
+	...require('./items/clone'),
+	...require('./items/diamond'),
 	...require('./items/hospital'),
 	...require('./items/null'),
 	...require('./items/rocket'),
+	...require('./items/shield'),
 	...require('./items/tower'),
 	...require('./items/zones')
 }
