@@ -2,7 +2,6 @@ module.exports = {
 	plugins: [
 		'add',
 		'backup',
-		'base',
 		'box',
 		'city',
 		'config',

@@ -12,7 +12,7 @@ const tips = require('./tips')
 
 const items = {
 	...require('./items/bank'),
-	//...require('./items/battle'),
+	...require('./items/battle'),
 	...require('./items/bomb'),
 	...require('./items/hospital'),
 	...require('./items/null'),
@@ -237,19 +237,27 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		if (id != 12) {
 			total.push({
 				...items[id],
-				city: true
+				isInventory: false,
+				isCity: true
 			})
 		}
 		return total
 	}, data.inventory.map((id) => {
 		return {
 			...items[id],
-			inventory: true
+			isInventory: true,
+			isCity: false
 		}
 	}))
+
+	//Reset
+	data.attack = 0
+	data.shield = 0
+	data.life = 0
+
 	for (var item of data.allItems) {
 		if (item.doDb) {
-			data = item.doDb(data)
+			data = item.doDb(data, item)
 		}
 		if (data.run && item.doTime) {
 			data = item.doTime(data)
