@@ -5,12 +5,5 @@ module.exports = {
 		city: true,
 		battle: true,
 		desc: 'I don\'t know what that does...'
-	},
-	'11': {
-		icon: '🚧',
-		name: 'Null',
-		city: true,
-		battle: true,
-		desc: 'I don\'t know what that does...'
 	}
 }

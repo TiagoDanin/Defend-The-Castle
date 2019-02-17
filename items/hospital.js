@@ -4,15 +4,18 @@ module.exports = {
 		name: 'Hospital',
 		city: true,
 		desc: 'Increases a health.',
+		doDb: (data, item) => {
+			if (item.isInventory) return data
+			data.life += Math.floor(50 * data.qt_hospital)
+			return data
+		},
 		doDefend: (data, ctx) => {
 			ctx.db.log.push([
 				'🚑'
 			])
-			data.life += Math.floor(
-				Math.pow(100, Math.pow(data.qt_hospital, 0.071))
-			)
+			data.life += Math.floor(70 * data.qt_hospital)
 			return data
 		},
-		upgrade: [165, 0.18, 'bank']
+		upgrade: [100, 'bank']
 	}
 }

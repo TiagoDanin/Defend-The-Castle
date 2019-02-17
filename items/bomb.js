@@ -13,7 +13,7 @@ module.exports = {
 					'We\'re practically disimated.',
 					'💣'
 				])
-				data.attack += Math.floor(Math.pow(100, Math.pow(data.qt_bomb, 0.16)))
+				data.attack += Math.floor(100 * data.qt_bomb)
 				data.shield = (data.shield / 2) + (ctx.db.shield / 3)
 			} else {
 				ctx.db.log.push([
@@ -24,6 +24,6 @@ module.exports = {
 			}
 			return data
 		},
-		upgrade: [200, 0.18, 'bomb']
+		upgrade: [350, 'bomb']
 	}
 }

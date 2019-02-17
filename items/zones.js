@@ -1,17 +1,12 @@
-const range = 1.34
 module.exports = {
 	'2': {
 		icon: '⚔️',
 		name: 'Zone War',
 		city: true,
 		desc: 'Military will protect this area with their lives!',
-		doDb: (data) => {
-			let zones = data.city.filter((e) => e == 2).length
-			data.attack += Math.floor(
-				(
-					Math.pow(20, Math.pow(data.qt_zonewar, 0.03)) / range
-				) * zones
-			)
+		doDb: (data, item) => {
+			if (item.isInventory) return data
+			data.attack += Math.floor(30 * data.qt_zonewar)
 			return data
 		},
 		doDefend: (data, ctx) => {
@@ -20,35 +15,29 @@ module.exports = {
 					'We take the zone with the falicity!',
 					'Easy!'
 				])
-				data.attack += Math.floor(
-					Math.pow(100, Math.pow(data.qt_zonewar, 0.03)) / range
-				)
+				ddata.attack += Math.floor(5 * data.qt_zonewar)
 			} else {
 				ctx.db.log.push([
 					'Trap....',
 					'Oh! No... Trap..',
 					'⚔️'
 				])
-				data.attack += Math.floor(
-					Math.pow(100, Math.pow(data.qt_zonewar, 0.08)) / range
-				)
+				data.attack += Math.floor(38 * data.qt_zonewar)
 			}
 			return data
 		},
-		upgrade: [220, 0.18, 'zonewar']
+		upgrade: [220, 'zonewar']
 	},
 	'3': {
 		icon: '🛡',
 		name: 'Zone Defense',
 		city: true,
 		desc: 'Military will protect this area with their lives!',
-		doDb: (data) => {
-			let zones = data.city.filter((e) => e == 3).length
-			data.shield += Math.floor(
-				(
-					Math.pow(20, Math.pow(data.qt_zonedefense, 0.03)) / range
-				) * zones
-			)
+		doDb: (data, item) => {
+			console.log(item)
+			if (item.isInventory) return data
+			data.shield += Math.floor(15 * data.qt_zonedefense)
+			console.log('>>>', data.shield)
 			return data
 		},
 		doDefend: (data, ctx) => {
@@ -56,19 +45,15 @@ module.exports = {
 				ctx.db.log.push([
 					'🛡'
 				])
-				data.shield += Math.floor(
-					Math.pow(100, Math.pow(data.qt_zonedefense, 0.03)) / range
-				)
+				data.shield += Math.floor(20 * data.qt_zonedefense)
 			} else {
 				ctx.db.log.push([
 					'The defense is down!'
 				])
-				data.shield += Math.floor(
-					Math.pow(100, Math.pow(data.qt_zonedefense, 0.08)) / range
-				)
+				data.shield += Math.floor(4 * data.qt_zonedefense)
 			}
 			return data
 		},
-		upgrade: [200, 0.18, 'zonedefense']
+		upgrade: [200, 'zonedefense']
 	}
 }

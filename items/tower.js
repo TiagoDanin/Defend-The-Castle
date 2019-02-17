@@ -1,4 +1,3 @@
-const range = 1.2
 module.exports = {
 	'6': {
 		icon: '🗿',
@@ -12,19 +11,15 @@ module.exports = {
 					'Oh! No... Trap..',
 					'🗿'
 				])
-				data.attack += Math.floor(
-					Math.pow(100, Math.pow(data.qt_towerdefense, 0.08)) / range
-				)
+				data.attack += Math.floor(60 * data.qt_towerdefense)
 			} else {
 				ctx.db.log.push([
 					'The defense is down!'
 				])
-				data.shield += Math.floor(
-					Math.pow(100, Math.pow(data.qt_towerdefense, 0.08)) / range
-				)
+				data.shield += Math.floor(12 * data.qt_towerdefense)
 			}
 			return data
 		},
-		upgrade: [160, 0.18, 'towerdefense']
+		upgrade: [190, 'towerdefense']
 	}
 }
