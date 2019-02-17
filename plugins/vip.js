@@ -4,9 +4,9 @@ const base = async (ctx) => {
 <b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
 ${ctx.tips(ctx)}
 ---------------------------------------
-⚔️ ${ctx.db.old.attack} (+${ctx.db.attack - ctx.db.old.attack})
-🛡 ${ctx.db.old.shield} (+${ctx.db.shield - ctx.db.old.shield})
-❤️ ${ctx.db.old.life}
+⚔️ ${ctx.db.attack}
+🛡 ${ctx.db.shield}
+❤️ ${ctx.db.life}
 `
 
 	let items = {
@@ -33,7 +33,7 @@ ${ctx.tips(ctx)}
 		items[e].price = Math.floor(
 			Math.pow(
 				100,
-				Math.pow(ctx.db.old[items[e].value]+10, items[e].upgrade)
+				Math.pow(ctx.db[items[e].value]+10, items[e].upgrade)
 			)
 		)
 	})
@@ -43,19 +43,18 @@ ${ctx.tips(ctx)}
 		if (item && ctx.db.money >= item.price) {
 			ctx.db.money -= item.price
 			ctx.db.money = Math.floor(ctx.db.money)
-			ctx.db.old[item.value] = Math.floor(ctx.db.old[item.value] + 10)
-			ctx.db[item.value] += 10
+			ctx.db[item.value] = Math.floor(ctx.db[item.value] + 10)
 			text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
 ${ctx.tips(ctx)}
 ---------------------------------------
-⚔️ ${ctx.db.old.attack} (+${ctx.db.attack - ctx.db.old.attack})
-🛡 ${ctx.db.old.shield} (+${ctx.db.shield - ctx.db.old.shield})
-❤️ ${ctx.db.old.life}
+⚔️ ${ctx.db.attack}
+🛡 ${ctx.db.shield}
+❤️ ${ctx.db.life}
 
 Upgraded!`
-			ctx.database.updateUser(ctx.from.id, item.value, ctx.db.old[item.value]).then((res) => {
+			ctx.database.updateUser(ctx.from.id, item.value, ctx.db[item.value]).then((res) => {
 				if (res) {
 					ctx.database.updateUser(ctx.from.id, 'money', ctx.db.money)
 				}
@@ -64,7 +63,7 @@ Upgraded!`
 				items[e].price = Math.floor(
 					Math.pow(
 						100,
-						Math.pow(ctx.db.old[items[e].value]+10, items[e].upgrade)
+						Math.pow(ctx.db[items[e].value]+10, items[e].upgrade)
 					)
 				)
 			})
