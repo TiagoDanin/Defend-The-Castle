@@ -36,12 +36,13 @@ ${ctx.tips(ctx)}`
 			{text: '🛰 Military base', callback_data: 'base'}
 		],
 		[
-			{text: '🥇 Rank' , callback_data: 'menu:rank' },
-			{text: '⚙️ Settings', callback_data: 'config'}
+			{text: `🎁 ${boxTime}` , callback_data: 'box'},
+			{text: `📔 Quests` , callback_data: 'quests'},
 		],
 		[
-			{text: `🎁 ${boxTime}` , callback_data: 'box' },
-			{text: '📔 About' , callback_data: 'menu:about' }
+			{text: '🥇 Rank' , callback_data: 'menu:rank'},
+			{text: '⚙️ Settings', callback_data: 'config'},
+			{text: '🗞 About' , callback_data: 'menu:about' }
 		]
 	]
 

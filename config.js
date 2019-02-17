@@ -10,6 +10,7 @@ module.exports = {
 		'invite',
 		'menu',
 		'ping',
+		'quests',
 		'singup',
 		'stats',
 		'tutorial'
