@@ -54,10 +54,10 @@ Best possition to drop of troops!
 • Upgrade ou Change Zone`
 	} else if (id == 3) {
 		text = `
-* Edit Attack Troops
-• Open menu
-• Click in "Military Base"
-• Upgrade Life, Shield or Attack
+* Updagrade troops in:
+• ⚔️ Zone War (Attack)
+• 🛡 Zone Defense (Shield)
+• 🏨 Hospital (Life)
 TIP: +1 troop per 120s`
 	} else if (id == 4) {
 		text = `
@@ -65,8 +65,7 @@ TIP: +1 troop per 120s`
 • Offline for 7 days causes penalties to the castle:
 - Loss of money (E.g 100 ~> 71 "100 / 1.4 = 71")
 - Reset XP (Xp = 0)
-- -1 Level (E.g lvl10 ~> lvl9)
-• Attack Troops are not used to defend the castle`
+- -1 Level (E.g lvl10 ~> lvl9)`
 	}
 
 	let back = []
