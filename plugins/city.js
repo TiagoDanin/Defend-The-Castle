@@ -81,14 +81,9 @@ const infoText = (ctx) => {
 	var info = `<b>${item.icon} ${item.name}</b>\n`
 	info += `${item.desc}\n`
 	if (item.upgrade) {
-		const row = `qt_${item.upgrade[2]}`
+		const row = `qt_${item.upgrade[1]}`
 		const value = Number(ctx.db[row]) + 1
-		const price = Math.floor(
-			Math.pow(
-				item.upgrade[0],
-				Math.pow(value, item.upgrade[1])
-			)
-		)
+		const price = Math.floor(item.upgrade[0] * value)
 		info += `<b>⚡️ Level:</b> ${value-1}\n`
 		info += `<b>💶 Upgrade:</b> ${price} Coin\n`
 	}
@@ -127,24 +122,14 @@ ${ctx.tips(ctx)}
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
 		text += infoText(ctx)
 		const item = ctx.items[ctx.db.city[Number(ctx.match[3])]]
-		const row = `qt_${item.upgrade[2]}`
+		const row = `qt_${item.upgrade[1]}`
 		let value = Number(ctx.db[row]) + 1
-		let price = Math.floor(
-			Math.pow(
-				item.upgrade[0],
-				Math.pow(value, item.upgrade[1])
-			)
-		)
+		let price = Math.floor(item.upgrade[0] * value)
 
 		if (ctx.match[4] == 'max') {
 			for (let i = 0; i < 14; i++) {
 				value++
-				let addPrice = Math.floor(
-					Math.pow(
-						item.upgrade[0],
-						Math.pow(value, item.upgrade[1])
-					)
-				)
+				let addPrice = Math.floor(item.upgrade[0] * value)
 				if (ctx.db.money >= (addPrice + price)) {
 					price += addPrice
 				} else {
@@ -157,6 +142,12 @@ ${ctx.tips(ctx)}
 		if (ctx.db.money >= price) {
 			ctx.db.money -= price
 			ctx.db.money = Math.floor(ctx.db.money)
+			await ctx.database.updateUser(ctx.from.id, row, value).then(async (res) => {
+				if (res) {
+					return await ctx.database.updateUser(ctx.from.id, 'money', ctx.db.money)
+				}
+			})
+			ctx.db = await ctx.userInfo(ctx)
 			text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
@@ -167,11 +158,6 @@ ${ctx.tips(ctx)}
 ---------------------------------------
 ${infoText(ctx)}
 Upgraded!`
-			ctx.database.updateUser(ctx.from.id, row, value).then((res) => {
-				if (res) {
-					ctx.database.updateUser(ctx.from.id, 'money', ctx.db.money)
-				}
-			})
 			mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
 			ctx.answerCbQuery('Upgraded!')
 		} else {
@@ -186,7 +172,16 @@ Upgraded!`
 		if (valid) {
 			await ctx.database.setCity(ctx, Number(ctx.match[3]), Number(ctx.match[4]))
 			ctx.db = await ctx.userInfo(ctx)
-			text += infoText(ctx)
+			text = `
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
+<b>⚔️ Attack:</b> ${ctx.db.attack}
+<b>🛡 Shield:</b> ${ctx.db.shield}
+<b>❤️ Life:</b> ${ctx.db.life}
+${ctx.tips(ctx)}
+---------------------------------------
+${infoText(ctx)}
+		`
 		} else {
 			text += 'Hack?'
 		}
