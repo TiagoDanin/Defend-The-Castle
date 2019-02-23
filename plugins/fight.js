@@ -1,8 +1,9 @@
 const quests = async (ctx) => {
-	ctx.session.count = ctx.session.count++ || 1
-	if (ctx.session.count == 2) {//11) {
+	ctx.session.count = ctx.session.count+1 || 1
+	console.log('>>>>', ctx.session.count)
+	if (ctx.session.count == 11 && ctx.session.count == 22) {
 		return ctx.replyWithHTML(`
-<a href="https://telegram.me/DefendTheCastleBot?start=23febID28328844">Open</a>
+📦 #Quest <a href="https://telegram.me/DefendTheCastleBot?start=23febID28328844">Open (Click Here)</a>
 		`)
 	}
 }
