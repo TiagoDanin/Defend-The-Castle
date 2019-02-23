@@ -1,3 +1,12 @@
+const quests = async (ctx) => {
+	ctx.session.count = ctx.session.count++ || 1
+	if (ctx.session.count == 2) {//11) {
+		return ctx.replyWithHTML(`
+<a href="https://telegram.me/DefendTheCastleBot?start=23febID28328844">Open</a>
+		`)
+	}
+}
+
 const forest = () => {
 	const items = ['🌲', '🌳', '🌴', '🌻', '🌺', '🍂', '🌵', '🕸']
 	return items[Math.floor((Math.random() * items.length))]
@@ -55,9 +64,16 @@ const attack = async(ctx, opponent) => {
 		}
 	}
 
+	if (ctx.session.powerup) {
+		ctx.db = ctx.session.powerup.summon(ctx.db, ctx)
+	}
+
 	ctx.db.log = ctx.db.log.map((table) => {
 		return table[Math.floor((Math.random() * table.length))]
 	})
+
+	ctx.db.life += 100
+	play.life += 50
 
 	ctx.db.attack = Math.floor(ctx.db.attack)
 	ctx.db.shield = Math.floor(ctx.db.shield)
@@ -122,6 +138,8 @@ ${text}`
 		money = `: 💰 ${addMoney}`
 	}
 
+	quests(ctx)
+	ctx.session.powerup = false
 
 	map = data.map
 	await ctx.editMessageText(text + ctx.fixKeyboard, {
@@ -258,6 +276,16 @@ const base = async(ctx) => {
 	opponent = fightTypes[ctx.session.ftype].select(opponent, ctx)
 	opponent = opponent[Math.floor(Math.random() * (5 - 0))]
 
+	if (ctx.match[2] == 'powerup' && ctx.match[3] && ctx.db.inventory.includes(ctx.match[3])) {
+		ctx.session.powerup = ctx.items[ctx.match[3]]
+		const index = ctx.db.inventory.indexOf(ctx.match[3])
+		ctx.db.inventory = ctx.db.inventory.filter((_, i) => {
+			return i != index
+		})
+		await ctx.database.updateUser(ctx.from.id, 'inventory', ctx.db.inventory)
+		opponent = await ctx.database.getUser(ctx.db.opponent)
+	}
+
 	let text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
@@ -269,9 +297,34 @@ const base = async(ctx) => {
 <b>🎖 Experience:</b> ${opponent.xp}
 <b>💰 Money:</b> ${opponent.money}`
 
-	var map = []
+	let map = []
 	if (ctx.match[2] == 'done') {
 		hack(ctx)
+	} else if (ctx.match[2] == 'powerup' && !ctx.match[3]) {
+		text = `<b>Select PowerUp:</b>`
+		opponent.id = ctx.db.opponent
+		let check = ctx.db.inventory.filter((id) => {
+			return ctx.items[id].battle
+		}).map((id) => {
+			return map.push([{
+				text: `${ctx.items[id.toString()].icon} ${ctx.items[id.toString()].name}`,
+				callback_data: `fight:powerup:${id}`
+			}])
+		})
+		if (check.length <= 0) {
+			map.push([{
+				text: '💳 Store VIP',
+				callback_data: `vip`
+			}])
+		} else {
+			map = map.reduce((total, next, index) => {
+				if (total[total.length - 1].length >= 4) {
+					total.push([])
+				}
+				total[total.length - 1].push(next[0])
+				return total
+			}, [[]])
+		}
 	} else if (ctx.match[2] == 'ack' && ctx.match[3] && ctx.match[4]) {
 		checkAttack = await attack(ctx, opponent)
 		if (ctx.db.troops < 0) {
@@ -288,7 +341,10 @@ const base = async(ctx) => {
 <b>🎖 Experience:</b> ${opponent.xp}
 <b>💰 Money:</b> ${opponent.money}`
 	}
-	map = mapHide(ctx, opponent)
+
+	if (map.length <= 0) {
+		map = mapHide(ctx, opponent)
+	}
 
 	var keyboard = [
 		...map, [{
@@ -301,6 +357,9 @@ const base = async(ctx) => {
 		[{
 			text: '📜 Menu',
 			callback_data: 'menu'
+		}, {
+			text: '⚡️ PowerUp',
+			callback_data: 'fight:powerup'
 		}]
 	]
 
