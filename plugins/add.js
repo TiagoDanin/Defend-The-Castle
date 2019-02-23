@@ -1,9 +1,8 @@
 const base = async (ctx) => {
-	if (process.env.log_chat != ctx.from.id) {
+	if (ctx.privilege <= 6) {
 		return
 	}
-
-	const id = ctx.message.reply_to_message.forward_from.id
+	const id = ctx.update.message.reply_to_message.from.id || ctx.update.message.reply_to_message.forward_from.id
 	const play = await ctx.database.getUser(id)
 	if (play && id) {
 		let user = {
@@ -16,13 +15,14 @@ const base = async (ctx) => {
 		user.db.xp += 1200
 		user.db.money += 5000
 		user.db.inventory.push('11')
-		await ctx.database.saveUser(user)
-		return ctx.replyWithHTML(`
+		ctx.replyWithHTML(`
 <b>Thanks!</b>
 + 1200 XP
 + 5000 Money
 + 1 Diamond
 		`)
+		await ctx.database.saveUser(user)
+		return
 	}
 	return
 }
