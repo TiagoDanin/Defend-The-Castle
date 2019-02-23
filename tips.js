@@ -10,10 +10,10 @@ const offline = () => 'Offline for 7 days causes penalties to the castle!'
 const attackTroops = () => 'Attack Troops are not used to defend the castle!'
 const castles = () => '' //TODO
 
-const quests = () => `<a href="https://telegram.me/DefendTheCastleBot?start=16febID23137653">🔑</a>` //Quests 16 feb
+//const quests = () => `<a href="https://telegram.me/DefendTheCastleBot?start=16febID23137653">🔑</a>` //Quests 16 feb
 
 module.exports = [
-	quests,
+	//quests,
 	channel,
 	group,
 	developer,

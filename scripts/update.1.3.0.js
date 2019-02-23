@@ -20,7 +20,7 @@ const users = async () => {
 
 const insert = async (db) => {
 	db.money += Math.floor(
-		(db.attack + db.shield + db.life) / 1.2
+		(db.attack + db.shield + db.life) * 1.23124
 	)
 	db.attack = 50
 	db.shield = 50
