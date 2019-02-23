@@ -175,7 +175,7 @@ bot.use((ctx, next) => {
 	if (config.ids.admins.includes(ctx.from.id)) {
 		ctx.privilege = 7
 	} else if (config.ids.mods.includes(ctx.from.id)) {
-		ctx.privilege = 5
+		ctx.privilege = 3
 	}
 	return next(ctx)
 })
@@ -233,14 +233,16 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	const keysItems = Object.keys(items)
 
 	data.inventory = data.inventory.reduce((total, id) => {
-		if (id != 0 && keysItems.includes(id)) {
-			total.push(id)
+		if (id != 0 && keysItems.includes(id.toString())) {
+			total.push(id.toString())
 		}
 		return total
-	}, [0])
+	}, ['0'])
+
+	data.diamond = data.inventory.filter(id => id == '11').length
 
 	data.allItems = data.city.reduce((total, id, index) => {
-		if (id != 12 && keysItems.includes(id)) {
+		if (id != 12 && keysItems.includes(id.toString())) {
 			total.push({
 				...items[id],
 				isInventory: false,
@@ -266,7 +268,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 			data = item.doDb(data, item)
 		}
 		if (data.run && item.doTime) {
-			data = item.doTime(data)
+			data = item.doTime(data, item)
 		}
 	}
 	data.money = Math.floor(data.money)

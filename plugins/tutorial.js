@@ -35,7 +35,7 @@ Map:`
 	} else if (id == 1) {
 		text = `
 Best possition to drop of troops!
-❌ = Not cause damage in castle (and you lose the battle)
+❌ = Not cause damage in castle (lose the battle)
 ✅ = Cause damage in castle`
 		const map = buildMap([
 			['❌', '❌', '❌', '❌', '❌'],
