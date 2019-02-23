@@ -11,9 +11,9 @@ module.exports = {
 		},
 		doDefend: (data, ctx) => {
 			ctx.db.log.push([
-				'Found money!',
-				'MONEEEEY!',
-				'💶💰'
+				'🏦 Found money!',
+				'🏦 MONEEEEY!',
+				'🏦 💰'
 			])
 			let moreMoney = Math.floor(
 				(60 * data.qt_bank) / 4.2
@@ -25,7 +25,8 @@ module.exports = {
 			ctx.db.money = Math.floor(ctx.db.money)
 			return data
 		},
-		doTime: (data) => {
+		doTime: (data, item) => {
+			if (item.isInventory) return data
 			const moneyPerSecond = (data.moneyPerHour / 60) / 60
 			data.money += (data.timerunning * moneyPerSecond)
 			return data

@@ -4,6 +4,6 @@ module.exports = {
 		name: 'Diamond',
 		desc: 'Diamond!',
 		city: false,
-		battle: true
+		battle: false
 	}
 }

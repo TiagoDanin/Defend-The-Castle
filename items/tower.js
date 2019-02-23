@@ -7,14 +7,13 @@ module.exports = {
 		doDefend: (data, ctx) => {
 			if (Math.floor((Math.random() * 2)) == 0) {
 				ctx.db.log.push([
-					'Trap....',
-					'Oh! No... Trap..',
-					'🗿'
+					'🗿 Trap....',
+					'🗿 Oh! No... Trap..'
 				])
 				data.attack += Math.floor(60 * data.qt_towerdefense)
 			} else {
 				ctx.db.log.push([
-					'The defense is down!'
+					'🗿 The defense is down!'
 				])
 				data.shield += Math.floor(12 * data.qt_towerdefense)
 			}

@@ -3,7 +3,7 @@ module.exports = {
 		icon: '🚧',
 		name: 'Null',
 		city: true,
-		battle: true,
+		battle: false,
 		desc: 'I don\'t know what that does...'
 	}
 }

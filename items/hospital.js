@@ -11,7 +11,7 @@ module.exports = {
 		},
 		doDefend: (data, ctx) => {
 			ctx.db.log.push([
-				'🚑'
+				'🏨 🚑'
 			])
 			data.life += Math.floor(70 * data.qt_hospital)
 			return data

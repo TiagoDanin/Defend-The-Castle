@@ -12,15 +12,14 @@ module.exports = {
 		doDefend: (data, ctx) => {
 			if (Math.floor((Math.random() * 3)) == 0) {
 				ctx.db.log.push([
-					'We take the zone with the falicity!',
-					'Easy!'
+					'⚔️ We take the zone with the falicity!',
+					'⚔️ Easy!'
 				])
-				ddata.attack += Math.floor(5 * data.qt_zonewar)
+				data.attack += Math.floor(5 * data.qt_zonewar)
 			} else {
 				ctx.db.log.push([
-					'Trap....',
-					'Oh! No... Trap..',
-					'⚔️'
+					'⚔️ Trap....',
+					'⚔️ Oh! No... Trap..'
 				])
 				data.attack += Math.floor(38 * data.qt_zonewar)
 			}
@@ -34,21 +33,17 @@ module.exports = {
 		city: true,
 		desc: 'Military will protect this area with their lives!',
 		doDb: (data, item) => {
-			console.log(item)
 			if (item.isInventory) return data
 			data.shield += Math.floor(15 * data.qt_zonedefense)
-			console.log('>>>', data.shield)
 			return data
 		},
 		doDefend: (data, ctx) => {
 			if (Math.floor((Math.random() * 3)) == 0) {
-				ctx.db.log.push([
-					'🛡'
-				])
+				//ctx.db.log.push(['🛡 '])
 				data.shield += Math.floor(20 * data.qt_zonedefense)
 			} else {
 				ctx.db.log.push([
-					'The defense is down!'
+					'🛡 The defense is down!'
 				])
 				data.shield += Math.floor(4 * data.qt_zonedefense)
 			}

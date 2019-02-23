@@ -6,9 +6,8 @@ module.exports = {
 		desc: 'Troop focused on knocking down drones and airplanes.',
 		doDefend: (data, ctx) => {
 			ctx.db.log.push([
-				'Our airplane is down!',
-				'I think we can escape in time.',
-				'🚀'
+				'🚀 Our airplane is down!',
+				'🚀 I think we can escape in time.'
 			])
 			data.attack += Math.floor(
 				(
