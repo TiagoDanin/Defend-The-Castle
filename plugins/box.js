@@ -13,8 +13,18 @@ const troops = (data, numb) => {
 	return data
 }
 
-const diamond = (data) => {
+const Diamond = (data) => {
 	data.inventory.push('7')
+	return data
+}
+
+const Clone = (data) => {
+	data.inventory.push('10')
+	return data
+}
+
+const SuperShield = (data) => {
+	data.inventory.push('12')
 	return data
 }
 
@@ -22,7 +32,11 @@ const presents = [
 	money,
 	xp,
 	troops,
-	diamond
+	troops,
+	Diamond,
+	SuperShield,
+	SuperShield,
+	Clone
 ]
 
 const base = async (ctx) => {
