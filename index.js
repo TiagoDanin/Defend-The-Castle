@@ -259,9 +259,9 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	}))
 
 	//Reset
-	data.attack = 0
-	data.shield = 0
-	data.life = 0
+	data.attack = 50
+	data.shield = 50
+	data.life = 50
 
 	for (var item of data.allItems) {
 		if (item.doDb) {

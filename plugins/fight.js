@@ -1,7 +1,6 @@
 const quests = async (ctx) => {
 	ctx.session.count = ctx.session.count+1 || 1
-	console.log('>>>>', ctx.session.count)
-	if (ctx.session.count == 11 && ctx.session.count == 22) {
+	if (ctx.session.count == 11 || ctx.session.count == 22) {
 		return ctx.replyWithHTML(`
 📦 #Quest <a href="https://telegram.me/DefendTheCastleBot?start=23febID28328844">Open (Click Here)</a>
 		`)
@@ -74,7 +73,6 @@ const attack = async(ctx, opponent) => {
 	})
 
 	ctx.db.life += 100
-	play.life += 50
 
 	ctx.db.attack = Math.floor(ctx.db.attack)
 	ctx.db.shield = Math.floor(ctx.db.shield)
