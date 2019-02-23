@@ -7,11 +7,14 @@ module.exports = {
 		battle: true,
 		price: 1,
 		qt: 3,
-		summon: (data) => {
+		summon: (data, ctx) => {
 			data.xp += 350
 			data.attack += data.attack
 			data.shield += data.shield
 			data.life += data.life
+			ctx.db.log.push([
+				'👽 Clone used!'
+			])
 			return data
 		}
 	}
