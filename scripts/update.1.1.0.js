@@ -25,6 +25,9 @@ const insert = async (db) => {
 	db.attack = 50
 	db.shield = 50
 	db.life = 50
+	db.inventory.push(10)
+	db.inventory.push(11)
+	db.inventory.push(12)
 	const client = await pool.connect()
 	const query = `
 		UPDATE users SET
