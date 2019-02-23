@@ -21,7 +21,7 @@ const base = async (ctx) => {
 <b>🎖 Experience:</b> ${ctx.db.xp}
 ---------------------------------------
 <b>💰 Money:</b> ${ctx.db.money} (${ctx.db.moneyPerHour}/hour)
-<b>💎 Diamonds:</b> ${ctx.db.inventory.filter(id => id == '11').length}
+<b>💎 Diamonds:</b> ${ctx.db.diamond}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 
 ${ctx.tips(ctx)}`
@@ -35,11 +35,12 @@ ${ctx.tips(ctx)}`
 			{text: `${ctx.db.castle} City` , callback_data: 'city'}
 		],
 		[
-			{text: `🎁 ${boxTime}` , callback_data: 'box'},
+			{text: '💳 Store VIP' , callback_data: 'vip'},
+			{text: '🥇 Rank' , callback_data: 'menu:rank'},
 			{text: `📔 Quests` , callback_data: 'quests'},
 		],
 		[
-			{text: '🥇 Rank' , callback_data: 'menu:rank'},
+			{text: `🎁 ${boxTime}` , callback_data: 'box'},
 			{text: '⚙️ Settings', callback_data: 'config'},
 			{text: '🗞 About' , callback_data: 'menu:about' }
 		]
@@ -66,20 +67,19 @@ ${ctx.tips(ctx)}`
 👥 <b>Group EN:</b> @DefendTheCastleEN
 👥 <b>Group PT:</b> @DefendTheCastlePT
 
-Invite your friends to earn Money & Xp!
+Invite your friends to earn Money, Xp & Diamond!
 Invite URL: https://telegram.me/DefendTheCastleBot?start=join-${ctx.from.id}
 		`
 		keyboard = [
 			[{text: '📜 Menu' , callback_data: 'menu:main' }],
-			[{text: '📊 Stats' , callback_data: 'stats' }],
-			[{text: '❓ Tutorial' , callback_data: 'tutorial' }],
-			[{
-				text: 'Twitter @_TiagoEDGE',
-				url: 'twitter.com/_tiagoedge'
-			}, {
-				text: 'TiagoDanin.github.io',
-				url: 'tiagoDanin.github.io'
-			}]
+			[
+				{text: '📊 Stats' , callback_data: 'stats' },
+				{text: '❓ Tutorial' , callback_data: 'tutorial'}
+			],
+			[
+				{text: 'Twitter @_TiagoEDGE', url: 'twitter.com/_tiagoedge'},
+				{text: 'TiagoDanin.github.io', url: 'tiagoDanin.github.io'}
+			]
 		]
 	}
 

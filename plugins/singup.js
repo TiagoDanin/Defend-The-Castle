@@ -66,6 +66,7 @@ const callback = async (ctx) => {
 }
 
 const reply = async (ctx) => {
+	if (ctx.config.ids.groups.includes(ctx.chat.id)) return true
 	if (ctx.match[0].match(text)) {
 		if (!ctx.match[1].match(/^([a-zA-Z0-9-]{1,12})$/)) {
 			return ctx.replyWithMarkdown(`
