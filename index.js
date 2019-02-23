@@ -229,14 +229,18 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		...config.class[db.type],
 		castle: config.castles[db.city[12]] || '🏰'
 	}
+
+	const keysItems = Object.keys(items)
+
 	data.inventory = data.inventory.reduce((total, id) => {
-		if (id != 0) {
+		if (id != 0 && keysItems.includes(id)) {
 			total.push(id)
 		}
 		return total
 	}, [0])
+
 	data.allItems = data.city.reduce((total, id, index) => {
-		if (id != 12) {
+		if (id != 12 && keysItems.includes(id)) {
 			total.push({
 				...items[id],
 				isInventory: false,
