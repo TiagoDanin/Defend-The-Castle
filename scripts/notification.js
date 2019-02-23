@@ -21,7 +21,24 @@ const main = async () => {
 		bot.telegram.sendMessage(db.id,
 			`
 *Global Notification!*
-• Version 1.1.x
+• Version 1.1.0
+- Remove "Military Base" (Attack, Shield & Life converted to money)
+- Unified Troops
+- New Upgrade System of Troops
+- Add more levels
+- Add New Quests (23 fev ~> 30 feb)
+- Add Store VIP
+- Add PowerUp
+- New Menu
+- New Present: +1 Clone
+- New Present: +1 Super Shield
+- Balancing Items
+- Balancing Battle
+- Balancing Upgrade
+- Balancing Money
+- Update Wiki/Tutorial
+- Fix Bugs
+- More Fix Bugs :)
 			`, {
 				parse_mode: 'Markdown'
 			}
