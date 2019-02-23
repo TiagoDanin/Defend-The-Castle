@@ -12,7 +12,9 @@ module.exports = {
 		'quests',
 		'singup',
 		'stats',
-		'tutorial'
+		'tutorial',
+		'view',
+		'vip'
 	],
 	defaultLang: 'en',
 	locales: [],
@@ -43,6 +45,7 @@ module.exports = {
 	ids: {
 		log: '-1001089887511',
 		admins: [89198119, 61029284],
-		mods: []
+		mods: [91116586],
+		groups: []
 	}
 }
