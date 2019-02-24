@@ -6,6 +6,7 @@ module.exports = {
 		desc: 'Increases a health.',
 		doDb: (data, item) => {
 			if (item.isInventory) return data
+			console.log('>>>>>', data.life)
 			data.life += Math.floor(50 * data.qt_hospital)
 			return data
 		},
@@ -16,6 +17,6 @@ module.exports = {
 			data.life += Math.floor(70 * data.qt_hospital)
 			return data
 		},
-		upgrade: [100, 'bank']
+		upgrade: [100, 'hospital']
 	}
 }
