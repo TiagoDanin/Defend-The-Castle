@@ -184,7 +184,7 @@ bot.context.config = config
 bot.context.database = database
 bot.context.castles = config.castles
 bot.context.items = items
-bot.context.fixKeyboard = ''//Array(90).join('\u0020') + '\u200B'
+bot.context.fixKeyboard = Array(90).join('\u0020') + '\u200B'
 bot.context.tips = (ctx) => {
 	return '💡 ' + tips[Math.floor((Math.random() * tips.length))](ctx)
 }
