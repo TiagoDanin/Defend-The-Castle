@@ -14,7 +14,7 @@ const troops = (data, numb) => {
 }
 
 const Diamond = (data) => {
-	data.inventory.push('7')
+	data.inventory.push('11')
 	return data
 }
 
