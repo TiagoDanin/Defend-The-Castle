@@ -95,7 +95,7 @@ ${text}
 			}
 		})
 	}
-	return ctx.reply('Use the `/start`' + ctx.fixKeyboard, {
+	return ctx.replyWithMarkdown('Use the `/start`' + ctx.fixKeyboard, {
 		reply_markup: {
 			inline_keyboard:
 			[
