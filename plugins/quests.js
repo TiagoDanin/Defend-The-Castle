@@ -1,6 +1,6 @@
 const base = async (ctx) => {
 	const text = `
-<b>📔 Quests (23 feb ~> 30 feb)</b>
+<b>📔 Quests (23 feb ~> 2 mar)</b>
 - Show your power to the other castles 🤔😉
 	`
 	const keyboard = [
