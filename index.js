@@ -52,7 +52,7 @@ const processError = (error, ctx, plugin) => {
 				return dlogError(e)
 			})
 		} else if (`${error}`.match('Error: 403: Forbidden: bot was blocked by the user')) {
-			return true //TODO FIx
+			return true
 		}
 	}
 
