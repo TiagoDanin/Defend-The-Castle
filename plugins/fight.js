@@ -65,7 +65,7 @@ const attack = async(ctx, opponent) => {
 	}
 
 	if (ctx.session.powerup) {
-		ctx.db = ctx.session.powerup.summon(ctx.db, ctx)
+		ctx.db = ctx.session.powerup.summon(ctx.db, ctx, play)
 	}
 
 	ctx.db.log = ctx.db.log.map((table) => {
@@ -92,6 +92,10 @@ ${ctx.db.life} ❤️ ${play.life}
 	ctx.db.life = Math.floor(doAttack(ctx.db, play))
 	play.life = Math.floor(doAttack(play, ctx.db))
 
+	let addMoney = Math.floor(ctx.db.money - oldMoney)
+	if (addMoney < 0) {
+		addMoney = 0
+	}
 
 	const xp = (
 		400 *
@@ -105,6 +109,7 @@ ${ctx.db.name} LOST!
 ---------------------------------------
 ${text}`
 		play.xp += xp / 16
+		ctx.db.money -= addMoney/2.1
 	} else if (ctx.db.life > play.life) {
 		ctx.db.xp += xp
 		play.xp += xp / 10
@@ -119,6 +124,7 @@ ${text}`
 ${ctx.db.name} LOST!
 ---------------------------------------
 ${text}`
+		ctx.db.money -= addMoney/2.6
 	}
 
 	ctx.db.money = Math.floor(ctx.db.money)
@@ -132,7 +138,7 @@ ${text}`
 	}
 
 	let money = ''
-	const addMoney = Math.floor(ctx.db.money - oldMoney)
+	addMoney = Math.floor(ctx.db.money - oldMoney)
 	if (addMoney > 0) {
 		money = `: 💰 ${addMoney}`
 	}
