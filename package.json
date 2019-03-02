@@ -35,7 +35,7 @@
     "json-stringify-safe": "5.0.1",
     "moment": "2.24.0",
     "moment-timezone": "0.5.23",
-    "nodejs-i18n": "1.0.1",
+    "nodejs-i18n": "2.1.0",
     "pg": "7.8.1",
     "pg-native": "3.0.0",
     "telegraf": "3.27.1",
