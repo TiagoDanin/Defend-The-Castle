@@ -315,7 +315,7 @@ const base = async(ctx) => {
 		let addsItems = []
 		check.forEach((id) => {
 			if (!addsItems.includes(id)) {
-				let length = ctx.db.inventory.filter(i => i == id).length
+				let length = ctx.db.inventory.filter(i => i == id).length || 0
 				map.push([{
 					text: `${ctx.items[id.toString()].icon} ${ctx.items[id.toString()].name} (${length})`,
 					callback_data: `fight:powerup:${id}`

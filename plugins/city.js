@@ -21,12 +21,16 @@ const city = (ctx) => {
 }
 
 const showInventory = (ctx, pos) => {
+	let addsItems = []
 	let keys = ctx.db.inventory.reduce((total, id, index) => {
 		if (ctx.items[id.toString()].city) {
-			total[total.length - 1].push({
-				text: ctx.items[id.toString()].icon,
-				callback_data: `city:set:${pos}:${id}`
-			})
+			if (!addsItems.includes(id)) {
+				let length = ctx.db.inventory.filter(i => i == id).length || 0
+				total[total.length - 1].push({
+					text: `${ctx.items[id.toString()].icon} ${ctx.items[id.toString()].name} (${length})`,
+					callback_data: `city:set:${pos}:${id}`
+				})
+			}
 			if (total[total.length - 1].length >= 3 && !(index >= ctx.db.inventory.length-1)) {
 				total.push([])
 			}
