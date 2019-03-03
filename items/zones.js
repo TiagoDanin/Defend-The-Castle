@@ -4,6 +4,9 @@ module.exports = {
 		name: 'Zone War',
 		city: true,
 		desc: 'Military will protect this area with their lives!',
+		battle: false,
+		price: 70,
+		qt: 1,
 		doDb: (data, item) => {
 			if (item.isInventory) return data
 			data.attack += Math.floor(30 * data.qt_zonewar)
@@ -32,6 +35,9 @@ module.exports = {
 		name: 'Zone Defense',
 		city: true,
 		desc: 'Military will protect this area with their lives!',
+		battle: false,
+		price: 70,
+		qt: 1,
 		doDb: (data, item) => {
 			if (item.isInventory) return data
 			data.shield += Math.floor(15 * data.qt_zonedefense)

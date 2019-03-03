@@ -6,7 +6,7 @@ module.exports = {
 		city: false,
 		battle: true,
 		price: 1,
-		qt: 5,
+		qt: 3,
 		summon: (data, ctx) => {
 			data.xp += 150
 			data.shield += data.shield * 2

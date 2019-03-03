@@ -4,6 +4,9 @@ module.exports = {
 		name: 'Hospital',
 		city: true,
 		desc: 'Increases a health.',
+		battle: false,
+		price: 50,
+		qt: 1,
 		doDb: (data, item) => {
 			if (item.isInventory) return data
 			data.life += Math.floor(50 * data.qt_hospital)

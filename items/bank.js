@@ -4,6 +4,9 @@ module.exports = {
 		name: 'Bank',
 		city: true,
 		desc: 'Generate money for the castle.',
+		battle: false,
+		price: 300,
+		qt: 1,
 		doDb: (data, item) => {
 			if (item.isInventory) return data
 			data.moneyPerHour += Math.floor(60 * data.qt_bank)

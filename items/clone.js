@@ -5,7 +5,7 @@ module.exports = {
 		desc: '2x Attack, Shield and Life & +350xp',
 		city: false,
 		battle: true,
-		price: 1,
+		price: 2,
 		qt: 3,
 		summon: (data, ctx) => {
 			data.xp += 350
