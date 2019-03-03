@@ -26,7 +26,9 @@ ${ctx.tips(ctx)}`
 					}
 					return total
 				}, [])
-				ctx.db.inventory.push(ctx.match[2])
+				for (let i = 0; i < item.qt; i++) {
+					ctx.db.inventory.push(ctx.match[2])
+				}
 				await ctx.database.updateUser(ctx.from.id, 'inventory', ctx.db.inventory)
 				ctx.answerCbQuery('Inventory update!')
 			} else {

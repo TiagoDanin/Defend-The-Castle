@@ -241,22 +241,26 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 
 	data.diamond = data.inventory.filter(id => id == '11').length
 
+	const inventoryWithTag = data.inventory.map((id) => {
+		return {
+			id: id,
+			...items[id],
+			isInventory: true,
+			isCity: false
+		}
+	})
+
 	data.allItems = data.city.reduce((total, id, index) => {
 		if (id != 12 && keysItems.includes(id.toString())) {
 			total.push({
+				id: id,
 				...items[id],
 				isInventory: false,
 				isCity: true
 			})
 		}
 		return total
-	}, data.inventory.map((id) => {
-		return {
-			...items[id],
-			isInventory: true,
-			isCity: false
-		}
-	}))
+	}, inventoryWithTag)
 
 	//Reset
 	data.attack = 50
@@ -281,7 +285,11 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 			}
 			data.money = Math.floor(data.old.money / 1.4)
 			database.saveUser(ctx)
-			ctx.replyWithMarkdown('*‼️ The villagers are gone! (7 Days Offline)*')
+			ctx.replyWithMarkdown(`
+				*‼️ The villagers are gone! (7 Days Offline)*
+				-1 Level & Xp = 0
+				-${Math.floor(data.old.money - data.money)} Coins
+			`)
 			return data
 		}
 
