@@ -1,6 +1,6 @@
 const base = async (ctx) => {
 	const text = `
-<b>📔 Quests (23 feb ~> 2 mar)</b>
+<b>📔 Quests (3 mar ~> 17 mar)</b>
 - Show your power to the other castles 🤔😉
 	`
 	const keyboard = [
@@ -21,17 +21,24 @@ const win = async (ctx) => {
 	if (ctx.session.quest) {
 		return ctx.replyWithMarkdown('*Quest Complete!*')
 	}
-	ctx.db.xp += 1200
-	ctx.db.money += 8000
+	ctx.db.xp += 1700
+	ctx.db.money += 9500
 	ctx.db.inventory.push('11')
 	ctx.db.inventory.push('11')
+	ctx.db.inventory.push('11')
+	ctx.db.inventory.push('10')
+	ctx.db.inventory.push('10')
+	ctx.db.inventory.push('12')
+	ctx.db.inventory.push('12')
 	ctx.session.quest = true
 	await ctx.database.saveUser(ctx)
 	return ctx.replyWithMarkdown(`
 *Quest Complete!*
-+ 1200 XP
-+ 8000 Money
-+ 2 Diamond
++ 1700 XP
++ 9500 Money
++ 3 Diamond
++ 2 Clone
++ 2 Super Shield
 	`)
 }
 
@@ -40,7 +47,8 @@ module.exports = {
 	callback: base,
 	plugin: win,
 	regex: [
-		/^\/23febID28328844/i
+		/^\/03marID26538459/i
+		///^\/23febID28328844/i
 		///^\/16febID23137653/i
 	]
 }

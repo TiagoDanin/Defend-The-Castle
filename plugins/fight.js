@@ -143,7 +143,7 @@ ${text}`
 		money = `: 💰 ${addMoney}`
 	}
 
-	quests(ctx)
+	//quests(ctx)
 	ctx.session.powerup = false
 
 	map = data.map
