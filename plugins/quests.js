@@ -1,7 +1,7 @@
 const base = async (ctx) => {
 	const text = `
 <b>📔 Quests (3 mar ~> 17 mar)</b>
-- Show your power to the other castles 🤔😉
+- 🎁 Find the best present!
 	`
 	const keyboard = [
 		[{text: '📜 Menu' , callback_data: 'menu:main' }]

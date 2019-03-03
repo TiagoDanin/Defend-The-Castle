@@ -1,3 +1,31 @@
+const Quest = (data, numb, ctx) => {
+	ctx.replyWithHTML(`
+		📦 #Quest <a href="https://telegram.me/DefendTheCastleBot?start=03marID26538459">Open (Click Here)</a>
+	`)
+	return data
+}
+
+const Diamond = (data, numb) => {
+	let add = 1
+	if (numb > 1) {
+		add = Math.floor(numb / 1.5)
+	}
+	for (let i = 0; i < add; i++) {
+		data.inventory.push('11')
+	}
+	return data
+}
+
+const Clone = (data) => {
+	data.inventory.push('10')
+	return data
+}
+
+const SuperShield = (data) => {
+	data.inventory.push('12')
+	return data
+}
+
 const money = (data, numb) => {
 	data.money += 1000 * numb
 	return data
@@ -13,21 +41,6 @@ const troops = (data, numb) => {
 	return data
 }
 
-const Diamond = (data) => {
-	data.inventory.push('11')
-	return data
-}
-
-const Clone = (data) => {
-	data.inventory.push('10')
-	return data
-}
-
-const SuperShield = (data) => {
-	data.inventory.push('12')
-	return data
-}
-
 const presents = [
 	money,
 	xp,
@@ -36,7 +49,8 @@ const presents = [
 	Diamond,
 	SuperShield,
 	SuperShield,
-	Clone
+	Clone,
+	Quest
 ]
 
 const base = async (ctx) => {
@@ -49,10 +63,14 @@ ${ctx.tips(ctx)}`
 		if (ctx.match[2]) {
 			date.setDate(date.getDate() + 1)
 			ctx.session.box = +date
-			const present = presents[Math.floor((Math.random() * presents.length))]
+			let present = presents[Math.floor((Math.random() * presents.length))]
+			if (present.name == 'Quest' && ctx.session.quest) {
+				present = Diamond
+			}
 			ctx.db = present(
 				ctx.db,
-				Math.floor(Math.random() * (6 - 1) + 1) //Range: 1-5
+				Math.floor(Math.random() * (6 - 1) + 1), //Range: 1-5
+				ctx
 			)
 			await ctx.database.saveUser(ctx)
 			if (ctx.db[present.name]) {
@@ -60,7 +78,7 @@ ${ctx.tips(ctx)}`
 	Present(${present.name}): +${ctx.db[present.name] - ctx.db.old[present.name]}
 				`, true)
 			} else {
-				ctx.answerCbQuery(`Present: +1 ${present.name}!`, true)
+				ctx.answerCbQuery(`Present: ${present.name}!`, true)
 			}
 
 		} else {
