@@ -44,13 +44,14 @@ ${ctx.tips(ctx)}
 <b>${item.icon} ${item.name}</b>
 ${item.desc}
 <b>💎 Price:</b> ${items[ctx.match[2]].price}
-			`
+<b>📦 Quantity:</b> ${items[ctx.match[2]].qt}
+		`
 	}
 
 	const mainKeyboard = itemsIds.reduce((total, id, index) => {
-		let qt = ctx.db.inventory.filter(i => i == id).length || 0
+		let qt = ctx.db.allItems.filter(i => i.id == id).length || 0
 		total.push([{
-			text: `${items[id.toString()].icon} ${items[id.toString()].name} (${qt})`,
+			text: `${items[id.toString()].battle ? '⚡️' : ctx.db.castle} ${items[id.toString()].icon} ${items[id.toString()].name} (${qt})`,
 			callback_data: `vip:${id}`
 		}, {
 			text: `💎 ${items[id.toString()].price}`,

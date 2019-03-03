@@ -83,7 +83,13 @@ const infoText = (ctx) => {
 	if (item.upgrade) {
 		const row = `qt_${item.upgrade[1]}`
 		const value = Number(ctx.db[row]) + 1
-		const price = Math.floor(item.upgrade[0] * value)
+		const price = Math.floor(
+			(item.upgrade[0] * value) +
+			(
+				(item.upgrade[0] * value) -
+				((item.upgrade[0] * value) / ctx.db.level)
+			)
+		)
 		info += `<b>⚡️ Level:</b> ${value-1}\n`
 		info += `<b>💶 Upgrade:</b> ${price} Coin\n`
 	}
@@ -124,12 +130,24 @@ ${ctx.tips(ctx)}
 		const item = ctx.items[ctx.db.city[Number(ctx.match[3])]]
 		const row = `qt_${item.upgrade[1]}`
 		let value = Number(ctx.db[row]) + 1
-		let price = Math.floor(item.upgrade[0] * value)
+		let price = Math.floor(
+			(item.upgrade[0] * value) +
+			(
+				(item.upgrade[0] * value) -
+				((item.upgrade[0] * value) / ctx.db.level)
+			)
+		)
 
 		if (ctx.match[4] == 'max') {
 			for (let i = 0; i < 14; i++) {
 				value++
-				let addPrice = Math.floor(item.upgrade[0] * value)
+				let addPrice = Math.floor(
+					(item.upgrade[0] * value) +
+					(
+						(item.upgrade[0] * value) -
+						((item.upgrade[0] * value) / ctx.db.level)
+					)
+				)
 				if (ctx.db.money >= (addPrice + price)) {
 					price += addPrice
 				} else {

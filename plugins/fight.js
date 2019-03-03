@@ -310,12 +310,20 @@ const base = async(ctx) => {
 		opponent.id = ctx.db.opponent
 		let check = ctx.db.inventory.filter((id) => {
 			return ctx.items[id].battle
-		}).map((id) => {
-			return map.push([{
-				text: `${ctx.items[id.toString()].icon} ${ctx.items[id.toString()].name}`,
-				callback_data: `fight:powerup:${id}`
-			}])
 		})
+
+		let addsItems = []
+		check.forEach((id) => {
+			if (!addsItems.includes(id)) {
+				let length = ctx.db.inventory.filter(i => i == id).length
+				map.push([{
+					text: `${ctx.items[id.toString()].icon} ${ctx.items[id.toString()].name} (${length})`,
+					callback_data: `fight:powerup:${id}`
+				}])
+				addsItems.push(id)
+			}
+		})
+
 		if (check.length <= 0) {
 			map.push([{
 				text: '💳 Store VIP',
