@@ -323,6 +323,55 @@ const findAllTable = async (name) => {
 	return data.rows
 }
 
+const getDual = async () => {
+	let data = {}
+	let client = await pool.connect()
+	data = await client.query(`
+		SELECT
+			*,
+			EXTRACT(EPOCH FROM ( now() - time ) ) AS timerunning,
+			EXTRACT(EPOCH FROM ( now() - time ) ) > 120 AS run
+		FROM users
+		WHERE dual < $1;
+	`, [50]).catch(error)
+	client.release()
+	return data.rows
+}
+
+const saveAtackDual = async (play1, play2) => {
+	let data = {}
+	let client = await pool.connect()
+	data = await client.query(`
+		UPDATE users
+			SET xp = $2,
+				money = $3,
+				dual = $4,
+				troops = $5
+			WHERE id = $1
+		RETURNING *,
+				EXTRACT(EPOCH FROM ( now() - time ) ) AS timerunning,
+				EXTRACT(EPOCH FROM ( now() - time ) ) > 120 AS run;
+	`, [play1.id, play1.xp, play1.money, play1.dual, play1.troops]).catch(error)
+	if (data.rowCount == 1) {
+		data = await client.query(`
+			UPDATE users
+				SET xp = $2,
+					money = $3,
+					dual = $4,
+					troops = $5
+				WHERE id = $1
+			RETURNING *,
+					EXTRACT(EPOCH FROM ( now() - time ) ) AS timerunning,
+					EXTRACT(EPOCH FROM ( now() - time ) ) > 120 AS run;
+		`, [play2.id, play2.xp, play2.money, play2.dual, play2.troops]).catch(error)
+	}
+	client.release()
+	if (data.rowCount != 1) {
+		return false
+	}
+	return data.rows[0]
+}
+
 module.exports = {
 	getUser,
 	setUser,
@@ -337,5 +386,7 @@ module.exports = {
 	getJoin24,
 	getAllUsers,
 	joinUserInvite,
-	findAllTable
+	findAllTable,
+	getDual,
+	saveAtackDual
 }

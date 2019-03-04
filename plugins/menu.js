@@ -28,11 +28,20 @@ ${ctx.tips(ctx)}`
 	if (!ctx.session.box) {
 		ctx.session.box = +new Date()
 	}
+
+	if (ctx.session.dual || ctx.db.dual < 50) { //Disable dual
+		await ctx.database.updateUser(ctx.from.id, 'dual', 50)
+		ctx.session.dual = false
+	}
 	const boxTime = moment(+new Date()).to(ctx.session.box)
 	let keyboard = [
 		[
-			{text: '⚔️ Fight' , callback_data: 'fight' },
-			{text: `${ctx.db.castle} City` , callback_data: 'city'}
+			{text: '⚔️ Normal' , callback_data: 'fight' },
+			{text: '⚔️ Dual' , callback_data: 'fight:dual' }
+		],
+		[
+			{text: `${ctx.db.castle} City` , callback_data: 'city'},
+			{text: `🌇 Clan` , callback_data: 'clan'}
 		],
 		[
 			{text: '💳 Store VIP' , callback_data: 'vip'},

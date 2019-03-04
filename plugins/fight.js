@@ -20,7 +20,144 @@ const doAttack = (p1, p2) => {
 	return p1.life - ((p2.attack / (p1.shield / 100)) / 1.2)
 }
 
-const attack = async(ctx, opponent) => {
+const dualAttack = async (ctx, play2) => {
+	let play1 = ctx.db
+	play2 = await ctx.database.getUser(play2.id)
+
+	play1.pos = 11
+	play2.pos = 11
+
+	let text = `
+<b>${ctx.castles[Number(play1.city[12])]} City:</b> ${play1.name}
+<b>🏅 Level:</b> ${play1.level}
+------------------DUAL-------------------
+<b>${ctx.castles[Number(play2.city[12])]} City:</b> ${play2.name}
+<b>🏅 Level:</b> ${play2.level}`
+
+
+	play1.attack = play1.attack / 3.2
+	play1.shield = play1.shield / 2.4
+
+	play2.attack = play2.attack / 3.2
+	play2.shield = play2.shield / 2.4
+
+	play1.v = Math.floor((Number(play1.dual)) / 5)
+	play1.h = (Number(play1.dual)) % 5
+	const play1Data = showMap(ctx, play1, play1.h, play1.v)
+	for (let item of play1Data.items) {
+		if (item.doDefend) {
+			play1 = item.doDefend(play1, ctx)
+		}
+	}
+
+	play2.v = Math.floor((Number(play2.dual)) / 5)
+	play2.h = (Number(play2.dual)) % 5
+	const play2Data = showMap(ctx, play2, play2.h, play2.v)
+	for (let item of play2Data.items) {
+		if (item.doDefend) {
+			play2 = item.doDefend(play2, ctx)
+		}
+	}
+
+	let winName = 'Draw'
+
+	play1.life = doAttack(play1, play2)
+	play2.life = doAttack(play2, play1)
+
+	const winXp = (
+		(100 * (play1.level + play2.level)) / 16.8
+	) + 25
+	const winMoney = (
+		5.3 * (play1.level + play2.level)
+	) + 1000
+
+	if (play1.life > play2.life) {
+		winName = play1.name
+		play1.winXp = winXp
+		play1.winMoney = winMoney
+		play2.winXp = winXp / 3.3
+		play2.winMoney = winMoney / 3.3
+	} else if (play1.life < play2.life) {
+		winName = play2.name
+		play1.winXp = winXp / 3.3
+		play1.winMoney = winMoney / 3.3
+		play2.winXp = winXp
+		play2.winMoney = winMoney
+	} else { //play1 == play2
+		play1.winXp = winXp / 3.3
+		play1.winMoney = winMoney / 3.3
+		play2.winXp = winXp / 3.3
+		play2.winMoney = winMoney / 3.3
+	}
+
+	play1.attack = play1.attack < 0 ? 0 : Math.floor(play1.attack)
+	play1.shield = play1.shield < 0 ? 0 : Math.floor(play1.shield)
+	play1.life = play1.life < 0 ? 0 : Math.floor(play1.life)
+	play1.xp = Math.floor(play1.xp)
+	play1.winXp = Math.floor(play1.winXp)
+	play1.money = Math.floor(play1.money)
+	play1.winMoney = Math.floor(play1.winMoney)
+
+	play2.attack = play2.attack < 0 ? 0 : Math.floor(play2.attack)
+	play2.shield = play2.shield < 0 ? 0 : Math.floor(play2.shield)
+	play2.life = play2.life < 0 ? 0 : Math.floor(play2.life)
+	play2.xp = Math.floor(play2.xp)
+	play2.winXp = Math.floor(play2.winXp)
+	play2.money = Math.floor(play2.money)
+	play2.winMoney = Math.floor(play2.winMoney)
+
+	text += `
+	-----------------RESULT------------------
+	${ctx.nl(play1.attack)} ⚔️ ${ctx.nl(play2.attack)}
+	${ctx.nl(play1.shield)} 🛡 ${ctx.nl(play2.shield)}
+	${ctx.nl(play1.life)} ❤️ ${ctx.nl(play2.life)}
+	${ctx.nl(play1.xp)} (+${play1.winXp}) 🎖 ${ctx.nl(play2.xp)} (+${play2.winXp})
+	${ctx.nl(play1.money)} (+${play1.winMoney}) 💰 ${ctx.nl(play1.money)} (+${play2.winMoney})
+	🏆 WIN: ${winName}
+	`
+
+	play1.xp = Math.floor(play1.xp + play1.winXp)
+	play1.money = Math.floor(play1.money + play1.winMoney)
+
+	play2.xp = Math.floor(play2.xp + play2.winXp)
+	play2.money = Math.floor(play2.money + play2.winMoney)
+
+	ctx.session.dual = false
+
+	const keyboard = [
+		...play1Data.map,
+		[
+			{text: '📜 Menu', callback_data: 'menu'},
+			{text: `🏆 ${winName}`, callback_data: 'fight:dual'},
+			{text: '⚔️ Next' , callback_data: 'fight:dual'}
+		],
+		...play2Data.map
+	]
+
+	play1.dual = 50
+	play2.dual = 50
+
+	play1.troops--
+	play2.troops--
+
+	await ctx.database.saveAtackDual(play1, play2)
+
+	ctx.editMessageText(`${text}${ctx.fixKeyboard}`, {
+		parse_mode: 'HTML',
+		reply_markup: {
+			inline_keyboard: keyboard
+		}
+	})
+
+	ctx.telegram.sendMessage(play2.id, `${text}${ctx.fixKeyboard}`, {
+		parse_mode: 'HTML',
+		reply_markup: {
+			inline_keyboard: keyboard
+		}
+	})
+}
+
+const attack = async (ctx, opponent) => {
 	if (ctx.db.troops <= 0) {
 		return ctx.answerCbQuery('You have no troops, wait two minutos!', true)
 	}
@@ -31,7 +168,7 @@ const attack = async(ctx, opponent) => {
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
--------------------vs--------------------
+-------------------VS--------------------
 <b>${ctx.castles[Number(play.city[12])]} City:</b> ${play.name}
 <b>🏅 Level:</b> ${play.level}
 <b>🎖 Experience:</b> ${ctx.nl(play.xp)}
@@ -145,6 +282,7 @@ ${text}`
 
 	//quests(ctx)
 	ctx.session.powerup = false
+	ctx.session.flast = [ctx.session.flast[1], ctx.session.flast[2], play.id]
 
 	map = data.map
 	await ctx.editMessageText(text + ctx.fixKeyboard, {
@@ -264,13 +402,25 @@ const fightTypes = [{
 }]
 
 const base = async(ctx) => {
-	let checkAttack = false
-	let opponent = await ctx.database.randomUser(37)
-	opponent = opponent.filter((e) => e.id != ctx.from.id && e.id != ctx.match[4])
-
 	if (!ctx.session.ftype) {
 		ctx.session.ftype = 0
 	}
+	if (!ctx.session.dual) {
+		ctx.session.dual = false
+	}
+	if (!ctx.session.flast) {
+		ctx.session.flast = [0, 0, 0]
+	}
+
+	let checkAttack = false
+	let opponent = await ctx.database.randomUser(60)
+	opponent = opponent.filter((e) => {
+		return e.id != ctx.from.id &&
+					e.id != ctx.match[4] &&
+					!ctx.session.flast.includes(e.id) &&
+					e.dual == 50 //disable dual
+	})
+
 	if (ctx.match[2] == 'type') {
 		ctx.session.ftype++
 			if (ctx.session.ftype >= fightTypes.length) {
@@ -280,6 +430,24 @@ const base = async(ctx) => {
 
 	opponent = fightTypes[ctx.session.ftype].select(opponent, ctx)
 	opponent = opponent[Math.floor(Math.random() * (5 - 0))]
+
+	let menu = [
+		[{
+			text: '⚔️ Next',
+			callback_data: 'fight'
+		}, {
+			text: `🔍 ${fightTypes[ctx.session.ftype].name}`,
+			callback_data: 'fight:type'
+		}],
+		[{
+			text: '📜 Menu',
+			callback_data: 'menu'
+		}, {
+			text: '⚡️ PowerUp',
+			callback_data: 'fight:powerup'
+		}]
+
+	]
 
 	if (ctx.match[2] == 'powerup' && ctx.match[3] && ctx.db.inventory.includes(ctx.match[3])) {
 		ctx.session.powerup = ctx.items[ctx.match[3]]
@@ -296,7 +464,7 @@ const base = async(ctx) => {
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
--------------------vs--------------------
+-------------------VS--------------------
 <b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
 <b>🏅 Level:</b> ${opponent.level}
 <b>🎖 Experience:</b> ${ctx.nl(opponent.xp)}
@@ -304,7 +472,18 @@ const base = async(ctx) => {
 
 	let map = []
 	if (ctx.match[2] == 'done') {
-		hack(ctx)
+		return hack(ctx)
+	} else if (ctx.match[2] == 'dual') {
+		text = `
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>🏅 Level:</b> ${ctx.db.level}
+<b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
+<b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
+------------------DUAL-------------------`
+		ctx.session.dual = true
+		menu = [
+			[{text: '📜 Menu', callback_data: 'menu'}]
+		]
 	} else if (ctx.match[2] == 'powerup' && !ctx.match[3]) {
 		text = `<b>Select PowerUp:</b>`
 		opponent.id = ctx.db.opponent
@@ -339,41 +518,54 @@ const base = async(ctx) => {
 			}, [[]])
 		}
 	} else if (ctx.match[2] == 'ack' && ctx.match[3] && ctx.match[4]) {
-		checkAttack = await attack(ctx, opponent)
-		if (ctx.db.troops < 0) {
-			ctx.db.troops = 0
-		}
-		text = `
+		if (ctx.session.dual) {
+			if (ctx.db.troops-1 < 0) {
+				return ctx.answerCbQuery('You have no troops, wait two minutos!', true)
+			}
+			let opponentDual = await ctx.database.getDual()
+			opponentDual = opponentDual.filter((e) => e.id != ctx.from.id)
+
+			if (opponentDual.length >= 1) {
+				ctx.dual = Number(ctx.match[3])
+				opponentDual = opponentDual[Math.floor((Math.random() * opponentDual.length))]
+				return await dualAttack(ctx, opponentDual)
+			} else {
+				await ctx.database.updateUser(ctx.from.id, 'dual', Number(ctx.match[3]))
+				text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
--------------------vs--------------------
-<b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
-<b>🏅 Level:</b> ${opponent.level}
-<b>🎖 Experience:</b> ${ctx.nl(opponent.xp)}
-<b>💰 Money:</b> ${ctx.nl(opponent.money)}`
+------------------DUAL-------------------
+Waiting for players!`
+				menu = [
+					[{text: '📜 Menu', callback_data: 'menu'}]
+				]
+			}
+		} else {
+			checkAttack = await attack(ctx, opponent)
+			if (ctx.db.troops < 0) {
+				ctx.db.troops = 0
+			}
+			text = `
+	<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+	<b>🏅 Level:</b> ${ctx.db.level}
+	<b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
+	<b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
+	-------------------VS--------------------
+	<b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
+	<b>🏅 Level:</b> ${opponent.level}
+	<b>🎖 Experience:</b> ${ctx.nl(opponent.xp)}
+	<b>💰 Money:</b> ${ctx.nl(opponent.money)}`
+		}
 	}
 
 	if (map.length <= 0) {
 		map = mapHide(ctx, opponent)
 	}
 
-	var keyboard = [
-		...map, [{
-			text: '⚔️ Next',
-			callback_data: 'fight'
-		}, {
-			text: `🔍 ${fightTypes[ctx.session.ftype].name}`,
-			callback_data: 'fight:type'
-		}],
-		[{
-			text: '📜 Menu',
-			callback_data: 'menu'
-		}, {
-			text: '⚡️ PowerUp',
-			callback_data: 'fight:powerup'
-		}]
+	let keyboard = [
+		...map, ...menu
 	]
 
 	if (checkAttack) {
