@@ -24,6 +24,27 @@ const dualAttack = async (ctx, play2) => {
 	let play1 = ctx.db
 	play2 = await ctx.database.getUser(play2.id)
 
+	if (!ctx.cache[play1.id]) {
+		ctx.cache[play1.id] = {
+			id: play1.id,
+			name: play1.name,
+			castle: ctx.castles[Number(play1.city[12])],
+			battles: 0,
+			win: 0,
+			lost: 0
+		}
+	}
+	if (!ctx.cache[play2.id]) {
+		ctx.cache[play2.id] = {
+			id: play2.id,
+			name: play2.name,
+			castle: ctx.castles[Number(play2.city[12])],
+			battles: 0,
+			win: 0,
+			lost: 0
+		}
+	}
+
 	play1.pos = 11
 	play2.pos = 11
 
@@ -33,7 +54,6 @@ const dualAttack = async (ctx, play2) => {
 ------------------DUAL-------------------
 <b>${ctx.castles[Number(play2.city[12])]} City:</b> ${play2.name}
 <b>🏅 Level:</b> ${play2.level}`
-
 
 	play1.attack = play1.attack / 3.2
 	play1.shield = play1.shield / 2.4
@@ -71,23 +91,31 @@ const dualAttack = async (ctx, play2) => {
 		5.3 * (play1.level + play2.level)
 	) + 1000
 
+	ctx.cache[play1.id].battles++
+	ctx.cache[play2.id].battles++
 	if (play1.life > play2.life) {
 		winName = play1.name
 		play1.winXp = winXp
 		play1.winMoney = winMoney
 		play2.winXp = winXp / 3.3
 		play2.winMoney = winMoney / 3.3
+		ctx.cache[play1.id].win++
+		ctx.cache[play2.id].lost++
 	} else if (play1.life < play2.life) {
 		winName = play2.name
 		play1.winXp = winXp / 3.3
 		play1.winMoney = winMoney / 3.3
 		play2.winXp = winXp
 		play2.winMoney = winMoney
+		ctx.cache[play1.id].win++
+		ctx.cache[play2.id].lost++
 	} else { //play1 == play2
 		play1.winXp = winXp / 3.3
 		play1.winMoney = winMoney / 3.3
 		play2.winXp = winXp / 3.3
 		play2.winMoney = winMoney / 3.3
+		ctx.cache[play1.id].lost++
+		ctx.cache[play2.id].lost++
 	}
 
 	play1.attack = play1.attack < 0 ? 0 : Math.floor(play1.attack)
@@ -239,6 +267,29 @@ ${ctx.nl(ctx.db.life)} ❤️ ${ctx.nl(play.life)}
 		((play.level / ctx.db.level) / 8.4)
 	) + 25
 
+	if (!ctx.cache[play.id]) {
+		ctx.cache[play.id] = {
+			id: play.id,
+			name: play.name,
+			castle: ctx.castles[Number(play.city[12])],
+			battles: 0,
+			win: 0,
+			lost: 0
+		}
+	}
+	if (!ctx.cache[ctx.from.id]) {
+		ctx.cache[ctx.from.id] = {
+			id: ctx.from.id,
+			name: ctx.db.name,
+			castle: ctx.db.castle,
+			battles: 0,
+			win: 0,
+			lost: 0
+		}
+	}
+
+	ctx.cache[ctx.from.id].battles++
+	ctx.cache[play.id].battles++
 	if (data.items.length <= 6) {
 		text = `
 ${ctx.db.name} LOST!
@@ -247,6 +298,8 @@ ${ctx.db.name} LOST!
 ${text}`
 		play.xp += xp / 16
 		ctx.db.money -= addMoney/2.1
+		ctx.cache[play.id].win++
+		ctx.cache[ctx.from.id].lost++
 	} else if (ctx.db.life > play.life) {
 		ctx.db.xp += xp
 		play.xp += xp / 10
@@ -254,6 +307,8 @@ ${text}`
 ${ctx.db.name} WIN!
 ---------------------------------------
 ${text}`
+	ctx.cache[play.id].lost++
+	ctx.cache[ctx.from.id].win++
 	} else {
 		ctx.db.xp += xp / 9
 		play.xp += xp / 3.3
@@ -262,6 +317,8 @@ ${ctx.db.name} LOST!
 ---------------------------------------
 ${text}`
 		ctx.db.money -= addMoney/2.6
+		ctx.cache[play.id].win++
+		ctx.cache[ctx.from.id].lost++
 	}
 
 	ctx.db.money = Math.floor(ctx.db.money)

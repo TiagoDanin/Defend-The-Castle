@@ -6,6 +6,7 @@ const base = async (ctx) => {
 	const id = ctx.update.message.reply_to_message.from.id || ctx.update.message.reply_to_message.forward_from.id
 	ctx.from.id = id
 	ctx.db = await ctx.userInfo(ctx)
+	console.log(ctx.db)
 	ctx.replyWithHTML(`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level+1 >= ctx.db.maxLevel ? `${ctx.db.level} (MAX)` : `${ctx.db.level} (${ctx.db.levelPoc}%)`}

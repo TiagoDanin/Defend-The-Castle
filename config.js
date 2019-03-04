@@ -1,6 +1,7 @@
 module.exports = {
 	plugins: [
 		'backup',
+		'battles',
 		'city',
 		'config',
 		'fight',
