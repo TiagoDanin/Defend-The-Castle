@@ -140,7 +140,7 @@ const dualAttack = async (ctx, play2) => {
 	${ctx.nl(play1.shield)} 🛡 ${ctx.nl(play2.shield)}
 	${ctx.nl(play1.life)} ❤️ ${ctx.nl(play2.life)}
 	${ctx.nl(play1.xp)} (+${play1.winXp}) 🎖 ${ctx.nl(play2.xp)} (+${play2.winXp})
-	${ctx.nl(play1.money)} (+${play1.winMoney}) 💰 ${ctx.nl(play1.money)} (+${play2.winMoney})
+	${ctx.nl(play1.money)} (+${play1.winMoney}) 💰 ${ctx.nl(play2.money)} (+${play2.winMoney})
 	🏆 WIN: ${winName}
 	`
 
@@ -536,7 +536,8 @@ const base = async(ctx) => {
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
-------------------DUAL-------------------`
+------------------DUAL-------------------
+Select:`
 		ctx.session.dual = true
 		menu = [
 			[{text: '📜 Menu', callback_data: 'menu'}]
