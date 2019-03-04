@@ -1,7 +1,7 @@
 {
   "name": "defend-the-castle",
   "main": "index.js",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Telegram bot @defendthecastlebot",
   "author": {
     "name": "Tiago Danin",
@@ -36,7 +36,7 @@
     "moment": "2.24.0",
     "moment-timezone": "0.5.23",
     "nodejs-i18n": "2.1.0",
-    "numberlabel": "1.0.0",
+    "numberlabel": "1.0.1",
     "pg": "7.8.1",
     "pg-native": "3.0.0",
     "telegraf": "3.27.1",
