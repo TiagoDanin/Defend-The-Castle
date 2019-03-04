@@ -1,20 +1,20 @@
 module.exports = {
 	plugins: [
-		'add',
 		'backup',
-		'box',
 		'city',
 		'config',
 		'fight',
 		'invite',
 		'menu',
 		'ping',
+		'presents',
 		'quests',
 		'singup',
 		'stats',
+		'storevip',
+		'thanks',
 		'tutorial',
-		'view',
-		'vip'
+		'view'
 	],
 	defaultLang: 'en',
 	locales: [],
