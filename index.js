@@ -11,6 +11,33 @@ const database = require('./database')
 const levels = require('./levels')
 const tips = require('./tips')
 
+let cache = {
+	1: {
+		id: 0,
+		name: 'BOT 1 (Soon)',
+		castle: '🏛',
+		battles: 0,
+		win: 0,
+		lost: 0
+	},
+	2: {
+		id: 0,
+		name: 'BOT 2 (Soon)',
+		castle: '🏛',
+		battles: 0,
+		win: 0,
+		lost: 0
+	},
+	3: {
+		id: 0,
+		name: 'BOT 3 (Soon)',
+		castle: '🏛',
+		battles: 0,
+		win: 0,
+		lost: 0
+	}
+}
+
 const items = {
 	...require('./items/bank'),
 	...require('./items/bomb'),
@@ -181,6 +208,7 @@ bot.use((ctx, next) => {
 	return next(ctx)
 })
 
+bot.context.cache = cache
 bot.context.config = config
 bot.context.database = database
 bot.context.castles = config.castles

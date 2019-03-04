@@ -22,6 +22,15 @@ const base = async (ctx) => {
 			), 'utf8')
 		}
 	)
+	ctx.telegram.sendDocument(
+		ctx.config.ids.log,
+		{
+			filename: 'Cache.backup.JSON',
+			source: Buffer.from(stringify(
+				ctx.cache
+			), 'utf8')
+		}
+	)
 	return
 }
 

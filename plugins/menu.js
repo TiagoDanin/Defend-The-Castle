@@ -29,6 +29,17 @@ ${ctx.tips(ctx)}`
 		ctx.session.box = +new Date()
 	}
 
+	if (!ctx.cache[ctx.from.id]) {
+		ctx.cache[ctx.from.id] = {
+			id: ctx.from.id,
+			name: ctx.db.name,
+			castle: ctx.db.castle,
+			battles: 0,
+			win: 0,
+			lost: 0
+		}
+	}
+
 	if (ctx.session.dual || ctx.db.dual < 50) { //Disable dual
 		await ctx.database.updateUser(ctx.from.id, 'dual', 50)
 		ctx.session.dual = false
@@ -37,11 +48,11 @@ ${ctx.tips(ctx)}`
 	let keyboard = [
 		[
 			{text: '⚔️ Normal' , callback_data: 'fight' },
-			{text: '⚔️ Dual' , callback_data: 'fight:dual' }
+			{text: '⚔️ Dual (Beta)' , callback_data: 'fight:dual' }
 		],
 		[
 			{text: `${ctx.db.castle} City` , callback_data: 'city'},
-			{text: `🌇 Clan` , callback_data: 'clan'}
+			{text: `🌇 Clan (Soon)` , callback_data: 'menu'}
 		],
 		[
 			{text: '💳 Store VIP' , callback_data: 'vip'},
@@ -60,8 +71,11 @@ ${ctx.tips(ctx)}`
 🥇 Rank by:
 		`
 		keyboard = [
-			[{text: '🏅 Level' , callback_data: 'menu:rank:level' }],
-			[{text: '💰 Money' , callback_data: 'menu:rank:money' }],
+			[
+				{text: '🏅 Level' , callback_data: 'menu:rank:level'},
+				{text: '💰 Money' , callback_data: 'menu:rank:money'},
+				{text: '⚔️ Battles' , callback_data: 'battles'}
+			],
 			[{text: '📜 Menu' , callback_data: 'menu:main' }]
 		]
 		if (ctx.match[3] == 'level') {
