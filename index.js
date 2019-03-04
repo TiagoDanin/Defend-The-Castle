@@ -2,8 +2,9 @@ const Telegraf = require('telegraf')
 const telegrafStart = require('telegraf-start-parts')
 const debug = require('debug')
 const stringify = require('json-stringify-safe')
-const { Resources, Translation } = require('nodejs-i18n')
+const nl = require('numberlabel')
 const session = require('telegraf/session')
+const { Resources, Translation } = require('nodejs-i18n')
 
 const config = require('./config')
 const database = require('./database')
@@ -195,6 +196,11 @@ bot.context.sleep = async (time) => {
 	))
 	return true
 }
+bot.context.nl = (number) => {
+	return nl.convert(number, 'symbol', {
+		start: 850
+	})
+}
 bot.context.userInfo = async (ctx, onlyUser) => {
 	if (typeof ctx != 'object') {
 		ctx = {
@@ -319,6 +325,10 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	if (data.levelPoc >= 100) {
 		data.levelPoc = 99
 	}
+
+	data.moneyLabel = nl.convert(data.money, 'symbol', {
+		start: 1000
+	})
 	return data
 }
 

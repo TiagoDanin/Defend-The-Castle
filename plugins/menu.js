@@ -18,9 +18,9 @@ const base = async (ctx) => {
 	let text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level+1 >= ctx.db.maxLevel ? `${ctx.db.level} (MAX)` : `${ctx.db.level} (${ctx.db.levelPoc}%)`}
-<b>🎖 Experience:</b> ${ctx.db.xp}
+<b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 ---------------------------------------
-<b>💰 Money:</b> ${ctx.db.money} (${ctx.db.moneyPerHour}/hour)
+<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)
 <b>💎 Diamonds:</b> ${ctx.db.diamond}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 

@@ -103,10 +103,10 @@ const infoText = (ctx) => {
 const base = async (ctx) => {
 	let text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
-<b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
-<b>⚔️ Attack:</b> ${ctx.db.attack}
-<b>🛡 Shield:</b> ${ctx.db.shield}
-<b>❤️ Life:</b> ${ctx.db.life}
+<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} Coin (${ctx.nl(ctx.db.moneyPerHour)}/hour)
+<b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
+<b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
+<b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
 ${ctx.tips(ctx)}
 ---------------------------------------
 `
@@ -120,10 +120,10 @@ ${ctx.tips(ctx)}
 		mainKeyboard = city(ctx)
 		text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
-<b>💰 Money:</b> ${ctx.db.money} Coin
-<b>⚔️ Attack:</b> ${ctx.db.attack}
-<b>🛡 Shield:</b> ${ctx.db.shield}
-<b>❤️ Life:</b> ${ctx.db.life}
+<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} Coin (${ctx.nl(ctx.db.moneyPerHour)}/hour)
+<b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
+<b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
+<b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
 ${ctx.tips(ctx)}
 ---------------------------------------
 <b>New castle!</b>
@@ -172,10 +172,10 @@ ${ctx.tips(ctx)}
 			ctx.db = await ctx.userInfo(ctx)
 			text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
-<b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
-<b>⚔️ Attack:</b> ${ctx.db.attack}
-<b>🛡 Shield:</b> ${ctx.db.shield}
-<b>❤️ Life:</b> ${ctx.db.life}
+<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} Coin (${ctx.nl(ctx.db.moneyPerHour)}/hour)
+<b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
+<b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
+<b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
 ${ctx.tips(ctx)}
 ---------------------------------------
 ${infoText(ctx)}
@@ -196,10 +196,10 @@ Upgraded!`
 			ctx.db = await ctx.userInfo(ctx)
 			text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
-<b>💰 Money:</b> ${ctx.db.money} Coin (${ctx.db.moneyPerHour}/hour)
-<b>⚔️ Attack:</b> ${ctx.db.attack}
-<b>🛡 Shield:</b> ${ctx.db.shield}
-<b>❤️ Life:</b> ${ctx.db.life}
+<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} Coin (${ctx.nl(ctx.db.moneyPerHour)}/hour)
+<b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
+<b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
+<b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
 ${ctx.tips(ctx)}
 ---------------------------------------
 ${infoText(ctx)}

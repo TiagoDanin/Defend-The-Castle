@@ -29,13 +29,13 @@ const attack = async(ctx, opponent) => {
 	let play = await ctx.database.getUser(playId)
 	let text = `<b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
-<b>🎖 Experience:</b> ${ctx.db.xp}
+<b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 -------------------vs--------------------
 <b>${ctx.castles[Number(play.city[12])]} City:</b> ${play.name}
 <b>🏅 Level:</b> ${play.level}
-<b>🎖 Experience:</b> ${play.xp}
-<b>💰 Money:</b> ${play.money}`
+<b>🎖 Experience:</b> ${ctx.nl(play.xp)}
+<b>💰 Money:</b> ${ctx.nl(play.money)}`
 
 	if (ctx.db.opponent != play.id) {
 		return hack(ctx)
@@ -84,9 +84,9 @@ const attack = async(ctx, opponent) => {
 
 	text += `
 ---------------------------------------
-${ctx.db.attack} ⚔️ ${play.attack}
-${ctx.db.shield} 🛡 ${play.shield}
-${ctx.db.life} ❤️ ${play.life}
+${ctx.nl(ctx.db.attack)} ⚔️ ${ctx.nl(play.attack)}
+${ctx.nl(ctx.db.shield)} 🛡 ${ctx.nl(play.shield)}
+${ctx.nl(ctx.db.life)} ❤️ ${ctx.nl(play.life)}
 ---------------------------------------
 <b>- </b>${ctx.db.log.join('\n<b>- </b>')}`
 	ctx.db.life = Math.floor(doAttack(ctx.db, play))
@@ -140,7 +140,7 @@ ${text}`
 	let money = ''
 	addMoney = Math.floor(ctx.db.money - oldMoney)
 	if (addMoney > 0) {
-		money = `: 💰 ${addMoney}`
+		money = `: 💰 ${ctx.nl(addMoney)}`
 	}
 
 	//quests(ctx)
@@ -294,13 +294,13 @@ const base = async(ctx) => {
 	let text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
-<b>🎖 Experience:</b> ${ctx.db.xp}
+<b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 -------------------vs--------------------
 <b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
 <b>🏅 Level:</b> ${opponent.level}
-<b>🎖 Experience:</b> ${opponent.xp}
-<b>💰 Money:</b> ${opponent.money}`
+<b>🎖 Experience:</b> ${ctx.nl(opponent.xp)}
+<b>💰 Money:</b> ${ctx.nl(opponent.money)}`
 
 	let map = []
 	if (ctx.match[2] == 'done') {
@@ -346,13 +346,13 @@ const base = async(ctx) => {
 		text = `
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
-<b>🎖 Experience:</b> ${ctx.db.xp}
+<b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 -------------------vs--------------------
 <b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
 <b>🏅 Level:</b> ${opponent.level}
-<b>🎖 Experience:</b> ${opponent.xp}
-<b>💰 Money:</b> ${opponent.money}`
+<b>🎖 Experience:</b> ${ctx.nl(opponent.xp)}
+<b>💰 Money:</b> ${ctx.nl(opponent.money)}`
 	}
 
 	if (map.length <= 0) {

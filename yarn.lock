@@ -132,6 +132,11 @@ nodejs-i18n@2.1.0:
     gettext-parser "3.1.0"
     tempy "0.2.1"
 
+numberlabel@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/numberlabel/-/numberlabel-1.0.0.tgz#daf27e75c6d47b3a850b21984d96e8bdad8b75af"
+  integrity sha512-jdJT97ZtB1yPfhdpCCw+8h4LdTe5310f7tM/vDX6e6pLxS+kH2I1m1U6JdQdyBUxpvU/OZ5p3E9NzTXEqhfjDg==
+
 packet-reader@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/packet-reader/-/packet-reader-1.0.0.tgz#9238e5480dedabacfe1fe3f2771063f164157d74"
