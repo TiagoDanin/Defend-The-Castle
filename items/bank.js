@@ -9,7 +9,7 @@ module.exports = {
 		qt: 1,
 		doDb: (data, item) => {
 			if (item.isInventory) return data
-			data.moneyPerHour += Math.floor(60 * data.qt_bank)
+			data.moneyPerHour += Math.floor(85 * data.qt_bank)
 			return data
 		},
 		doDefend: (data, ctx) => {
