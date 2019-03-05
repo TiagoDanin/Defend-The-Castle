@@ -49,6 +49,17 @@ const main = async () => {
 			invite           INT        DEFAULT 1,
 			PRIMARY KEY (id)
 		);
+		CREATE TABLE clans(
+			id               INT        NOT NULL,
+			name             TEXT       NOT NULL,
+			flag             TEXT       NOT NULL,
+			members          INT[]      DEFAULT '{}',
+			level            INT        DEFAULT 1,
+			xp               INT        DEFAULT 1,
+			money            INT        DEFAULT 1,
+			time             TIMESTAMP  DEFAULT now(),
+			PRIMARY KEY (id)
+		);
 	`, []).catch(log)
 	await client.end()
 }

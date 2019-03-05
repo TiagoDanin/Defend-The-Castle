@@ -95,14 +95,16 @@ ${text}
 			}
 		})
 	}
-	return ctx.replyWithMarkdown('Use the `/start`' + ctx.fixKeyboard, {
-		reply_markup: {
-			inline_keyboard:
-			[
-				[{text: 'Or Click Here (Menu)' , callback_data: 'menu:main' }],
-			]
-		}
-	})
+	if (!ctx.session.newclan) {
+		return ctx.replyWithMarkdown('Use the `/start`' + ctx.fixKeyboard, {
+			reply_markup: {
+				inline_keyboard:
+				[
+					[{text: 'Or Click Here (Menu)' , callback_data: 'menu:main' }],
+				]
+			}
+		})
+	}
 }
 
 module.exports = {

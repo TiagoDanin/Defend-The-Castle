@@ -372,6 +372,75 @@ const saveAtackDual = async (play1, play2) => {
 	return data.rows[0]
 }
 
+const getClan = async (id) => {
+	let data = {}
+	let client = await pool.connect()
+	data = await client.query(`
+		SELECT
+			*,
+			EXTRACT(EPOCH FROM ( now() - time ) ) AS timerunning,
+			EXTRACT(EPOCH FROM ( now() - time ) ) > 120 AS run
+		FROM clans
+		WHERE members && $1;
+	`, [[id]]).catch(error)
+	client.release()
+	if (data.rowCount != 1) {
+		return false
+	}
+	return data.rows[0]
+}
+
+const createClan = async (clan) => {
+	let data = {}
+	let client = await pool.connect()
+	data = await client.query(`
+		INSERT
+			INTO clans(id, name, flag, members)
+			VALUES ($1, $2, $3, $4)
+		RETURNING *;
+	`, [clan.id, clan.name, clan.flag, clan.members]).catch(error)
+	client.release()
+	if (data.rowCount != 1) {
+		return false
+	}
+	return data.rows[0]
+}
+
+const updateClan = async (clan) => {
+	let data = {}
+	let client = await pool.connect()
+	const whiteList = [
+		'name',
+		'flag',
+		'xp',
+		'money',
+		'level',
+		'members'
+	]
+	let listKeys = Object.keys(clan).filter((e) => whiteList.includes(e))
+
+	const query = `
+		UPDATE clan
+			SET
+				${listKeys.reduce((total, e, index) => `${total},
+				${e} = $${index+2}`, 'time = now()')}
+			WHERE id = $1
+		RETURNING *;
+	`
+	data = await client.query(
+		query,
+		listKeys.reduce((total, e) => {
+			total.push(clan[e])
+			return total
+		}, [clan.id])
+	).catch(error)
+	client.release()
+	if (data.rowCount != 1) {
+		return false
+	}
+	return data.rows[0]
+}
+
 module.exports = {
 	getUser,
 	setUser,
@@ -388,5 +457,8 @@ module.exports = {
 	joinUserInvite,
 	findAllTable,
 	getDual,
-	saveAtackDual
+	saveAtackDual,
+	createClan,
+	getClan,
+	updateClan
 }

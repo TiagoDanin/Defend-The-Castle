@@ -52,7 +52,7 @@ ${ctx.tips(ctx)}`
 		],
 		[
 			{text: `${ctx.db.castle} City` , callback_data: 'city'},
-			{text: `🌇 Clan (Soon)` , callback_data: 'menu'}
+			{text: `🌇 Clan (Soon)` , callback_data: 'clan'}
 		],
 		[
 			{text: '💳 Store VIP' , callback_data: 'vip'},

@@ -3,6 +3,7 @@ module.exports = {
 		'backup',
 		'battles',
 		'city',
+		'clan',
 		'config',
 		'fight',
 		'invite',
