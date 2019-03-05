@@ -10,6 +10,9 @@ const processClan = async (ctx, clan) => {
 				xpNextLevel / 100
 			)
 		)
+		if (clan.levelPoc > 100) {
+			clan.levelPoc = 99
+		}
 	}
 	if (clan.timerunning >= 120) {
 		clan.money += (clan.timerunning * moneyPerSecond)
