@@ -33,7 +33,8 @@ const processView = (ctx, clan) => {
 <b>🏅 Level:</b> ${clan.level}${clan.levelPoc ? ` (${clan.levelPoc}%)` : ''}
 <b>🎖 Experience:</b> ${ctx.nl(clan.xp)}
 <b>💰 Money:</b> ${ctx.nl(clan.money)} (${ctx.nl(ctx.clan[clan.level].money)}/hour)
-<b>👥 Members:</b> ${clan.members.length}/${ctx.clan[clan.level].members}`
+<b>👥 Members:</b> ${clan.members.length}/${ctx.clan[clan.level].members}
+<b>❇️ Invite Clan URL:</b> https://telegram.me/DefendTheCastleBot?start=join-clan-${ctx.from.id}`
 }
 
 const reply = async (ctx) => {
@@ -166,43 +167,54 @@ EXAMPLE: TNT-TNTClan
 		text += 'Join:'
 	} else if (ctx.match[2] == 'join') {
 		if (clan) {
-			return ctx.replyWithMarkdown('You already have a clan!')
+			text = 'You already have a clan!'
+		} else {
+			clan = await ctx.database.getClan(Number(ctx.match[3]))
+			if (clan.members.length >= ctx.clan[clan.level].members) {
+				text = `Clan is full! (${clan.members.length}/${ctx.clan[clan.level].members})`
+			} else {
+				clan.members.push(ctx.from.id)
+				ctx.database.updateClan({
+					id: clan.id,
+					members: clan.members
+				})
+				text = 'Welcome!\n' + processView(ctx, clan)
+				keyboard = [
+					[
+						{text: '🌇 Open Clan' , callback_data: 'clan'}
+					]
+				]
+			}
 		}
-		clan = await ctx.database.getClan(Number(ctx.match[3]))
-		if (clan.members.length >= ctx.clan[clan.level].members) {
-			return ctx.replyWithMarkdown(`Clan is full! (${clan.members.length}/${ctx.clan[clan.level].members})`)
-		}
-		clan.members.push(ctx.from.id)
-		ctx.database.updateClan({
-			id: clan.id,
-			members: clan.members
-		})
-		text = 'Welcome!\n' + processView(ctx, clan)
-		keyboard = [
-			[
-				{text: '🌇 Open Clan' , callback_data: 'clan'}
-			]
-		]
 	} else if (ctx.match[2] == 'exit') {
 		if (ctx.from.id == clan.id) {
-			return replyWithMarkdown('*Owner cannot leave!*')
-		}
-		clan.members = clan.members.filter(e => e != ctx.from.id)
-		ctx.database.updateClan({
-			id: clan.id,
-			members: clan.members
-		})
-		text = 'Leaving!'
-		keyboard = [
-			[
-				{text: '✏️ Create' , callback_data: 'clan:new'},
-				{text: '📝 List Clans' , callback_data: 'clan:list'}
+			text = '*Owner cannot leave!*'
+		} else {
+			clan.members = clan.members.filter(e => e != ctx.from.id)
+			ctx.database.updateClan({
+				id: clan.id,
+				members: clan.members
+			})
+			text = 'Leaving!'
+			keyboard = [
+				[
+					{text: '✏️ Create' , callback_data: 'clan:new'},
+					{text: '📝 List Clans' , callback_data: 'clan:list'}
+				]
 			]
-		]
+		}
 	}
 
-	return ctx.editMessageText(text + ctx.fixKeyboard, {
-		parse_mode: 'HTML',
+	if (ctx.updateType == 'callback_query') {
+		return ctx.editMessageText(text + ctx.fixKeyboard, {
+			parse_mode: 'HTML',
+			reply_markup: {
+				inline_keyboard: keyboard
+			},
+			disable_web_page_preview: true
+		})
+	}
+	return ctx.replyWithHTML(text + ctx.fixKeyboard, {
 		reply_markup: {
 			inline_keyboard: keyboard
 		},
@@ -213,5 +225,9 @@ EXAMPLE: TNT-TNTClan
 module.exports = {
 	id: 'clan',
 	callback: base,
-	reply: reply
+	reply: reply,
+	plugin: base,
+	regex: [
+		/^(\/)(join) clan (\d+)/i
+	]
 }
