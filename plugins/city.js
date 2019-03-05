@@ -30,6 +30,7 @@ const showInventory = (ctx, pos) => {
 					text: `${ctx.items[id.toString()].icon} ${ctx.items[id.toString()].name} (${length})`,
 					callback_data: `city:set:${pos}:${id}`
 				})
+				addsItems.push(id)
 			}
 			if (total[total.length - 1].length >= 3 && !(index >= ctx.db.inventory.length-1)) {
 				total.push([])

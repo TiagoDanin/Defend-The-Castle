@@ -25,7 +25,7 @@ const base = async (ctx) => {
 	ctx.telegram.sendDocument(
 		ctx.config.ids.log,
 		{
-			filename: 'clans.backup.JSON',
+			filename: 'Clans.backup.JSON',
 			source: Buffer.from(stringify(
 				await ctx.database.findAllTable('clans')
 			), 'utf8')

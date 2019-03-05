@@ -13,6 +13,7 @@ const main = async () => {
 			id               INT        NOT NULL,
 			name             TEXT       NOT NULL,
 			opponent         INT        DEFAULT 1,
+			dual             INT        DEFAULT 50,
 			reply            BOOLEAN    DEFAULT true,
 			notification     BOOLEAN    DEFAULT true,
 			type             TEXT       DEFAULT 'warrior',
