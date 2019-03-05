@@ -45,9 +45,6 @@ const dualAttack = async (ctx, play2) => {
 		}
 	}
 
-	play1.pos = 11
-	play2.pos = 11
-
 	let text = `
 <b>${ctx.castles[Number(play1.city[12])]} City:</b> ${play1.name}
 <b>🏅 Level:</b> ${play1.level}
@@ -85,10 +82,10 @@ const dualAttack = async (ctx, play2) => {
 	play2.life = doAttack(play2, play1)
 
 	const winXp = (
-		(100 * (play1.level + play2.level)) / 16.8
+		(210 * (play1.level + play2.level)) / 16.8
 	) + 25
 	const winMoney = (
-		5.3 * (play1.level + play2.level)
+		6.2 * (play1.level + play2.level)
 	) + 1000
 
 	ctx.cache[play1.id].battles++
@@ -584,7 +581,7 @@ Select:`
 			opponentDual = opponentDual.filter((e) => e.id != ctx.from.id)
 
 			if (opponentDual.length >= 1) {
-				ctx.dual = Number(ctx.match[3])
+				ctx.db.dual = Number(ctx.match[3])
 				opponentDual = opponentDual[Math.floor((Math.random() * opponentDual.length))]
 				return await dualAttack(ctx, opponentDual)
 			} else {
@@ -606,15 +603,15 @@ Waiting for players!`
 				ctx.db.troops = 0
 			}
 			text = `
-	<b>${ctx.db.castle} City:</b> ${ctx.db.name}
-	<b>🏅 Level:</b> ${ctx.db.level}
-	<b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
-	<b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
-	-------------------VS--------------------
-	<b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
-	<b>🏅 Level:</b> ${opponent.level}
-	<b>🎖 Experience:</b> ${ctx.nl(opponent.xp)}
-	<b>💰 Money:</b> ${ctx.nl(opponent.money)}`
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>🏅 Level:</b> ${ctx.db.level}
+<b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
+<b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
+-------------------VS--------------------
+<b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
+<b>🏅 Level:</b> ${opponent.level}
+<b>🎖 Experience:</b> ${ctx.nl(opponent.xp)}
+<b>💰 Money:</b> ${ctx.nl(opponent.money)}`
 		}
 	}
 

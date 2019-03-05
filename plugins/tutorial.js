@@ -20,7 +20,7 @@ const base = async (ctx) => {
 Welcome to <b>defend the castle</b>
 * How to attack a castle
 • Open the Menu
-• Click on "Fight "
+• Click on "Fight"
 • Select a zone to drop the troops
 TIP: A 3x3 zone is selected!
 Map:`
@@ -51,7 +51,7 @@ Best possition to drop of troops!
 • Open menu
 • Click in "City"
 • Select an zone
-• Upgrade ou Change Zone`
+• Upgrade or Change Zone`
 	} else if (id == 3) {
 		text = `
 * Updagrade troops in:
