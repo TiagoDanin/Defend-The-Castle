@@ -20,9 +20,9 @@ const doAttack = (p1, p2) => {
 	return p1.life - ((p2.attack / (p1.shield / 100)) / 1.2)
 }
 
-const dualAttack = async (ctx, play2) => {
-	let play1 = ctx.db
-	play2 = await ctx.database.getUser(play2.id)
+const dualAttack = async (ctx, play1) => {
+	play1 = await ctx.database.getUser(play1.id)
+	let play2 = ctx.db
 
 	if (!ctx.cache[play1.id]) {
 		ctx.cache[play1.id] = {
@@ -174,7 +174,7 @@ const dualAttack = async (ctx, play2) => {
 		}
 	})
 
-	ctx.telegram.sendMessage(play2.id, `${text}${ctx.fixKeyboard}`, {
+	ctx.telegram.sendMessage(play1.id, `${text}${ctx.fixKeyboard}`, {
 		parse_mode: 'HTML',
 		reply_markup: {
 			inline_keyboard: keyboard
