@@ -1,3 +1,24 @@
+const processClan = (ctx, clan) => {
+	const moneyPerSecond = (ctx.clan[clan.level].money / 60) / 60
+	if (clan.timerunning >= 120) {
+		clan.money += (clan.timerunning * moneyPerSecond)
+		await ctx.database.updateClan({
+			id: clan.id,
+			money: clan.money
+		})
+	}
+	return clan
+}
+
+const processView = (ctx, clan) => {
+	return `
+<b>🌇 Name:</b> ${clan.name} [${clan.flag}]
+<b>🏅 Level:</b> ${clan.level}
+<b>🎖 Experience:</b> ${ctx.nl(clan.xp)}
+<b>💰 Money:</b> ${ctx.nl(clan.money)} (${ctx.nl(ctx.clan[clan.level].money)}/hour)
+<b>👥 Members:</b> ${clan.members.length}/${ctx.clan[clan.level].members}`
+}
+
 const reply = async (ctx) => {
 	if (ctx.session.newclan) {
 		let match = ctx.match[1].match(/^([a-zA-Z]{3})-([a-zA-Z0-9-]{1,15})$/)
@@ -10,7 +31,7 @@ const reply = async (ctx) => {
 				reply_markup: {
 					inline_keyboard: [
 						[
-							{text: 'Open Clan' , callback_data: 'clan'}
+							{text: '🌇 Open Clan' , callback_data: 'clan'}
 						]
 					]
 				}
@@ -30,7 +51,12 @@ const base = async (ctx) => {
 	let text = '.'
 	let keyboard = [
 		[
-			{text: 'Menu' , callback_data: 'menu'}
+			{text: '💰 ' , callback_data: 'clan:money'},
+			{text: '✨ ' , callback_data: 'clan:xp'},
+			{text: '👥 ' , callback_data: 'clan:members'},
+		],
+		[
+			{text: '📜 Menu' , callback_data: 'menu'}
 		]
 	]
 
@@ -38,18 +64,13 @@ const base = async (ctx) => {
 		text = `Join or create a new clan!`
 		keyboard = [
 			[
-				{text: 'Create' , callback_data: 'clan:new'},
-				{text: 'List Clans' , callback_data: 'clan:list'}
+				{text: '✏️ Create' , callback_data: 'clan:new'},
+				{text: '📝 List Clans' , callback_data: 'clan:list'}
 			]
 		]
 	} else {
-		text = `
-<b>Name:</b> ${clan.name}
-<b>Level:</b> ${clan.level}
-<b>Xp:</b> ${ctx.nl(clan.xp)}
-<b>Money:</b> ${ctx.nl(clan.money)}
-<b>Members:</b> ${clan.members.length}
-		`
+		clan = processClan(ctx, clan)
+		text = processView(ctx, clan)
 	}
 
 	if (ctx.match[2] == 'new') {
@@ -71,18 +92,56 @@ EXAMPLE: TNT-TNTClan
 			disable_web_page_preview: true
 		})
 	} else if (ctx.match[2] == 'list') {
-
+		text = '<b>Clans:\n</b>'
+		keyboard = [
+			[
+				//1-6 pad
+			],
+			[
+				{text: '📜 Menu' , callback_data: 'menu'},
+				{text: '🌇 More Clans' , callback_data: 'clan:list'}
+			]
+		]
+		let clans = await ctx.database.getClans()
+		for (let i = 0; i < (clans.length > 6 ? 6 : clans.length); i++) {
+			clan = clans[i]
+			text += `<b>${i+1}.</b>${clan.name} [${clan.flag}] (${clan.members.length}/${ctx.clan[clan.level].members})\n`
+			keyboard[0].push({text: `${i+1}`, callback_data: `clan:join:${clan.id}`})
+		}
+		text += 'Join:'
+	} else if (ctx.match[2] == 'join') {
+		if (clan) {
+			return ctx.replyWithMarkdown('You already have a clan!')
+		}
+		clan = await ctx.database.getClan(Number(ctx.match[3]))
+		if (clan.members >= ctx.clan[clan.level].members) {
+			return ctx.replyWithMarkdown(`Clan is full! (${clan.members}/${ctx.clan[clan.level].members})`)
+		}
+		text = 'Welcome!\n' + processView(ctx, clan)
+		keyboard = [
+			[
+				{text: '🌇 Open Clan' , callback_data: 'clan'}
+			]
+		]
+		clan.members.push(ctx.from.id)
+		ctx.database.updateClan({
+			id: clan.id,
+			members: clan.members
+		})
 	} else if (ctx.match[2] == 'exit') {
+		if (ctx.from.id == clan.id) {
+			return replyWithMarkdown('*Owner cannot leave!*')
+		}
 		clan.members = clan.members.filter(e => e != ctx.from.id)
 		ctx.database.updateClan({
 			id: clan.id,
 			members: clan.members
 		})
-		text = 'Exited!'
+		text = 'Leaving!'
 		keyboard = [
 			[
-				{text: 'Create' , callback_data: 'clan:new'},
-				{text: 'List Clans' , callback_data: 'clan:list'}
+				{text: '✏️ Create' , callback_data: 'clan:new'},
+				{text: '📝 List Clans' , callback_data: 'clan:list'}
 			]
 		]
 	}

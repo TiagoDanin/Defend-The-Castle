@@ -10,6 +10,7 @@ const config = require('./config')
 const database = require('./database')
 const levels = require('./levels')
 const tips = require('./tips')
+const clan = require('./clan')
 
 let cache = {
 	1: {
@@ -208,6 +209,7 @@ bot.use((ctx, next) => {
 	return next(ctx)
 })
 
+bot.context.clan = clan
 bot.context.cache = cache
 bot.context.config = config
 bot.context.database = database

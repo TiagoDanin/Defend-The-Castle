@@ -420,7 +420,7 @@ const updateClan = async (clan) => {
 	let listKeys = Object.keys(clan).filter((e) => whiteList.includes(e))
 
 	const query = `
-		UPDATE clan
+		UPDATE clans
 			SET
 				${listKeys.reduce((total, e, index) => `${total},
 				${e} = $${index+2}`, 'time = now()')}
@@ -439,6 +439,19 @@ const updateClan = async (clan) => {
 		return false
 	}
 	return data.rows[0]
+}
+
+const getClans = async (max = 10) => {
+	let data = {}
+	let client = await pool.connect()
+	data = await client.query(`
+		SELECT *
+		FROM clans
+		ORDER BY random()
+		limit $1;
+	`, [max]).catch(error)
+	client.release()
+	return data.rows
 }
 
 module.exports = {
@@ -460,5 +473,6 @@ module.exports = {
 	saveAtackDual,
 	createClan,
 	getClan,
-	updateClan
+	updateClan,
+	getClans
 }
