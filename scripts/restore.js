@@ -7,6 +7,7 @@ const pool = new Pool({
 
 const users = JSON.parse(fs.readFileSync('./Users.backup.JSON').toString())
 const stats = JSON.parse(fs.readFileSync('./Stats.backup.JSON').toString())
+const clans = JSON.parse(fs.readFileSync('./Clans.backup.JSON').toString())
 
 const log = (text) => console.log('>>', text)
 
@@ -39,3 +40,4 @@ const insert = async (db, table) => {
 
 users.forEach((db) => insert(db, 'users'))
 stats.forEach((db) => insert(db, 'stats'))
+clans.forEach((db) => insert(db, 'clans'))
