@@ -82,11 +82,11 @@ const dualAttack = async (ctx, play2) => {
 	play2.life = doAttack(play2, play1)
 
 	const winXp = (
-		(210 * (play1.level + play2.level)) / 16.8
+		(215 * (play1.level + play2.level)) / 17
 	) + 25
 	const winMoney = (
-		6.2 * (play1.level + play2.level)
-	) + 1000
+		6 * (play1.level + play2.level)
+	) + 400
 
 	ctx.cache[play1.id].battles++
 	ctx.cache[play2.id].battles++

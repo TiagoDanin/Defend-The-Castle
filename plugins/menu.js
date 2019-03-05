@@ -47,12 +47,12 @@ ${ctx.tips(ctx)}`
 	const boxTime = moment(+new Date()).to(ctx.session.box)
 	let keyboard = [
 		[
-			{text: '⚔️ Normal' , callback_data: 'fight' },
-			{text: '⚔️ Dual (Beta)' , callback_data: 'fight:dual' }
+			{text: '⚔️ Normal' , callback_data: 'fight'},
+			{text: '⚔️ Dual (Beta)' , callback_data: 'fight:dual'}
 		],
 		[
 			{text: `${ctx.db.castle} City` , callback_data: 'city'},
-			{text: `🌇 Clan (Soon)` , callback_data: 'clan'}
+			{text: `🌇 Clan (Beta)` , callback_data: 'clan'}
 		],
 		[
 			{text: '💳 Store VIP' , callback_data: 'vip'},
