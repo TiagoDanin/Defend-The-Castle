@@ -1,4 +1,4 @@
-const processClan = (ctx, clan) => {
+const processClan = async (ctx, clan) => {
 	const moneyPerSecond = (ctx.clan[clan.level].money / 60) / 60
 	if (clan.timerunning >= 120) {
 		clan.money += (clan.timerunning * moneyPerSecond)
@@ -51,12 +51,13 @@ const base = async (ctx) => {
 	let text = '.'
 	let keyboard = [
 		[
-			{text: '💰 ' , callback_data: 'clan:money'},
-			{text: '✨ ' , callback_data: 'clan:xp'},
-			{text: '👥 ' , callback_data: 'clan:members'},
+			{text: '💰 Get Money' , callback_data: 'clan:money'},
+			{text: '✨ Donate Experience' , callback_data: 'clan:xp'},
+			{text: '👥 Members' , callback_data: 'clan:members'},
 		],
 		[
-			{text: '📜 Menu' , callback_data: 'menu'}
+			{text: '🌇 Clan Menu' , callback_data: 'clan'},
+			{text: '📜 Main Menu' , callback_data: 'menu'}
 		]
 	]
 
@@ -69,11 +70,31 @@ const base = async (ctx) => {
 			]
 		]
 	} else {
-		clan = processClan(ctx, clan)
+		clan = await processClan(ctx, clan)
 		text = processView(ctx, clan)
 	}
 
-	if (ctx.match[2] == 'new') {
+	if (ctx.match[2] == 'members') {
+		text = '<b>Members (wins;losses):\n</b>'
+		for (let i = 0; i < clan.members.length; i++) {
+			let member = clan.members[i]
+			if (ctx.cache[member]) {
+				member = ctx.cache[member]
+			} else {
+				let user = await ctx.database.getUser(member)
+				ctx.cache[member] = {
+					id: user.id,
+					name: user.name,
+					castle: ctx.castles[Number(user.city[12])],
+					battles: 0,
+					win: 0,
+					lost: 0
+				}
+				member = ctx.cache[member]
+			}
+			text += `<b>${i+1}.</b>${member.castle} ${member.name} (+${member.win};-${member.lost})\n`
+		}
+	} else if (ctx.match[2] == 'new') {
 		ctx.session.newclan = {
 			id: ctx.from.id,
 			name: '',
@@ -114,20 +135,20 @@ EXAMPLE: TNT-TNTClan
 			return ctx.replyWithMarkdown('You already have a clan!')
 		}
 		clan = await ctx.database.getClan(Number(ctx.match[3]))
-		if (clan.members >= ctx.clan[clan.level].members) {
-			return ctx.replyWithMarkdown(`Clan is full! (${clan.members}/${ctx.clan[clan.level].members})`)
+		if (clan.members.length >= ctx.clan[clan.level].members) {
+			return ctx.replyWithMarkdown(`Clan is full! (${clan.members.length}/${ctx.clan[clan.level].members})`)
 		}
+		clan.members.push(ctx.from.id)
+		ctx.database.updateClan({
+			id: clan.id,
+			members: clan.members
+		})
 		text = 'Welcome!\n' + processView(ctx, clan)
 		keyboard = [
 			[
 				{text: '🌇 Open Clan' , callback_data: 'clan'}
 			]
 		]
-		clan.members.push(ctx.from.id)
-		ctx.database.updateClan({
-			id: clan.id,
-			members: clan.members
-		})
 	} else if (ctx.match[2] == 'exit') {
 		if (ctx.from.id == clan.id) {
 			return replyWithMarkdown('*Owner cannot leave!*')
