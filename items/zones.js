@@ -15,14 +15,14 @@ module.exports = {
 		doDefend: (data, ctx) => {
 			if (Math.floor((Math.random() * 3)) == 0) {
 				ctx.db.log.push([
-					'⚔️ We take the zone with the falicity!',
-					'⚔️ Easy!'
+					ctx._`⚔️ We take the zone with the falicity!`,
+					ctx._`⚔️ Easy!`
 				])
 				data.attack += Math.floor(5 * data.qt_zonewar)
 			} else {
 				ctx.db.log.push([
-					'⚔️ Trap....',
-					'⚔️ Oh! No... Trap..'
+					ctx._`⚔️ Trap....`,
+					ctx._`⚔️ Oh! No... Trap..`
 				])
 				data.attack += Math.floor(38 * data.qt_zonewar)
 			}
@@ -49,7 +49,7 @@ module.exports = {
 				data.shield += Math.floor(20 * data.qt_zonedefense)
 			} else {
 				ctx.db.log.push([
-					'🛡 The defense is down!'
+					ctx._`🛡 The defense is down!`
 				])
 				data.shield += Math.floor(4 * data.qt_zonedefense)
 			}

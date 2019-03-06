@@ -3,6 +3,177 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: UTF-8\n"
 
+#: itemsAllText.js:2:19
+msgid "Void"
+msgstr "Void"
+
+#: itemsAllText.js:3:19
+msgid "I don't know what that does..."
+msgstr "Eu não sei o que isso faz..."
+
+#: itemsAllText.js:5:19
+msgid "Bomb"
+msgstr "Bomba"
+
+#: itemsAllText.js:6:19
+msgid ""
+"Great damage! Perfect trap for enemy troop. But the shields can suffer "
+"damage."
+msgstr ""
+"Grande dano! Armadilha perfeita para tropas inimigas. Mas os escudos podem sofrer danos."
+
+#: itemsAllText.js:8:19
+msgid "Zone War"
+msgstr "Zona de Guerra"
+
+#: itemsAllText.js:12:19
+msgid "Military will protect this area with their lives!"
+msgstr "Militares protegerão esta área com suas vidas!"
+
+#: itemsAllText.js:11:19
+msgid "Zone Defense"
+msgstr "Zona de Defesa"
+
+#: itemsAllText.js:14:19
+msgid "Rocket"
+msgstr "Foguete"
+
+#: itemsAllText.js:15:19
+msgid "Troop focused on knocking down drones and airplanes."
+msgstr "Tropa focada em derrubar drones e aviões."
+
+#: itemsAllText.js:17:19
+msgid "Bank"
+msgstr "Banco"
+
+#: itemsAllText.js:18:19
+msgid "Generate money for the castle."
+msgstr "Gerar dinheiro para o castelo."
+
+#: itemsAllText.js:20:19
+msgid "Tower Defense"
+msgstr "Torre de Defesa"
+
+#: itemsAllText.js:21:19
+msgid "Specialist in strategist of attack"
+msgstr "Especialista em estrategista de ataque"
+
+#: itemsAllText.js:23:19
+msgid "Hospital"
+msgstr "Hospital"
+
+#: itemsAllText.js:24:19
+msgid "Increases a health."
+msgstr "Aumenta a saúde."
+
+#: plugins/presents.js:65:15
+msgid "Clone"
+msgstr "Clone"
+
+#: itemsAllText.js:27:20
+msgid "2x Attack, Shield and Life & +350xp"
+msgstr "2x +Ataque, +Escudo & +Vida & +350xp"
+
+#: plugins/presents.js:62:17
+msgid "Diamond"
+msgstr "Diamante"
+
+#: itemsAllText.js:30:20
+msgid "Diamond!"
+msgstr "Diamante!"
+
+#: itemsAllText.js:32:20
+msgid "Super Shield"
+msgstr "Super Escudo"
+
+#: itemsAllText.js:33:20
+msgid "3x +Shield & +150 Xp"
+msgstr "3x +Escudo & +150 Xp"
+
+#: items/bank.js:17:9
+msgid "🏦 Found money!"
+msgstr "🏦 Achei dinheiro!"
+
+#: items/bank.js:18:9
+msgid "🏦 MONEEEEY!"
+msgstr "🏦 DINHEEEEIRO!"
+
+#: items/bank.js:19:9
+msgid "🏦 💰"
+msgstr "🏦 💰"
+
+#: items/bomb.js:11:10
+msgid "💣 Recruit stepped on the mine!"
+msgstr "💣 Recruta pisou na mina!"
+
+#: items/bomb.js:12:10
+msgid "💣 Our choices were not good."
+msgstr "💣 Nossas escolhas não eram boas."
+
+#: items/bomb.js:13:10
+msgid "💣 We're practically decimated."
+msgstr "💣 Estamos praticamente dizimados"
+
+#: items/bomb.js:19:10
+msgid "💣 We're lucky."
+msgstr "💣 Nós temos sorte."
+
+#: items/bomb.js:20:10
+msgid "💣 There's a bomb with problems"
+msgstr "💣 Há uma bomba com problemas"
+
+#: items/clone.js:16:9
+msgid "👽 Clone used!"
+msgstr "👽 Clone foi usado!"
+
+#: items/hospital.js:17:9
+msgid "🏨 🚑"
+msgstr "🏨 🚑"
+
+#: items/rocket.js:9:9
+msgid "🚀 Our airplane is down!"
+msgstr "🚀 Nosso avião caiu!"
+
+#: items/rocket.js:10:9
+msgid "🚀 I think we can escape in time."
+msgstr "🚀 Acho que podemos escapar a tempo."
+
+#: items/shield.js:14:9
+msgid "🛡 Super Shield used!"
+msgstr "🛡 Super Escudo foi usado!"
+
+#: items/tower.js:10:10
+msgid "🗿 Trap...."
+msgstr "🗿 Armadilha...."
+
+#: items/tower.js:11:10
+msgid "🗿 Oh! No... Trap.."
+msgstr "🗿 Oh! Não... Armadilha.."
+
+#: items/tower.js:16:10
+msgid "🗿 The defense is down!"
+msgstr "🗿 A defesa caiu!"
+
+#: items/zones.js:18:10
+msgid "⚔️ We take the zone with the falicity!"
+msgstr "⚔ ️Nós tomamos a zona com a falicidade!"
+
+#: items/zones.js:19:10
+msgid "⚔️ Easy!"
+msgstr "⚔ ️ Fácil!"
+
+#: items/zones.js:24:10
+msgid "⚔️ Trap...."
+msgstr "⚔️ Armadilha...."
+
+#: items/zones.js:25:10
+msgid "⚔️ Oh! No... Trap.."
+msgstr "⚔️ Oh! Não... Armadilha.."
+
+#: items/zones.js:52:10
+msgid "🛡 The defense is down!"
+msgstr "🛡 A defesa caiu!"
+
 #: plugins/battles.js:8:19
 msgid ""
 "\n"
@@ -471,17 +642,9 @@ msgstr "xp"
 msgid "troops"
 msgstr "tropas"
 
-#: plugins/presents.js:62:17
-msgid "Diamond"
-msgstr "Diamante"
-
 #: plugins/presents.js:64:21
 msgid "SuperShield"
 msgstr "SuperEscudo"
-
-#: plugins/presents.js:65:15
-msgid "Clone"
-msgstr "Clone"
 
 #: plugins/presents.js:66:15
 msgid "Quest"

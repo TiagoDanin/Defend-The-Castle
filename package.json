@@ -16,7 +16,9 @@
   ],
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Nice Test :)\""
+    "test": "echo \"Nice Test :)\"",
+    "i18n": "bash scripts/i18n.sh",
+    "notification": "env-cmd .env node scripts/notification.js"
   },
   "private": true,
   "repository": "https://github.com/TiagoDanin/Defend-The-Castle.git",

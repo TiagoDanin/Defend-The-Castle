@@ -11,7 +11,7 @@ module.exports = {
 			data.xp += 150
 			data.shield += data.shield * 2
 			ctx.db.log.push([
-				'🛡 Super Shield used!'
+				ctx._`🛡 Super Shield used!`
 			])
 			return data
 		}

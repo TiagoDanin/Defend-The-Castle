@@ -14,9 +14,9 @@ module.exports = {
 		},
 		doDefend: (data, ctx) => {
 			ctx.db.log.push([
-				'🏦 Found money!',
-				'🏦 MONEEEEY!',
-				'🏦 💰'
+				ctx._`🏦 Found money!`,
+				ctx._`🏦 MONEEEEY!`,
+				ctx._`🏦 💰`
 			])
 			let moreMoney = Math.floor(
 				(60 * data.qt_bank) / 4.2

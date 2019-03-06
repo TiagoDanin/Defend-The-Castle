@@ -61,6 +61,7 @@ const dlogReply = debug("bot:reply")
 const dlogInline = debug("bot:inline")
 const dlogCallback = debug("bot:callback")
 const dlogError = debug("bot:error")
+const dlogLang = debug("bot:lang")
 
 dlogBot("Start bot")
 let startLog = `
@@ -213,7 +214,7 @@ bot.use((ctx, next) => {
 	var i18n = new Translation(langCode)
 	ctx._ = i18n._.bind(i18n)
 	ctx.langCode = langCode
-	console.log('>>>>', ctx.langCode)
+	dlogLang(ctx.langCode)
 	return next(ctx)
 })
 

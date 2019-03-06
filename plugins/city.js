@@ -83,8 +83,8 @@ const showCastle = (ctx) => {
 
 const infoText = (ctx) => {
 	var item = ctx.items[ctx.db.city[ctx.match[3].toString()].toString()]
-	var info = `<b>${item.icon} ${item.name}</b>\n`
-	info += `${item.desc}\n`
+	var info = `<b>${item.icon} ${ctx._(item.name)}</b>\n`
+	info += `${ctx._(item.desc)}\n`
 	if (item.upgrade) {
 		const row = `qt_${item.upgrade[1]}`
 		const value = Number(ctx.db[row]) + 1

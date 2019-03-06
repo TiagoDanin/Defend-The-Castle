@@ -13,7 +13,7 @@ module.exports = {
 			data.shield += data.shield
 			data.life += data.life
 			ctx.db.log.push([
-				'👽 Clone used!'
+				ctx._`👽 Clone used!`
 			])
 			return data
 		}
