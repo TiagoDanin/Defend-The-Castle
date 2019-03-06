@@ -75,7 +75,7 @@ const showCastle = (ctx) => {
 	return [
 		...keys,
 		[{
-			text: `${ctx.db.castle} City`,
+			text: ctx._`${ctx.db.castle} City`,
 			callback_data: 'city'
 		}]
 	]
@@ -83,8 +83,10 @@ const showCastle = (ctx) => {
 
 const infoText = (ctx) => {
 	var item = ctx.items[ctx.db.city[ctx.match[3].toString()].toString()]
-	var info = `<b>${item.icon} ${ctx._(item.name)}</b>\n`
-	info += `${ctx._(item.desc)}\n`
+	const name = ctx._(item.name)
+	const desc = ctx._(item.desc)
+	var info = `<b>${item.icon} ${name}</b>\n`
+	info += `${desc}\n`
 	if (item.upgrade) {
 		const row = `qt_${item.upgrade[1]}`
 		const value = Number(ctx.db[row]) + 1

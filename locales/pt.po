@@ -237,21 +237,23 @@ msgstr "✅ Melhorar (+1)"
 msgid "✅ Upgrade (+15)"
 msgstr "✅ Melhorar (+15)"
 
-#: plugins/city.js:58:14
-msgid ""
-"${0} City`1}</b>\n"
-"`2}\n"
-msgstr ""
+#: plugins/menu.js:56:15
+msgid "${0} City"
+msgstr "${0} Cidade"
 
-#: plugins/city.js:98:15
+#: plugins/city.js:88:12
+msgid "<b>${0} ${1}</b>\n"
+msgstr "<b>${0} ${1}</b>\n"
+
+#: plugins/city.js:100:15
 msgid "<b>⚡️ Level:</b> ${0}\n"
 msgstr "<b>⚡️ Nível:</b> ${0}\n"
 
-#: plugins/city.js:99:15
+#: plugins/city.js:101:15
 msgid "<b>💶 Upgrade:</b> ${0} Coin\n"
 msgstr "<b>💶 Melhorar:</b> ${0} Moedas"
 
-#: plugins/city.js:105:17
+#: plugins/city.js:107:17
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}\n"
@@ -271,11 +273,11 @@ msgstr ""
 "${7}\n"
 "➖➖➖➖➖➖\n"
 
-#: plugins/city.js:117:15
+#: plugins/city.js:119:15
 msgid "<b>Select your new castle:</b>"
 msgstr "<b>Selecione o seu novo castelo:</b>"
 
-#: plugins/city.js:122:14
+#: plugins/city.js:124:14
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}\n"
@@ -299,7 +301,7 @@ msgstr ""
 "<b>Novo castelo!</b>\n"
 "\t\t"
 
-#: plugins/city.js:174:15
+#: plugins/city.js:176:15
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}\n"
@@ -323,11 +325,11 @@ msgstr ""
 "${8}\n"
 "Melhorado!"
 
-#: plugins/city.js:185:26
+#: plugins/city.js:187:26
 msgid "Upgraded!"
 msgstr "Melhorado!"
 
-#: plugins/city.js:187:26
+#: plugins/city.js:189:26
 msgid "❌ Your money ${0} | Price ${1}"
 msgstr "❌ Seu dinheiro ${0} | Preço ${1}"
 
@@ -339,7 +341,7 @@ msgstr ""
 "\n"
 "Falha!"
 
-#: plugins/city.js:198:15
+#: plugins/city.js:200:15
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}\n"
@@ -361,7 +363,7 @@ msgstr ""
 "${7}\n"
 "➖➖➖➖➖➖\n"
 
-#: plugins/city.js:209:16
+#: plugins/city.js:211:16
 msgid "Hack?"
 msgstr "Hack?"
 
@@ -514,10 +516,14 @@ msgid ""
 "start=23febID28328844\">Open (Click Here)</a>\n"
 "\t\t"
 msgstr ""
+"\n"
+"📦 #Missão <a href=\"https://telegram.me/DefendTheCastleBot?"
+"start=23febID28328844\">Abrir (Clique Aqui)</a>\n"
+"\t\t"
 
 #: plugins/fight.js:16:31
 msgid ":) Start a new game!"
-msgstr ""
+msgstr ":) Comece um novo jogo!"
 
 #: plugins/fight.js:58:20
 msgid ""
@@ -528,10 +534,16 @@ msgid ""
 "<b>${3} City:</b> ${4}\n"
 "<b>🏅 Level:</b> ${5}"
 msgstr ""
+"\n"
+"<b>${0} Cidade:</b> ${1}\n"
+"<b>🏅 Nível:</b> ${2}\n"
+"➖➖➖DUAL➖➖➖\n"
+"<b>${3} cidade:</b> ${4}\n"
+"<b>🏅 Nível:</b> ${5}"
 
 #: plugins/fight.js:90:23
 msgid "Draw"
-msgstr ""
+msgstr "Empate"
 
 #: plugins/fight.js:157:17
 msgid ""
@@ -545,20 +557,29 @@ msgid ""
 "🏆 WIN: ${14}\n"
 "\t"
 msgstr ""
+"\n"
+"➖➖➖RESULTADO➖➖➖\n"
+"${0} ⚔️ ${1}\n"
+"${2} 🛡 ${3}\n"
+"${4} ❤️ ${5}\n"
+"${6} (+${7}) 🎖 ${8} (+${9})\n"
+"${10} (+${11}) 💰 ${12} (+${13})\n"
+"🏆 GANHOU: ${14}\n"
+"\t"
 
 #: plugins/fight.js:189:17
 msgid "🏆 ${0}"
 msgstr "🏆 ${0}"
 
-#: plugins/fight.js:555:14
+#: plugins/fight.js:556:14
 msgid "⚔️ Next"
 msgstr "⚔️ Próximo"
 
-#: plugins/fight.js:643:34
+#: plugins/fight.js:644:34
 msgid "You have no troops, wait two minutos!"
-msgstr ""
+msgstr "Você não tem tropas, espere dois minutos!"
 
-#: plugins/fight.js:235:23
+#: plugins/fight.js:236:23
 msgid ""
 "<b>${0} City:</b> ${1}\n"
 "<b>🏅 Level:</b> ${2}\n"
@@ -570,8 +591,17 @@ msgid ""
 "<b>🎖 Experience:</b> ${9}\n"
 "<b>💰 Money:</b> ${10}"
 msgstr ""
+"<b>${0} Cidade:</b> ${1}\n"
+"<b>🏅 Nível:</b> ${2}\n"
+"<b>🎖 Experiência:</b> ${3}\n"
+"<b>‍👮‍ Tropas:</b> ${4}/${5}\n"
+"➖➖➖VS➖➖➖\n"
+"<b>${6} Cidade:</b> ${7}\n"
+"<b>🏅 Nível:</b> ${8}\n"
+"<b>🎖 Experiência:</b> ${9}\n"
+"<b>💰 Dinheiro:</b> ${10}"
 
-#: plugins/fight.js:298:20
+#: plugins/fight.js:299:20
 msgid ""
 "\n"
 "➖➖➖➖➖➖\n"
@@ -579,8 +609,13 @@ msgid ""
 "${2} 🛡 ${3}\n"
 "${4} ❤️ ${5}"
 msgstr ""
+"\n"
+"➖➖➖➖➖➖\n"
+"${0} ⚔️ ${1}\n"
+"${2} 🛡 ${3}\n"
+"${4} ❤️ ${5}"
 
-#: plugins/fight.js:346:20
+#: plugins/fight.js:347:20
 msgid ""
 "\n"
 "${0} LOST!\n"
@@ -588,39 +623,55 @@ msgid ""
 "➖➖➖➖➖➖\n"
 "${1}"
 msgstr ""
+"\n"
+"${0} PERDEU!\n"
+"<b>‼️ CASTELO SEM DANOS ‼️</b>\n"
+"➖➖➖➖➖➖\n"
+"${1}"
 
-#: plugins/fight.js:362:20
+#: plugins/fight.js:363:20
 msgid ""
 "\n"
 "${0} WIN!\n"
 "➖➖➖➖➖➖\n"
 "${1}"
 msgstr ""
+"\n"
+"${0} GANHOU!\n"
+"➖➖➖➖➖➖\n"
+"${1}"
 
-#: plugins/fight.js:375:20
+#: plugins/fight.js:376:20
 msgid ""
 "\n"
 "${0} LOST!\n"
 "➖➖➖➖➖➖\n"
 "${1}"
 msgstr ""
+"\n"
+"${0} PERDEU!\n"
+"➖➖➖➖➖➖\n"
+"${1}"
 
-#: plugins/fight.js:417:48
+#: plugins/fight.js:418:48
 msgid ""
 "\n"
 "<b>Reply attack of ${0} (${1}):</b>\n"
 "${2}${3}"
 msgstr ""
+"\n"
+"<b>Novo ataque de ${0} (${1}):</b>\n"
+"${2}${3}"
 
-#: plugins/fight.js:558:14
+#: plugins/fight.js:559:14
 msgid "🔍 ${0}"
 msgstr "🔍 ${0}"
 
-#: plugins/fight.js:565:14
+#: plugins/fight.js:566:14
 msgid "⚡️ PowerUp"
 msgstr "⚡️ Poderes"
 
-#: plugins/fight.js:670:15
+#: plugins/fight.js:671:15
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}\n"
@@ -644,7 +695,7 @@ msgstr ""
 "<b>🎖 Experiência:</b> ${9}\n"
 "<b>💰 Dinheiro:</b> ${10}"
 
-#: plugins/fight.js:596:14
+#: plugins/fight.js:597:14
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}\n"
@@ -662,7 +713,7 @@ msgstr ""
 "➖➖➖DUAL➖➖➖\n"
 "Selecione:"
 
-#: plugins/fight.js:608:14
+#: plugins/fight.js:609:14
 msgid "<b>Select PowerUp:</b>"
 msgstr "<b>Selecione um Poder:</b>"
 
@@ -670,7 +721,7 @@ msgstr "<b>Selecione um Poder:</b>"
 msgid "💳 Store VIP"
 msgstr "💳 Loja VIP"
 
-#: plugins/fight.js:654:16
+#: plugins/fight.js:655:16
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}\n"
@@ -703,6 +754,14 @@ msgid ""
 "+ 1 Super Shield\n"
 "\t\t"
 msgstr ""
+"\n"
+"<b>Entrou ${0} via seu link de convite.</b>\n"
+"+ 1200 XP\n"
+"+ 5500 Dinheiro\n"
+"+ 2 Diamantes\n"
+"+ 1 Clone\n"
+"+ 1 Super Escudo\n"
+"\t\t"
 
 #: plugins/menu.js:7:17
 msgid "🥇 You Rank is: ${0}\n"
@@ -739,10 +798,6 @@ msgstr "⚔️ Normal"
 #: plugins/menu.js:53:15
 msgid "⚔️ Dual (Beta)"
 msgstr "⚔️ Dual (Beta)"
-
-#: plugins/menu.js:56:15
-msgid "${0} City"
-msgstr "${0} Cidade"
 
 #: plugins/menu.js:57:15
 msgid "🌇 Clan (Beta)"
