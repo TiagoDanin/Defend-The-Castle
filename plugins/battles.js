@@ -5,7 +5,7 @@ const base = async (ctx) => {
 	const sortBattles = Object.keys(ctx.cache).sort((a, b) => {
 		return ctx.cache[b].battles - ctx.cache[a].battles
 	}).map(e => ctx.cache[e])
-	const text = `
+	const text = ctx._`
 <b>My Battles</b>
 <b>Total:</b> ${ctx.cache[ctx.from.id].battles}
 <b>Wins:</b> ${ctx.cache[ctx.from.id].win}
@@ -29,11 +29,11 @@ const base = async (ctx) => {
 		reply_markup: {
 			inline_keyboard: [
 				[
-					{text: '🏅 Level' , callback_data: 'menu:rank:level'},
-					{text: '💰 Money' , callback_data: 'menu:rank:money'},
-					{text: '⚔️ Battles' , callback_data: 'battles'}
+					{text: ctx._`🏅 Level`, callback_data: 'menu:rank:level'},
+					{text: ctx._`💰 Money`, callback_data: 'menu:rank:money'},
+					{text: ctx._`⚔️ Battles`, callback_data: 'battles'}
 				],
-				[{text: '📜 Menu' , callback_data: 'menu:main'}]
+				[{text: ctx._`📜 Menu`, callback_data: 'menu:main'}]
 			]
 		}
 	})
