@@ -53,7 +53,7 @@ msgstr "💰 Dinheiro"
 msgid "⚔️ Battles"
 msgstr "⚔️ Batalhas"
 
-#: plugins/menu.js:97:16
+#: plugins/presents.js:108:15
 msgid "📜 Menu"
 msgstr "📜 Menu"
 
@@ -447,3 +447,67 @@ msgstr "📊 Estatísticas"
 #: plugins/menu.js:100:16
 msgid "❓ Tutorial"
 msgstr "❓ Tutorial"
+
+#: plugins/presents.js:2:24
+msgid ""
+"\n"
+"\t\t📦 #Quest <a href=\"https://telegram.me/DefendTheCastleBot?"
+"start=03marID26538459\">Open (Click Here)</a>\n"
+"\t"
+msgstr ""
+"\n"
+"\t\t📦 #Missão <a href=\"https://telegram.me/DefendTheCastleBot?"
+"start=03marID26538459\">Abrir (Clique aqui)</a>\n"
+"\t"
+
+#: plugins/presents.js:58:15
+msgid "money"
+msgstr "dinheiro"
+
+#: plugins/presents.js:59:12
+msgid "xp"
+msgstr "xp"
+
+#: plugins/presents.js:61:16
+msgid "troops"
+msgstr "tropas"
+
+#: plugins/presents.js:62:17
+msgid "Diamond"
+msgstr "Diamante"
+
+#: plugins/presents.js:64:21
+msgid "SuperShield"
+msgstr "SuperEscudo"
+
+#: plugins/presents.js:65:15
+msgid "Clone"
+msgstr "Clone"
+
+#: plugins/presents.js:66:15
+msgid "Quest"
+msgstr "Missão"
+
+#: plugins/presents.js:69:19
+msgid ""
+"\n"
+"<b>🎁 Present</b>\n"
+"${0}"
+msgstr ""
+"\n"
+"<b>🎁 Presente</b>\n"
+"${0}"
+
+#: plugins/presents.js:89:27
+msgid ""
+"\n"
+"\tPresent(${0}): +${1}\n"
+"\t\t\t\t"
+msgstr ""
+"\n"
+"\tPresente(${0}): +${1}\n"
+"\t\t\t\t"
+
+#: plugins/presents.js:93:27
+msgid "Present: ${0}!"
+msgstr "Presente: ${0}!"

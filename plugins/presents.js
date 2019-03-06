@@ -1,5 +1,5 @@
 const Quest = (data, numb, ctx) => {
-	ctx.replyWithHTML(`
+	ctx.replyWithHTML(ctx._`
 		📦 #Quest <a href="https://telegram.me/DefendTheCastleBot?start=03marID26538459">Open (Click Here)</a>
 	`)
 	return data
@@ -41,20 +41,32 @@ const troops = (data, numb) => {
 	return data
 }
 
-const presents = [
-	money,
-	xp,
-	troops,
-	troops,
-	Diamond,
-	SuperShield,
-	SuperShield,
-	Clone,
-	Quest
-]
-
 const base = async (ctx) => {
-	const text = `
+	const presents = [
+		money,
+		xp,
+		troops,
+		troops,
+		Diamond,
+		SuperShield,
+		SuperShield,
+		Clone,
+		Quest
+	]
+
+	const i18nPresents = {
+		money: ctx._('money'),
+		xp: ctx._('xp'),
+		troops: ctx._('troops'),
+		troops: ctx._('troops'),
+		Diamond: ctx._('Diamond'),
+		SuperShield: ctx._('SuperShield'),
+		SuperShield: ctx._('SuperShield'),
+		Clone: ctx._('Clone'),
+		Quest: ctx._('Quest')
+	}
+
+	const text = ctx._`
 <b>🎁 Present</b>
 ${ctx.tips(ctx)}`
 	const date = new Date()
@@ -74,11 +86,11 @@ ${ctx.tips(ctx)}`
 			)
 			await ctx.database.saveUser(ctx)
 			if (ctx.db[present.name]) {
-				ctx.answerCbQuery(`
-	Present(${present.name}): +${ctx.db[present.name] - ctx.db.old[present.name]}
+				ctx.answerCbQuery(ctx._`
+	Present(${i18nPresents(present.name)}): +${ctx.db[present.name] - ctx.db.old[present.name]}
 				`, true)
 			} else {
-				ctx.answerCbQuery(`Present: ${present.name}!`, true)
+				ctx.answerCbQuery(ctx._`Present: ${i18nPresents(present.name)}!`, true)
 			}
 
 		} else {
@@ -93,7 +105,7 @@ ${ctx.tips(ctx)}`
 	}
 	const keyboard = [
 		...boxs,
-		[{text: '📜 Menu' , callback_data: 'menu:main' }]
+		[{text: ctx._`📜 Menu`, callback_data: 'menu:main' }]
 	]
 
 	return ctx.editMessageText(text + ctx.fixKeyboard, {
