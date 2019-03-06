@@ -1,7 +1,7 @@
 const quests = async (ctx) => {
 	ctx.session.count = ctx.session.count+1 || 1
 	if (ctx.session.count == 11 || ctx.session.count == 22) {
-		return ctx.replyWithHTML(`
+		return ctx.replyWithHTML(ctx._`
 📦 #Quest <a href="https://telegram.me/DefendTheCastleBot?start=23febID28328844">Open (Click Here)</a>
 		`)
 	}
@@ -13,7 +13,7 @@ const forest = () => {
 }
 
 const hack = (ctx) => {
-	return ctx.answerCbQuery(':) Start a new game!', true)
+	return ctx.answerCbQuery(ctx._`:) Start a new game!`, true)
 }
 
 const doAttack = (p1, p2) => {
@@ -22,7 +22,10 @@ const doAttack = (p1, p2) => {
 
 const dualAttack = async (ctx, play1) => {
 	play1 = await ctx.database.getUser(play1.id)
+	play1._ = ctx.loadLang(play1.lang)
+
 	let play2 = ctx.db
+	play2._ = ctx.loadLang(play2.lang)
 
 	if (!ctx.cache[play1.id]) {
 		ctx.cache[play1.id] = {
@@ -45,7 +48,14 @@ const dualAttack = async (ctx, play1) => {
 		}
 	}
 
-	let text = `
+	let text1 = play1._`
+<b>${ctx.castles[Number(play1.city[12])]} City:</b> ${play1.name}
+<b>🏅 Level:</b> ${play1.level}
+➖➖➖DUAL➖➖➖
+<b>${ctx.castles[Number(play2.city[12])]} City:</b> ${play2.name}
+<b>🏅 Level:</b> ${play2.level}`
+
+	let text2 = play2._`
 <b>${ctx.castles[Number(play1.city[12])]} City:</b> ${play1.name}
 <b>🏅 Level:</b> ${play1.level}
 ➖➖➖DUAL➖➖➖
@@ -76,7 +86,8 @@ const dualAttack = async (ctx, play1) => {
 		}
 	}
 
-	let winName = 'Draw'
+	let winName1 = play1._`Draw`
+	let winName2 = play2._`Draw`
 
 	play1.life = doAttack(play1, play2)
 	play2.life = doAttack(play2, play1)
@@ -91,7 +102,8 @@ const dualAttack = async (ctx, play1) => {
 	ctx.cache[play1.id].battles++
 	ctx.cache[play2.id].battles++
 	if (play1.life > play2.life) {
-		winName = play1.name
+		winName1 = play1.name
+		winName2 = play1.name
 		play1.winXp = winXp
 		play1.winMoney = winMoney
 		play2.winXp = winXp / 3.3
@@ -99,7 +111,8 @@ const dualAttack = async (ctx, play1) => {
 		ctx.cache[play1.id].win++
 		ctx.cache[play2.id].lost++
 	} else if (play1.life < play2.life) {
-		winName = play2.name
+		winName1 = play2.name
+		winName2 = play2.name
 		play1.winXp = winXp / 3.3
 		play1.winMoney = winMoney / 3.3
 		play2.winXp = winXp
@@ -131,14 +144,24 @@ const dualAttack = async (ctx, play1) => {
 	play2.money = Math.floor(play2.money)
 	play2.winMoney = Math.floor(play2.winMoney)
 
-	text += `
+	text1 += play1._`
 ➖➖➖RESULT➖➖➖
 ${ctx.nl(play1.attack)} ⚔️ ${ctx.nl(play2.attack)}
 ${ctx.nl(play1.shield)} 🛡 ${ctx.nl(play2.shield)}
 ${ctx.nl(play1.life)} ❤️ ${ctx.nl(play2.life)}
 ${ctx.nl(play1.xp)} (+${play1.winXp}) 🎖 ${ctx.nl(play2.xp)} (+${play2.winXp})
 ${ctx.nl(play1.money)} (+${play1.winMoney}) 💰 ${ctx.nl(play2.money)} (+${play2.winMoney})
-🏆 WIN: ${winName}
+🏆 WIN: ${winName1}
+	`
+
+	text2 += play2._`
+➖➖➖RESULT➖➖➖
+${ctx.nl(play1.attack)} ⚔️ ${ctx.nl(play2.attack)}
+${ctx.nl(play1.shield)} 🛡 ${ctx.nl(play2.shield)}
+${ctx.nl(play1.life)} ❤️ ${ctx.nl(play2.life)}
+${ctx.nl(play1.xp)} (+${play1.winXp}) 🎖 ${ctx.nl(play2.xp)} (+${play2.winXp})
+${ctx.nl(play1.money)} (+${play1.winMoney}) 💰 ${ctx.nl(play2.money)} (+${play2.winMoney})
+🏆 WIN: ${winName2}
 	`
 
 	play1.xp = Math.floor(play1.xp + play1.winXp)
@@ -149,12 +172,22 @@ ${ctx.nl(play1.money)} (+${play1.winMoney}) 💰 ${ctx.nl(play2.money)} (+${play
 
 	ctx.session.dual = false
 
-	const keyboard = [
+	const keyboard1 = [
 		...play1Data.map,
 		[
-			{text: '📜 Menu', callback_data: 'menu'},
-			{text: `🏆 ${winName}`, callback_data: 'fight:dual'},
-			{text: '⚔️ Next' , callback_data: 'fight:dual'}
+			{text: play1._`📜 Menu`, callback_data: 'menu'},
+			{text: play1._`🏆 ${winName1}`, callback_data: 'fight:dual'},
+			{text: play1._`⚔️ Next` , callback_data: 'fight:dual'}
+		],
+		...play2Data.map
+	]
+
+	const keyboard2 = [
+		...play1Data.map,
+		[
+			{text: play2._`📜 Menu`, callback_data: 'menu'},
+			{text: play2._`🏆 ${winName2}`, callback_data: 'fight:dual'},
+			{text: play2._`⚔️ Next` , callback_data: 'fight:dual'}
 		],
 		...play2Data.map
 	]
@@ -167,29 +200,29 @@ ${ctx.nl(play1.money)} (+${play1.winMoney}) 💰 ${ctx.nl(play2.money)} (+${play
 
 	await ctx.database.saveAtackDual(play1, play2)
 
-	ctx.editMessageText(`${text}${ctx.fixKeyboard}`, {
+	ctx.telegram.sendMessage(play1.id, `${text1}${ctx.fixKeyboard}`, {
 		parse_mode: 'HTML',
 		reply_markup: {
-			inline_keyboard: keyboard
+			inline_keyboard: keyboard1
 		}
 	})
 
-	ctx.telegram.sendMessage(play1.id, `${text}${ctx.fixKeyboard}`, {
+	ctx.editMessageText(`${text2}${ctx.fixKeyboard}`, {
 		parse_mode: 'HTML',
 		reply_markup: {
-			inline_keyboard: keyboard
+			inline_keyboard: keyboard2
 		}
 	})
 }
 
 const attack = async (ctx, opponent) => {
 	if (ctx.db.troops <= 0) {
-		return ctx.answerCbQuery('You have no troops, wait two minutos!', true)
+		return ctx.answerCbQuery(ctx._`You have no troops, wait two minutos!`, true)
 	}
 
 	const playId = ctx.match[4]
 	let play = await ctx.database.getUser(playId)
-	let text = `<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+	let text = ctx._`<b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
@@ -288,7 +321,7 @@ ${ctx.nl(ctx.db.life)} ❤️ ${ctx.nl(play.life)}
 	ctx.cache[ctx.from.id].battles++
 	ctx.cache[play.id].battles++
 	if (data.items.length <= 6) {
-		text = `
+		text = ctx._`
 ${ctx.db.name} LOST!
 <b>‼️ CASTLE WITHOUT DAMAGE ‼️</b>
 ➖➖➖➖➖➖
@@ -300,7 +333,7 @@ ${text}`
 	} else if (ctx.db.life > play.life) {
 		ctx.db.xp += xp
 		play.xp += xp / 10
-		text = `
+		text = ctx._`
 ${ctx.db.name} WIN!
 ➖➖➖➖➖➖
 ${text}`
@@ -309,7 +342,7 @@ ${text}`
 	} else {
 		ctx.db.xp += xp / 9
 		play.xp += xp / 3.3
-		text = `
+		text = ctx._`
 ${ctx.db.name} LOST!
 ➖➖➖➖➖➖
 ${text}`
@@ -349,7 +382,7 @@ ${text}`
 		}
 	})
 	if (res.reply && res.run) {
-		await ctx.telegram.sendMessage(play.id, `
+		await ctx.telegram.sendMessage(play.id, ctx._`
 <b>Reply attack of ${ctx.db.name} (${ctx.db.id}):</b>
 ${text}${ctx.fixKeyboard}`, {
 			parse_mode: 'HTML',
@@ -487,17 +520,17 @@ const base = async(ctx) => {
 
 	let menu = [
 		[{
-			text: '⚔️ Next',
+			text: ctx._`⚔️ Next`,
 			callback_data: 'fight'
 		}, {
-			text: `🔍 ${fightTypes[ctx.session.ftype].name}`,
+			text: ctx._`🔍 ${fightTypes[ctx.session.ftype].name}`,
 			callback_data: 'fight:type'
 		}],
 		[{
-			text: '📜 Menu',
+			text: ctx._`📜 Menu`,
 			callback_data: 'menu'
 		}, {
-			text: '⚡️ PowerUp',
+			text: ctx._`⚡️ PowerUp`,
 			callback_data: 'fight:powerup'
 		}]
 
@@ -513,7 +546,7 @@ const base = async(ctx) => {
 		opponent = await ctx.database.getUser(ctx.db.opponent)
 	}
 
-	let text = `
+	let text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
@@ -528,7 +561,7 @@ const base = async(ctx) => {
 	if (ctx.match[2] == 'done') {
 		return hack(ctx)
 	} else if (ctx.match[2] == 'dual') {
-		text = `
+		text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
@@ -540,7 +573,7 @@ Select:`
 			[{text: '📜 Menu', callback_data: 'menu'}]
 		]
 	} else if (ctx.match[2] == 'powerup' && !ctx.match[3]) {
-		text = `<b>Select PowerUp:</b>`
+		text = ctx._`<b>Select PowerUp:</b>`
 		opponent.id = ctx.db.opponent
 		let check = ctx.db.inventory.filter((id) => {
 			return ctx.items[id].battle
@@ -560,7 +593,7 @@ Select:`
 
 		if (check.length <= 0) {
 			map.push([{
-				text: '💳 Store VIP',
+				text: ctx._`💳 Store VIP`,
 				callback_data: `vip`
 			}])
 		} else {
@@ -575,7 +608,7 @@ Select:`
 	} else if (ctx.match[2] == 'ack' && ctx.match[3] && ctx.match[4]) {
 		if (ctx.session.dual) {
 			if (ctx.db.troops-1 < 0) {
-				return ctx.answerCbQuery('You have no troops, wait two minutos!', true)
+				return ctx.answerCbQuery(ctx._`You have no troops, wait two minutos!`, true)
 			}
 			let opponentDual = await ctx.database.getDual()
 			opponentDual = opponentDual.filter((e) => e.id != ctx.from.id)
@@ -586,7 +619,7 @@ Select:`
 				return await dualAttack(ctx, opponentDual)
 			} else {
 				await ctx.database.updateUser(ctx.from.id, 'dual', Number(ctx.match[3]))
-				text = `
+				text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
@@ -602,7 +635,7 @@ Waiting for players!`
 			if (ctx.db.troops < 0) {
 				ctx.db.troops = 0
 			}
-			text = `
+			text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}

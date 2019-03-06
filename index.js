@@ -213,8 +213,8 @@ bot.use((ctx, next) => {
 	var langCode = checkLanguage(ctx)
 	var i18n = new Translation(langCode)
 	ctx._ = i18n._.bind(i18n)
-	ctx.langCode = langCode
-	dlogLang(ctx.langCode)
+	ctx.lang = langCode
+	dlogLang(ctx.lang)
 	return next(ctx)
 })
 
@@ -235,6 +235,10 @@ bot.context.database = database
 bot.context.castles = config.castles
 bot.context.items = items
 bot.context.fixKeyboard = Array(90).join('\u0020') + '\u200B'
+bot.context.loadLang = (langCode) => {
+	let i18n = new Translation(langCode)
+	return i18n._.bind(i18n)
+}
 bot.context.tips = (ctx) => {
 	return '💡 ' + tips[Math.floor((Math.random() * tips.length))](ctx)
 }
@@ -253,6 +257,7 @@ bot.context.nl = (number) => {
 bot.context.userInfo = async (ctx, onlyUser) => {
 	if (typeof ctx != 'object') {
 		ctx = {
+			lang: 'en',
 			from: ctx //ctx == id
 		}
 	}
@@ -267,8 +272,11 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		}
 		return false
 	}
-	var data = {
+
+	let data = {
+		lang: 'en',
 		opponent: 0,
+		dual: 50,
 		maxLevel: levels.length,
 		levelPoc: 0,
 		maxTroops: 7,
@@ -284,6 +292,8 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		...config.class[db.type],
 		castle: config.castles[db.city[12]] || '🏰'
 	}
+
+	data.lang = ctx.lang
 
 	const keysItems = Object.keys(items)
 

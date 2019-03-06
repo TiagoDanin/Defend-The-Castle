@@ -20,7 +20,8 @@ msgid ""
 "Great damage! Perfect trap for enemy troop. But the shields can suffer "
 "damage."
 msgstr ""
-"Grande dano! Armadilha perfeita para tropas inimigas. Mas os escudos podem sofrer danos."
+"Grande dano! Armadilha perfeita para tropas inimigas. Mas os escudos podem "
+"sofrer danos."
 
 #: itemsAllText.js:8:19
 msgid "Zone War"
@@ -236,9 +237,11 @@ msgstr "✅ Melhorar (+1)"
 msgid "✅ Upgrade (+15)"
 msgstr "✅ Melhorar (+15)"
 
-#: plugins/menu.js:56:15
-msgid "${0} City"
-msgstr "${0} Cidade"
+#: plugins/city.js:58:14
+msgid ""
+"${0} City`1}</b>\n"
+"`2}\n"
+msgstr ""
 
 #: plugins/city.js:98:15
 msgid "<b>⚡️ Level:</b> ${0}\n"
@@ -504,6 +507,178 @@ msgstr "${0} Global Notificação"
 msgid "${0} Reply Battle"
 msgstr "${0} Receber Notificação de Ataque"
 
+#: plugins/fight.js:4:32
+msgid ""
+"\n"
+"📦 #Quest <a href=\"https://telegram.me/DefendTheCastleBot?"
+"start=23febID28328844\">Open (Click Here)</a>\n"
+"\t\t"
+msgstr ""
+
+#: plugins/fight.js:16:31
+msgid ":) Start a new game!"
+msgstr ""
+
+#: plugins/fight.js:58:20
+msgid ""
+"\n"
+"<b>${0} City:</b> ${1}\n"
+"<b>🏅 Level:</b> ${2}\n"
+"➖➖➖DUAL➖➖➖\n"
+"<b>${3} City:</b> ${4}\n"
+"<b>🏅 Level:</b> ${5}"
+msgstr ""
+
+#: plugins/fight.js:90:23
+msgid "Draw"
+msgstr ""
+
+#: plugins/fight.js:157:17
+msgid ""
+"\n"
+"➖➖➖RESULT➖➖➖\n"
+"${0} ⚔️ ${1}\n"
+"${2} 🛡 ${3}\n"
+"${4} ❤️ ${5}\n"
+"${6} (+${7}) 🎖 ${8} (+${9})\n"
+"${10} (+${11}) 💰 ${12} (+${13})\n"
+"🏆 WIN: ${14}\n"
+"\t"
+msgstr ""
+
+#: plugins/fight.js:189:17
+msgid "🏆 ${0}"
+msgstr "🏆 ${0}"
+
+#: plugins/fight.js:523:14
+msgid "⚔️ Next"
+msgstr "⚔️ Próximo"
+
+#: plugins/fight.js:611:34
+msgid "You have no troops, wait two minutos!"
+msgstr ""
+
+#: plugins/fight.js:225:17
+msgid ""
+"<b>${0} City:</b> ${1}\n"
+"<b>🏅 Level:</b> ${2}\n"
+"<b>🎖 Experience:</b> ${3}\n"
+"<b>‍👮‍ Troops:</b> ${4}/${5}\n"
+"➖➖➖VS➖➖➖\n"
+"<b>${6} City:</b> ${7}\n"
+"<b>🏅 Level:</b> ${8}\n"
+"<b>🎖 Experience:</b> ${9}\n"
+"<b>💰 Money:</b> ${10}"
+msgstr ""
+
+#: plugins/fight.js:324:14
+msgid ""
+"\n"
+"${0} LOST!\n"
+"<b>‼️ CASTLE WITHOUT DAMAGE ‼️</b>\n"
+"➖➖➖➖➖➖\n"
+"${1}"
+msgstr ""
+
+#: plugins/fight.js:336:14
+msgid ""
+"\n"
+"${0} WIN!\n"
+"➖➖➖➖➖➖\n"
+"${1}"
+msgstr ""
+
+#: plugins/fight.js:345:14
+msgid ""
+"\n"
+"${0} LOST!\n"
+"➖➖➖➖➖➖\n"
+"${1}"
+msgstr ""
+
+#: plugins/fight.js:385:47
+msgid ""
+"\n"
+"<b>Reply attack of ${0} (${1}):</b>\n"
+"${2}${3}"
+msgstr ""
+
+#: plugins/fight.js:526:14
+msgid "🔍 ${0}"
+msgstr "🔍 ${0}"
+
+#: plugins/fight.js:533:14
+msgid "⚡️ PowerUp"
+msgstr "⚡️ Poderes"
+
+#: plugins/fight.js:638:15
+msgid ""
+"\n"
+"<b>${0} City:</b> ${1}\n"
+"<b>🏅 Level:</b> ${2}\n"
+"<b>🎖 Experience:</b> ${3}\n"
+"<b>‍👮‍ Troops:</b> ${4}/${5}\n"
+"➖➖➖VS➖➖➖\n"
+"<b>${6} City:</b> ${7}\n"
+"<b>🏅 Level:</b> ${8}\n"
+"<b>🎖 Experience:</b> ${9}\n"
+"<b>💰 Money:</b> ${10}"
+msgstr ""
+"\n"
+"<b>${0} Cidade:</b> ${1}\n"
+"<b>🏅 Nível:</b> ${2}\n"
+"<b>🎖 Experiência:</b> ${3}\n"
+"<b>‍👮‍ Tropas:</b> ${4}/${5}\n"
+"➖➖➖VS➖➖➖\n"
+"<b>${6} Cidade:</b> ${7}\n"
+"<b>🏅 Nível:</b> ${8}\n"
+"<b>🎖 Experiência:</b> ${9}\n"
+"<b>💰 Dinheiro:</b> ${10}"
+
+#: plugins/fight.js:564:14
+msgid ""
+"\n"
+"<b>${0} City:</b> ${1}\n"
+"<b>🏅 Level:</b> ${2}\n"
+"<b>🎖 Experience:</b> ${3}\n"
+"<b>‍👮‍ Troops:</b> ${4}/${5}\n"
+"➖➖➖DUAL➖➖➖\n"
+"Select:"
+msgstr ""
+"\n"
+"<b>${0} Cidade:</b> ${1}\n"
+"<b>🏅 Nível:</b> ${2}\n"
+"<b>🎖 Experiência:</b> ${3}\n"
+"<b>‍👮‍ Tropas:</b> ${4}/${5}\n"
+"➖➖➖DUAL➖➖➖\n"
+"Selecione:"
+
+#: plugins/fight.js:576:14
+msgid "<b>Select PowerUp:</b>"
+msgstr "<b>Selecione um Poder:</b>"
+
+#: plugins/menu.js:60:15
+msgid "💳 Store VIP"
+msgstr "💳 Loja VIP"
+
+#: plugins/fight.js:622:16
+msgid ""
+"\n"
+"<b>${0} City:</b> ${1}\n"
+"<b>🏅 Level:</b> ${2}\n"
+"<b>🎖 Experience:</b> ${3}\n"
+"<b>‍👮‍ Troops:</b> ${4}/${5}\n"
+"➖➖➖DUAL➖➖➖\n"
+"Waiting for players!"
+msgstr ""
+"\n"
+"<b>${0} Cidade:</b> ${1}\n"
+"<b>🏅 Nível:</b> ${2}\n"
+"<b>🎖 Experiência:</b> ${3}\n"
+"<b>‍👮‍ Tropa:</b> ${4}/${5}\n"
+"➖➖➖DUAL➖➖➖\n"
+"Esperando outros jogadores!"
+
 #: plugins/singup.js:69:19
 msgid "What's the name of your town?"
 msgstr "Qual o nome do seu castelo?"
@@ -556,13 +731,13 @@ msgstr "⚔️ Normal"
 msgid "⚔️ Dual (Beta)"
 msgstr "⚔️ Dual (Beta)"
 
+#: plugins/menu.js:56:15
+msgid "${0} City"
+msgstr "${0} Cidade"
+
 #: plugins/menu.js:57:15
 msgid "🌇 Clan (Beta)"
 msgstr "🌇 Clan (Beta)"
-
-#: plugins/menu.js:60:15
-msgid "💳 Store VIP"
-msgstr "💳 Loja VIP"
 
 #: plugins/menu.js:61:15
 msgid "🥇 Rank"

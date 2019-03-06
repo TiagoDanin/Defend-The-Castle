@@ -164,6 +164,8 @@ const saveUser = async (ctx) => {
 	let data = {}
 	let client = await pool.connect()
 	const whiteList = [
+		'dual',
+		'lang',
 		'inventory',
 		'opponent',
 		'reply',

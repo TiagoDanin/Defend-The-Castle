@@ -12,6 +12,7 @@ const main = async () => {
 		CREATE TABLE users(
 			id               INT        NOT NULL,
 			name             TEXT       NOT NULL,
+			lang             TEXT       DEFAULT 'en',
 			opponent         INT        DEFAULT 1,
 			dual             INT        DEFAULT 50,
 			reply            BOOLEAN    DEFAULT true,
