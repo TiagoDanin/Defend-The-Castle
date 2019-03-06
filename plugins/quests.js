@@ -1,10 +1,10 @@
 const base = async (ctx) => {
-	const text = `
+	const text = ctx._`
 <b>📔 Quests (3 mar ~> 17 mar)</b>
 - 🎁 Find the best present!
 	`
 	const keyboard = [
-		[{text: '📜 Menu' , callback_data: 'menu:main' }]
+		[{text: ctx._`📜 Menu` , callback_data: 'menu:main' }]
 	]
 
 	return ctx.editMessageText(text + ctx.fixKeyboard, {
@@ -19,7 +19,7 @@ const base = async (ctx) => {
 
 const win = async (ctx) => {
 	if (ctx.session.quest) {
-		return ctx.replyWithMarkdown('*Quest Complete!*')
+		return ctx.replyWithMarkdown(ctx._`*Quest Complete!*`)
 	}
 	ctx.db.xp += 1700
 	ctx.db.money += 9500
@@ -32,7 +32,7 @@ const win = async (ctx) => {
 	ctx.db.inventory.push('12')
 	ctx.session.quest = true
 	await ctx.database.saveUser(ctx)
-	return ctx.replyWithMarkdown(`
+	return ctx.replyWithMarkdown(ctx._`
 *Quest Complete!*
 + 1700 XP
 + 9500 Money
