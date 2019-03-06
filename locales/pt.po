@@ -191,6 +191,137 @@ msgstr ""
 msgid "Hack?"
 msgstr "Hack?"
 
+#: plugins/clan.js:35:13
+msgid ""
+"\n"
+"<b>🌇 Name:</b> ${0} [${1}]\n"
+"<b>🏅 Level:</b> ${2}${3}\n"
+"<b>🎖 Experience:</b> ${4}\n"
+"<b>💰 Money:</b> ${5} (${6}/hour)\n"
+"<b>👥 Members:</b> ${7}/${8}\n"
+"<b>❇️ Invite Clan URL:</b> https://telegram.me/DefendTheCastleBot?start=join-"
+"clan-${9}"
+msgstr ""
+"\n"
+"<b>🌇 Nome:</b> ${0} [${1}]\n"
+"<b>🏅 Nível:</b> ${2}${3}\n"
+"<b>🎖 Experiência:</b> ${4}\n"
+"<b>💰 Dinheiro:</b> ${5} (${6}/hora)\n"
+"<b>👥 Membros:</b> ${7}/${8}\n"
+"<b>❇️ URL de Convite do Clan:</b> https://telegram.me/DefendTheCastleBot?"
+"start=join-clan-${9}"
+
+#: plugins/clan.js:52:37
+msgid "*Done!*"
+msgstr "*Feito!*"
+
+#: plugins/clan.js:188:18
+msgid "🌇 Open Clan"
+msgstr "🌇 Abrir Clan"
+
+#: plugins/clan.js:62:33
+msgid "<b>NOTE:</b> Flag{3}-Name{1,15}; examle: <code>TNT-TNTClan</code>"
+msgstr "<b>NOTA:</b> Tag{3}-Nome{1,15}; exemplo: <code>TNT-TNTClan</code>"
+
+#: plugins/clan.js:76:15
+msgid "💰 Get Money"
+msgstr "💰 Obter Dinheiro"
+
+#: plugins/clan.js:77:15
+msgid "✨ Donate Experience"
+msgstr "✨ Doar Experiência"
+
+#: plugins/clan.js:78:15
+msgid "👥 Members"
+msgstr "👥 Membros"
+
+#: plugins/clan.js:81:15
+msgid "🌇 Clan Menu"
+msgstr "🌇 Menu Clan"
+
+#: plugins/clan.js:82:15
+#, fuzzy
+msgid "📜 Main Menu"
+msgstr "📜 Menu Principal"
+
+#: plugins/clan.js:87:14
+msgid "Join or create a new clan!"
+msgstr "Entre ou crie um novo clan!"
+
+#: plugins/clan.js:205:17
+msgid "✏️ Create"
+msgstr "✏️ Criar"
+
+#: plugins/clan.js:206:17
+msgid "📝 List Clans"
+msgstr "📝 Lista de Clans"
+
+#: plugins/clan.js:100:14
+msgid "💰 Transferred to your account: ${0}"
+msgstr "💰 Transferido para a sua conta: ${0}"
+
+#: plugins/clan.js:108:14
+msgid "✨ Transferred to clan: ${0}"
+msgstr "✨ Transferido para o clan: ${0}"
+
+#: plugins/clan.js:117:14
+msgid ""
+"<b>Members (wins;losses):\n"
+"</b>"
+msgstr ""
+"<b>Membros (ganhas;perdas):\n"
+"</b>"
+
+#: plugins/clan.js:143:14
+msgid ""
+"\n"
+"Name and Flag (reply):\n"
+"NOTE: Flag{3_length}-Name{1,15_length}\n"
+"EXAMPLE: TNT-TNTClan\n"
+"\t\t"
+msgstr ""
+"\n"
+"Nome e Tag (responder):\n"
+"NOTA: Tag{3_tamanho}-Nome{1,153_tamanho}\n"
+"EXEMPLO: TNT-TNTClan\n"
+"\t\t"
+
+#: plugins/clan.js:155:14
+msgid ""
+"<b>Clans:\n"
+"</b>"
+msgstr ""
+"<b>Clans:\n"
+"</b>"
+
+#: plugins/clan.js:162:16
+msgid "🌇 More Clans"
+msgstr "🌇 Mais Clans"
+
+#: plugins/clan.js:171:15
+msgid "Join:"
+msgstr "Entrar:"
+
+#: plugins/clan.js:174:15
+msgid "You already have a clan!"
+msgstr "Você já está em um clan!"
+
+#: plugins/clan.js:178:16
+msgid "Clan is full! (${0}/${1})"
+msgstr "Clan está cheio! (${0}/${1})"
+
+#: plugins/clan.js:185:17
+msgid "Welcome!\n"
+msgstr "Bem-Vindo\n"
+
+#: plugins/clan.js:195:15
+msgid "<b>Owner cannot leave!</b>"
+msgstr "<b>Dono não pode sair!</b>"
+
+#: plugins/clan.js:202:15
+msgid "Leaving!"
+msgstr "Saindo!"
+
 #: plugins/menu.js:7:17
 msgid "🥇 You Rank is: ${0}\n"
 msgstr "🥇 Seu Rank é: ${0}\n"
