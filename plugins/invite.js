@@ -1,5 +1,5 @@
-const text = 'What\'s the name of your town?'
 const base = async (ctx) => {
+	const text = ctx._`What's the name of your town?`
 	ctx.replyWithMarkdown(`*${text}*`, {
 		reply_markup: {
 			force_reply: true
@@ -23,7 +23,7 @@ const base = async (ctx) => {
 		user.db.inventory.push('10')
 		user.db.inventory.push('12')
 		await ctx.database.saveUser(user)
-		await ctx.telegram.sendMessage(user.db.id, `
+		await ctx.telegram.sendMessage(user.db.id, ctx._`
 <b>Join ${ctx.from.id} via your invite link.</b>
 + 1200 XP
 + 5500 Money

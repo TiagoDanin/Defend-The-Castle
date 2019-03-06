@@ -334,6 +334,22 @@ msgstr "${0} Global Notificação"
 msgid "${0} Reply Battle"
 msgstr "${0} Receber Notificação de Ataque"
 
+#: plugins/invite.js:2:19
+msgid "What's the name of your town?"
+msgstr "Qual o nome do seu castelo?"
+
+#: plugins/invite.js:26:50
+msgid ""
+"\n"
+"<b>Join ${0} via your invite link.</b>\n"
+"+ 1200 XP\n"
+"+ 5500 Money\n"
+"+ 2 Diamond\n"
+"+ 1 Clone\n"
+"+ 1 Super Shield\n"
+"\t\t"
+msgstr ""
+
 #: plugins/menu.js:7:17
 msgid "🥇 You Rank is: ${0}\n"
 msgstr "🥇 Seu Rank é: ${0}\n"
