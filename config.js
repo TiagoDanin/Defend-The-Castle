@@ -19,7 +19,9 @@ module.exports = {
 		'view'
 	],
 	defaultLang: 'en',
-	locales: [],
+	locales: [
+		'pt'
+	],
 	castles: ['🕌', '⛪️', '🏛', '🏩', '🏢', '🕍', '🏰'],
 	class: {
 		warrior: {

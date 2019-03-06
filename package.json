@@ -33,6 +33,7 @@
   "dependencies": {
     "debug": "4.1.1",
     "json-stringify-safe": "5.0.1",
+    "minimist": "^1.2.0",
     "moment": "2.24.0",
     "moment-timezone": "0.5.23",
     "nodejs-i18n": "2.1.0",

@@ -182,20 +182,38 @@ bot.use(session({
 	}
 }))
 
-/*
 const r = new Resources({
 	lang: config.defaultLang
 })
 config.locales.forEach((id) => {
 	r.load(id, `locales/${id}.po`)
 })
-*/
+
+const checkLanguage = (ctx) => {
+	let language = config.defaultLang
+	const locales = [...config.locales, config.defaultLang]
+	const types = [
+		'message',
+		'edited_message',
+		'callback_query',
+		'inline_query'
+	]
+	let type = types.find((t) => ctx.update[t])
+	if (type && ctx.update[type] && ctx.update[type].from && ctx.update[type].from.language_code) {
+		language = ctx.update[type].from.language_code.substr(0, 2)
+	}
+	if (!locales.includes(language)) {
+		language = config.defaultLang
+	}
+	return language
+}
 
 bot.use((ctx, next) => {
-	//var langCode = 'en' //checkLanguage(ctx)
-	//var i18n = new Translation(langCode)
-	ctx._ = (t) => t //i18n._.bind(i18n)
-	//ctx.langCode = langCode
+	var langCode = checkLanguage(ctx)
+	var i18n = new Translation(langCode)
+	ctx._ = i18n._.bind(i18n)
+	ctx.langCode = langCode
+	console.log('>>>>', ctx.langCode)
 	return next(ctx)
 })
 

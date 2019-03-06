@@ -1,0 +1,122 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: UTF-8\n"
+
+#: plugins/menu.js:7:17
+msgid "🥇 You Rank is: ${0}\n"
+msgstr "🥇 Seu Rank é: ${0}\n"
+
+#: plugins/menu.js:20:17
+msgid ""
+"\n"
+"<b>${0} City:</b> ${1}\n"
+"<b>🏅 Level:</b> ${2}\n"
+"<b>🎖 Experience:</b> ${3}\n"
+"---------------------------------------\n"
+"<b>💰 Money:</b> ${4} (${5}/hour)\n"
+"<b>💎 Diamonds:</b> ${6}\n"
+"<b>‍👮‍ Troops:</b> ${7}/${8}\n"
+"\n"
+"${9}"
+msgstr ""
+"\n"
+"<b>${0} Cidade:</b> ${1}\n"
+"<b>🏅 Nível:</b> ${2}\n"
+"<b>🎖 Experiência:</b> ${3}\n"
+"---------------------------------------\n"
+"<b>💰 Dinheiro:</b> ${4} (${5}/hora)\n"
+"<b>💎 Diamantes:</b> ${6}\n"
+"<b>‍👮‍ Tropas:</b> ${7}/${8}\n"
+"\n"
+"${9}"
+
+#: plugins/menu.js:52:15
+msgid "⚔️ Normal"
+msgstr "⚔️ Normal"
+
+#: plugins/menu.js:53:15
+msgid "⚔️ Dual (Beta)"
+msgstr "⚔️ Dual (Beta)"
+
+#: plugins/menu.js:56:15
+msgid "${0} City"
+msgstr "${0} Cidade"
+
+#: plugins/menu.js:57:15
+msgid "🌇 Clan (Beta)"
+msgstr "🌇 Clan (Beta)"
+
+#: plugins/menu.js:60:15
+msgid "💳 Store VIP"
+msgstr "💳 Loja VIP"
+
+#: plugins/menu.js:61:15
+msgid "🥇 Rank"
+msgstr "🥇 Rank"
+
+#: plugins/menu.js:62:15
+msgid "📔 Quests"
+msgstr "📔 Missões"
+
+#: plugins/menu.js:65:15
+msgid "🎁 ${0}"
+msgstr "🎁 ${0}"
+
+#: plugins/menu.js:66:15
+msgid "⚙️ Settings"
+msgstr "⚙️ Configurações"
+
+#: plugins/menu.js:67:15
+msgid "🗞 About"
+msgstr "🗞 Sobre"
+
+#: plugins/menu.js:72:14
+msgid "🥇 Rank by:"
+msgstr "🥇 Rank por:"
+
+#: plugins/menu.js:75:16
+msgid "🏅 Level"
+msgstr "🏅 Nível"
+
+#: plugins/menu.js:76:16
+msgid "💰 Money"
+msgstr "💰 Dinheiro"
+
+#: plugins/menu.js:77:16
+msgid "⚔️ Battles"
+msgstr "⚔️ Batalhas"
+
+#: plugins/menu.js:97:16
+msgid "📜 Menu"
+msgstr "📜 Menu"
+
+#: plugins/menu.js:87:14
+msgid ""
+"\n"
+"👤 <b>Developer:</b> @TiagoEDGE (Tiago Danin)\n"
+"🗣 <b>Channel:</b> @DefendTheCastle\n"
+"👥 <b>Group EN:</b> @DefendTheCastleEN\n"
+"👥 <b>Group PT:</b> @DefendTheCastlePT\n"
+"\n"
+"Invite your friends to earn Money, Xp & Diamond!\n"
+"Invite URL: https://telegram.me/DefendTheCastleBot?start=join-${0}\n"
+"\t\t"
+msgstr ""
+"\n"
+"👤 <b>Desenvolvedor:</b> @TiagoEDGE (Tiago Danin)\n"
+"🗣 <b>Canal (EN):</b> @DefendTheCastle\n"
+"👥 <b>Grupo (EN):</b> @DefendTheCastleEN\n"
+"👥 <b>Grupo (PT):</b> @DefendTheCastlePT\n"
+"\n"
+"Convide seus amigos e ganhe Dinheiro, Xp & Diamantes\n"
+"URL de Convite: https://telegram.me/DefendTheCastleBot?start=join-${0}\n"
+"\t\t"
+
+#: plugins/menu.js:99:16
+msgid "📊 Stats"
+msgstr "📊 Estatísticas"
+
+#: plugins/menu.js:100:16
+msgid "❓ Tutorial"
+msgstr "❓ Tutorial"
