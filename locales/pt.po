@@ -1148,3 +1148,59 @@ msgstr "▶️ Próximo"
 #: plugins/tutorial.js:88:14
 msgid "Finalized!"
 msgstr "Finalizado!"
+
+#: tips.js:1:30
+msgid "Channel: @DefendTheCastle"
+msgstr "Canal: @DefendTheCastle"
+
+#: tips.js:2:28
+msgid "Groups: @DefendTheCastleEN (English) or @DefendTheCastlePT (Portuguese)"
+msgstr "Groupos: @DefendTheCastleEN (English) or @DefendTheCastlePT (Portuguese)"
+
+#: tips.js:3:32
+msgid "Developer: @TiagoEDGE (Tiago Danin)"
+msgstr "Desenvolvedor: @TiagoEDGE (Tiago Danin)"
+
+#: tips.js:5:13
+msgid ""
+"Invite your friends with this link to earn Money & Xp: https://telegram.me/"
+"DefendTheCastleBot?start=join-${0}"
+msgstr ""
+"Convide seu amigos com esse link para ganha Dinheiro & XP: https://telegram.me/"
+"DefendTheCastleBot?start=join-${0}"
+
+#: tips.js:7:29
+msgid "Suggestions & Bugs! Tell me @TiagoEDGE (You can receive 💎 & 💰)"
+msgstr "Sugestões & Bugs! Diga-me @TiagoEDGE (Você pode ganha 💎 & 💰)"
+
+#: tips.js:8:31
+msgid "Tutorial: /tutorial"
+msgstr "Tutorial: /tutorial"
+
+#: tips.js:9:30
+msgid "Offline for 7 days causes penalties to the castle!"
+msgstr "Fica Offline por mais de 7 dias causar penalidades ao castelo"
+
+
+#: tips.js:12:13
+msgid ""
+"Increasing the level of the clan, increases the number of members & more "
+"money per hour"
+msgstr "Aumentando o nível do clã, aumenta o número de membros e mais  o de "
+"dinheiro por hora"
+
+#: tips.js:13:31
+msgid "Use 💎 in Store VIP"
+msgstr "Use 💎 na Loja VIP"
+
+#: tips.js:14:31
+msgid "Use powerups to earn more XP"
+msgstr "Ao usar Podres você ganha XP"
+
+#: tips.js:15:29
+msgid "Finish the quest to receive 💎 & 💰"
+msgstr "Completa as missões para recebe 💎 & 💰"
+
+#: tips.js:16:31
+msgid "Every 24 hours you can open a gift!"
+msgstr "A cada 24h você pode abrir um presente!"
