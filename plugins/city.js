@@ -42,11 +42,11 @@ const showInventory = (ctx, pos) => {
 	if (ctx.items[ctx.db.city[pos.toString()].toString()].upgrade) {
 		upgrade = [
 			[{
-				text: '✅ Upgrade (+1)',
+				text: ctx._`✅ Upgrade (+1)`,
 				callback_data: `city:up:${pos}:1`
 			},
 			{
-				text: '✅ Upgrade (+15)',
+				text: ctx._`✅ Upgrade (+15)`,
 				callback_data: `city:up:${pos}:max`
 			}]
 		]
@@ -55,7 +55,7 @@ const showInventory = (ctx, pos) => {
 		...upgrade,
 		...keys,
 		[{
-			text: `${ctx.db.castle} City`,
+			text: ctx._`${ctx.db.castle} City`,
 			callback_data: 'city'
 		}]
 	]
@@ -95,16 +95,16 @@ const infoText = (ctx) => {
 				((item.upgrade[0] * value) / ctx.db.level)
 			)
 		)
-		info += `<b>⚡️ Level:</b> ${value-1}\n`
-		info += `<b>💶 Upgrade:</b> ${price} Coin\n`
+		info += ctx._`<b>⚡️ Level:</b> ${value-1}\n`
+		info += ctx._`<b>💶 Upgrade:</b> ${price} Coin\n`
 	}
 	return info
 }
 
 const base = async (ctx) => {
-	let text = `
+	let text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
-<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} Coin (${ctx.nl(ctx.db.moneyPerHour)}/hour)
+<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)
 <b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
 <b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
 <b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
@@ -114,12 +114,12 @@ ${ctx.tips(ctx)}
 	let mainKeyboard = []
 	if (ctx.match[0] == 'city:castle') {
 		mainKeyboard = showCastle(ctx)
-		text += '<b>Select your new castle:</b>'
+		text += ctx._`<b>Select your new castle:</b>`
 	} else if (ctx.match[2] == 'castle' && ctx.match[3]) {
 		ctx.db = await ctx.database.setCity(ctx, 12, ctx.match[3].toString())
 		ctx.db.castle = ctx.castles[Number(ctx.match[3])] || '🏰'
 		mainKeyboard = city(ctx)
-		text = `
+		text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>💰 Money:</b> ${ctx.nl(ctx.db.money)} Coin (${ctx.nl(ctx.db.moneyPerHour)}/hour)
 <b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
@@ -171,9 +171,9 @@ ${ctx.tips(ctx)}
 				}
 			})
 			ctx.db = await ctx.userInfo(ctx)
-			text = `
+			text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
-<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} Coin (${ctx.nl(ctx.db.moneyPerHour)}/hour)
+<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)
 <b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
 <b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
 <b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
@@ -182,10 +182,10 @@ ${ctx.tips(ctx)}
 ${infoText(ctx)}
 Upgraded!`
 			mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
-			ctx.answerCbQuery('Upgraded!')
+			ctx.answerCbQuery(ctx._`Upgraded!`)
 		} else {
-			ctx.answerCbQuery(`❌ Your money ${ctx.db.money} | Price ${price}`, true)
-			text += '\nFailed!'
+			ctx.answerCbQuery(ctx._`❌ Your money ${ctx.db.money} | Price ${price}`, true)
+			text += ctx._`\nFailed!`
 		}
 	} else if (ctx.match[2] == 'inv' && ctx.match[3]) {
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
@@ -195,9 +195,9 @@ Upgraded!`
 		if (valid) {
 			await ctx.database.setCity(ctx, Number(ctx.match[3]), Number(ctx.match[4]))
 			ctx.db = await ctx.userInfo(ctx)
-			text = `
+			text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
-<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} Coin (${ctx.nl(ctx.db.moneyPerHour)}/hour)
+<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)
 <b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
 <b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
 <b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
@@ -206,7 +206,7 @@ ${ctx.tips(ctx)}
 ${infoText(ctx)}
 		`
 		} else {
-			text += 'Hack?'
+			text += ctx._`Hack?`
 		}
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
 	} else {
@@ -215,7 +215,7 @@ ${infoText(ctx)}
 	var keyboard = [
 		...mainKeyboard,
 		[{
-			text: '📜 Menu',
+			text: ctx._`📜 Menu`,
 			callback_data: 'menu:main'
 		}]
 	]

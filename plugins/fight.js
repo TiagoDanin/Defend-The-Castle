@@ -506,7 +506,7 @@ const base = async(ctx) => {
 	if (ctx.match[2] == 'powerup' && ctx.match[3] && ctx.db.inventory.includes(ctx.match[3])) {
 		ctx.session.powerup = ctx.items[ctx.match[3]]
 		const index = ctx.db.inventory.indexOf(ctx.match[3])
-		ctx.db.inventory = ctx.db.inventory.filter((_, i) => {
+		ctx.db.inventory = ctx.db.inventory.filter((l, i) => {
 			return i != index
 		})
 		await ctx.database.updateUser(ctx.from.id, 'inventory', ctx.db.inventory)
