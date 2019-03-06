@@ -21,10 +21,13 @@ const main = async () => {
 		bot.telegram.sendMessage(db.id,
 			`
 *Global Notification!*
-• Version 1.2.0 (Beta)
-- Add Dual Battle
-- Add Clan
-- Fix Bugs
+• *Event (06/MAR):*
+Best of the Global Battles (Wins) Rank.
+Duration: ~ 6h
+Awards:
+-1º: +15 Diamonds, +15k Money, +5 Clones
+-2º: +10 Diamonds, +10k Money, +2 Clones
+-3º: +5 Diamonds, + 5k Money, +2 Clones
 
 More update: @DefendTheCastle
 			`, {
