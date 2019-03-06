@@ -322,6 +322,18 @@ msgstr "<b>Dono não pode sair!</b>"
 msgid "Leaving!"
 msgstr "Saindo!"
 
+#: plugins/config.js:9:19
+msgid "<b>⚙️ Settings</b>"
+msgstr "<b>⚙️ Configurações</b>"
+
+#: plugins/config.js:16:15
+msgid "${0} Global Notification"
+msgstr "${0} Global Notificação"
+
+#: plugins/config.js:17:15
+msgid "${0} Reply Battle"
+msgstr "${0} Receber Notificação de Ataque"
+
 #: plugins/menu.js:7:17
 msgid "🥇 You Rank is: ${0}\n"
 msgstr "🥇 Seu Rank é: ${0}\n"

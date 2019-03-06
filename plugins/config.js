@@ -6,16 +6,16 @@ const status = (key) => {
 }
 
 const base = async (ctx) => {
-	const text = '<b>⚙️ Settings</b>'
+	const text = ctx._`<b>⚙️ Settings</b>`
 	const id = ctx.match[2]
 	if (id && ['reply', 'notification'].includes(id)) { //Anti-hack
 		ctx.db[id] = ctx.db[id] ? false : true
 		await ctx.database.updateUser(ctx.from.id, id, ctx.db[id])
 	}
 	const keyboard = [
-		[{text: `${status(ctx.db.notification)} Global Notification` , callback_data: 'config:notification' }],
-		[{text: `${status(ctx.db.reply)} Reply Battle` , callback_data: 'config:reply' }],
-		[{text: '📜 Menu' , callback_data: 'menu:main' }]
+		[{text: ctx._`${status(ctx.db.notification)} Global Notification` , callback_data: 'config:notification' }],
+		[{text: ctx._`${status(ctx.db.reply)} Reply Battle` , callback_data: 'config:reply' }],
+		[{text: ctx._`📜 Menu` , callback_data: 'menu:main' }]
 	]
 	if (ctx.updateType == 'callback_query') {
 		return ctx.editMessageText(text + ctx.fixKeyboard, {
