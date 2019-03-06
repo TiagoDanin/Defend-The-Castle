@@ -334,7 +334,7 @@ msgstr "${0} Global Notificação"
 msgid "${0} Reply Battle"
 msgstr "${0} Receber Notificação de Ataque"
 
-#: plugins/invite.js:2:19
+#: plugins/singup.js:69:19
 msgid "What's the name of your town?"
 msgstr "Qual o nome do seu castelo?"
 
@@ -444,7 +444,7 @@ msgstr ""
 msgid "📊 Stats"
 msgstr "📊 Estatísticas"
 
-#: plugins/menu.js:100:16
+#: plugins/singup.js:55:18
 msgid "❓ Tutorial"
 msgstr "❓ Tutorial"
 
@@ -531,6 +531,15 @@ msgstr "*Missão Completa!*"
 #: plugins/quests.js:35:35
 msgid ""
 "\n"
+"*Quest Complete!*\n"
+"+ 1700 XP\n"
+"+ 9500 Money\n"
+"+ 3 Diamond\n"
+"+ 2 Clone\n"
+"+ 2 Super Shield\n"
+"\t"
+msgstr ""
+"\n"
 "*Missão Completa!*\n"
 "+ 1700 XP\n"
 "+ 9500 Dinheiro\n"
@@ -538,4 +547,43 @@ msgid ""
 "+ 2 Clone\n"
 "+ 2 Super Escudo\n"
 "\t"
+
+#: plugins/singup.js:51:24
+msgid "💾 Saved"
+msgstr "💾 Guardado"
+
+#: plugins/singup.js:56:18
+msgid "✅ Let's Go!"
+msgstr "✅ Vamos Lá!"
+
+#: plugins/singup.js:73:37
+msgid ""
+"\n"
+"*Name must have only letter and number with a maximum of 12 characters!*\n"
+"${0}\n"
+"\t\t\t"
 msgstr ""
+"\n"
+"*Nome deve ter apenas letra e número com um máximo de 12 caracteres!*\n"
+"${0}\n"
+"\t\t\t"
+
+#: plugins/singup.js:89:24
+msgid "Are you sure the name of your city is ${0}?.${1}"
+msgstr "Tem certeza que o nome da sua cidade é ${0}?.${1}"
+
+#: plugins/singup.js:93:18
+msgid "✅ Yes"
+msgstr "✅ Sim"
+
+#: plugins/singup.js:94:18
+msgid "❌ No"
+msgstr "❌ Não"
+
+#: plugins/singup.js:100:36
+msgid "Use the <code>/start</code>"
+msgstr "Use o <code>/start</code>"
+
+#: plugins/singup.js:104:18
+msgid "Or Click Here (Menu)"
+msgstr "Ou Clique Aqui (Menu)"

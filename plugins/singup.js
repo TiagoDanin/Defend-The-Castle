@@ -44,16 +44,16 @@ const citys = [
 	]
 ]
 
-const text = 'What\'s the name of your town?'
 const callback = async (ctx) => {
+	const text = ctx._`What's the name of your town?`
 	if (ctx.match[2] == 'yes') {
 		//TODO Select Class
-		return ctx.reply('💾 Saved' + ctx.fixKeyboard, {
+		return ctx.reply(ctx._`💾 Saved` + ctx.fixKeyboard, {
 			reply_markup: {
 				inline_keyboard:
 				[
-					[{text: '❓ Tutorial' , callback_data: 'tutorial' }], //TODO ADD emoji
-					[{text: '✅ Let\'s Go!' , callback_data: 'menu:main' }] //TODO ADD emoji
+					[{text: ctx._`❓ Tutorial` , callback_data: 'tutorial' }],
+					[{text: ctx._`✅ Let's Go!` , callback_data: 'menu:main' }]
 				]
 			}
 		})
@@ -66,10 +66,11 @@ const callback = async (ctx) => {
 }
 
 const reply = async (ctx) => {
+	const text = ctx._`What's the name of your town?`
 	if (ctx.config.ids.groups.includes(ctx.chat.id)) return true
 	if (ctx.match[0].match(text)) {
 		if (!ctx.match[1].match(/^([a-zA-Z0-9-]{1,12})$/)) {
-			return ctx.replyWithMarkdown(`
+			return ctx.replyWithMarkdown(ctx._`
 *Name must have only letter and number with a maximum of 12 characters!*
 ${text}
 			`, {
@@ -85,22 +86,22 @@ ${text}
 			const city = citys[Math.floor((Math.random() * citys.length))]
 			ctx.database.updateUser(ctx.from.id, 'city', city)
 		}
-		return ctx.reply(`Are you sure the name of your city is ${ctx.match[1]}?.${ctx.fixKeyboard}`, {
+		return ctx.reply(ctx._`Are you sure the name of your city is ${ctx.match[1]}?.${ctx.fixKeyboard}`, {
 			reply_markup: {
 				inline_keyboard:
 				[
-					[{text: '✅ Yes' , callback_data: 'singup:yes' }],
-					[{text: '❌ No' , callback_data: 'singup:no' }]
+					[{text: ctx._`✅ Yes` , callback_data: 'singup:yes' }],
+					[{text: ctx._`❌ No` , callback_data: 'singup:no' }]
 				]
 			}
 		})
 	}
 	if (!ctx.session.newclan) {
-		return ctx.replyWithMarkdown('Use the `/start`' + ctx.fixKeyboard, {
+		return ctx.replyWithMarkdown(ctx._`Use the <code>/start</code>` + ctx.fixKeyboard, {
 			reply_markup: {
 				inline_keyboard:
 				[
-					[{text: 'Or Click Here (Menu)' , callback_data: 'menu:main' }],
+					[{text: ctx._`Or Click Here (Menu)` , callback_data: 'menu:main'}],
 				]
 			}
 		})
