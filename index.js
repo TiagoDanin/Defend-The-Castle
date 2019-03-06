@@ -190,9 +190,9 @@ config.locales.forEach((id) => {
 	r.load(id, `locales/${id}.po`)
 })
 
+const locales = [...config.locales, config.defaultLang]
 const checkLanguage = (ctx) => {
 	let language = config.defaultLang
-	const locales = [...config.locales, config.defaultLang]
 	const types = [
 		'message',
 		'edited_message',
@@ -293,7 +293,13 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		castle: config.castles[db.city[12]] || '🏰'
 	}
 
-	data.lang = ctx.lang
+	if (locales.includes(ctx.lang)) {
+		data.lang = ctx.lang
+	}
+
+	if (!locales.includes(data.lang)) {
+		data.lang = config.defaultLang
+	}
 
 	const keysItems = Object.keys(items)
 

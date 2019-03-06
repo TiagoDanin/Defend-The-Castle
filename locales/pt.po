@@ -550,15 +550,15 @@ msgstr ""
 msgid "🏆 ${0}"
 msgstr "🏆 ${0}"
 
-#: plugins/fight.js:523:14
+#: plugins/fight.js:555:14
 msgid "⚔️ Next"
 msgstr "⚔️ Próximo"
 
-#: plugins/fight.js:611:34
+#: plugins/fight.js:643:34
 msgid "You have no troops, wait two minutos!"
 msgstr ""
 
-#: plugins/fight.js:225:17
+#: plugins/fight.js:235:23
 msgid ""
 "<b>${0} City:</b> ${1}\n"
 "<b>🏅 Level:</b> ${2}\n"
@@ -571,7 +571,16 @@ msgid ""
 "<b>💰 Money:</b> ${10}"
 msgstr ""
 
-#: plugins/fight.js:324:14
+#: plugins/fight.js:298:20
+msgid ""
+"\n"
+"➖➖➖➖➖➖\n"
+"${0} ⚔️ ${1}\n"
+"${2} 🛡 ${3}\n"
+"${4} ❤️ ${5}"
+msgstr ""
+
+#: plugins/fight.js:346:20
 msgid ""
 "\n"
 "${0} LOST!\n"
@@ -580,7 +589,7 @@ msgid ""
 "${1}"
 msgstr ""
 
-#: plugins/fight.js:336:14
+#: plugins/fight.js:362:20
 msgid ""
 "\n"
 "${0} WIN!\n"
@@ -588,7 +597,7 @@ msgid ""
 "${1}"
 msgstr ""
 
-#: plugins/fight.js:345:14
+#: plugins/fight.js:375:20
 msgid ""
 "\n"
 "${0} LOST!\n"
@@ -596,22 +605,22 @@ msgid ""
 "${1}"
 msgstr ""
 
-#: plugins/fight.js:385:47
+#: plugins/fight.js:417:48
 msgid ""
 "\n"
 "<b>Reply attack of ${0} (${1}):</b>\n"
 "${2}${3}"
 msgstr ""
 
-#: plugins/fight.js:526:14
+#: plugins/fight.js:558:14
 msgid "🔍 ${0}"
 msgstr "🔍 ${0}"
 
-#: plugins/fight.js:533:14
+#: plugins/fight.js:565:14
 msgid "⚡️ PowerUp"
 msgstr "⚡️ Poderes"
 
-#: plugins/fight.js:638:15
+#: plugins/fight.js:670:15
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}\n"
@@ -635,7 +644,7 @@ msgstr ""
 "<b>🎖 Experiência:</b> ${9}\n"
 "<b>💰 Dinheiro:</b> ${10}"
 
-#: plugins/fight.js:564:14
+#: plugins/fight.js:596:14
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}\n"
@@ -653,7 +662,7 @@ msgstr ""
 "➖➖➖DUAL➖➖➖\n"
 "Selecione:"
 
-#: plugins/fight.js:576:14
+#: plugins/fight.js:608:14
 msgid "<b>Select PowerUp:</b>"
 msgstr "<b>Selecione um Poder:</b>"
 
@@ -661,7 +670,7 @@ msgstr "<b>Selecione um Poder:</b>"
 msgid "💳 Store VIP"
 msgstr "💳 Loja VIP"
 
-#: plugins/fight.js:622:16
+#: plugins/fight.js:654:16
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}\n"

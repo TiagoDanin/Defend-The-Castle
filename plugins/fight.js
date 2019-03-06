@@ -222,7 +222,18 @@ const attack = async (ctx, opponent) => {
 
 	const playId = ctx.match[4]
 	let play = await ctx.database.getUser(playId)
+	play._ = ctx.loadLang(play.lang)
 	let text = ctx._`<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>🏅 Level:</b> ${ctx.db.level}
+<b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
+<b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
+➖➖➖VS➖➖➖
+<b>${ctx.castles[Number(play.city[12])]} City:</b> ${play.name}
+<b>🏅 Level:</b> ${play.level}
+<b>🎖 Experience:</b> ${ctx.nl(play.xp)}
+<b>💰 Money:</b> ${ctx.nl(play.money)}`
+
+	let textReply = play._`<b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
@@ -284,6 +295,13 @@ ${ctx.nl(ctx.db.shield)} 🛡 ${ctx.nl(play.shield)}
 ${ctx.nl(ctx.db.life)} ❤️ ${ctx.nl(play.life)}
 ➖➖➖➖➖➖
 <b>- </b>${ctx.db.log.join('\n<b>- </b>')}`
+
+	textReply += play._`
+➖➖➖➖➖➖
+${ctx.nl(ctx.db.attack)} ⚔️ ${ctx.nl(play.attack)}
+${ctx.nl(ctx.db.shield)} 🛡 ${ctx.nl(play.shield)}
+${ctx.nl(ctx.db.life)} ❤️ ${ctx.nl(play.life)}`
+
 	ctx.db.life = Math.floor(doAttack(ctx.db, play))
 	play.life = Math.floor(doAttack(play, ctx.db))
 
@@ -326,6 +344,11 @@ ${ctx.db.name} LOST!
 <b>‼️ CASTLE WITHOUT DAMAGE ‼️</b>
 ➖➖➖➖➖➖
 ${text}`
+		textReply = play._`
+${ctx.db.name} LOST!
+<b>‼️ CASTLE WITHOUT DAMAGE ‼️</b>
+➖➖➖➖➖➖
+${textReply}`
 		play.xp += xp / 16
 		ctx.db.money -= addMoney/2.1
 		ctx.cache[play.id].win++
@@ -337,8 +360,12 @@ ${text}`
 ${ctx.db.name} WIN!
 ➖➖➖➖➖➖
 ${text}`
-	ctx.cache[play.id].lost++
-	ctx.cache[ctx.from.id].win++
+		textReply = play._`
+${ctx.db.name} WIN!
+➖➖➖➖➖➖
+${textReply}`
+		ctx.cache[play.id].lost++
+		ctx.cache[ctx.from.id].win++
 	} else {
 		ctx.db.xp += xp / 9
 		play.xp += xp / 3.3
@@ -346,6 +373,10 @@ ${text}`
 ${ctx.db.name} LOST!
 ➖➖➖➖➖➖
 ${text}`
+		textReply = play._`
+${ctx.db.name} LOST!
+➖➖➖➖➖➖
+${textReply}`
 		ctx.db.money -= addMoney/2.6
 		ctx.cache[play.id].win++
 		ctx.cache[ctx.from.id].lost++
@@ -381,10 +412,12 @@ ${text}`
 			}]]
 		}
 	})
+
+
 	if (res.reply && res.run) {
-		await ctx.telegram.sendMessage(play.id, ctx._`
+		await ctx.telegram.sendMessage(play.id, play._`
 <b>Reply attack of ${ctx.db.name} (${ctx.db.id}):</b>
-${text}${ctx.fixKeyboard}`, {
+${textReply}${ctx.fixKeyboard}`, {
 			parse_mode: 'HTML',
 			reply_markup: {
 				inline_keyboard: [...map, [{
