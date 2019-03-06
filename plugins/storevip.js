@@ -1,5 +1,5 @@
 const base = async (ctx) => {
-	let text = `
+	let text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>💎 Diamonds:</b> ${ctx.db.diamond}
 ${ctx.tips(ctx)}`
@@ -30,13 +30,13 @@ ${ctx.tips(ctx)}`
 					ctx.db.inventory.push(ctx.match[2])
 				}
 				await ctx.database.updateUser(ctx.from.id, 'inventory', ctx.db.inventory)
-				ctx.answerCbQuery('Inventory update!')
+				ctx.answerCbQuery(ctx._`Inventory update!`)
 			} else {
-				ctx.answerCbQuery(`💎 Your diamonds: ${ctx.db.diamond} | Price: ${item.price}`, true)
-				text += '\nFailed!'
+				ctx.answerCbQuery(ctx._`💎 Your diamonds: ${ctx.db.diamond} | Price: ${item.price}`, true)
+				text += ctx._`\nFailed!`
 			}
 		}
-		text = `
+		text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>💎 Diamonds:</b> ${ctx.db.diamond}
 ${ctx.tips(ctx)}

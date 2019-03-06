@@ -157,7 +157,7 @@ msgstr "Melhorado!"
 msgid "❌ Your money ${0} | Price ${1}"
 msgstr "❌ Seu dinheiro ${0} | Preço ${1}"
 
-#: plugins/city.js:188:16
+#: plugins/storevip.js:36:17
 msgid ""
 "\n"
 "Failed!"
@@ -599,3 +599,47 @@ msgstr ""
 "<b>Total de Jogodores:</b> ${0}\n"
 "<b>Novos Jogadores (24h):</b> ${1}\n"
 "<b>Jogadores Online (24h):</b> ${2}"
+
+#: plugins/storevip.js:2:17
+msgid ""
+"\n"
+"<b>${0} City:</b> ${1}\n"
+"<b>💎 Diamonds:</b> ${2}\n"
+"${3}"
+msgstr ""
+"\n"
+"<b>${0} Cidade:</b> ${1}\n"
+"<b>💎 Diamantes:</b> ${2}\n"
+"${3}"
+
+#: plugins/storevip.js:33:27
+msgid "Inventory update!"
+msgstr "Inventário Atualizado!"
+
+#: plugins/storevip.js:35:27
+msgid "💎 Your diamonds: ${0} | Price: ${1}"
+msgstr "💎 Seus diamantes: ${0} | Preço: ${1}"
+
+#: plugins/storevip.js:39:14
+msgid ""
+"\n"
+"<b>${0} City:</b> ${1}\n"
+"<b>💎 Diamonds:</b> ${2}\n"
+"${3}\n"
+"---------------------------------------\n"
+"<b>${4} ${5}</b>\n"
+"${6}\n"
+"<b>💎 Price:</b> ${7}\n"
+"<b>📦 Quantity:</b> ${8}\n"
+"\t\t"
+msgstr ""
+"\n"
+"<b>${0} Cidade:</b> ${1}\n"
+"<b>💎 Diamantes:</b> ${2}\n"
+"${3}\n"
+"---------------------------------------\n"
+"<b>${4} ${5}</b>\n"
+"${6}\n"
+"<b>💎 Preço:</b> ${7}\n"
+"<b>📦 Quantidade:</b> ${8}\n"
+"\t\t"
