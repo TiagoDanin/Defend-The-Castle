@@ -21,7 +21,7 @@ const base = async (ctx) => {
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
----------------------------------------
+➖➖➖➖➖➖
 <b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)
 <b>💎 Diamonds:</b> ${ctx.db.diamond}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}

@@ -40,7 +40,7 @@ ${ctx.tips(ctx)}`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>💎 Diamonds:</b> ${ctx.db.diamond}
 ${ctx.tips(ctx)}
----------------------------------------
+➖➖➖➖➖➖
 <b>${item.icon} ${item.name}</b>
 ${item.desc}
 <b>💎 Price:</b> ${items[ctx.match[2]].price}

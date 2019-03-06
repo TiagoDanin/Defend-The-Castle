@@ -109,7 +109,7 @@ const base = async (ctx) => {
 <b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
 <b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
 ${ctx.tips(ctx)}
----------------------------------------
+➖➖➖➖➖➖
 `
 	let mainKeyboard = []
 	if (ctx.match[0] == 'city:castle') {
@@ -126,7 +126,7 @@ ${ctx.tips(ctx)}
 <b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
 <b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
 ${ctx.tips(ctx)}
----------------------------------------
+➖➖➖➖➖➖
 <b>New castle!</b>
 		`
 	} else if (ctx.match[2] == 'up' && ctx.match[3] && ctx.match[4]) {
@@ -178,7 +178,7 @@ ${ctx.tips(ctx)}
 <b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
 <b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
 ${ctx.tips(ctx)}
----------------------------------------
+➖➖➖➖➖➖
 ${infoText(ctx)}
 Upgraded!`
 			mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
@@ -202,7 +202,7 @@ Upgraded!`
 <b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
 <b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
 ${ctx.tips(ctx)}
----------------------------------------
+➖➖➖➖➖➖
 ${infoText(ctx)}
 		`
 		} else {

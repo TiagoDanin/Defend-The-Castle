@@ -48,7 +48,7 @@ const dualAttack = async (ctx, play1) => {
 	let text = `
 <b>${ctx.castles[Number(play1.city[12])]} City:</b> ${play1.name}
 <b>🏅 Level:</b> ${play1.level}
-------------------DUAL-------------------
+➖➖➖DUAL➖➖➖
 <b>${ctx.castles[Number(play2.city[12])]} City:</b> ${play2.name}
 <b>🏅 Level:</b> ${play2.level}`
 
@@ -132,13 +132,13 @@ const dualAttack = async (ctx, play1) => {
 	play2.winMoney = Math.floor(play2.winMoney)
 
 	text += `
-	-----------------RESULT------------------
-	${ctx.nl(play1.attack)} ⚔️ ${ctx.nl(play2.attack)}
-	${ctx.nl(play1.shield)} 🛡 ${ctx.nl(play2.shield)}
-	${ctx.nl(play1.life)} ❤️ ${ctx.nl(play2.life)}
-	${ctx.nl(play1.xp)} (+${play1.winXp}) 🎖 ${ctx.nl(play2.xp)} (+${play2.winXp})
-	${ctx.nl(play1.money)} (+${play1.winMoney}) 💰 ${ctx.nl(play2.money)} (+${play2.winMoney})
-	🏆 WIN: ${winName}
+➖➖➖RESULT➖➖➖
+${ctx.nl(play1.attack)} ⚔️ ${ctx.nl(play2.attack)}
+${ctx.nl(play1.shield)} 🛡 ${ctx.nl(play2.shield)}
+${ctx.nl(play1.life)} ❤️ ${ctx.nl(play2.life)}
+${ctx.nl(play1.xp)} (+${play1.winXp}) 🎖 ${ctx.nl(play2.xp)} (+${play2.winXp})
+${ctx.nl(play1.money)} (+${play1.winMoney}) 💰 ${ctx.nl(play2.money)} (+${play2.winMoney})
+🏆 WIN: ${winName}
 	`
 
 	play1.xp = Math.floor(play1.xp + play1.winXp)
@@ -193,7 +193,7 @@ const attack = async (ctx, opponent) => {
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
--------------------VS--------------------
+➖➖➖VS➖➖➖
 <b>${ctx.castles[Number(play.city[12])]} City:</b> ${play.name}
 <b>🏅 Level:</b> ${play.level}
 <b>🎖 Experience:</b> ${ctx.nl(play.xp)}
@@ -245,11 +245,11 @@ const attack = async (ctx, opponent) => {
 	play.life = Math.floor(play.life)
 
 	text += `
----------------------------------------
+➖➖➖➖➖➖
 ${ctx.nl(ctx.db.attack)} ⚔️ ${ctx.nl(play.attack)}
 ${ctx.nl(ctx.db.shield)} 🛡 ${ctx.nl(play.shield)}
 ${ctx.nl(ctx.db.life)} ❤️ ${ctx.nl(play.life)}
----------------------------------------
+➖➖➖➖➖➖
 <b>- </b>${ctx.db.log.join('\n<b>- </b>')}`
 	ctx.db.life = Math.floor(doAttack(ctx.db, play))
 	play.life = Math.floor(doAttack(play, ctx.db))
@@ -291,7 +291,7 @@ ${ctx.nl(ctx.db.life)} ❤️ ${ctx.nl(play.life)}
 		text = `
 ${ctx.db.name} LOST!
 <b>‼️ CASTLE WITHOUT DAMAGE ‼️</b>
----------------------------------------
+➖➖➖➖➖➖
 ${text}`
 		play.xp += xp / 16
 		ctx.db.money -= addMoney/2.1
@@ -302,7 +302,7 @@ ${text}`
 		play.xp += xp / 10
 		text = `
 ${ctx.db.name} WIN!
----------------------------------------
+➖➖➖➖➖➖
 ${text}`
 	ctx.cache[play.id].lost++
 	ctx.cache[ctx.from.id].win++
@@ -311,7 +311,7 @@ ${text}`
 		play.xp += xp / 3.3
 		text = `
 ${ctx.db.name} LOST!
----------------------------------------
+➖➖➖➖➖➖
 ${text}`
 		ctx.db.money -= addMoney/2.6
 		ctx.cache[play.id].win++
@@ -518,7 +518,7 @@ const base = async(ctx) => {
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
--------------------VS--------------------
+➖➖➖VS➖➖➖
 <b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
 <b>🏅 Level:</b> ${opponent.level}
 <b>🎖 Experience:</b> ${ctx.nl(opponent.xp)}
@@ -533,7 +533,7 @@ const base = async(ctx) => {
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
-------------------DUAL-------------------
+➖➖➖DUAL➖➖➖
 Select:`
 		ctx.session.dual = true
 		menu = [
@@ -591,7 +591,7 @@ Select:`
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
-------------------DUAL-------------------
+➖➖➖DUAL➖➖➖
 Waiting for players!`
 				menu = [
 					[{text: '📜 Menu', callback_data: 'menu'}]
@@ -607,7 +607,7 @@ Waiting for players!`
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
--------------------VS--------------------
+➖➖➖VS➖➖➖
 <b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
 <b>🏅 Level:</b> ${opponent.level}
 <b>🎖 Experience:</b> ${ctx.nl(opponent.xp)}
