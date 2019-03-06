@@ -21,7 +21,7 @@ const base = async (ctx) => {
 🥈 ${sortBattles[1].name} : ${sortBattles[1].id} (${sortBattles[1].battles})
 🥉 ${sortBattles[2].name} : ${sortBattles[2].id} (${sortBattles[2].battles})
 
-<b>Note:</b> Restarted every week!
+<b>Note:</b> Restarted every week or day :)
 `
 
 	return ctx.editMessageText(text + ctx.fixKeyboard, {

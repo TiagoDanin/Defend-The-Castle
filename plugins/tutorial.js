@@ -62,6 +62,9 @@ TIP: +1 troop per 120s`
 	} else if (id == 4) {
 		text = `
 * NOTE
+• Increasing the level of the clan, increases the number of members & more money per hour
+• Use 💎 in Store VIP
+• Every 24 hours you can open a gift!
 • Offline for 7 days causes penalties to the castle:
 - Loss of money (E.g 100 ~> 71 "100 / 1.4 = 71")
 - Reset XP (Xp = 0)
