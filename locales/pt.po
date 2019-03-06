@@ -587,3 +587,15 @@ msgstr "Use o <code>/start</code>"
 #: plugins/singup.js:104:18
 msgid "Or Click Here (Menu)"
 msgstr "Ou Clique Aqui (Menu)"
+
+#: plugins/stats.js:4:19
+msgid ""
+"\n"
+"<b>Total Players:</b> ${0}\n"
+"<b>New Players (24h):</b> ${1}\n"
+"<b>Online Players (24h):</b> ${2}"
+msgstr ""
+"\n"
+"<b>Total de Jogodores:</b> ${0}\n"
+"<b>Novos Jogadores (24h):</b> ${1}\n"
+"<b>Jogadores Online (24h):</b> ${2}"

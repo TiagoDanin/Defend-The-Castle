@@ -1,7 +1,7 @@
 const base = async (ctx) => {
 	const join24 = await ctx.database.getJoin24()
 	const all = await ctx.database.getAllUsers()
-	const text = `
+	const text = ctx._`
 <b>Total Players:</b> ${all.length}
 <b>New Players (24h):</b> ${join24.length}
 <b>Online Players (24h):</b> ${(all.filter((e) => e.online)).length}`
