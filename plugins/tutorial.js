@@ -12,11 +12,11 @@ const base = async (ctx) => {
 	const id = ctx.match[2] || 0
 
 	if (id == 'done') {
-		return ctx.answerCbQuery('Preview only!')
+		return ctx.answerCbQuery(ctx._`Preview only!`)
 	}
 
 	if (id == 0) {
-		text = `
+		text = ctx._`
 Welcome to <b>defend the castle</b>
 * How to attack a castle
 • Open the Menu
@@ -33,7 +33,7 @@ Map:`
 		])
 		keyboard = map
 	} else if (id == 1) {
-		text = `
+		text = ctx._`
 Best possition to drop of troops!
 ❌ = Not cause damage in castle (lose the battle)
 ✅ = Cause damage in castle`
@@ -46,21 +46,21 @@ Best possition to drop of troops!
 		])
 		keyboard = map
 	} else if (id == 2) {
-		text = `
+		text = ctx._`
 * Edit City
 • Open menu
 • Click in "City"
 • Select an zone
 • Upgrade or Change Zone`
 	} else if (id == 3) {
-		text = `
+		text = ctx._`
 * Updagrade troops in:
 • ⚔️ Zone War (Attack)
 • 🛡 Zone Defense (Shield)
 • 🏨 Hospital (Life)
 TIP: +1 troop per 120s`
 	} else if (id == 4) {
-		text = `
+		text = ctx._`
 * NOTE
 • Increasing the level of the clan, increases the number of members & more money per hour
 • Use 💎 in Store VIP
@@ -74,21 +74,21 @@ TIP: +1 troop per 120s`
 	let back = []
 	if (id > 0) {
 		back = [
-			{text: '◀️ Back' , callback_data: `tutorial:${Number(id)-1}` }
+			{text: ctx._`◀️ Back` , callback_data: `tutorial:${Number(id)-1}` }
 		]
 	}
 	keyboard = [
 		...keyboard,
 		[
 			...back,
-			{text: '▶️ Next' , callback_data: `tutorial:${Number(id)+1}` }
+			{text: ctx._`▶️ Next` , callback_data: `tutorial:${Number(id)+1}` }
 		]
 	]
 	if (id >= 5) {
-		text = 'Finalized!'
+		text = ctx._`Finalized!`
 		keyboard = [
-			[{text: '◀️ Back' , callback_data: `tutorial:${Number(id)-1}` }],
-			[{text: '✅ Let\'s Go!' , callback_data: 'menu:main' }]
+			[{text: ctx._`◀️ Back` , callback_data: `tutorial:${Number(id)-1}` }],
+			[{text: ctx._`✅ Let's Go!` , callback_data: 'menu:main' }]
 		]
 	}
 	if (ctx.updateType == 'callback_query') {
