@@ -552,7 +552,7 @@ msgstr ""
 msgid "💾 Saved"
 msgstr "💾 Guardado"
 
-#: plugins/singup.js:56:18
+#: plugins/tutorial.js:91:16
 msgid "✅ Let's Go!"
 msgstr "✅ Vamos Lá!"
 
@@ -643,3 +643,107 @@ msgstr ""
 "<b>💎 Preço:</b> ${7}\n"
 "<b>📦 Quantidade:</b> ${8}\n"
 "\t\t"
+
+#: plugins/tutorial.js:15:32
+msgid "Preview only!"
+msgstr "Somente Visualização!"
+
+#: plugins/tutorial.js:19:14
+msgid ""
+"\n"
+"Welcome to <b>defend the castle</b>\n"
+"* How to attack a castle\n"
+"• Open the Menu\n"
+"• Click on \"Fight\"\n"
+"• Select a zone to drop the troops\n"
+"TIP: A 3x3 zone is selected!\n"
+"Map:"
+msgstr ""
+"\n"
+"Bem-vindo a <b>Defender The Castle</b>\n"
+"* Como atacar um castelo"\n
+"• Abrar o menu\n"
+"• Clique em \"⚔️ Normal\" \n"
+"• Selecione uma zona para soltar os tropas\m"
+"DICA: uma zona 3x3 é selecionada!\n"
+"Mapa: "
+
+#: plugins/tutorial.js:36:14
+msgid ""
+"\n"
+"Best possition to drop of troops!\n"
+"❌ = Not cause damage in castle (lose the battle)\n"
+"✅ = Cause damage in castle"
+msgstr ""
+"\n"
+"Melhores posições para soltar as tropas!\n"
+"❌ = Não causar danos no castelo (perder a batalha\n"
+"✅ = Causar dadnos no castelo"
+
+#: plugins/tutorial.js:49:14
+msgid ""
+"\n"
+"* Edit City\n"
+"• Open menu\n"
+"• Click in \"City\"\n"
+"• Select an zone\n"
+"• Upgrade or Change Zone"
+msgstr ""
+"\n"
+"* Edita Cidade\n"
+"• Abrar o menu\n"
+"• Clique em \"Cidade\"\n"
+"• Selecione uma zona\n"
+"• Faça melhorias ou troque o tipo de zona"
+
+#: plugins/tutorial.js:56:14
+msgid ""
+"\n"
+"* Updagrade troops in:\n"
+"• ⚔️ Zone War (Attack)\n"
+"• 🛡 Zone Defense (Shield)\n"
+"• 🏨 Hospital (Life)\n"
+"TIP: +1 troop per 120s"
+msgstr ""
+"\n"
+"* Atualizado tropas:\n"
+"• ⚔️ Zona de Guerra = +Ataque\n"
+"• 🛡 Zona de Defesa = +Escudo\n"
+"• 🏨 Hospital = +Vida\n"
+"DICA: +1 tropa a cada 120s"
+
+#: plugins/tutorial.js:63:14
+msgid ""
+"\n"
+"* NOTE\n"
+"• Increasing the level of the clan, increases the number of members & more "
+"money per hour\n"
+"• Use 💎 in Store VIP\n"
+"• Every 24 hours you can open a gift!\n"
+"• Offline for 7 days causes penalties to the castle:\n"
+"- Loss of money (E.g 100 ~> 71 \"100 / 1.4 = 71\")\n"
+"- Reset XP (Xp = 0)\n"
+"- -1 Level (E.g lvl10 ~> lvl9)"
+msgstr ""
+"\n"
+"* NOTE\n"
+"• Aumentando o nível do clã, aumenta o número de membros e mais  "
+"o de dinheiro por hora\n"
+"• Use 💎 na Loja Vip\n"
+"• Acada 24h você pode abrir um novo presente!\n"
+"• Offline por 7 dias provoca penalidades para o seu castelo:\n"
+"- Perda de dinheiro (Ex: 100 ~> 71 \"100 / 1.4 = 71\")\n"
+"- XP é zerado (Xp = 0)\n"
+"- -1 Nível (Ex: lvl10 ~> lvl9)"
+
+#: plugins/tutorial.js:90:16
+msgid "◀️ Back"
+msgstr "◀️ Volta"
+
+#: plugins/tutorial.js:84:15
+msgid "▶️ Next"
+msgstr "▶️ Próximo"
+
+#: plugins/tutorial.js:88:14
+msgid "Finalized!"
+msgstr "Finalizado!"

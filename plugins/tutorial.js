@@ -20,7 +20,7 @@ const base = async (ctx) => {
 Welcome to <b>defend the castle</b>
 * How to attack a castle
 • Open the Menu
-• Click on "Fight"
+• Click on "⚔️ Normal"
 • Select a zone to drop the troops
 TIP: A 3x3 zone is selected!
 Map:`
