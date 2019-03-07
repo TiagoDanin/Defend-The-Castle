@@ -21,6 +21,9 @@ const main = async () => {
 		bot.telegram.sendMessage(db.id,
 			`
 *Global Notification!*
+• *Add Translation*
+- PT-BR Enable
+
 • *Event (07/MAR ~> 09/MAR)*:
 Best of the Global Battles Rank.
 Duration: ~3 Days
