@@ -2,7 +2,12 @@ const base = async (ctx) => {
 	if (ctx.privilege <= 6) {
 		return
 	}
-	const id = ctx.update.message.reply_to_message.from.id || ctx.update.message.reply_to_message.forward_from.id
+	let id = 0
+	if (ctx.match[5]) {
+		id = ctx.match[5]
+	} else {
+		id = ctx.update.message.reply_to_message.from.id || ctx.update.message.reply_to_message.forward_from.id
+	}
 	const play = await ctx.database.getUser(id)
 	if (play && id) {
 		let user = {
@@ -43,6 +48,7 @@ module.exports = {
 	plugin: base,
 	regex: [
 		/^\/(thanks)/i,
-		/^\/(add) (\w*) (\d*) (\d*)/i
+		/^\/(add) (\w*) (\d*) (\d*)$/i,
+		/^\/(add) (\w*) (\d*) (\d*) (\d*)/i
 	]
 }
