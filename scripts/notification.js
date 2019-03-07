@@ -22,7 +22,7 @@ const main = async () => {
 			`
 *Global Notification!*
 • *Add Translation*
-- PT-BR Enable
+- PT-BR Enabled
 
 • *Event (07/MAR ~> 09/MAR)*:
 Best of the Global Battles Rank.
