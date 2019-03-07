@@ -338,6 +338,7 @@ ${ctx.nl(ctx.db.life)} ❤️ ${ctx.nl(play.life)}`
 
 	ctx.cache[ctx.from.id].battles++
 	ctx.cache[play.id].battles++
+	let win = false
 	if (data.items.length <= 6) {
 		text = ctx._`
 ${ctx.db.name} LOST!
@@ -354,6 +355,7 @@ ${textReply}`
 		ctx.cache[play.id].win++
 		ctx.cache[ctx.from.id].lost++
 	} else if (ctx.db.life > play.life) {
+		win = true
 		ctx.db.xp += xp
 		play.xp += xp / 10
 		text = ctx._`
@@ -407,7 +409,7 @@ ${textReply}`
 		parse_mode: 'HTML',
 		reply_markup: {
 			inline_keyboard: [...map, [{
-				text: `✨XP ${ctx.db.xp - xps.user}${money} : ⚖️ ${text.match('WIN') ? 'WIN!' : 'LOST!'}`,
+				text: `✨XP ${ctx.db.xp - xps.user}${money} : ⚖️ ${win ? 'WIN!' : 'LOST!'}`,
 				callback_data: 'fight:done'
 			}]]
 		}
