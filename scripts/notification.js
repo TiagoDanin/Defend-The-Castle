@@ -21,13 +21,19 @@ const main = async () => {
 		bot.telegram.sendMessage(db.id,
 			`
 *Global Notification!*
-• *Event (06/MAR):*
-Best of the Global Battles (Wins) Rank.
-Duration: ~ 6h
-Awards:
--1º: +15 Diamonds, +15k Money, +5 Clones
--2º: +10 Diamonds, +10k Money, +2 Clones
--3º: +5 Diamonds, + 5k Money, +2 Clones
+• *Event (07/MAR ~> 09/MAR)*:
+Best of the Global Battles Rank.
+Duration: ~3 Days
+
+Awards (Battles Wins):
+-1º: +30 Diamonds, +30k Money, +10 Clones
+-2º: +13 Diamonds, +15k Money, +4 Clones
+-3º: +10 Diamonds, + 10k Money, +3 Clones
+
+Awards (Battles Total):
+-1º: +10 Diamonds, +5k Money, +1 Clones
+-2º: +5 Diamonds, +5k Money, +1 Clones
+-3º: +1 Diamonds, +5k Money, +1 Clones
 
 More update: @DefendTheCastle
 			`, {
