@@ -87,10 +87,10 @@ ${ctx.tips(ctx)}`
 			await ctx.database.saveUser(ctx)
 			if (ctx.db[present.name]) {
 				ctx.answerCbQuery(ctx._`
-	Present(${i18nPresents(present.name)}): +${ctx.db[present.name] - ctx.db.old[present.name]}
+	Present(${i18nPresents[present.name]}): +${ctx.db[present.name] - ctx.db.old[present.name]}
 				`, true)
 			} else {
-				ctx.answerCbQuery(ctx._`Present: ${i18nPresents(present.name)}!`, true)
+				ctx.answerCbQuery(ctx._`Present: ${i18nPresents[present.name]}!`, true)
 			}
 
 		} else {
