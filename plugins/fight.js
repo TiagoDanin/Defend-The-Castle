@@ -405,13 +405,14 @@ ${textReply}`
 	ctx.session.flast = [ctx.session.flast[1], ctx.session.flast[2], play.id]
 
 	map = data.map
+	win = win ? ctx._('WIN!') : ctx._('LOST!')
 	await ctx.editMessageText(text + ctx.fixKeyboard, {
 		parse_mode: 'HTML',
 		reply_markup: {
 			inline_keyboard: [...map, [{
-				text: `✨XP ${ctx.db.xp - xps.user}${money} : ⚖️ ${win ? 'WIN!' : 'LOST!'}`,
+				text: `✨XP ${ctx.db.xp - xps.user}${money} : ⚖️ ${win}`,
 				callback_data: 'fight:done'
-			}]]
+			}], [{text: ctx._`📜 Menu` , callback_data: 'menu:main' }]]
 		}
 	})
 
@@ -425,7 +426,7 @@ ${textReply}${ctx.fixKeyboard}`, {
 				inline_keyboard: [...map, [{
 					text: `✨XP ${play.xp - xps.play}`,
 					callback_data: 'fight:done'
-				}]]
+				}], [{text: play._`📜 Menu` , callback_data: 'menu:main' }]]
 			}
 		}).catch((e) => {
 			ctx.database.updateUser(play.id, 'reply', false)
