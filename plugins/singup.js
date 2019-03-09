@@ -97,7 +97,7 @@ ${text}
 		})
 	}
 	if (!ctx.session.newclan) {
-		return ctx.replyWithMarkdown(ctx._`Use the <code>/start</code>` + ctx.fixKeyboard, {
+		return ctx.replyWithHTML(ctx._`Use the <code>/start</code>` + ctx.fixKeyboard, {
 			reply_markup: {
 				inline_keyboard:
 				[
