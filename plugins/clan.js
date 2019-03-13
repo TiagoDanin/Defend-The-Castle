@@ -115,6 +115,15 @@ const base = async (ctx) => {
 		await ctx.database.saveUser(ctx)
 	} else if (ctx.match[2] == 'members') {
 		text = ctx._`<b>Members (wins;losses):\n</b>`
+
+		if (clan.id == ctx.from.id && ctx.match[3] == 'del' && ctx.match[4] != ctx.from.id) {
+			clan.members = clan.members.filter(id => id != Number(ctx.match[4]))
+			await ctx.database.updateClan({
+				id: clan.id,
+				members: clan.members
+			})
+		}
+
 		for (let i = 0; i < clan.members.length; i++) {
 			let member = clan.members[i]
 			if (ctx.cache[member]) {
@@ -131,7 +140,11 @@ const base = async (ctx) => {
 				}
 				member = ctx.cache[member]
 			}
-			text += `<b>${i+1}.</b>${member.castle} ${member.name} (+${member.win};-${member.lost})\n`
+			text += `<b>${i+1}.</b>${member.castle} ${member.name} (+${member.win};-${member.lost})`
+			if (clan.id == ctx.from.id && member.id != ctx.from.id) {
+				text += `<a href="https://telegram.me/DefendTheCastleBot?start=members-del-${member.id}">[❌]</a>`
+			}
+			text += '\n'
 		}
 	} else if (ctx.match[2] == 'new') {
 		ctx.session.newclan = {
@@ -232,6 +245,7 @@ module.exports = {
 	reply: reply,
 	plugin: base,
 	regex: [
-		/^(\/)(join) clan (\d+)/i
+		/^(\/)(join) clan (\d+)/i,
+		/^(\/)(members) (del) (\d+)/i,
 	]
 }
