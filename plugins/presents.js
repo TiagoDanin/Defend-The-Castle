@@ -51,16 +51,14 @@ const base = async (ctx) => {
 		SuperShield,
 		SuperShield,
 		Clone,
-		Quest
+		//Quest
 	]
 
 	const i18nPresents = {
 		money: ctx._('money'),
 		xp: ctx._('xp'),
 		troops: ctx._('troops'),
-		troops: ctx._('troops'),
 		Diamond: ctx._('Diamond'),
-		SuperShield: ctx._('SuperShield'),
 		SuperShield: ctx._('SuperShield'),
 		Clone: ctx._('Clone'),
 		Quest: ctx._('Quest')
