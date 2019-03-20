@@ -1,7 +1,7 @@
 const base = async (ctx) => {
 	const text = ctx._`
-<b>📔 Quests (3 mar ~> 17 mar)</b>
-- 🎁 Find the best present!
+<b>📔 Quests (#Soon)</b>
+- #Soon!
 	`
 	const keyboard = [
 		[{text: ctx._`📜 Menu` , callback_data: 'menu:main' }]
@@ -47,7 +47,8 @@ module.exports = {
 	callback: base,
 	plugin: win,
 	regex: [
-		/^\/03marID26538459/i
+		/^\/03marID2653844339/i
+		///^\/03marID26538459/i
 		///^\/23febID28328844/i
 		///^\/16febID23137653/i
 	]
