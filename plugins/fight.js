@@ -308,6 +308,8 @@ ${ctx.nl(ctx.db.life)} ❤️ ${ctx.nl(play.life)}`
 	let addMoney = Math.floor(ctx.db.money - oldMoney)
 	if (addMoney < 0) {
 		addMoney = 0
+	} else if (play.money < addMoney) {
+		addMoney = play.money/1.4
 	}
 
 	const xp = (
@@ -351,7 +353,7 @@ ${ctx.db.name} LOST!
 ➖➖➖➖➖➖
 ${textReply}`
 		play.xp += xp / 16
-		ctx.db.money -= addMoney/2.1
+		ctx.db.money -= addMoney/3.1
 		ctx.cache[play.id].win++
 		ctx.cache[ctx.from.id].lost++
 	} else if (ctx.db.life > play.life) {
@@ -379,7 +381,7 @@ ${text}`
 ${ctx.db.name} LOST!
 ➖➖➖➖➖➖
 ${textReply}`
-		ctx.db.money -= addMoney/2.6
+		ctx.db.money -= addMoney/3.6
 		ctx.cache[play.id].win++
 		ctx.cache[ctx.from.id].lost++
 	}
