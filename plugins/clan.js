@@ -1,3 +1,32 @@
+const clansRanks = async (ctx, clan) => {
+	let db = await ctx.database.topClans(ctx.from.id)
+	let list = db.filter((e) => {
+		if (e.members.includes(ctx.from.id)) return true
+	})
+	let text = ctx._`🥇 You Rank is: ${list[0].position || 9999999}\n`
+	let n = 0
+	for (let clan of db) {
+		if (n <= 9) {
+			n++
+			text += ctx._`<b>${n}.</b> ${clan.name} [${clan.flag}] (${clan.members.length}/${ctx.clan[clan.level].members}) - lvl ${clan.level}\n`
+		}
+	}
+	return ctx.editMessageText(text + ctx.fixKeyboard, {
+		parse_mode: 'HTML',
+		reply_markup: {
+			inline_keyboard: [
+				[
+					{text: ctx._`🏅 Level`, callback_data: 'menu:rank:level'},
+					{text: ctx._`💰 Money`, callback_data: 'menu:rank:money'},
+					{text: ctx._`⚔️ Battles`, callback_data: 'battles'},
+					{text: ctx._`🌇 Clans` , callback_data: 'clan:ranks'}
+				],
+				[{text: ctx._`📜 Menu`, callback_data: 'menu:main'}]
+			]
+		}
+	})
+}
+
 const processClan = async (ctx, clan) => {
 	const moneyPerSecond = (ctx.clan[clan.level].money / 60) / 60
 	let xpNextLevel = 99999999999999999999
@@ -79,7 +108,8 @@ const base = async (ctx) => {
 		],
 		[
 			{text: ctx._`🌇 Clan Menu` , callback_data: 'clan'},
-			{text: ctx._`📜 Main Menu` , callback_data: 'menu'}
+			{text: ctx._`📜 Main Menu` , callback_data: 'menu'},
+			{text: ctx._`📝 List Clans` , callback_data: 'clan:list'}
 		]
 	]
 
@@ -96,7 +126,10 @@ const base = async (ctx) => {
 		text = processView(ctx, clan)
 	}
 
-	if (ctx.match[2] == 'money') {
+
+	if (ctx.match[2] == 'ranks') {
+		return clansRanks(ctx, clan)
+	} else if (ctx.match[2] == 'money') {
 		text = ctx._`💰 Transferred to your account: ${ctx.nl(clan.money)}`
 		ctx.db.money += Math.floor(clan.money)
 		await ctx.database.updateClan({
@@ -130,10 +163,14 @@ const base = async (ctx) => {
 				member = ctx.cache[member]
 			} else {
 				let user = await ctx.database.getUser(member)
+				let castle = ctx.castles[0]
+				if (user.city)  {
+					castle = ctx.castles[Number(user.city[12])]
+				}
 				ctx.cache[member] = {
-					id: user.id,
-					name: user.name,
-					castle: ctx.castles[Number(user.city[12])],
+					id: user.id || member,
+					name: user.name || 'Null (DeleteMe)',
+					castle: castle,
 					battles: 0,
 					win: 0,
 					lost: 0
@@ -184,7 +221,10 @@ EXAMPLE: TNT-TNTClan
 		text += ctx._`Join:`
 	} else if (ctx.match[2] == 'join') {
 		if (clan) {
-			text = ctx._`You already have a clan!`
+			clan = await ctx.database.getClan(Number(ctx.match[3]))
+			clan = await processClan(ctx, clan)
+			text = processView(ctx, clan)
+			text += ctx._`\n<b>NOTE</b>: You already have a clan!`
 		} else {
 			clan = await ctx.database.getClan(Number(ctx.match[3]))
 			if (clan.members.length >= ctx.clan[clan.level].members) {
@@ -244,6 +284,7 @@ module.exports = {
 	callback: base,
 	reply: reply,
 	plugin: base,
+	onlyUser: true,
 	regex: [
 		/^(\/)(join) clan (\d+)/i,
 		/^(\/)(members) (del) (\d+)/i,

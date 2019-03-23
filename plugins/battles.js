@@ -31,7 +31,8 @@ const base = async (ctx) => {
 				[
 					{text: ctx._`🏅 Level`, callback_data: 'menu:rank:level'},
 					{text: ctx._`💰 Money`, callback_data: 'menu:rank:money'},
-					{text: ctx._`⚔️ Battles`, callback_data: 'battles'}
+					{text: ctx._`⚔️ Battles`, callback_data: 'battles'},
+					{text: ctx._`🌇 Clans` , callback_data: 'clan:ranks'}
 				],
 				[{text: ctx._`📜 Menu`, callback_data: 'menu:main'}]
 			]
