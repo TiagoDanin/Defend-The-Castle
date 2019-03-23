@@ -258,7 +258,9 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	if (typeof ctx != 'object') {
 		ctx = {
 			lang: 'en',
-			from: ctx //ctx == id
+			from: {
+				id: ctx //ctx == id
+			}
 		}
 	}
 	let db = await database.getUser(ctx.from.id)

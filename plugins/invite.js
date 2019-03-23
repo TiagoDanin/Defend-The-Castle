@@ -7,8 +7,8 @@ const base = async (ctx) => {
 	})
 	const inviteId = Number(ctx.match[1])
 	const res = await ctx.database.joinUserInvite(ctx.from.id, inviteId)
-	const play = await ctx.database.getUser(inviteId)
-	if (res && play && inviteId != ctx.from.id) {
+	const play = await ctx.userInfo(inviteId)
+	if (res && play && ctx.from.id != inviteId) {
 		let user = {
 			from: {
 				id: inviteId
