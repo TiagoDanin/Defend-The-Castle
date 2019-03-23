@@ -15,7 +15,7 @@ module.exports = {
 		doDefend: (data, ctx) => {
 			if (Math.floor((Math.random() * 3)) == 0) {
 				ctx.db.log.push([
-					ctx._`⚔️ We take the zone with the falicity!`,
+					ctx._`⚔️ We take the zone with the facility!`,
 					ctx._`⚔️ Easy!`
 				])
 				data.attack += Math.floor(5 * data.qt_zonewar)
