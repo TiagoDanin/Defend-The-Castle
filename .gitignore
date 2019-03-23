@@ -63,3 +63,4 @@ typings/
 test.js
 *.backup.*
 itemsAllText.js
+scripts/data.json

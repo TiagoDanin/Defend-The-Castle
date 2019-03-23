@@ -274,9 +274,25 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	}
 
 	let data = {
+		name: 'Null',
+		id: 0,
 		lang: 'en',
 		opponent: 0,
 		dual: 50,
+		reply: false,
+		notification: false,
+		type: 'warrior',
+		level: 0,
+		xp: 0,
+		money: 0,
+		qt_bank: 0,
+		qt_hospital: 0,
+		qt_bomb: 0,
+		qt_rocket: 0,
+		qt_towerDefense: 0,
+		qt_zoneWar: 0,
+		qt_zoneDefense: 0,
+		troops: 0,
 		maxLevel: levels.length,
 		levelPoc: 0,
 		maxTroops: 7,
@@ -286,6 +302,13 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		plusXp: 0,
 		plusMoney: 0,
 		moneyPerHour: 0,
+		city: [
+			0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0
+		],
 		log: [],
 		old: {...db},
 		...db,
@@ -483,4 +506,5 @@ bot.catch((err) => {
 	}
 })
 
+//bot.startWebhook('/secret-path', null, 3000)
 bot.launch()

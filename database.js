@@ -456,6 +456,30 @@ const getClans = async (max = 10) => {
 	return data.rows
 }
 
+const topClans = async (id) => {
+	let data = {}
+	let client = await pool.connect()
+	data = await client.query(`
+		SELECT *
+			FROM (
+				SELECT id,
+					   name,
+					   xp,
+					   level,
+					   money,
+					   members,
+					   flag,
+					   ROW_NUMBER() OVER(ORDER BY level DESC, xp DESC) AS position
+				FROM clans
+			) clans
+		WHERE clans.id = $1 OR position <= 10;
+	`, [id]).catch(error)
+	//LIMIT 15; ?
+	//WHERE ${row} >= $1
+	client.release()
+	return data.rows
+}
+
 module.exports = {
 	getUser,
 	setUser,
@@ -476,5 +500,6 @@ module.exports = {
 	createClan,
 	getClan,
 	updateClan,
-	getClans
+	getClans,
+	topClans
 }
