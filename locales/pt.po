@@ -387,8 +387,11 @@ msgid ""
 "<b>🎖 Experience:</b> ${4}\n"
 "<b>💰 Money:</b> ${5} (${6}/hour)\n"
 "<b>👥 Members:</b> ${7}/${8}\n"
+"\n"
 "<b>❇️ Invite Clan URL:</b> https://telegram.me/DefendTheCastleBot?start=join-"
-"clan-${9}"
+"clan-${9}\n"
+"<b>❌ Exit:</b> <a href=\"https://telegram.me/DefendTheCastleBot?start=exit-"
+"clan\">[Click Here]</a>"
 msgstr ""
 "\n"
 "<b>🌇 Nome:</b> ${0} [${1}]\n"
@@ -396,62 +399,65 @@ msgstr ""
 "<b>🎖 Experiência:</b> ${4}\n"
 "<b>💰 Dinheiro:</b> ${5} (${6}/hora)\n"
 "<b>👥 Membros:</b> ${7}/${8}\n"
+"\n"
 "<b>❇️ URL de Convite do Clan:</b> https://telegram.me/DefendTheCastleBot?"
 "start=join-clan-${9}"
+"<b>❌ Sair:</b> <a href=\"https://telegram.me/DefendTheCastleBot?start=exit-"
+"clan\">[Clique Aqui]</a>"
 
-#: plugins/clan.js:81:37
+#: plugins/clan.js:83:37
 msgid "*Done!*"
 msgstr "*Feito!*"
 
-#: plugins/clan.js:241:18
+#: plugins/clan.js:244:18
 msgid "🌇 Open Clan"
 msgstr "🌇 Abrir Clan"
 
-#: plugins/clan.js:91:33
+#: plugins/clan.js:93:33
 msgid "<b>NOTE:</b> Flag{3}-Name{1,15}; examle: <code>TNT-TNTClan</code>"
 msgstr "<b>NOTA:</b> Tag{3}-Nome{1,15}; exemplo: <code>TNT-TNTClan</code>"
 
-#: plugins/clan.js:105:15
+#: plugins/clan.js:107:15
 msgid "💰 Get Money"
 msgstr "💰 Obter Dinheiro"
 
-#: plugins/clan.js:106:15
+#: plugins/clan.js:108:15
 msgid "✨ Donate Experience"
 msgstr "✨ Doar Experiência"
 
-#: plugins/clan.js:107:15
+#: plugins/clan.js:109:15
 msgid "👥 Members"
 msgstr "👥 Membros"
 
-#: plugins/clan.js:110:15
+#: plugins/clan.js:112:15
 msgid "🌇 Clan Menu"
 msgstr "🌇 Menu Clan"
 
-#: plugins/clan.js:111:15
+#: plugins/clan.js:113:15
 msgid "📜 Main Menu"
 msgstr "📜 Menu Principal"
 
-#: plugins/clan.js:259:17
+#: plugins/clan.js:271:18
 msgid "📝 List Clans"
 msgstr "📝 Lista de Clans"
 
-#: plugins/clan.js:117:14
+#: plugins/clan.js:119:14
 msgid "Join or create a new clan!"
 msgstr "Entre ou crie um novo clan!"
 
-#: plugins/clan.js:258:17
+#: plugins/clan.js:270:18
 msgid "✏️ Create"
 msgstr "✏️ Criar"
 
-#: plugins/clan.js:133:14
+#: plugins/clan.js:135:14
 msgid "💰 Transferred to your account: ${0}"
 msgstr "💰 Transferido para a sua conta: ${0}"
 
-#: plugins/clan.js:141:14
+#: plugins/clan.js:143:14
 msgid "✨ Transferred to clan: ${0}"
 msgstr "✨ Transferido para o clan: ${0}"
 
-#: plugins/clan.js:150:14
+#: plugins/clan.js:152:14
 msgid ""
 "<b>Members (wins;losses):\n"
 "</b>"
@@ -459,7 +465,7 @@ msgstr ""
 "<b>Membros (ganhas;perdas):\n"
 "</b>"
 
-#: plugins/clan.js:193:14
+#: plugins/clan.js:195:14
 msgid ""
 "\n"
 "Name and Flag (reply):\n"
@@ -473,7 +479,7 @@ msgstr ""
 "EXEMPLO: TNT-TNTClan\n"
 "\t\t"
 
-#: plugins/clan.js:205:14
+#: plugins/clan.js:207:14
 msgid ""
 "<b>Clans:\n"
 "</b>"
@@ -481,15 +487,19 @@ msgstr ""
 "<b>Clans:\n"
 "</b>"
 
-#: plugins/clan.js:212:16
+#: plugins/clan.js:214:16
 msgid "🌇 More Clans"
 msgstr "🌇 Mais Clans"
 
-#: plugins/clan.js:221:15
+#: plugins/clan.js:223:15
 msgid "Join:"
 msgstr "Entrar:"
 
-#: plugins/clan.js:227:16
+#: plugins/clan.js:228:15
+msgid "<b>VIEW CLAN:</b>\n"
+msgstr "<b>VER CLAN:</b>\n"
+
+#: plugins/clan.js:230:16
 msgid ""
 "\n"
 "<b>NOTE</b>: You already have a clan!"
@@ -497,19 +507,23 @@ msgstr ""
 "\n"
 "<b>NOTE</b>: Você já está em um clan!!"
 
-#: plugins/clan.js:231:16
+#: plugins/clan.js:234:16
 msgid "Clan is full! (${0}/${1})"
 msgstr "Clan está cheio! (${0}/${1})"
 
-#: plugins/clan.js:238:17
+#: plugins/clan.js:241:17
 msgid "Welcome!\n"
 msgstr "Bem-Vindo\n"
 
-#: plugins/clan.js:248:15
+#: plugins/clan.js:251:15
 msgid "<b>Owner cannot leave!</b>"
 msgstr "<b>Dono não pode sair!</b>"
 
-#: plugins/clan.js:255:15
+#: plugins/clan.js:254:15
+msgid "Wait 24 hours to do this again!"
+msgstr "Espere 24 horas para fazer isso novamente!"
+
+#: plugins/clan.js:267:16
 msgid "Leaving!"
 msgstr "Saindo!"
 
