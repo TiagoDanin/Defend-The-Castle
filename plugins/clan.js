@@ -67,7 +67,9 @@ const processView = (ctx, clan) => {
 <b>🎖 Experience:</b> ${ctx.nl(clan.xp)}
 <b>💰 Money:</b> ${ctx.nl(clan.money)} (${ctx.nl(ctx.clan[clan.level].money)}/hour)
 <b>👥 Members:</b> ${clan.members.length}/${ctx.clan[clan.level].members}
-<b>❇️ Invite Clan URL:</b> https://telegram.me/DefendTheCastleBot?start=join-clan-${ctx.from.id}`
+
+<b>❇️ Invite Clan URL:</b> https://telegram.me/DefendTheCastleBot?start=join-clan-${ctx.from.id}
+<b>❌ Exit:</b> <a href="https://telegram.me/DefendTheCastleBot?start=exit-clan">[Click Here]</a>`
 }
 
 const reply = async (ctx) => {
@@ -223,7 +225,8 @@ EXAMPLE: TNT-TNTClan
 		if (clan) {
 			clan = await ctx.database.getClan(Number(ctx.match[3]))
 			clan = await processClan(ctx, clan)
-			text = processView(ctx, clan)
+			text = ctx._`<b>VIEW CLAN:</b>\n`
+			text += processView(ctx, clan)
 			text += ctx._`\n<b>NOTE</b>: You already have a clan!`
 		} else {
 			clan = await ctx.database.getClan(Number(ctx.match[3]))
@@ -247,18 +250,28 @@ EXAMPLE: TNT-TNTClan
 		if (ctx.from.id == clan.id) {
 			text = ctx._`<b>Owner cannot leave!</b>`
 		} else {
-			clan.members = clan.members.filter(e => e != ctx.from.id)
-			ctx.database.updateClan({
-				id: clan.id,
-				members: clan.members
-			})
-			text = ctx._`Leaving!`
-			keyboard = [
-				[
-					{text: ctx._`✏️ Create` , callback_data: 'clan:new'},
-					{text: ctx._`📝 List Clans` , callback_data: 'clan:list'}
+			const date = new Date()
+			text = ctx._`Wait 24 hours to do this again!`
+			if (!ctx.session.clanExit) {
+				ctx.session.clanExit = +date
+			} else if (!clan) {
+				text = ctx._`Leaving!` //TODO Update text
+			} else if (ctx.session.clanExit < +date) {
+				date.setDate(date.getDate() + 1)
+				ctx.session.clanExit = +date
+				clan.members = clan.members.filter(e => e != ctx.from.id)
+				ctx.database.updateClan({
+					id: clan.id,
+					members: clan.members
+				})
+				text = ctx._`Leaving!`
+				keyboard = [
+					[
+						{text: ctx._`✏️ Create` , callback_data: 'clan:new'},
+						{text: ctx._`📝 List Clans` , callback_data: 'clan:list'}
+					]
 				]
-			]
+			}
 		}
 	}
 
@@ -288,5 +301,6 @@ module.exports = {
 	regex: [
 		/^(\/)(join) clan (\d+)/i,
 		/^(\/)(members) (del) (\d+)/i,
+		/^(\/)(exit) clan/i,
 	]
 }
