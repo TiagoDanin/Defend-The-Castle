@@ -132,22 +132,53 @@ const base = async (ctx) => {
 	if (ctx.match[2] == 'ranks') {
 		return clansRanks(ctx, clan)
 	} else if (ctx.match[2] == 'money') {
-		text = ctx._`💰 Transferred to your account: ${ctx.nl(clan.money)}`
-		ctx.db.money += Math.floor(clan.money)
-		await ctx.database.updateClan({
-			id: clan.id,
-			money: 0
-		})
-		await ctx.database.saveUser(ctx)
+		text += ctx._`\n<b>Select:</b>`
+		if (ctx.match[3]) {
+			const money = Math.floor(clan.money/Math.abs(ctx.match[3]))
+			ctx.db.money += money
+			clan.money -= money
+			text = ctx._`💰 Transferred to your account: ${ctx.nl(money)}`
+			await ctx.database.updateClan({
+				id: clan.id,
+				money: clan.money
+			})
+			await ctx.database.saveUser(ctx)
+		}
+		keyboard = [
+			[
+				{text: `💰 ${ctx.nl(clan.money)}` , callback_data: 'clan:money:1'},
+				{text: `💰 ${ctx.nl(clan.money/2)}` , callback_data: 'clan:money:2'},
+				{text: `💰 ${ctx.nl(clan.money/3)}` , callback_data: 'clan:money:3'}
+			],
+			[
+				{text: ctx._`🌇 Clan Menu` , callback_data: 'clan'},
+				{text: ctx._`📜 Main Menu` , callback_data: 'menu'}
+			]
+		]
 	} else if (ctx.match[2] == 'xp') {
-		text = ctx._`✨ Transferred to clan: ${ctx.nl(ctx.db.xp)}`
-		clan.xp += ctx.db.xp
-		ctx.db.xp = 0
-		await ctx.database.updateClan({
-			id: clan.id,
-			xp: Math.floor(clan.xp)
-		})
-		await ctx.database.saveUser(ctx)
+		text += ctx._`\n<b>Select:</b>`
+		if (ctx.match[3]) {
+			const xp = Math.floor(ctx.db.xp/Math.abs(ctx.match[3]))
+			ctx.db.xp -= xp
+			clan.xp += xp
+			text = ctx._`✨ Transferred to clan: ${ctx.nl(xp)}`
+			await ctx.database.updateClan({
+				id: clan.id,
+				xp: clan.xp
+			})
+			await ctx.database.saveUser(ctx)
+		}
+		keyboard = [
+			[
+				{text: `✨ ${ctx.nl(ctx.db.xp)}` , callback_data: 'clan:xp:1'},
+				{text: `✨ ${ctx.nl(ctx.db.xp/2)}` , callback_data: 'clan:xp:2'},
+				{text: `✨ ${ctx.nl(ctx.db.xp/3)}` , callback_data: 'clan:xp:3'}
+			],
+			[
+				{text: ctx._`🌇 Clan Menu` , callback_data: 'clan'},
+				{text: ctx._`📜 Main Menu` , callback_data: 'menu'}
+			]
+		]
 	} else if (ctx.match[2] == 'members') {
 		text = ctx._`<b>Members (wins;losses):\n</b>`
 

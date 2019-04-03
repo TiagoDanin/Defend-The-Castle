@@ -401,15 +401,14 @@ msgstr ""
 "<b>👥 Membros:</b> ${7}/${8}\n"
 "\n"
 "<b>❇️ URL de Convite do Clan:</b> https://telegram.me/DefendTheCastleBot?"
-"start=join-clan-${9}"
-"<b>❌ Sair:</b> <a href=\"https://telegram.me/DefendTheCastleBot?start=exit-"
-"clan\">[Clique Aqui]</a>"
+"start=join-clan-${9}<b>❌ Sair:</b> <a href=\"https://telegram.me/"
+"DefendTheCastleBot?start=exit-clan\">[Clique Aqui]</a>"
 
 #: plugins/clan.js:83:37
 msgid "*Done!*"
 msgstr "*Feito!*"
 
-#: plugins/clan.js:244:18
+#: plugins/clan.js:275:18
 msgid "🌇 Open Clan"
 msgstr "🌇 Abrir Clan"
 
@@ -429,15 +428,15 @@ msgstr "✨ Doar Experiência"
 msgid "👥 Members"
 msgstr "👥 Membros"
 
-#: plugins/clan.js:112:15
+#: plugins/clan.js:178:16
 msgid "🌇 Clan Menu"
 msgstr "🌇 Menu Clan"
 
-#: plugins/clan.js:113:15
+#: plugins/clan.js:179:16
 msgid "📜 Main Menu"
 msgstr "📜 Menu Principal"
 
-#: plugins/clan.js:271:18
+#: plugins/clan.js:302:18
 msgid "📝 List Clans"
 msgstr "📝 Lista de Clans"
 
@@ -445,19 +444,23 @@ msgstr "📝 Lista de Clans"
 msgid "Join or create a new clan!"
 msgstr "Entre ou crie um novo clan!"
 
-#: plugins/clan.js:270:18
+#: plugins/clan.js:301:18
 msgid "✏️ Create"
 msgstr "✏️ Criar"
 
-#: plugins/clan.js:135:14
+#: plugins/clan.js:159:15
+msgid "\n<b>Select:</b>"
+msgstr "\n<b>Selecione:</b>"
+
+#: plugins/clan.js:140:15
 msgid "💰 Transferred to your account: ${0}"
 msgstr "💰 Transferido para a sua conta: ${0}"
 
-#: plugins/clan.js:143:14
+#: plugins/clan.js:164:15
 msgid "✨ Transferred to clan: ${0}"
 msgstr "✨ Transferido para o clan: ${0}"
 
-#: plugins/clan.js:152:14
+#: plugins/clan.js:183:14
 msgid ""
 "<b>Members (wins;losses):\n"
 "</b>"
@@ -465,7 +468,7 @@ msgstr ""
 "<b>Membros (ganhas;perdas):\n"
 "</b>"
 
-#: plugins/clan.js:195:14
+#: plugins/clan.js:226:14
 msgid ""
 "\n"
 "Name and Flag (reply):\n"
@@ -479,7 +482,7 @@ msgstr ""
 "EXEMPLO: TNT-TNTClan\n"
 "\t\t"
 
-#: plugins/clan.js:207:14
+#: plugins/clan.js:238:14
 msgid ""
 "<b>Clans:\n"
 "</b>"
@@ -487,19 +490,19 @@ msgstr ""
 "<b>Clans:\n"
 "</b>"
 
-#: plugins/clan.js:214:16
+#: plugins/clan.js:245:16
 msgid "🌇 More Clans"
 msgstr "🌇 Mais Clans"
 
-#: plugins/clan.js:223:15
+#: plugins/clan.js:254:15
 msgid "Join:"
 msgstr "Entrar:"
 
-#: plugins/clan.js:228:15
+#: plugins/clan.js:259:15
 msgid "<b>VIEW CLAN:</b>\n"
 msgstr "<b>VER CLAN:</b>\n"
 
-#: plugins/clan.js:230:16
+#: plugins/clan.js:261:16
 msgid ""
 "\n"
 "<b>NOTE</b>: You already have a clan!"
@@ -507,23 +510,23 @@ msgstr ""
 "\n"
 "<b>NOTE</b>: Você já está em um clan!!"
 
-#: plugins/clan.js:234:16
+#: plugins/clan.js:265:16
 msgid "Clan is full! (${0}/${1})"
 msgstr "Clan está cheio! (${0}/${1})"
 
-#: plugins/clan.js:241:17
+#: plugins/clan.js:272:17
 msgid "Welcome!\n"
 msgstr "Bem-Vindo\n"
 
-#: plugins/clan.js:251:15
+#: plugins/clan.js:282:15
 msgid "<b>Owner cannot leave!</b>"
 msgstr "<b>Dono não pode sair!</b>"
 
-#: plugins/clan.js:254:15
+#: plugins/clan.js:285:15
 msgid "Wait 24 hours to do this again!"
 msgstr "Espere 24 horas para fazer isso novamente!"
 
-#: plugins/clan.js:267:16
+#: plugins/clan.js:298:16
 msgid "Leaving!"
 msgstr "Saindo!"
 
