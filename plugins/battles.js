@@ -1,20 +1,38 @@
 const base = async (ctx) => {
 	const sortWins = Object.keys(ctx.caches).sort((a, b) => {
-		return ctx.caches[b].win - ctx.caches[a].win
+		return ctx.caches[b].wins - ctx.caches[a].wins
+	}).map(e => ctx.caches[e])
+	const sortLosts = Object.keys(ctx.caches).sort((a, b) => {
+		return ctx.caches[b].losts - ctx.caches[a].losts
 	}).map(e => ctx.caches[e])
 	const sortBattles = Object.keys(ctx.caches).sort((a, b) => {
 		return ctx.caches[b].battles - ctx.caches[a].battles
 	}).map(e => ctx.caches[e])
+	const sortOnline = Object.keys(ctx.caches).sort((a, b) => {
+		return ctx.caches[b].count - ctx.caches[a].count
+	}).map(e => ctx.caches[e])
+
+	ctx.caches.top.online = []
+	ctx.caches.top.wins = []
+	ctx.caches.top.losts = []
+	ctx.caches.top.battles = []
+	for (var i = 0; i < 4; i++) {
+		ctx.caches.top.online.push(Number(sortOnline[i].id))
+		ctx.caches.top.wins.push(Number(sortWins[i].id))
+		ctx.caches.top.losts.push(Number(sortLosts[i].id))
+		ctx.caches.top.battles.push(Number(sortBattles[i].id))
+	}
+
 	const text = ctx._`
 <b>My Battles</b>
 <b>Total:</b> ${ctx.db.cache.battles}
-<b>Wins:</b> ${ctx.db.cache.win}
-<b>Losses:</b> ${ctx.db.cache.lost}
+<b>Wins:</b> ${ctx.db.cache.wins}
+<b>Losses:</b> ${ctx.db.cache.losts}
 
 <b>Global Battles (Wins)</b>
-🥇 ${sortWins[0].name} : ${sortWins[0].id} (${sortWins[0].win})
-🥈 ${sortWins[1].name} : ${sortWins[1].id} (${sortWins[1].win})
-🥉 ${sortWins[2].name} : ${sortWins[2].id} (${sortWins[2].win})
+🥇 ${sortWins[0].name} : ${sortWins[0].id} (${sortWins[0].wins})
+🥈 ${sortWins[1].name} : ${sortWins[1].id} (${sortWins[1].wins})
+🥉 ${sortWins[2].name} : ${sortWins[2].id} (${sortWins[2].wins})
 
 <b>Global Battles (Total)</b>
 🥇 ${sortBattles[0].name} : ${sortBattles[0].id} (${sortBattles[0].battles})

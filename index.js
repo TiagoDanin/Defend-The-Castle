@@ -11,8 +11,17 @@ const database = require('./database')
 const levels = require('./levels')
 const tips = require('./tips')
 const clan = require('./clan')
+const badges = require('./badges')
 
-let cache = {}
+let cache = {
+	top: {
+		wins: [],
+		losts: [],
+		battles: [],
+		money: [],
+		online: []
+	}
+}
 
 const items = {
 	...require('./items/bank'),
@@ -198,8 +207,8 @@ const myCache = async (id, update) => {
 			tgusername: 'Null',
 			castle: castle,
 			battles: 0,
-			win: 0,
-			lost: 0,
+			wins: 0,
+			losts: 0,
 			clan: false,
 			rate: false,
 			count: 0
@@ -207,12 +216,44 @@ const myCache = async (id, update) => {
 	}
 	cache[id].rate = Math.floor(cache[id].win / cache[id].lost)
 	cache[id].count++
+	if (update) {
+		cache[id] = {
+			...cache[id],
+			...update
+		}
+	}
 	return cache[id]
 }
 myCache(0) //Null User
 myCache(1) //BOT IA User
 myCache(2) //BOT IA User
 myCache(3) //BOT IA User
+
+badges.get = (id) => {
+	let output = []
+	if (cache.top.wins.includes(id)) {
+		output.push(badges.list.wins)
+	}
+	if (cache.top.losts.includes(id)) {
+		output.push(badges.list.losts)
+	}
+	if (cache.top.battles.includes(id)) {
+		output.push(badges.list.battles)
+	}
+	if (cache.top.money.includes(id)) {
+		output.push(badges.list.money)
+	}
+	if (config.ids.admins.includes(id)) {
+		output.push(badges.list.admins)
+	}
+	if (config.ids.mods.includes(id)) {
+		output.push(badges.list.mods)
+	}
+	if (cache.top.online.includes(id)) {
+		output.push(badges.list.online)
+	}
+	return output
+}
 
 bot.use((ctx, next) => {
 	var langCode = checkLanguage(ctx)
@@ -240,11 +281,20 @@ bot.context.database = database
 bot.context.castles = config.castles
 bot.context.items = items
 bot.context.cache = myCache
+bot.context.badges = badges.get
 bot.context.tags = (id) => {
-	if (cache[id]) {
-
+	let output = badges.get(id)
+	if (output.length > 0) {
+		//return `(${output[Math.floor((Math.random() * output.length))]})`
+		output = `(${output.map(el => el.icon).join(', ')})`
+	} else {
+		output = ''
 	}
-	return ''
+
+	if (cache[id] && cache[id].clan) {
+		output += `[${cache[id].clan}]`
+	}
+	return output
 }
 bot.context.fixKeyboard = Array(90).join('\u0020') + '\u200B'
 bot.context.loadLang = (langCode) => {

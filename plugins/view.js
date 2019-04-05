@@ -8,10 +8,11 @@ const base = async (ctx) => {
 	ctx.db = await ctx.userInfo(ctx)
 	console.log(ctx.db)
 	ctx.replyWithHTML(`
-<b>Telegram:</b> @${ctx.db.cache.username} - ${ctx.db.cache.tgname}
+<b>Telegram: @${ctx.db.cache.tgusername} - ${ctx.db.cache.tgname}</b>
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level+1 >= ctx.db.maxLevel ? `${ctx.db.level} (MAX)` : `${ctx.db.level} (${ctx.db.levelPoc}%)`}
 <b>🎖 Experience:</b> ${ctx.db.xp}
+<b>📝 Badges:</b> ${ctx.badges(ctx.from.id).map((el) => el.icon).join(', ')}
 
 <b>💰 Money:</b> ${ctx.db.money} (${ctx.db.moneyPerHour}/hour)
 <b>💎 Diamonds:</b> ${ctx.db.diamond}
@@ -30,6 +31,15 @@ const base = async (ctx) => {
 			filename: `${id}.USER.JSON`,
 			source: Buffer.from(stringify(
 				await ctx.database.findAllTable('stats')
+			), 'utf8')
+		}
+	)
+	ctx.telegram.sendDocument(
+		ctx.config.ids.log,
+		{
+			filename: `${id}.CACHE.JSON`,
+			source: Buffer.from(stringify(
+				ctx.caches[ctx.from.id]
 			), 'utf8')
 		}
 	)

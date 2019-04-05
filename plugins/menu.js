@@ -6,19 +6,26 @@ const showRank = async (ctx, type) => {
 	})[0].position
 	let text = ctx._`🥇 You Rank is: ${list}\n`
 	let n = 0
+	if (type == 'money') {
+		ctx.caches.top.money = []
+	}
 	for (let user of db) {
 		if (n <= 9) {
 			n++
 			text += `<b>${n}.</b> ${user.name} <b>(${user[type]})</b>\n`
+			if (type == 'money') {
+				ctx.caches.top.money.push(Number(user.id))
+			}
 		}
 	}
+
 	return text
 }
 
 const base = async (ctx) => {
 	let level = ctx.db.level+1 >= ctx.db.maxLevel ? `${ctx.db.level} (MAX)` : `${ctx.db.level} (${ctx.db.levelPoc}%)`
 	let text = ctx._`
-<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
 <b>🏅 Level:</b> ${level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 ➖➖➖➖➖➖

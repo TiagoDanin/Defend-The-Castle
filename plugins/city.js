@@ -105,7 +105,7 @@ const infoText = (ctx) => {
 
 const base = async (ctx) => {
 	let text = ctx._`
-<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
 <b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)
 <b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
 <b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
@@ -122,7 +122,7 @@ ${ctx.tips(ctx)}
 		ctx.db.castle = ctx.castles[Number(ctx.match[3])] || '🏰'
 		mainKeyboard = city(ctx)
 		text = ctx._`
-<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
 <b>💰 Money:</b> ${ctx.nl(ctx.db.money)} Coin (${ctx.nl(ctx.db.moneyPerHour)}/hour)
 <b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
 <b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
@@ -174,7 +174,7 @@ ${ctx.tips(ctx)}
 			})
 			ctx.db = await ctx.userInfo(ctx)
 			text = ctx._`
-<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
 <b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)
 <b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
 <b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
@@ -198,7 +198,7 @@ Upgraded!`
 			await ctx.database.setCity(ctx, Number(ctx.match[3]), Number(ctx.match[4]))
 			ctx.db = await ctx.userInfo(ctx)
 			text = ctx._`
-<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
 <b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)
 <b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
 <b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
