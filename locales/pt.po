@@ -175,19 +175,31 @@ msgstr "⚔️ Oh! Não... Armadilha.."
 msgid "🛡 The defense is down!"
 msgstr "🛡 A defesa caiu!"
 
-#: plugins/badges.js:3:17
+#: plugins/badges.js:5:32
+msgid ""
+"\n"
+"📦 #Quest <a href=\"https://telegram.me/DefendTheCastleBot?"
+"start=05aprID2652341456\">Open (Click Here)</a>\n"
+"\t\t"
+msgstr ""
+"\n"
+"📦 #Missão <a href=\"https://telegram.me/DefendTheCastleBot?"
+"start=05aprID2652341456\">Abrir (Clique aqui)</a>\n"
+"\t\t"
+
+#: plugins/badges.js:12:17
 msgid "<b>My badges:</b>\n"
 msgstr "<b>Meu emblemas:</b>\n"
 
-#: plugins/badges.js:6:15
+#: plugins/badges.js:15:15
 msgid "You don't have badges!"
 msgstr "Você não tem emblemas!"
 
-#: plugins/quests.js:7:15
+#: plugins/quests.js:11:15
 msgid "📜 Menu"
 msgstr "📜 Menu"
 
-#: plugins/badges.js:31:14
+#: plugins/badges.js:42:14
 msgid ""
 "\n"
 "<b>Badge:</b>\n"
@@ -979,19 +991,26 @@ msgstr ""
 msgid "Present: ${0}!"
 msgstr "Presente: ${0}!"
 
-#: plugins/quests.js:2:19
+#: plugins/quests.js:2:17
 msgid ""
 "\n"
-"<b>📔 Quests (#Soon)</b>\n"
-"- #Soon!\n"
-"\t"
+"<b>📔 Quest (Apr 5 ~> 14 Apr)</b>\n"
+"- Be the King of Emblems\n"
 msgstr ""
 "\n"
-"<b>📔 Missões (#Soon)</b>\n"
-"- #Soon!\n"
+"<b>📔 Missão ((Apr 5 ~> 14 Apr)</b>\n"
+"- Seja o Rei dos Emblemas\n"
 "\t"
 
-#: plugins/quests.js:22:36
+#: plugins/quests.js:6:15
+msgid "Status: Done"
+msgstr "Statu: Feito"
+
+#: plugins/quests.js:8:15
+msgid "Status: Open"
+msgstr "Status: Aberto"
+
+#: plugins/quests.js:26:36
 msgid "*Quest Complete!*"
 msgstr "*Missão Completa!*"
 
@@ -999,20 +1018,20 @@ msgstr "*Missão Completa!*"
 msgid ""
 "\n"
 "*Quest Complete!*\n"
-"+ 1700 XP\n"
-"+ 9500 Money\n"
-"+ 3 Diamond\n"
-"+ 2 Clone\n"
-"+ 2 Super Shield\n"
+"+ 1200 XP\n"
+"+ 10000 Money\n"
+"+ 1 Diamond\n"
+"+ 1 Clone\n"
+"+ 1 Super Shield\n"
 "\t"
 msgstr ""
 "\n"
 "*Missão Completa!*\n"
-"+ 1700 XP\n"
-"+ 9500 Dinheiro\n"
-"+ 3 Diamantes\n"
-"+ 2 Clone\n"
-"+ 2 Super Escudo\n"
+"+ 1200 XP\n"
+"+ 10000 Dinheiro\n"
+"+ 1 Diamantes\n"
+"+ 1 Clone\n"
+"+ 1 Super Escudo\n"
 "\t"
 
 #: plugins/singup.js:51:24
@@ -1272,16 +1291,16 @@ msgstr "Completa as missões para recebe 💎 & 💰"
 msgid "Every 24 hours you can open a gift!"
 msgstr "A cada 24h você pode abrir um presente!"
 
-#~ msgid "🌇 Clan (Beta)"
-#~ msgstr "🌇 Clan (Beta)"
-
 #~ msgid ""
 #~ "\n"
-#~ "<b>📔 Quests (3 mar ~> 17 mar)</b>\n"
-#~ "- 🎁 Find the best present!\n"
+#~ "<b>📔 Quests (#Soon)</b>\n"
+#~ "- #Soon!\n"
 #~ "\t"
 #~ msgstr ""
 #~ "\n"
-#~ "<b>📔 Missões (3 mar ~> 17 mar)</b>\n"
-#~ "- 🎁 Procure o melhor presente!\n"
+#~ "<b>📔 Missões (#Soon)</b>\n"
+#~ "- #Soon!\n"
 #~ "\t"
+
+#~ msgid "🌇 Clan (Beta)"
+#~ msgstr "🌇 Clan (Beta)"
