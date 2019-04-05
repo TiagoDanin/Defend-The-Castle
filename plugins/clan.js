@@ -101,6 +101,11 @@ const reply = async (ctx) => {
 
 const base = async (ctx) => {
 	let clan = await ctx.database.getClan(ctx.from.id)
+	ctx.cache(ctx.from.id, {
+		tgusername: ctx.from.username,
+		tgname: `${ctx.from.first_name}_${ctx.from.last_name}`,
+		clan: clan.flag
+	})
 	let text = '.'
 	let keyboard = [
 		[
@@ -191,25 +196,7 @@ const base = async (ctx) => {
 		}
 
 		for (let i = 0; i < clan.members.length; i++) {
-			let member = clan.members[i]
-			if (ctx.cache[member]) {
-				member = ctx.cache[member]
-			} else {
-				let user = await ctx.database.getUser(member)
-				let castle = ctx.castles[0]
-				if (user.city)  {
-					castle = ctx.castles[Number(user.city[12])]
-				}
-				ctx.cache[member] = {
-					id: user.id || member,
-					name: user.name || 'Null (DeleteMe)',
-					castle: castle,
-					battles: 0,
-					win: 0,
-					lost: 0
-				}
-				member = ctx.cache[member]
-			}
+			const member = await ctx.cache(clan.members[i])
 			text += `<b>${i+1}.</b>${member.castle} ${member.name} (+${member.win};-${member.lost})`
 			if (clan.id == ctx.from.id && member.id != ctx.from.id) {
 				text += `<a href="https://telegram.me/DefendTheCastleBot?start=members-del-${member.id}">[❌]</a>`

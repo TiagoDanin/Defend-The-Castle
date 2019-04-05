@@ -31,16 +31,10 @@ ${ctx.tips(ctx)}`
 		ctx.session.box = +new Date()
 	}
 
-	if (!ctx.cache[ctx.from.id]) {
-		ctx.cache[ctx.from.id] = {
-			id: ctx.from.id,
-			name: ctx.db.name,
-			castle: ctx.db.castle,
-			battles: 0,
-			win: 0,
-			lost: 0
-		}
-	}
+	ctx.cache(ctx.from.id, {
+		tgusername: ctx.from.username,
+		tgname: `${ctx.from.first_name}_${ctx.from.last_name}`
+	})
 
 	if (ctx.session.dual || ctx.db.dual < 50) { //Disable dual
 		await ctx.database.updateUser(ctx.from.id, 'dual', 50)

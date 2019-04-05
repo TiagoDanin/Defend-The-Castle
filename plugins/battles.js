@@ -1,15 +1,15 @@
 const base = async (ctx) => {
-	const sortWins = Object.keys(ctx.cache).sort((a, b) => {
-		return ctx.cache[b].win - ctx.cache[a].win
-	}).map(e => ctx.cache[e])
-	const sortBattles = Object.keys(ctx.cache).sort((a, b) => {
-		return ctx.cache[b].battles - ctx.cache[a].battles
-	}).map(e => ctx.cache[e])
+	const sortWins = Object.keys(ctx.caches).sort((a, b) => {
+		return ctx.caches[b].win - ctx.caches[a].win
+	}).map(e => ctx.caches[e])
+	const sortBattles = Object.keys(ctx.caches).sort((a, b) => {
+		return ctx.caches[b].battles - ctx.caches[a].battles
+	}).map(e => ctx.caches[e])
 	const text = ctx._`
 <b>My Battles</b>
-<b>Total:</b> ${ctx.cache[ctx.from.id].battles}
-<b>Wins:</b> ${ctx.cache[ctx.from.id].win}
-<b>Losses:</b> ${ctx.cache[ctx.from.id].lost}
+<b>Total:</b> ${ctx.db.cache.battles}
+<b>Wins:</b> ${ctx.db.cache.win}
+<b>Losses:</b> ${ctx.db.cache.lost}
 
 <b>Global Battles (Wins)</b>
 🥇 ${sortWins[0].name} : ${sortWins[0].id} (${sortWins[0].win})

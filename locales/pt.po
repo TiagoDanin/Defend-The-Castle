@@ -401,7 +401,8 @@ msgstr ""
 "<b>👥 Membros:</b> ${7}/${8}\n"
 "\n"
 "<b>❇️ URL de Convite do Clan:</b> https://telegram.me/DefendTheCastleBot?"
-"start=join-clan-${9}<b>❌ Sair:</b> <a href=\"https://telegram.me/"
+"start=join-clan-${9}\n"
+"<b>❌ Sair:</b> <a href=\"https://telegram.me/"
 "DefendTheCastleBot?start=exit-clan\">[Clique Aqui]</a>"
 
 #: plugins/clan.js:83:37

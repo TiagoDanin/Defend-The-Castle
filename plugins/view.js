@@ -8,6 +8,7 @@ const base = async (ctx) => {
 	ctx.db = await ctx.userInfo(ctx)
 	console.log(ctx.db)
 	ctx.replyWithHTML(`
+<b>Telegram:</b> @${ctx.db.cache.username} - ${ctx.db.cache.tgname}
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level+1 >= ctx.db.maxLevel ? `${ctx.db.level} (MAX)` : `${ctx.db.level} (${ctx.db.levelPoc}%)`}
 <b>🎖 Experience:</b> ${ctx.db.xp}

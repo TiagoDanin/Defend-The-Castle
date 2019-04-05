@@ -27,39 +27,21 @@ const dualAttack = async (ctx, play1) => {
 	let play2 = ctx.db
 	play2._ = ctx.loadLang(play2.lang)
 
-	if (!ctx.cache[play1.id]) {
-		ctx.cache[play1.id] = {
-			id: play1.id,
-			name: play1.name,
-			castle: ctx.castles[Number(play1.city[12])],
-			battles: 0,
-			win: 0,
-			lost: 0
-		}
-	}
-	if (!ctx.cache[play2.id]) {
-		ctx.cache[play2.id] = {
-			id: play2.id,
-			name: play2.name,
-			castle: ctx.castles[Number(play2.city[12])],
-			battles: 0,
-			win: 0,
-			lost: 0
-		}
-	}
+	await ctx.cache(play1.id)
+	await ctx.cache(play2.id)
 
 	let text1 = play1._`
-<b>${ctx.castles[Number(play1.city[12])]} City:</b> ${play1.name}
+<b>${ctx.castles[Number(play1.city[12])]} City:</b> ${play1.name}${ctx.tags(play1.id)}
 <b>🏅 Level:</b> ${play1.level}
 ➖➖➖DUAL➖➖➖
-<b>${ctx.castles[Number(play2.city[12])]} City:</b> ${play2.name}
+<b>${ctx.castles[Number(play2.city[12])]} City:</b> ${play2.name}${ctx.tags(play2.id)}
 <b>🏅 Level:</b> ${play2.level}`
 
 	let text2 = play2._`
-<b>${ctx.castles[Number(play1.city[12])]} City:</b> ${play1.name}
+<b>${ctx.castles[Number(play1.city[12])]} City:</b> ${play1.name}${ctx.tags(play1.id)}
 <b>🏅 Level:</b> ${play1.level}
 ➖➖➖DUAL➖➖➖
-<b>${ctx.castles[Number(play2.city[12])]} City:</b> ${play2.name}
+<b>${ctx.castles[Number(play2.city[12])]} City:</b> ${play2.name}${ctx.tags(play2.id)}
 <b>🏅 Level:</b> ${play2.level}`
 
 	play1.attack = play1.attack / 3.2
@@ -99,8 +81,8 @@ const dualAttack = async (ctx, play1) => {
 		6 * (play1.level + play2.level)
 	) + 400
 
-	ctx.cache[play1.id].battles++
-	ctx.cache[play2.id].battles++
+	ctx.caches[play1.id].battles++
+	ctx.caches[play2.id].battles++
 	if (play1.life > play2.life) {
 		winName1 = play1.name
 		winName2 = play1.name
@@ -108,8 +90,8 @@ const dualAttack = async (ctx, play1) => {
 		play1.winMoney = winMoney
 		play2.winXp = winXp / 3.3
 		play2.winMoney = winMoney / 3.3
-		ctx.cache[play1.id].win++
-		ctx.cache[play2.id].lost++
+		ctx.caches[play1.id].win++
+		ctx.caches[play2.id].lost++
 	} else if (play1.life < play2.life) {
 		winName1 = play2.name
 		winName2 = play2.name
@@ -117,15 +99,15 @@ const dualAttack = async (ctx, play1) => {
 		play1.winMoney = winMoney / 3.3
 		play2.winXp = winXp
 		play2.winMoney = winMoney
-		ctx.cache[play1.id].win++
-		ctx.cache[play2.id].lost++
+		ctx.caches[play1.id].win++
+		ctx.caches[play2.id].lost++
 	} else { //play1 == play2
 		play1.winXp = winXp / 3.3
 		play1.winMoney = winMoney / 3.3
 		play2.winXp = winXp / 3.3
 		play2.winMoney = winMoney / 3.3
-		ctx.cache[play1.id].lost++
-		ctx.cache[play2.id].lost++
+		ctx.caches[play1.id].lost++
+		ctx.caches[play2.id].lost++
 	}
 
 	play1.attack = play1.attack < 0 ? 0 : Math.floor(play1.attack)
@@ -223,22 +205,22 @@ const attack = async (ctx, opponent) => {
 	const playId = ctx.match[4]
 	let play = await ctx.database.getUser(playId)
 	play._ = ctx.loadLang(play.lang)
-	let text = ctx._`<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+	let text = ctx._`<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 ➖➖➖VS➖➖➖
-<b>${ctx.castles[Number(play.city[12])]} City:</b> ${play.name}
+<b>${ctx.castles[Number(play.city[12])]} City:</b> ${play.name}${ctx.tags(play.id)}
 <b>🏅 Level:</b> ${play.level}
 <b>🎖 Experience:</b> ${ctx.nl(play.xp)}
 <b>💰 Money:</b> ${ctx.nl(play.money)}`
 
-	let textReply = play._`<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+	let textReply = play._`<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 ➖➖➖VS➖➖➖
-<b>${ctx.castles[Number(play.city[12])]} City:</b> ${play.name}
+<b>${ctx.castles[Number(play.city[12])]} City:</b> ${play.name}${ctx.tags(play.id)}
 <b>🏅 Level:</b> ${play.level}
 <b>🎖 Experience:</b> ${ctx.nl(play.xp)}
 <b>💰 Money:</b> ${ctx.nl(play.money)}`
@@ -317,29 +299,12 @@ ${ctx.nl(ctx.db.life)} ❤️ ${ctx.nl(play.life)}`
 		((play.level / ctx.db.level) / 8.4)
 	) + 25
 
-	if (!ctx.cache[play.id]) {
-		ctx.cache[play.id] = {
-			id: play.id,
-			name: play.name,
-			castle: ctx.castles[Number(play.city[12])],
-			battles: 0,
-			win: 0,
-			lost: 0
-		}
-	}
-	if (!ctx.cache[ctx.from.id]) {
-		ctx.cache[ctx.from.id] = {
-			id: ctx.from.id,
-			name: ctx.db.name,
-			castle: ctx.db.castle,
-			battles: 0,
-			win: 0,
-			lost: 0
-		}
-	}
+	await ctx.cache(play.id)
+	await ctx.cache(ctx.from.id)
 
-	ctx.cache[ctx.from.id].battles++
-	ctx.cache[play.id].battles++
+
+	ctx.caches[ctx.from.id].battles++
+	ctx.caches[play.id].battles++
 	let win = false
 	if (data.items.length <= 6) {
 		text = ctx._`
@@ -354,8 +319,8 @@ ${ctx.db.name} LOST!
 ${textReply}`
 		play.xp += xp / 16
 		ctx.db.money -= addMoney/3.1
-		ctx.cache[play.id].win++
-		ctx.cache[ctx.from.id].lost++
+		ctx.caches[play.id].win++
+		ctx.caches[ctx.from.id].lost++
 	} else if (ctx.db.life > play.life) {
 		win = true
 		ctx.db.xp += xp
@@ -368,8 +333,8 @@ ${text}`
 ${ctx.db.name} WIN!
 ➖➖➖➖➖➖
 ${textReply}`
-		ctx.cache[play.id].lost++
-		ctx.cache[ctx.from.id].win++
+		ctx.caches[play.id].lost++
+		ctx.caches[ctx.from.id].win++
 	} else {
 		ctx.db.xp += xp / 9
 		play.xp += xp / 3.3
@@ -382,8 +347,8 @@ ${ctx.db.name} LOST!
 ➖➖➖➖➖➖
 ${textReply}`
 		ctx.db.money -= addMoney/3.6
-		ctx.cache[play.id].win++
-		ctx.cache[ctx.from.id].lost++
+		ctx.caches[play.id].win++
+		ctx.caches[ctx.from.id].lost++
 	}
 
 	ctx.db.money = Math.floor(ctx.db.money)
@@ -585,12 +550,12 @@ const base = async(ctx) => {
 	}
 
 	let text = ctx._`
-<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 ➖➖➖VS➖➖➖
-<b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
+<b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}${ctx.tags(opponent.id)}
 <b>🏅 Level:</b> ${opponent.level}
 <b>🎖 Experience:</b> ${ctx.nl(opponent.xp)}
 <b>💰 Money:</b> ${ctx.nl(opponent.money)}`
@@ -600,7 +565,7 @@ const base = async(ctx) => {
 		return hack(ctx)
 	} else if (ctx.match[2] == 'dual') {
 		text = ctx._`
-<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
@@ -658,7 +623,7 @@ Select:`
 			} else {
 				await ctx.database.updateUser(ctx.from.id, 'dual', Number(ctx.match[3]))
 				text = ctx._`
-<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
@@ -674,12 +639,12 @@ Waiting for players!`
 				ctx.db.troops = 0
 			}
 			text = ctx._`
-<b>${ctx.db.castle} City:</b> ${ctx.db.name}
+<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 ➖➖➖VS➖➖➖
-<b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}
+<b>${ctx.castles[Number(opponent.city[12])]} City:</b> ${opponent.name}${ctx.tags(opponent.id)}
 <b>🏅 Level:</b> ${opponent.level}
 <b>🎖 Experience:</b> ${ctx.nl(opponent.xp)}
 <b>💰 Money:</b> ${ctx.nl(opponent.money)}`

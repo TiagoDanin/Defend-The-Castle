@@ -36,7 +36,7 @@ const base = async (ctx) => {
 		{
 			filename: 'Cache.backup.JSON',
 			source: Buffer.from(stringify(
-				ctx.cache
+				ctx.caches
 			), 'utf8')
 		}
 	)

@@ -12,32 +12,7 @@ const levels = require('./levels')
 const tips = require('./tips')
 const clan = require('./clan')
 
-let cache = {
-	1: {
-		id: 0,
-		name: 'BOT 1 (Soon)',
-		castle: '🏛',
-		battles: 0,
-		win: 0,
-		lost: 0
-	},
-	2: {
-		id: 0,
-		name: 'BOT 2 (Soon)',
-		castle: '🏛',
-		battles: 0,
-		win: 0,
-		lost: 0
-	},
-	3: {
-		id: 0,
-		name: 'BOT 3 (Soon)',
-		castle: '🏛',
-		battles: 0,
-		win: 0,
-		lost: 0
-	}
-}
+let cache = {}
 
 const items = {
 	...require('./items/bank'),
@@ -209,6 +184,36 @@ const checkLanguage = (ctx) => {
 	return language
 }
 
+const myCache = async (id, update) => {
+	if (!cache[id]) {
+		const user = await database.getUser(id)
+		let castle = config.castles[0]
+		if (user.city)  {
+			castle = config.castles[Number(user.city[12])]
+		}
+		cache[id] = {
+			id: user.id || id || 0,
+			name: user.name || 'Null (DeleteMe)',
+			tgname: 'Null',
+			tgusername: 'Null',
+			castle: castle,
+			battles: 0,
+			win: 0,
+			lost: 0,
+			clan: false,
+			rate: false,
+			count: 0
+		}
+	}
+	cache[id].rate = Math.floor(cache[id].win / cache[id].lost)
+	cache[id].count++
+	return cache[id]
+}
+myCache(0) //Null User
+myCache(1) //BOT IA User
+myCache(2) //BOT IA User
+myCache(3) //BOT IA User
+
 bot.use((ctx, next) => {
 	var langCode = checkLanguage(ctx)
 	var i18n = new Translation(langCode)
@@ -229,11 +234,18 @@ bot.use((ctx, next) => {
 })
 
 bot.context.clan = clan
-bot.context.cache = cache
+bot.context.caches = cache
 bot.context.config = config
 bot.context.database = database
 bot.context.castles = config.castles
 bot.context.items = items
+bot.context.cache = myCache
+bot.context.tags = (id) => {
+	if (cache[id]) {
+
+	}
+	return ''
+}
 bot.context.fixKeyboard = Array(90).join('\u0020') + '\u200B'
 bot.context.loadLang = (langCode) => {
 	let i18n = new Translation(langCode)
@@ -254,6 +266,7 @@ bot.context.nl = (number) => {
 		start: 850
 	})
 }
+
 bot.context.userInfo = async (ctx, onlyUser) => {
 	if (typeof ctx != 'object') {
 		ctx = {
@@ -311,12 +324,14 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 			0, 0, 0, 0, 0,
 			0, 0, 0, 0, 0
 		],
+		cache: cache[0],
 		log: [],
 		old: {...db},
 		...db,
 		...config.class[db.type],
 		castle: config.castles[db.city[12]] || '🏰'
 	}
+	data.cache = await myCache(data.id)
 
 	if (locales.includes(ctx.lang)) {
 		data.lang = ctx.lang
