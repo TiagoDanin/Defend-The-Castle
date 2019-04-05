@@ -19,6 +19,7 @@ let cache = {
 		losts: [],
 		battles: [],
 		money: [],
+		level: [],
 		online: []
 	}
 }
@@ -243,6 +244,9 @@ badges.get = (id) => {
 	if (cache.top.money.includes(id)) {
 		output.push(badges.list.money)
 	}
+	if (cache.top.level.includes(id)) {
+		output.push(badges.list.level)
+	}
 	if (config.ids.admins.includes(id)) {
 		output.push(badges.list.admins)
 	}
@@ -285,8 +289,9 @@ bot.context.badges = badges.get
 bot.context.tags = (id) => {
 	let output = badges.get(id)
 	if (output.length > 0) {
-		//return `(${output[Math.floor((Math.random() * output.length))]})`
-		output = `(${output.map(el => el.icon).join(', ')})`
+		const badge = output[Math.floor((Math.random() * output.length))]
+		output = `(<a href="https://telegram.me/DefendTheCastleBot?start=badges-${badge.id}">${badge.icon}</a>)`
+		//output = `(${output.map(el => el.icon).join(', ')})`
 	} else {
 		output = ''
 	}

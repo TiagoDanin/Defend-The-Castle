@@ -90,8 +90,8 @@ const dualAttack = async (ctx, play1) => {
 		play1.winMoney = winMoney
 		play2.winXp = winXp / 3.3
 		play2.winMoney = winMoney / 3.3
-		ctx.caches[play1.id].win++
-		ctx.caches[play2.id].lost++
+		ctx.caches[play1.id].wins++
+		ctx.caches[play2.id].losts++
 	} else if (play1.life < play2.life) {
 		winName1 = play2.name
 		winName2 = play2.name
@@ -99,15 +99,15 @@ const dualAttack = async (ctx, play1) => {
 		play1.winMoney = winMoney / 3.3
 		play2.winXp = winXp
 		play2.winMoney = winMoney
-		ctx.caches[play1.id].win++
-		ctx.caches[play2.id].lost++
+		ctx.caches[play1.id].wins++
+		ctx.caches[play2.id].losts++
 	} else { //play1 == play2
 		play1.winXp = winXp / 3.3
 		play1.winMoney = winMoney / 3.3
 		play2.winXp = winXp / 3.3
 		play2.winMoney = winMoney / 3.3
-		ctx.caches[play1.id].lost++
-		ctx.caches[play2.id].lost++
+		ctx.caches[play1.id].losts++
+		ctx.caches[play2.id].losts++
 	}
 
 	play1.attack = play1.attack < 0 ? 0 : Math.floor(play1.attack)
@@ -319,8 +319,8 @@ ${ctx.db.name} LOST!
 ${textReply}`
 		play.xp += xp / 16
 		ctx.db.money -= addMoney/3.1
-		ctx.caches[play.id].win++
-		ctx.caches[ctx.from.id].lost++
+		ctx.caches[play.id].wins++
+		ctx.caches[ctx.from.id].losts++
 	} else if (ctx.db.life > play.life) {
 		win = true
 		ctx.db.xp += xp
@@ -333,8 +333,8 @@ ${text}`
 ${ctx.db.name} WIN!
 ➖➖➖➖➖➖
 ${textReply}`
-		ctx.caches[play.id].lost++
-		ctx.caches[ctx.from.id].win++
+		ctx.caches[play.id].losts++
+		ctx.caches[ctx.from.id].wins++
 	} else {
 		ctx.db.xp += xp / 9
 		play.xp += xp / 3.3
@@ -347,8 +347,8 @@ ${ctx.db.name} LOST!
 ➖➖➖➖➖➖
 ${textReply}`
 		ctx.db.money -= addMoney/3.6
-		ctx.caches[play.id].win++
-		ctx.caches[ctx.from.id].lost++
+		ctx.caches[play.id].wins++
+		ctx.caches[ctx.from.id].losts++
 	}
 
 	ctx.db.money = Math.floor(ctx.db.money)

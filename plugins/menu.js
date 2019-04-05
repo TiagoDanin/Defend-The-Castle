@@ -6,16 +6,12 @@ const showRank = async (ctx, type) => {
 	})[0].position
 	let text = ctx._`🥇 You Rank is: ${list}\n`
 	let n = 0
-	if (type == 'money') {
-		ctx.caches.top.money = []
-	}
+	ctx.caches.top[type] = []
 	for (let user of db) {
 		if (n <= 9) {
 			n++
 			text += `<b>${n}.</b> ${user.name} <b>(${user[type]})</b>\n`
-			if (type == 'money') {
-				ctx.caches.top.money.push(Number(user.id))
-			}
+			ctx.caches.top[type].push(Number(user.id))
 		}
 	}
 
@@ -51,11 +47,12 @@ ${ctx.tips(ctx)}`
 	let keyboard = [
 		[
 			{text: ctx._`⚔️ Normal` , callback_data: 'fight'},
-			{text: ctx._`⚔️ Dual (Beta)` , callback_data: 'fight:dual'}
+			{text: ctx._`⚔️ Dual` , callback_data: 'fight:dual'}
 		],
 		[
 			{text: ctx._`${ctx.db.castle} City` , callback_data: 'city'},
-			{text: ctx._`🌇 Clan (Beta)` , callback_data: 'clan'}
+			{text: ctx._`🌇 Clan` , callback_data: 'clan'},
+			{text: ctx._`❤️ Badges (Beta)` , callback_data: 'badges'}
 		],
 		[
 			{text: ctx._`💳 Store VIP` , callback_data: 'vip'},
