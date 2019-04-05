@@ -1,7 +1,7 @@
 {
   "name": "defend-the-castle",
   "main": "index.js",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "Telegram bot @defendthecastlebot",
   "author": {
     "name": "Tiago Danin",

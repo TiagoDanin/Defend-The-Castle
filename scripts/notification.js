@@ -21,24 +21,27 @@ const main = async () => {
 		bot.telegram.sendMessage(db.id,
 			`
 *Global Notification!*
-• *Add Translation*
-- PT-BR Enabled
+• *New Version 1.2.2*
+- Add Badges
+- Add FLAG of Clan in Battles
+- Add New Quests
+- Fix Bugs
 
-• *Event (07/MAR ~> 09/MAR)*:
+• *Event (05/APR ~> 07/APR)*:
 Best of the Global Battles Rank.
 Duration: ~3 Days
 
 Awards (Battles Wins):
--1º: +30 Diamonds, +30k Money, +10 Clones
--2º: +13 Diamonds, +15k Money, +4 Clones
--3º: +10 Diamonds, + 10k Money, +3 Clones
+-1º: +7 Diamonds
+-2º: +23k Money
+-3º: +3 Clones
 
 Awards (Battles Total):
--1º: +10 Diamonds, +5k Money, +1 Clones
--2º: +5 Diamonds, +5k Money, +1 Clones
--3º: +1 Diamonds, +5k Money, +1 Clones
+-1º: +7 Diamonds
+-2º: +23k Money
+-3º: +3 Clones
 
-More update: @DefendTheCastle
+More Update: @DefendTheCastle
 			`, {
 				parse_mode: 'Markdown'
 			}
