@@ -1,3 +1,6 @@
+#: itemsAllText.js:36:22 itemsAllText.js:39:23 itemsAllText.js:42:25
+#: itemsAllText.js:45:23 itemsAllText.js:48:23 itemsAllText.js:51:24
+#: itemsAllText.js:54:22 itemsAllText.js:57:24
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +30,7 @@ msgstr ""
 msgid "Zone War"
 msgstr "Zona de Guerra"
 
-#: itemsAllText.js:12:19
+#: itemsAllText.js:9:19 itemsAllText.js:12:19
 msgid "Military will protect this area with their lives!"
 msgstr "Militares protegerão esta área com suas vidas!"
 
@@ -67,7 +70,7 @@ msgstr "Hospital"
 msgid "Increases a health."
 msgstr "Aumenta a saúde."
 
-#: plugins/presents.js:63:15
+#: itemsAllText.js:26:20 plugins/presents.js:63:15
 msgid "Clone"
 msgstr "Clone"
 
@@ -75,7 +78,7 @@ msgstr "Clone"
 msgid "2x Attack, Shield and Life & +350xp"
 msgstr "2x +Ataque, +Escudo & +Vida & +350xp"
 
-#: plugins/presents.js:61:17
+#: itemsAllText.js:29:20 plugins/presents.js:61:17
 msgid "Diamond"
 msgstr "Diamante"
 
@@ -90,6 +93,38 @@ msgstr "Super Escudo"
 #: itemsAllText.js:33:20
 msgid "3x +Shield & +150 Xp"
 msgstr "3x +Escudo & +150 Xp"
+
+#: itemsAllText.js:35:22
+msgid "Detonated"
+msgstr "Detonado"
+
+#: itemsAllText.js:38:23
+msgid "Newbies"
+msgstr "Iniciantes"
+
+#: itemsAllText.js:41:25
+msgid "Warriors"
+msgstr "Guerreiros "
+
+#: itemsAllText.js:44:23
+msgid "Master"
+msgstr "Patrão"
+
+#: itemsAllText.js:47:23
+msgid "Mr.Future"
+msgstr "Sr.Futuro"
+
+#: itemsAllText.js:50:24
+msgid "Admins/Developer"
+msgstr "Admins/Desenvolvedor"
+
+#: itemsAllText.js:53:22
+msgid "Moderators"
+msgstr "Moderadores"
+
+#: itemsAllText.js:56:24
+msgid "Fan"
+msgstr "Fã"
 
 #: items/bank.js:17:9
 msgid "🏦 Found money!"
@@ -195,11 +230,19 @@ msgstr "<b>Meu emblemas:</b>\n"
 msgid "You don't have badges!"
 msgstr "Você não tem emblemas!"
 
-#: plugins/quests.js:11:15
+#: plugins/badges.js:19:10
+msgid "${0} ${1}"
+msgstr "${0} ${1}"
+
+#: plugins/badges.js:39:15 plugins/battles.js:55:17 plugins/city.js:220:14
+#: plugins/clan.js:24:17 plugins/clan.js:231:16 plugins/config.js:18:15
+#: plugins/fight.js:160:17 plugins/fight.js:170:17 plugins/fight.js:382:20
+#: plugins/fight.js:396:22 plugins/fight.js:533:14 plugins/menu.js:78:16
+#: plugins/menu.js:96:16 plugins/presents.js:106:15 plugins/quests.js:11:15
 msgid "📜 Menu"
 msgstr "📜 Menu"
 
-#: plugins/badges.js:42:14
+#: plugins/badges.js:47:14
 msgid ""
 "\n"
 "<b>Badge:</b>\n"
@@ -249,19 +292,19 @@ msgstr ""
 "\n"
 "<b>Note:</b> Reiniciado a cada semana ou dia :)\n"
 
-#: plugins/menu.js:73:16
+#: plugins/battles.js:50:17 plugins/clan.js:19:17 plugins/menu.js:73:16
 msgid "🏅 Level"
 msgstr "🏅 Nível"
 
-#: plugins/menu.js:74:16
+#: plugins/battles.js:51:17 plugins/clan.js:20:17 plugins/menu.js:74:16
 msgid "💰 Money"
 msgstr "💰 Dinheiro"
 
-#: plugins/menu.js:75:16
+#: plugins/battles.js:52:17 plugins/clan.js:21:17 plugins/menu.js:75:16
 msgid "⚔️ Battles"
 msgstr "⚔️ Batalhas"
 
-#: plugins/menu.js:76:16
+#: plugins/battles.js:53:17 plugins/clan.js:22:17 plugins/menu.js:76:16
 msgid "🌇 Clans"
 msgstr "🌇 Clans"
 
@@ -273,7 +316,7 @@ msgstr "✅ Melhorar (+1)"
 msgid "✅ Upgrade (+15)"
 msgstr "✅ Melhorar (+15)"
 
-#: plugins/menu.js:53:15
+#: plugins/city.js:58:14 plugins/city.js:78:14 plugins/menu.js:53:15
 msgid "${0} City"
 msgstr "${0} Cidade"
 
@@ -369,7 +412,7 @@ msgstr "Melhorado!"
 msgid "❌ Your money ${0} | Price ${1}"
 msgstr "❌ Seu dinheiro ${0} | Preço ${1}"
 
-#: plugins/storevip.js:36:17
+#: plugins/city.js:190:16 plugins/storevip.js:36:17
 msgid ""
 "\n"
 "Failed!"
@@ -403,7 +446,7 @@ msgstr ""
 msgid "Hack?"
 msgstr "Hack?"
 
-#: plugins/menu.js:7:17
+#: plugins/clan.js:6:17 plugins/menu.js:7:17
 msgid "🥇 You Rank is: ${0}\n"
 msgstr "🥇 Seu Rank é: ${0}\n"
 
@@ -441,7 +484,7 @@ msgstr ""
 msgid "*Done!*"
 msgstr "*Feito!*"
 
-#: plugins/clan.js:262:18
+#: plugins/clan.js:87:19 plugins/clan.js:262:18
 msgid "🌇 Open Clan"
 msgstr "🌇 Abrir Clan"
 
@@ -461,15 +504,15 @@ msgstr "✨ Doar Experiência"
 msgid "👥 Members"
 msgstr "👥 Membros"
 
-#: plugins/clan.js:183:16
+#: plugins/clan.js:117:15 plugins/clan.js:159:16 plugins/clan.js:183:16
 msgid "🌇 Clan Menu"
 msgstr "🌇 Menu Clan"
 
-#: plugins/clan.js:184:16
+#: plugins/clan.js:118:15 plugins/clan.js:160:16 plugins/clan.js:184:16
 msgid "📜 Main Menu"
 msgstr "📜 Menu Principal"
 
-#: plugins/clan.js:289:18
+#: plugins/clan.js:119:15 plugins/clan.js:128:16 plugins/clan.js:289:18
 msgid "📝 List Clans"
 msgstr "📝 Lista de Clans"
 
@@ -477,11 +520,11 @@ msgstr "📝 Lista de Clans"
 msgid "Join or create a new clan!"
 msgstr "Entre ou crie um novo clan!"
 
-#: plugins/clan.js:288:18
+#: plugins/clan.js:127:16 plugins/clan.js:288:18
 msgid "✏️ Create"
 msgstr "✏️ Criar"
 
-#: plugins/clan.js:164:15
+#: plugins/clan.js:140:15 plugins/clan.js:164:15
 msgid ""
 "\n"
 "<b>Select:</b>"
@@ -563,7 +606,7 @@ msgstr "<b>Dono não pode sair!</b>"
 msgid "Wait 24 hours to do this again!"
 msgstr "Espere 24 horas para fazer isso novamente!"
 
-#: plugins/clan.js:285:16
+#: plugins/clan.js:276:16 plugins/clan.js:285:16
 msgid "Leaving!"
 msgstr "Saindo!"
 
@@ -595,7 +638,7 @@ msgstr ""
 msgid ":) Start a new game!"
 msgstr ":) Comece um novo jogo!"
 
-#: plugins/fight.js:40:20
+#: plugins/fight.js:33:20 plugins/fight.js:40:20
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}${2}\n"
@@ -611,11 +654,11 @@ msgstr ""
 "<b>${4} cidade:</b> ${5}${6}\n"
 "<b>🏅 Nível:</b> ${7}"
 
-#: plugins/fight.js:72:23
+#: plugins/fight.js:71:23 plugins/fight.js:72:23
 msgid "Draw"
 msgstr "Empate"
 
-#: plugins/fight.js:139:17
+#: plugins/fight.js:129:17 plugins/fight.js:139:17
 msgid ""
 "\n"
 "➖➖➖RESULT➖➖➖\n"
@@ -637,19 +680,19 @@ msgstr ""
 "🏆 GANHOU: ${14}\n"
 "\t"
 
-#: plugins/fight.js:171:17
+#: plugins/fight.js:161:17 plugins/fight.js:171:17
 msgid "🏆 ${0}"
 msgstr "🏆 ${0}"
 
-#: plugins/fight.js:526:14
+#: plugins/fight.js:162:17 plugins/fight.js:172:17 plugins/fight.js:526:14
 msgid "⚔️ Next"
 msgstr "⚔️ Próximo"
 
-#: plugins/fight.js:614:34
+#: plugins/fight.js:202:32 plugins/fight.js:614:34
 msgid "You have no troops, wait two minutos!"
 msgstr "Você não tem tropas, espere dois minutos!"
 
-#: plugins/fight.js:218:23
+#: plugins/fight.js:208:17 plugins/fight.js:218:23
 msgid ""
 "<b>${0} City:</b> ${1}${2}\n"
 "<b>🏅 Level:</b> ${3}\n"
@@ -685,7 +728,7 @@ msgstr ""
 "${2} 🛡 ${3}\n"
 "${4} ❤️ ${5}"
 
-#: plugins/fight.js:315:20
+#: plugins/fight.js:310:14 plugins/fight.js:315:20
 msgid ""
 "\n"
 "${0} LOST!\n"
@@ -699,7 +742,7 @@ msgstr ""
 "➖➖➖➖➖➖\n"
 "${1}"
 
-#: plugins/fight.js:332:20
+#: plugins/fight.js:328:14 plugins/fight.js:332:20
 msgid ""
 "\n"
 "${0} WIN!\n"
@@ -711,7 +754,7 @@ msgstr ""
 "➖➖➖➖➖➖\n"
 "${1}"
 
-#: plugins/fight.js:345:20
+#: plugins/fight.js:341:14 plugins/fight.js:345:20
 msgid ""
 "\n"
 "${0} LOST!\n"
@@ -749,7 +792,7 @@ msgstr "🔍 ${0}"
 msgid "⚡️ PowerUp"
 msgstr "⚡️ Poderes"
 
-#: plugins/fight.js:641:15
+#: plugins/fight.js:552:17 plugins/fight.js:641:15
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}${2}\n"
@@ -795,7 +838,7 @@ msgstr ""
 msgid "<b>Select PowerUp:</b>"
 msgstr "<b>Selecione um Poder:</b>"
 
-#: plugins/menu.js:58:15
+#: plugins/fight.js:599:15 plugins/menu.js:58:15
 msgid "💳 Store VIP"
 msgstr "💳 Loja VIP"
 
@@ -817,7 +860,7 @@ msgstr ""
 "➖➖➖DUAL➖➖➖\n"
 "Esperando outros jogadores!"
 
-#: plugins/singup.js:69:19
+#: plugins/invite.js:2:19 plugins/singup.js:48:19 plugins/singup.js:69:19
 msgid "What's the name of your town?"
 msgstr "Qual o nome do seu castelo?"
 
@@ -931,7 +974,7 @@ msgstr ""
 msgid "📊 Stats"
 msgstr "📊 Estatísticas"
 
-#: plugins/singup.js:55:18
+#: plugins/menu.js:99:16 plugins/singup.js:55:18
 msgid "❓ Tutorial"
 msgstr "❓ Tutorial"
 
@@ -1038,7 +1081,7 @@ msgstr ""
 msgid "💾 Saved"
 msgstr "💾 Guardado"
 
-#: plugins/tutorial.js:91:16
+#: plugins/singup.js:56:18 plugins/tutorial.js:91:16
 msgid "✅ Let's Go!"
 msgstr "✅ Vamos Lá!"
 
@@ -1222,7 +1265,7 @@ msgstr ""
 "- XP é zerado (Xp = 0)\n"
 "- -1 Nível (Ex: lvl10 ~> lvl9)"
 
-#: plugins/tutorial.js:90:16
+#: plugins/tutorial.js:77:15 plugins/tutorial.js:90:16
 msgid "◀️ Back"
 msgstr "◀️ Volta"
 
@@ -1290,17 +1333,3 @@ msgstr "Completa as missões para recebe 💎 & 💰"
 #: tips.js:16:31
 msgid "Every 24 hours you can open a gift!"
 msgstr "A cada 24h você pode abrir um presente!"
-
-#~ msgid ""
-#~ "\n"
-#~ "<b>📔 Quests (#Soon)</b>\n"
-#~ "- #Soon!\n"
-#~ "\t"
-#~ msgstr ""
-#~ "\n"
-#~ "<b>📔 Missões (#Soon)</b>\n"
-#~ "- #Soon!\n"
-#~ "\t"
-
-#~ msgid "🌇 Clan (Beta)"
-#~ msgstr "🌇 Clan (Beta)"

@@ -14,7 +14,10 @@ const base = async (ctx) => {
 	if (myBadges.length <= 0) {
 		text += ctx._`You don't have badges!`
 	} else {
-		text += '• ' + myBadges.map(el => `${el.icon} ${el.title}`).join('\n• ')
+		text += '• ' + myBadges.map(el => {
+			const title = ctx._(el.title)
+			return `${el.icon} ${title}`
+		}).join('\n• ')
 	}
 
 	quests(ctx)
@@ -39,10 +42,12 @@ const base = async (ctx) => {
 
 	if (ctx.match[2]) {
 		const badge = badges[ctx.match[2]]
+		const title = ctx._(el.title)
+		const desc = ctx._(el.desc)
 		text = ctx._`
 <b>Badge:</b>
-${badge.icon} - ${badge.title}
-${badge.desc}`
+${badge.icon} - ${title}
+${desc}`
 	}
 
 	if (ctx.updateType == 'callback_query') {
