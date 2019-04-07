@@ -19,6 +19,7 @@ const showRank = async (ctx, type) => {
 }
 
 const base = async (ctx) => {
+	moment.locale(ctx.db.lang)
 	let level = ctx.db.level+1 >= ctx.db.maxLevel ? `${ctx.db.level} (MAX)` : `${ctx.db.level} (${ctx.db.levelPoc}%)`
 	let text = ctx._`<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}\n`
 	text += ctx._`<b>🏅 Level:</b> ${level}\n`
