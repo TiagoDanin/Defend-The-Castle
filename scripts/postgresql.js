@@ -55,6 +55,7 @@ const main = async () => {
 			id               INT        NOT NULL,
 			name             TEXT       NOT NULL,
 			flag             TEXT       NOT NULL,
+			chat             TEXT       DEFAULT '',
 			members          INT[]      DEFAULT '{}',
 			level            INT        DEFAULT 1,
 			xp               INT        DEFAULT 1,

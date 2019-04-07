@@ -417,7 +417,8 @@ const updateClan = async (clan) => {
 		'xp',
 		'money',
 		'level',
-		'members'
+		'members',
+		'chat'
 	]
 	let listKeys = Object.keys(clan).filter((e) => whiteList.includes(e))
 

@@ -116,21 +116,7 @@ const base = async (ctx) => {
 		clan: clan.flag
 	})
 	let text = '.'
-	let keyboard = [
-		[
-			{text: ctx._`💰 Get Money` , callback_data: 'clan:money'},
-			{text: ctx._`✨ Donate Experience` , callback_data: 'clan:xp'},
-			{text: ctx._`👥 Members` , callback_data: 'clan:members'},
-		],
-		[
-			{text: ctx._`⚖️ Points` , callback_data: 'clan:points'},
-		],
-		[
-			{text: ctx._`🌇 Clan Menu` , callback_data: 'clan'},
-			{text: ctx._`📜 Main Menu` , callback_data: 'menu'},
-			{text: ctx._`📝 List Clans` , callback_data: 'clan:list'}
-		]
-	]
+	let keyboard = [[]]
 
 	if (!clan) {
 		text = ctx._`Join or create a new clan!`
@@ -143,6 +129,32 @@ const base = async (ctx) => {
 	} else {
 		clan = await processClan(ctx, clan)
 		text = processView(ctx, clan)
+
+		const clanChat = (clan) => {
+			if (clan.chat != '') {
+				return [{text: ctx._`👪 Chat`, url: clan.chat}]
+			} else if (clan.id == ctx.from.id) {
+				return [{text: ctx._`👪 Add Chat Url`, callback_data: 'clan:chat'}]
+			}
+			return []
+		}
+
+		keyboard = [
+			[
+				{text: ctx._`💰 Get Money` , callback_data: 'clan:money'},
+				{text: ctx._`✨ Donate Experience` , callback_data: 'clan:xp'},
+				{text: ctx._`👥 Members` , callback_data: 'clan:members'},
+			],
+			[
+				{text: ctx._`⚖️ Points` , callback_data: 'clan:points'},
+				...clanChat(clan),
+				{text: ctx._`📝 List Clans` , callback_data: 'clan:list'}
+			],
+			[
+				{text: ctx._`🌇 Clan Menu` , callback_data: 'clan'},
+				{text: ctx._`📜 Main Menu` , callback_data: 'menu'}
+			]
+		]
 	}
 
 
@@ -160,6 +172,19 @@ const base = async (ctx) => {
 		text += ctx._`• Experience donated: +0.18pts\n`
 		text += ctx._`• Cash Withdrawal: -0.12pts\n`
 		text += ctx._`<b>Note:</b> Restarted every week or day :)`
+	} else if (ctx.match[2] == 'chat') {
+		text = ctx._`<b>Set link with command:</b> /clan chat https://telegram.me/mychat\n`
+		if (ctx.match[3]) {
+			if (ctx.match[3].startsWith('https://telegram.me') || ctx.match[3].startsWith('https://t.me')) {
+				text = ctx._`Done!`
+				await ctx.database.updateClan({
+					id: clan.id,
+					chat: ctx.match[3].toString()
+				})
+			} else {
+				text += ctx._`<b>NOTE:</b> Not a Telegram URL`
+			}
+		}
 	} else if (ctx.match[2] == 'money') {
 		text += ctx._`\n<b>Select:</b>`
 		if (ctx.match[3]) {
@@ -350,5 +375,6 @@ module.exports = {
 		/^(\/)(join) clan (\d+)/i,
 		/^(\/)(members) (del) (\d+)/i,
 		/^(\/)(exit) clan/i,
+		/^\/(clan) (chat) (.*)/i,
 	]
 }
