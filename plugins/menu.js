@@ -20,16 +20,15 @@ const showRank = async (ctx, type) => {
 
 const base = async (ctx) => {
 	let level = ctx.db.level+1 >= ctx.db.maxLevel ? `${ctx.db.level} (MAX)` : `${ctx.db.level} (${ctx.db.levelPoc}%)`
-	let text = ctx._`
-<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
-<b>🏅 Level:</b> ${level}
-<b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
-➖➖➖➖➖➖
-<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)
-<b>💎 Diamonds:</b> ${ctx.db.diamond}
-<b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
+	let text = ctx._`<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}\n`
+	text += ctx._`<b>🏅 Level:</b> ${level}\n`
+	text += ctx._`<b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}\n`
+	text += `➖➖➖➖➖➖\n`
+	text += ctx._`<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)\n`
+	text += ctx._`<b>💎 Diamonds:</b> ${ctx.db.diamond}\n`
+	text += ctx._`<b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}\n`
+	text += `${ctx.tips(ctx)}\n`
 
-${ctx.tips(ctx)}`
 	if (!ctx.session.box) {
 		ctx.session.box = +new Date()
 	}

@@ -221,8 +221,8 @@ const myCache = async (id, update) => {
 	cache[id].pts = Math.floor(
 		(cache[id].wins * 5) +
 		(cache[id].losts * -3) +
-		(cache[id].clanxp * 1.2) +
-		(cache[id].clanmoney * -1) + 50
+		(cache[id].clanxp * 0.18) +
+		(cache[id].clanmoney * -0.12) + 50
 	)
 	cache[id].rate = Math.floor(cache[id].win / cache[id].lost)
 	cache[id].count++

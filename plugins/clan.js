@@ -123,6 +123,9 @@ const base = async (ctx) => {
 			{text: ctx._`👥 Members` , callback_data: 'clan:members'},
 		],
 		[
+			{text: ctx._`⚖️ Points` , callback_data: 'clan:points'},
+		],
+		[
 			{text: ctx._`🌇 Clan Menu` , callback_data: 'clan'},
 			{text: ctx._`📜 Main Menu` , callback_data: 'menu'},
 			{text: ctx._`📝 List Clans` , callback_data: 'clan:list'}
@@ -145,6 +148,18 @@ const base = async (ctx) => {
 
 	if (ctx.match[2] == 'ranks') {
 		return clansRanks(ctx, clan)
+	} else if (ctx.match[2] == 'points') {
+		const member = await ctx.cache(ctx.from.id)
+		let pts = `+${ctx.nl(member.pts)}`
+		if (member.pts < 0) {
+			pts = `-${ctx.nl(member.pts)}`
+		}
+		text = ctx._`<b>Points</b>: ${pts}\n`
+		text += ctx._`• Battles Won: +5pts\n`
+		text += ctx._`• Battles Lost: -3pts\n`
+		text += ctx._`• Experience donated: +0.18pts\n`
+		text += ctx._`• Cash Withdrawal: -0.12pts\n`
+		text += ctx._`<b>Note:</b> Restarted every week or day :)`
 	} else if (ctx.match[2] == 'money') {
 		text += ctx._`\n<b>Select:</b>`
 		if (ctx.match[3]) {
