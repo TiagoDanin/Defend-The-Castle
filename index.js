@@ -212,9 +212,18 @@ const myCache = async (id, update) => {
 			losts: 0,
 			clan: false,
 			rate: false,
-			count: 0
+			count: 0,
+			clanxp: 0,
+			clanmoney: 0,
+			pts: 50
 		}
 	}
+	cache[id].pts = Math.floor(
+		(cache[id].wins * 5) +
+		(cache[id].losts * -3) +
+		(cache[id].clanxp * 1.2) +
+		(cache[id].clanmoney * -1) + 50
+	)
 	cache[id].rate = Math.floor(cache[id].win / cache[id].lost)
 	cache[id].count++
 	if (update) {
@@ -225,10 +234,12 @@ const myCache = async (id, update) => {
 	}
 	return cache[id]
 }
-myCache(0) //Null User
-myCache(1) //BOT IA User
-myCache(2) //BOT IA User
-myCache(3) //BOT IA User
+
+for (let i = 0; i < 10; i++) {
+	//0 = Null User
+	//0 > BOT IA User
+	myCache(i)
+}
 
 badges.get = (id) => {
 	let output = []

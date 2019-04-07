@@ -59,17 +59,26 @@ const processClan = async (ctx, clan) => {
 	return clan
 }
 
-const processView = (ctx, clan) => {
+const processView = (ctx, clan, view) => {
 	const level = clan.levelPoc ? ` (${clan.levelPoc}%)` : ''
-	return ctx._`
-<b>🌇 Name:</b> ${clan.name} [${clan.flag}]
-<b>🏅 Level:</b> ${clan.level}${level}
-<b>🎖 Experience:</b> ${ctx.nl(clan.xp)}
-<b>💰 Money:</b> ${ctx.nl(clan.money)} (${ctx.nl(ctx.clan[clan.level].money)}/hour)
-<b>👥 Members:</b> ${clan.members.length}/${ctx.clan[clan.level].members}
+	let pts = `+${ctx.nl(ctx.caches[ctx.from.id].pts)}`
+	if (ctx.caches[ctx.from.id].pts < 0) {
+		pts = `-${ctx.nl(ctx.caches[ctx.from.id].pts)}`
+	}
+	let output = ctx._`<b>🌇 Name:</b> ${clan.name} [${clan.flag}]\n`
+	output += ctx._`<b>🏅 Level:</b> ${clan.level}${level}\n`
+	if (!view) {
+		output += ctx._`<b>🎖 Experience:</b> ${ctx.nl(clan.xp)}\n`
+		output += ctx._`<b>⚖️ My Points:</b> ${pts}\n`
+		output += ctx._`<b>💰 Money:</b> ${ctx.nl(clan.money)} (${ctx.nl(ctx.clan[clan.level].money)}/hour)\n`
 
-<b>❇️ Invite Clan URL:</b> https://telegram.me/DefendTheCastleBot?start=join-clan-${ctx.from.id}
-<b>❌ Exit:</b> <a href="https://telegram.me/DefendTheCastleBot?start=exit-clan">[Click Here]</a>`
+	}
+	output += ctx._`<b>👥 Members:</b> ${clan.members.length}/${ctx.clan[clan.level].members}\n\n`
+	output += ctx._`<b>❇️ Invite Clan URL:</b> https://telegram.me/DefendTheCastleBot?start=join-clan-${ctx.from.id}\n`
+	if (!view) {
+		output += ctx._`<b>❌ Exit:</b> <a href="https://telegram.me/DefendTheCastleBot?start=exit-clan">[Click Here]</a>\n`
+	}
+	return output
 }
 
 const reply = async (ctx) => {
@@ -142,6 +151,7 @@ const base = async (ctx) => {
 			const money = Math.floor(clan.money/Math.abs(ctx.match[3]))
 			ctx.db.money += money
 			clan.money -= money
+			ctx.caches[ctx.from.id].clanmoney += money
 			text = ctx._`💰 Transferred to your account: ${ctx.nl(money)}`
 			await ctx.database.updateClan({
 				id: clan.id,
@@ -166,6 +176,7 @@ const base = async (ctx) => {
 			const xp = Math.floor(ctx.db.xp/Math.abs(ctx.match[3]))
 			ctx.db.xp -= xp
 			clan.xp += xp
+			ctx.caches[ctx.from.id].clanxp += xp
 			text = ctx._`✨ Transferred to clan: ${ctx.nl(xp)}`
 			await ctx.database.updateClan({
 				id: clan.id,
@@ -185,7 +196,7 @@ const base = async (ctx) => {
 			]
 		]
 	} else if (ctx.match[2] == 'members') {
-		text = ctx._`<b>Members (wins;losses):\n</b>`
+		text = ctx._`<b>Members (Points):\n</b>`
 
 		if (clan.id == ctx.from.id && ctx.match[3] == 'del' && ctx.match[4] != ctx.from.id) {
 			clan.members = clan.members.filter(id => id != Number(ctx.match[4]))
@@ -197,7 +208,11 @@ const base = async (ctx) => {
 
 		for (let i = 0; i < clan.members.length; i++) {
 			const member = await ctx.cache(clan.members[i])
-			text += `<b>${i+1}.</b>${member.castle} ${member.name} (+${member.win};-${member.lost})`
+			let pts = `+${ctx.nl(member.pts)}`
+			if (member.pts < 0) {
+				pts = `-${ctx.nl(member.pts)}`
+			}
+			text += `<b>${i+1}.</b>${member.castle} ${member.name} (${pts})`
 			if (clan.id == ctx.from.id && member.id != ctx.from.id) {
 				text += `<a href="https://telegram.me/DefendTheCastleBot?start=members-del-${member.id}">[❌]</a>`
 			}
@@ -244,7 +259,7 @@ EXAMPLE: TNT-TNTClan
 			clan = await ctx.database.getClan(Number(ctx.match[3]))
 			clan = await processClan(ctx, clan)
 			text = ctx._`<b>VIEW CLAN:</b>\n`
-			text += processView(ctx, clan)
+			text += processView(ctx, clan, true)
 			text += ctx._`\n<b>NOTE</b>: You already have a clan!`
 		} else {
 			clan = await ctx.database.getClan(Number(ctx.match[3]))

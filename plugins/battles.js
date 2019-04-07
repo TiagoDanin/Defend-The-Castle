@@ -16,7 +16,7 @@ const base = async (ctx) => {
 	ctx.caches.top.wins = []
 	ctx.caches.top.losts = []
 	ctx.caches.top.battles = []
-	for (var i = 0; i < 4; i++) {
+	for (var i = 0; i < 9; i++) {
 		ctx.caches.top.online.push(Number(sortOnline[i].id))
 		ctx.caches.top.wins.push(Number(sortWins[i].id))
 		ctx.caches.top.losts.push(Number(sortLosts[i].id))
