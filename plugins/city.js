@@ -104,15 +104,14 @@ const infoText = (ctx) => {
 }
 
 const base = async (ctx) => {
-	let text = ctx._`
-<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
-<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)
-<b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
-<b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
-<b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
-${ctx.tips(ctx)}
-➖➖➖➖➖➖
-`
+	let text = ctx._`<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}\n`
+	text += ctx._`<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)\n`
+	text += ctx._`<b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}\n`
+	text += ctx._`<b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}\n`
+	text += ctx._`<b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}\n`
+	text += `${ctx.tips(ctx)}\n`
+	text += `➖➖➖➖➖➖\n`
+
 	let mainKeyboard = []
 	if (ctx.match[0] == 'city:castle') {
 		mainKeyboard = showCastle(ctx)
@@ -121,16 +120,14 @@ ${ctx.tips(ctx)}
 		ctx.db = await ctx.database.setCity(ctx, 12, ctx.match[3].toString())
 		ctx.db.castle = ctx.castles[Number(ctx.match[3])] || '🏰'
 		mainKeyboard = city(ctx)
-		text = ctx._`
-<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
-<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} Coin (${ctx.nl(ctx.db.moneyPerHour)}/hour)
-<b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
-<b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
-<b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
-${ctx.tips(ctx)}
-➖➖➖➖➖➖
-<b>New castle!</b>
-		`
+		text = ctx._`<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}\n`
+		text += ctx._`<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)\n`
+		text += ctx._`<b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}\n`
+		text += ctx._`<b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}\n`
+		text += ctx._`<b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}\n`
+		text += `${ctx.tips(ctx)}\n`
+		text += `➖➖➖➖➖➖\n`
+		text += ctx._`<b>New castle!</b>`
 	} else if (ctx.match[2] == 'up' && ctx.match[3] && ctx.match[4]) {
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
 		text += infoText(ctx)
@@ -173,16 +170,15 @@ ${ctx.tips(ctx)}
 				}
 			})
 			ctx.db = await ctx.userInfo(ctx)
-			text = ctx._`
-<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
-<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)
-<b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
-<b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
-<b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
-${ctx.tips(ctx)}
-➖➖➖➖➖➖
-${infoText(ctx)}
-Upgraded!`
+			text = ctx._`<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}\n`
+			text += ctx._`<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)\n`
+			text += ctx._`<b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}\n`
+			text += ctx._`<b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}\n`
+			text += ctx._`<b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}\n`
+			text += `${ctx.tips(ctx)}\n`
+			text += `➖➖➖➖➖➖\n`
+			text += `${infoText(ctx)}`
+			text += ctx._`Upgraded!`
 			mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
 			ctx.answerCbQuery(ctx._`Upgraded!`)
 		} else {
@@ -197,16 +193,14 @@ Upgraded!`
 		if (valid) {
 			await ctx.database.setCity(ctx, Number(ctx.match[3]), Number(ctx.match[4]))
 			ctx.db = await ctx.userInfo(ctx)
-			text = ctx._`
-<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
-<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)
-<b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}
-<b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}
-<b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}
-${ctx.tips(ctx)}
-➖➖➖➖➖➖
-${infoText(ctx)}
-		`
+			text = ctx._`<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}\n`
+			text += ctx._`<b>💰 Money:</b> ${ctx.nl(ctx.db.money)} (${ctx.nl(ctx.db.moneyPerHour)}/hour)\n`
+			text += ctx._`<b>⚔️ Attack:</b> ${ctx.nl(ctx.db.attack)}\n`
+			text += ctx._`<b>🛡 Shield:</b> ${ctx.nl(ctx.db.shield)}\n`
+			text += ctx._`<b>❤️ Life:</b> ${ctx.nl(ctx.db.life)}\n`
+			text += `${ctx.tips(ctx)}\n`
+			text += `➖➖➖➖➖➖\n`
+			text += `${infoText(ctx)}`
 		} else {
 			text += ctx._`Hack?`
 		}

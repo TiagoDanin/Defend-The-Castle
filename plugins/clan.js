@@ -132,9 +132,9 @@ const base = async (ctx) => {
 
 		const clanChat = (clan) => {
 			if (clan.chat != '') {
-				return [{text: ctx._`👪 Chat`, url: clan.chat}]
+				return [{text: ctx._`👪 Group`, url: clan.chat}]
 			} else if (clan.id == ctx.from.id) {
-				return [{text: ctx._`👪 Add Chat Url`, callback_data: 'clan:chat'}]
+				return [{text: ctx._`👪 Add Group Url`, callback_data: 'clan:chat'}]
 			}
 			return []
 		}
