@@ -186,14 +186,16 @@ ${ctx.nl(play1.money)} (+${play1.winMoney}) 💰 ${ctx.nl(play2.money)} (+${play
 		parse_mode: 'HTML',
 		reply_markup: {
 			inline_keyboard: keyboard1
-		}
+		},
+		disable_web_page_preview: true
 	})
 
 	ctx.editMessageText(`${text2}${ctx.fixKeyboard}`, {
 		parse_mode: 'HTML',
 		reply_markup: {
 			inline_keyboard: keyboard2
-		}
+		},
+		disable_web_page_preview: true
 	})
 }
 
@@ -380,7 +382,8 @@ ${textReply}`
 				text: `✨XP ${ctx.db.xp - xps.user}${money} : ⚖️ ${win}`,
 				callback_data: 'fight:done'
 			}], [{text: ctx._`📜 Menu` , callback_data: 'menu:main' }]]
-		}
+		},
+		disable_web_page_preview: true
 	})
 
 
@@ -394,7 +397,8 @@ ${textReply}${ctx.fixKeyboard}`, {
 					text: `✨XP ${play.xp - xps.play}`,
 					callback_data: 'fight:done'
 				}], [{text: play._`📜 Menu` , callback_data: 'menu:main' }]]
-			}
+			},
+			disable_web_page_preview: true
 		}).catch((e) => {
 			ctx.database.updateUser(play.id, 'reply', false)
 		})
