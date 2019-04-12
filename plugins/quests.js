@@ -1,8 +1,9 @@
 const base = async (ctx) => {
-	let text = ctx._`
-<b>📔 Quest (Apr 5 ~> 14 Apr)</b>
-- Be the King of Emblems\n`
-	if (ctx.session.quest) {
+	const noQuest = true
+	let text = ctx._`<b>📔 Quest (#Soon)</b>\n`
+	if (noQuest) {
+		// :)
+	} else if (ctx.session.quest) {
 		text += ctx._`Status: Done`
 	} else {
 		text += ctx._`Status: Open`
@@ -47,7 +48,7 @@ module.exports = {
 	callback: base,
 	plugin: win,
 	regex: [
-		/^\/05aprID2652341456/i
+		///^\/05aprID2652341456/i
 		///^\/03marID2653844339/i
 		///^\/03marID26538459/i
 		///^\/23febID28328844/i

@@ -20,7 +20,7 @@ const base = async (ctx) => {
 		}).join('\n• ')
 	}
 
-	quests(ctx)
+	//quests(ctx)
 
 	const keyBadges = Object.keys(badges).reduce((total, id, index) => {
 		const badge = badges[id]
@@ -42,8 +42,8 @@ const base = async (ctx) => {
 
 	if (ctx.match[2]) {
 		const badge = badges[ctx.match[2]]
-		const title = ctx._(el.title)
-		const desc = ctx._(el.desc)
+		const title = ctx._(badge.title)
+		const desc = ctx._(badge.desc)
 		text = ctx._`
 <b>Badge:</b>
 ${badge.icon} - ${title}
