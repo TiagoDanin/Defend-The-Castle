@@ -1,10 +1,3 @@
-const Quest = (data, numb, ctx) => {
-	ctx.replyWithHTML(ctx._`
-		📦 #Quest <a href="https://telegram.me/DefendTheCastleBot?start=03marID26538459">Open (Click Here)</a>
-	`)
-	return data
-}
-
 const Diamond = (data, numb) => {
 	let add = 1
 	if (numb > 1) {
@@ -50,9 +43,13 @@ const base = async (ctx) => {
 		Diamond,
 		SuperShield,
 		SuperShield,
-		Clone,
-		//Quest
+		Clone
 	]
+
+	const Quest = ctx.quest.check('present', ctx)
+	if (Quest) {
+		presents.push(Quest)
+	}
 
 	const i18nPresents = {
 		money: ctx._('money'),

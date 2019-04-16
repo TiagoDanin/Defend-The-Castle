@@ -6,12 +6,13 @@ const nl = require('numberlabel')
 const session = require('telegraf/session')
 const { Resources, Translation } = require('nodejs-i18n')
 
-const config = require('./config')
-const database = require('./database')
-const levels = require('./levels')
-const tips = require('./tips')
-const clan = require('./clan')
-const badges = require('./badges')
+const badges = require('./base/badges')
+const clan = require('./base/clan')
+const config = require('./base/config')
+const database = require('./base/database')
+const levels = require('./base/levels')
+const quest = require('./base/quest')
+const tips = require('./base/tips')
 
 let cache = {
 	top: {
@@ -40,6 +41,7 @@ const items = {
 const bot = new Telegraf(process.env.telegram_token, {
 	username: 'DefendTheCastleBot'
 })
+
 const dlogBot = debug("bot")
 const dlogPlugins = debug("bot:plugins")
 const dlogReply = debug("bot:reply")
@@ -47,13 +49,16 @@ const dlogInline = debug("bot:inline")
 const dlogCallback = debug("bot:callback")
 const dlogError = debug("bot:error")
 const dlogLang = debug("bot:lang")
+const dlogQuest = debug("bot:Quest")
 
-dlogBot("Start bot")
-let startLog = `
+dlogBot('Start bot')
+dlogQuest(quest.select)
+const startLog = `
 #Start
 <b>BOT START</b>
 <b>Username:</b> @DefendTheCastleBot
 `
+
 bot.telegram.sendMessage(config.ids.log,
 	startLog, {
 		parse_mode: 'HTML'
@@ -297,6 +302,7 @@ bot.context.castles = config.castles
 bot.context.items = items
 bot.context.cache = myCache
 bot.context.badges = badges.get
+bot.context.quest = quest
 bot.context.tags = (id) => {
 	let output = badges.get(id)
 	if (output.length > 0) {

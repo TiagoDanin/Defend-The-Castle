@@ -15,7 +15,8 @@
     "telegraf"
   ],
   "scripts": {
-    "start": "node index.js",
+    "dev": "env-cmd .env nodemon rs",
+    "start": "env-cmd .env node index.js",
     "test": "echo \"Nice Test :)\"",
     "i18n": "bash scripts/i18n.sh",
     "notification": "env-cmd .env node scripts/notification.js"
@@ -44,5 +45,9 @@
     "pg-native": "3.0.0",
     "telegraf": "3.28.0",
     "telegraf-start-parts": "1.0.0"
+  },
+  "devDependencies": {
+    "env-cmd": "8.0.2",
+    "nodemon": "1.18.11"
   }
 }

@@ -1,19 +1,52 @@
+const moment = require('moment')
 const base = async (ctx) => {
-	const noQuest = true
-	let text = ctx._`<b>📔 Quest (#Soon)</b>\n`
-	if (noQuest) {
-		// :)
-	} else if (ctx.session.quest) {
+	moment.locale(ctx.db.lang)
+	const quest = ctx.quest.select
+	const time = moment(+new Date()).to(quest.date)
+	let text = ctx._`<b>📔 Quest (end ${time})</b>\n`
+	if (quest) {
+		text += ctx._`${quest.text}`
+		text += '\n'
+	}
+	if (ctx.session.quest) {
 		text += ctx._`Status: Done`
 	} else {
 		text += ctx._`Status: Open`
 	}
+
+	if (+new Date() > quest.date) {
+		text = ctx._`<b>📔 Quest (#Soon)</b>\n`
+	} else if (!ctx.session.quest && ctx.match[2] && ctx.quest.select.key == ctx.match[2]) {
+		text = ctx._`<b>Quest Complete!</b>\n`
+		ctx.db.xp += ctx.quest.select.xp
+		ctx.db.money += ctx.quest.select.money
+
+		text += ctx._`⭐️ ${ctx.quest.select.xp} +XP\n💰 ${ctx.quest.select.money} +Money\n`
+
+		ctx.quest.select.inventory.map(id => {
+			const item = ctx.items[id]
+			const name = ctx._(item.name)
+			ctx.db.inventory.push(id)
+			text += `${item.icon} ${name} +1\n`
+		})
+		await ctx.database.saveUser(ctx)
+		ctx.session.quest = true
+	}
+
 	const keyboard = [
 		[{text: ctx._`📜 Menu` , callback_data: 'menu:main' }]
 	]
 
-	return ctx.editMessageText(text + ctx.fixKeyboard, {
-		parse_mode: 'HTML',
+	if (ctx.updateType == 'callback_query') {
+		return ctx.editMessageText(text + ctx.fixKeyboard, {
+			parse_mode: 'HTML',
+			reply_markup: {
+				inline_keyboard: keyboard
+			},
+			disable_web_page_preview: true
+		})
+	}
+	return ctx.replyWithHTML(text + ctx.fixKeyboard, {
 		reply_markup: {
 			inline_keyboard: keyboard
 		},
@@ -21,37 +54,11 @@ const base = async (ctx) => {
 	})
 }
 
-
-const win = async (ctx) => {
-	if (ctx.session.quest) {
-		return ctx.replyWithMarkdown(ctx._`*Quest Complete!*`)
-	}
-	ctx.db.xp += 1200
-	ctx.db.money += 10000
-	ctx.db.inventory.push('11')
-	ctx.db.inventory.push('10')
-	ctx.db.inventory.push('12')
-	ctx.session.quest = true
-	await ctx.database.saveUser(ctx)
-	return ctx.replyWithMarkdown(ctx._`
-*Quest Complete!*
-+ 1200 XP
-+ 10000 Money
-+ 1 Diamond
-+ 1 Clone
-+ 1 Super Shield
-	`)
-}
-
 module.exports = {
 	id: 'quests',
 	callback: base,
-	plugin: win,
+	plugin: base,
 	regex: [
-		///^\/05aprID2652341456/i
-		///^\/03marID2653844339/i
-		///^\/03marID26538459/i
-		///^\/23febID28328844/i
-		///^\/16febID23137653/i
+		/^\/(quests) (.*)/i
 	]
 }

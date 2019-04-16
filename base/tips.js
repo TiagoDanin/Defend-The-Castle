@@ -12,17 +12,23 @@ const clan = (ctx) => {
 }
 const storeVip = (ctx) => ctx._`Use 💎 in Store VIP`
 const powerups = (ctx) => ctx._`Use powerups to earn more XP`
-const quests = (ctx) => ctx._`Finish the quest to receive 💎 & 💰`
 const presents = (ctx) => ctx._`Every 24 hours you can open a gift!`
-
-//const quests = () => `<a href="https://telegram.me/DefendTheCastleBot?start=16febID23137653">🔑</a>` //Quests 16 feb
+const quests = (ctx) => {
+	if (ctx.quest.select.id == 'key') {
+		return ctx._`<a href="https://telegram.me/DefendTheCastleBot?start=quests-${ctx.quest.select.key}">🔑</a>`
+	}
+	return ctx._`Finish the quest to receive 💎 & 💰`
+}
 
 module.exports = [
-	//quests,
+	quests,
 	channel,
 	group,
+	group,
+	developer,
 	developer,
 	invite,
+	tellMe,
 	tellMe,
 	tutorial,
 	offline,

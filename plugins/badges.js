@@ -1,12 +1,4 @@
-const badges = require('../badges').list
-
-const quests = (ctx) => {
-	if (ctx.badges(ctx.from.id).length >= 1 && !ctx.session.quest) {
-		return ctx.replyWithHTML(ctx._`
-📦 #Quest <a href="https://telegram.me/DefendTheCastleBot?start=05aprID2652341456">Open (Click Here)</a>
-		`)
-	}
-}
+const badges = require('../base/badges').list
 
 const base = async (ctx) => {
 	let text = ctx._`<b>My badges:</b>\n`
@@ -20,7 +12,7 @@ const base = async (ctx) => {
 		}).join('\n• ')
 	}
 
-	//quests(ctx)
+	ctx.quest.check('badges', ctx)
 
 	const keyBadges = Object.keys(badges).reduce((total, id, index) => {
 		const badge = badges[id]

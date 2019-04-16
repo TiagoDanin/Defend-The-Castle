@@ -1,12 +1,3 @@
-const quests = async (ctx) => {
-	ctx.session.count = ctx.session.count+1 || 1
-	if (ctx.session.count == 11 || ctx.session.count == 22) {
-		return ctx.replyWithHTML(ctx._`
-📦 #Quest <a href="https://telegram.me/DefendTheCastleBot?start=23febID28328844">Open (Click Here)</a>
-		`)
-	}
-}
-
 const forest = () => {
 	const items = ['🌲', '🌳', '🌴', '🌻', '🌺', '🍂', '🌵', '🕸']
 	return items[Math.floor((Math.random() * items.length))]
@@ -369,7 +360,7 @@ ${textReply}`
 		money = `: 💰 ${ctx.nl(addMoney)}`
 	}
 
-	//quests(ctx)
+	ctx.quest.check('fight', ctx)
 	ctx.session.powerup = false
 	ctx.session.flast = [ctx.session.flast[1], ctx.session.flast[2], play.id]
 
