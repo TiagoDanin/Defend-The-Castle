@@ -12,7 +12,8 @@ const items = {
 	...require('../items/tower'),
 	...require('../items/zones')
 }
-const badges = require('../badges').list
+const badges = require('../base/badges').list
+const quests = require('../base/quest').list
 
 let output = ''
 Object.keys(items).map((id) => {
@@ -28,6 +29,12 @@ Object.keys(badges).map((id) => {
 	output += `
 const name${id} = ctx._\`${badge.title}\`
 const desc${id} = ctx._\`${badge.desc}\`
+	`
+})
+
+quests.map((quest) => {
+	output += `
+const text${quest.id} = ctx._\`${quest.text}\`
 	`
 })
 
