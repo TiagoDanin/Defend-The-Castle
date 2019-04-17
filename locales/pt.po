@@ -1,6 +1,3 @@
-#: itemsAllText.js:36:22 itemsAllText.js:39:23 itemsAllText.js:42:25
-#: itemsAllText.js:45:23 itemsAllText.js:48:23 itemsAllText.js:51:24
-#: itemsAllText.js:54:22 itemsAllText.js:57:24
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -169,33 +166,69 @@ msgstr "3x +Escudo & +150 Xp"
 msgid "Detonated"
 msgstr "Detonado"
 
+#: itemsAllText.js:36:22
+msgid "The Strongest!"
+msgstr "O mais forte!"
+
 #: itemsAllText.js:38:23
 msgid "Newbies"
 msgstr "Iniciantes"
+
+#: itemsAllText.js:39:23
+msgid ""
+"Everyone starts from somewhere, but where you start doesn't have to be where "
+"you end"
+msgstr ""
+"Todo mundo começam de algum lugar, mas onde você começa não tem que ser onde "
+"você termina"
 
 #: itemsAllText.js:41:25
 msgid "Warriors"
 msgstr "Guerreiros "
 
+#: itemsAllText.js:42:25
+msgid "Living from fights!"
+msgstr "Vivendo de lutas!"
+
 #: itemsAllText.js:44:23
 msgid "Master"
 msgstr "Patrão"
+
+#: itemsAllText.js:45:23
+msgid "Money is no problem 😜"
+msgstr "Dinheiro não é problema 😜"
 
 #: itemsAllText.js:47:23
 msgid "Mr.Future"
 msgstr "Sr.Futuro"
 
+#: itemsAllText.js:48:23
+msgid "Also known as leaders"
+msgstr "Também conhecidos como líderes"
+
 #: itemsAllText.js:50:24
 msgid "Admins/Developer"
 msgstr "Admins/Desenvolvedor"
+
+#: itemsAllText.js:51:24
+msgid "Game Creators"
+msgstr "Criadores do Jogo"
 
 #: itemsAllText.js:53:22
 msgid "Moderators"
 msgstr "Moderadores"
 
+#: itemsAllText.js:54:22
+msgid "Game Moderators"
+msgstr "Moderadores do jogo"
+
 #: itemsAllText.js:56:24
 msgid "Fan"
 msgstr "Fã"
+
+#: itemsAllText.js:57:24
+msgid "Fans of Defend The Castle"
+msgstr "Fãs do Defend The Castle"
 
 #: itemsAllText.js:59:24
 msgid "Be the King of Emblems"
@@ -212,6 +245,30 @@ msgstr "Mostre seu poder aos outros castelos 🤔😉"
 #: itemsAllText.js:65:21
 msgid "Find the key (🔑) to the Castle vault."
 msgstr "Encontre a chave (🔑) para o cofre do castelo."
+
+#: itemsAllText.js:67:25
+msgid "Warrior"
+msgstr "Guerreiro"
+
+#: itemsAllText.js:68:25
+msgid "Perfect for Fights!"
+msgstr "Perfeito para lutas!"
+
+#: itemsAllText.js:70:24
+msgid "Banker"
+msgstr "Banqueiro"
+
+#: itemsAllText.js:71:24
+msgid "Money move the world!"
+msgstr "O dinheiro move o mundo!"
+
+#: itemsAllText.js:73:28
+msgid "Adventurer"
+msgstr "Aventureiro"
+
+#: itemsAllText.js:74:28
+msgid "Everyone seeks something!"
+msgstr "Todo mundo procura alguma coisa!"
 
 #: items/bank.js:17:9
 msgid "🏦 Found money!"
@@ -309,11 +366,12 @@ msgstr "Você não tem emblemas!"
 msgid "${0} ${1}"
 msgstr "${0} ${1}"
 
-#: plugins/badges.js:31:15 plugins/battles.js:55:17 plugins/city.js:214:14
-#: plugins/clan.js:24:17 plugins/clan.js:286:16 plugins/config.js:18:15
-#: plugins/fight.js:151:17 plugins/fight.js:161:17 plugins/fight.js:375:20
-#: plugins/fight.js:390:22 plugins/fight.js:528:14 plugins/menu.js:78:16
-#: plugins/menu.js:96:16 plugins/presents.js:103:15 plugins/quests.js:37:15
+#: plugins/badges.js:31:15 plugins/battles.js:55:17 plugins/city.js:219:14
+#: plugins/clan.js:24:17 plugins/clan.js:286:16 plugins/class.js:53:13
+#: plugins/config.js:18:15 plugins/fight.js:151:17 plugins/fight.js:161:17
+#: plugins/fight.js:376:20 plugins/fight.js:391:22 plugins/fight.js:529:14
+#: plugins/menu.js:78:16 plugins/menu.js:96:16 plugins/presents.js:103:15
+#: plugins/quests.js:37:15
 msgid "📜 Menu"
 msgstr "📜 Menu"
 
@@ -383,72 +441,76 @@ msgstr "⚔️ Batalhas"
 msgid "🌇 Clans"
 msgstr "🌇 Clans"
 
-#: plugins/city.js:45:15
+#: plugins/city.js:24:15
+msgid "⚙️ Class"
+msgstr "⚙️ Classe"
+
+#: plugins/city.js:50:15
 msgid "✅ Upgrade (+1)"
 msgstr "✅ Melhorar (+1)"
 
-#: plugins/city.js:49:15
+#: plugins/city.js:54:15
 msgid "✅ Upgrade (+15)"
 msgstr "✅ Melhorar (+15)"
 
-#: plugins/city.js:58:14 plugins/city.js:78:14 plugins/menu.js:53:15
+#: plugins/city.js:63:14 plugins/city.js:83:14 plugins/menu.js:53:15
 msgid "${0} City"
 msgstr "${0} Cidade"
 
-#: plugins/city.js:88:12
+#: plugins/city.js:93:12
 msgid "<b>${0} ${1}</b>\n"
 msgstr "<b>${0} ${1}</b>\n"
 
-#: plugins/city.js:100:15
+#: plugins/city.js:105:15
 msgid "<b>⚡️ Level:</b> ${0}\n"
 msgstr "<b>⚡️ Nível:</b> ${0}\n"
 
-#: plugins/city.js:101:15
+#: plugins/city.js:106:15
 msgid "<b>💶 Upgrade:</b> ${0} Coin\n"
 msgstr "<b>💶 Melhorar:</b> ${0} Moedas"
 
-#: plugins/city.js:107:17 plugins/city.js:123:14 plugins/city.js:173:15
-#: plugins/city.js:196:15 plugins/menu.js:24:17
+#: plugins/city.js:112:17 plugins/city.js:128:14 plugins/city.js:178:15
+#: plugins/city.js:201:15 plugins/menu.js:24:17
 msgid "<b>${0} City:</b> ${1}${2}\n"
 msgstr "<b>${0} Cidade:</b> ${1}${2}\n"
 
-#: plugins/city.js:108:14 plugins/city.js:124:15 plugins/city.js:174:16
-#: plugins/city.js:197:16 plugins/clan.js:73:17 plugins/menu.js:28:14
+#: plugins/city.js:113:14 plugins/city.js:129:15 plugins/city.js:179:16
+#: plugins/city.js:202:16 plugins/clan.js:73:17 plugins/menu.js:28:14
 msgid "<b>💰 Money:</b> ${0} (${1}/hour)\n"
 msgstr "<b>💰 Dinheiro:</b> ${0} (${1}/hora)\n"
 
-#: plugins/city.js:109:14 plugins/city.js:125:15 plugins/city.js:175:16
-#: plugins/city.js:198:16
+#: plugins/city.js:114:14 plugins/city.js:130:15 plugins/city.js:180:16
+#: plugins/city.js:203:16
 msgid "<b>⚔️ Attack:</b> ${0}\n"
 msgstr "<b>⚔️ Ataque:</b> ${0}\n"
 
-#: plugins/city.js:110:14 plugins/city.js:126:15 plugins/city.js:176:16
-#: plugins/city.js:199:16
+#: plugins/city.js:115:14 plugins/city.js:131:15 plugins/city.js:181:16
+#: plugins/city.js:204:16
 msgid "<b>🛡 Shield:</b> ${0}\n"
 msgstr "<b>🛡 Escudo:</b> ${0}\n"
 
-#: plugins/city.js:111:14 plugins/city.js:127:15 plugins/city.js:177:16
-#: plugins/city.js:200:16
+#: plugins/city.js:116:14 plugins/city.js:132:15 plugins/city.js:182:16
+#: plugins/city.js:205:16
 msgid "<b>❤️ Life:</b> ${0}\n"
 msgstr "<b>❤️ Vida:</b> ${0}\n"
 
-#: plugins/city.js:118:15
+#: plugins/city.js:123:15
 msgid "<b>Select your new castle:</b>"
 msgstr "<b>Selecione o seu novo castelo:</b>"
 
-#: plugins/city.js:130:15
+#: plugins/city.js:135:15
 msgid "<b>New castle!</b>"
 msgstr "<b>Novo castelo!</b>"
 
-#: plugins/city.js:181:16 plugins/city.js:183:26
+#: plugins/city.js:186:16 plugins/city.js:188:26
 msgid "Upgraded!"
 msgstr "Melhorado!"
 
-#: plugins/city.js:185:26
+#: plugins/city.js:190:26
 msgid "❌ Your money ${0} | Price ${1}"
 msgstr "❌ Seu dinheiro ${0} | Preço ${1}"
 
-#: plugins/city.js:186:16 plugins/storevip.js:36:17
+#: plugins/city.js:191:16 plugins/storevip.js:36:17
 msgid ""
 "\n"
 "Failed!"
@@ -456,7 +518,7 @@ msgstr ""
 "\n"
 "Falha!"
 
-#: plugins/city.js:205:16
+#: plugins/city.js:210:16
 msgid "Hack?"
 msgstr "Hack?"
 
@@ -687,6 +749,38 @@ msgstr "Espere 24 horas para fazer isso novamente!"
 msgid "Leaving!"
 msgstr "Saindo!"
 
+#: plugins/class.js:9:18
+msgid "class:${0}"
+msgstr "class:${0}"
+
+#: plugins/class.js:18:15
+msgid "New class: ${0}"
+msgstr "Nova classe: ${0}"
+
+#: plugins/class.js:25:17
+msgid "<b>• ⚔️ Attack:</b> +${0}%\n"
+msgstr "<b>• ⚔️ Ataque:</b> +${0}%\n"
+
+#: plugins/class.js:29:17
+msgid "<b>• 🛡 Shield:</b> +${0}%\n"
+msgstr "<b>• 🛡 Escudo:</b> +${0}%\n"
+
+#: plugins/class.js:33:17
+msgid "<b>• ❤️ Life:</b> +${0}%\n"
+msgstr "<b>• ❤️ Vida:</b> +${0}%\n"
+
+#: plugins/class.js:37:17
+msgid "<b>• 💰 Money:</b> +${0}%\n"
+msgstr "<b>• 💰 Dinheiro:</b> +${0}%\n"
+
+#: plugins/class.js:41:17
+msgid "<b>• 🎖 Experience:</b> +${0}%\n"
+msgstr "<b>• 🎖 Experiência:</b> +${0}%\n"
+
+#: plugins/class.js:46:17
+msgid "✅ Select this class"
+msgstr "✅ Selecione esta classe"
+
 #: plugins/config.js:9:19
 msgid "<b>⚙️ Settings</b>"
 msgstr "<b>⚙️ Configurações</b>"
@@ -749,11 +843,11 @@ msgstr ""
 msgid "🏆 ${0}"
 msgstr "🏆 ${0}"
 
-#: plugins/fight.js:153:17 plugins/fight.js:163:17 plugins/fight.js:521:14
+#: plugins/fight.js:153:17 plugins/fight.js:163:17 plugins/fight.js:522:14
 msgid "⚔️ Next"
 msgstr "⚔️ Próximo"
 
-#: plugins/fight.js:195:32 plugins/fight.js:609:34
+#: plugins/fight.js:195:32 plugins/fight.js:610:34
 msgid "You have no troops, wait two minutos!"
 msgstr "Você não tem tropas, espere dois minutos!"
 
@@ -793,7 +887,7 @@ msgstr ""
 "${2} 🛡 ${3}\n"
 "${4} ❤️ ${5}"
 
-#: plugins/fight.js:303:14 plugins/fight.js:308:20
+#: plugins/fight.js:304:14 plugins/fight.js:309:20
 msgid ""
 "\n"
 "${0} LOST!\n"
@@ -807,7 +901,7 @@ msgstr ""
 "➖➖➖➖➖➖\n"
 "${1}"
 
-#: plugins/fight.js:321:14 plugins/fight.js:325:20
+#: plugins/fight.js:322:14 plugins/fight.js:326:20
 msgid ""
 "\n"
 "${0} WIN!\n"
@@ -819,7 +913,7 @@ msgstr ""
 "➖➖➖➖➖➖\n"
 "${1}"
 
-#: plugins/fight.js:334:14 plugins/fight.js:338:20
+#: plugins/fight.js:335:14 plugins/fight.js:339:20
 msgid ""
 "\n"
 "${0} LOST!\n"
@@ -831,15 +925,15 @@ msgstr ""
 "➖➖➖➖➖➖\n"
 "${1}"
 
-#: plugins/fight.js:368:19
+#: plugins/fight.js:369:19
 msgid "WIN!"
 msgstr "GANHOU!"
 
-#: plugins/fight.js:368:35
+#: plugins/fight.js:369:35
 msgid "LOST!"
 msgstr "PERDEU!"
 
-#: plugins/fight.js:382:48
+#: plugins/fight.js:383:48
 msgid ""
 "\n"
 "<b>Reply attack of ${0} (${1}):</b>\n"
@@ -849,15 +943,15 @@ msgstr ""
 "<b>Novo ataque de ${0} (${1}):</b>\n"
 "${2}${3}"
 
-#: plugins/fight.js:524:14
+#: plugins/fight.js:525:14
 msgid "🔍 ${0}"
 msgstr "🔍 ${0}"
 
-#: plugins/fight.js:531:14
+#: plugins/fight.js:532:14
 msgid "⚡️ PowerUp"
 msgstr "⚡️ Poderes"
 
-#: plugins/fight.js:547:17 plugins/fight.js:636:15
+#: plugins/fight.js:548:17 plugins/fight.js:637:15
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}${2}\n"
@@ -881,7 +975,7 @@ msgstr ""
 "<b>🎖 Experiência:</b> ${11}\n"
 "<b>💰 Dinheiro:</b> ${12}"
 
-#: plugins/fight.js:562:14
+#: plugins/fight.js:563:14
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}${2}\n"
@@ -899,15 +993,15 @@ msgstr ""
 "➖➖➖DUAL➖➖➖\n"
 "Selecione:"
 
-#: plugins/fight.js:574:14
+#: plugins/fight.js:575:14
 msgid "<b>Select PowerUp:</b>"
 msgstr "<b>Selecione um Poder:</b>"
 
-#: plugins/fight.js:594:15 plugins/menu.js:58:15
+#: plugins/fight.js:595:15 plugins/menu.js:58:15
 msgid "💳 Store VIP"
 msgstr "💳 Loja VIP"
 
-#: plugins/fight.js:620:16
+#: plugins/fight.js:621:16
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}${2}\n"

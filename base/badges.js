@@ -3,49 +3,49 @@ module.exports = {
 		wins: {
 			id: 'wins',
 			title: 'Detonated',
-			desc: '',
+			desc: 'The Strongest!',
 			icon: '💣'
 		},
 		losts: {
 			id: 'losts',
 			title: 'Newbies',
-			desc: '',
+			desc: `Everyone starts from somewhere, but where you start doesn't have to be where you end`,
 			icon: '😆'
 		},
 		battles: {
 			id: 'battles',
 			title: 'Warriors',
-			desc: '',
+			desc: 'Living from fights!',
 			icon: '⚔️'
 		},
 		money: {
 			id: 'money',
 			title: 'Master',
-			desc: '',
+			desc: 'Money is no problem 😜',
 			icon: '💎'
 		},
 		level: {
 			id: 'level',
 			title: 'Mr.Future',
-			desc: '',
+			desc: 'Also known as leaders',
 			icon: '🔮'
 		},
 		admins: {
 			id: 'admins',
 			title: 'Admins/Developer',
-			desc: '',
+			desc: 'Game Creators',
 			icon: '🌟'
 		},
 		mods: {
 			id: 'mods',
 			title: 'Moderators',
-			desc: '',
+			desc: 'Game Moderators',
 			icon: '⭐️'
 		},
 		online: {
 			id: 'online',
 			title: 'Fan',
-			desc: '',
+			desc: 'Fans of Defend The Castle',
 			icon: '🎮'
 		}
 	}

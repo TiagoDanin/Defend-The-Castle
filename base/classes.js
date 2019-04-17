@@ -2,7 +2,7 @@ module.exports = {
 	warrior: {
 		id: 'warrior',
 		name: 'Warrior',
-		desc: '',
+		desc: 'Perfect for Fights!',
 		attack: 5.5,
 		shield: 3.5,
 		life: 2,
@@ -12,7 +12,7 @@ module.exports = {
 	banker: {
 		id: 'banker',
 		name: 'Banker',
-		desc: '',
+		desc: 'Money move the world!',
 		attack: 0,
 		shield: 0,
 		life: 5,
@@ -22,7 +22,7 @@ module.exports = {
 	adventurer: {
 		id: 'adventurer',
 		name: 'Adventurer',
-		desc: '',
+		desc: 'Everyone seeks something!',
 		attack: 1.5,
 		shield: 1.5,
 		life: 1.5,
