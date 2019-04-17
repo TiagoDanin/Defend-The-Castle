@@ -3,7 +3,10 @@ const base = async (ctx) => {
 	if (ctx.privilege <= 2) {
 		return
 	}
-	const id = ctx.update.message.reply_to_message.from.id || ctx.update.message.reply_to_message.forward_from.id
+	if (!ctx.update.message.reply_to_message.forward_from) {
+		ctx.update.message.reply_to_message.forward_from = {}
+	}
+	const id = ctx.update.message.reply_to_message.forward_from.id || ctx.update.message.reply_to_message.from.id
 	ctx.from.id = id
 	ctx.db = await ctx.userInfo(ctx)
 	console.log(ctx.db)
