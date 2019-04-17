@@ -1,5 +1,5 @@
 const city = (ctx) => {
-	return ctx.db.city.reduce((total, id, index) => {
+	const keyboard = ctx.db.city.reduce((total, id, index) => {
 		var key = {}
 		if (index == 12) {
 			key = {
@@ -18,6 +18,11 @@ const city = (ctx) => {
 		}
 		return total
 	}, [[]])
+
+	return [
+		...keyboard,
+		[{text: ctx._`⚙️ Class`, callback_data: 'class'}]
+	]
 }
 
 const showInventory = (ctx, pos) => {

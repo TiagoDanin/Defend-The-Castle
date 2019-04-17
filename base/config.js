@@ -5,6 +5,7 @@ module.exports = {
 		'battles',
 		'city',
 		'clan',
+		'class',
 		'config',
 		'fight',
 		'invite',

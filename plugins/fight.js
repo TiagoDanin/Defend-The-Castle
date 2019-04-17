@@ -281,20 +281,21 @@ ${ctx.nl(ctx.db.life)} ❤️ ${ctx.nl(play.life)}`
 	play.life = Math.floor(doAttack(play, ctx.db))
 
 	let addMoney = Math.floor(ctx.db.money - oldMoney)
+	addMoney += Math.floor((addMoney / 100) * ctx.db.cl.money)
 	if (addMoney < 0) {
 		addMoney = 0
 	} else if (play.money < addMoney) {
 		addMoney = play.money/1.4
 	}
 
-	const xp = (
+	let xp = (
 		400 *
 		((play.level / ctx.db.level) / 8.4)
 	) + 25
+	xp += Math.floor((xp / 100) * ctx.db.cl.xp)
 
 	await ctx.cache(play.id)
 	await ctx.cache(ctx.from.id)
-
 
 	ctx.caches[ctx.from.id].battles++
 	ctx.caches[play.id].battles++

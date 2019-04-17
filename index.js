@@ -8,6 +8,7 @@ const { Resources, Translation } = require('nodejs-i18n')
 
 const badges = require('./base/badges')
 const clan = require('./base/clan')
+const classes = require('./base/classes')
 const config = require('./base/config')
 const database = require('./base/database')
 const levels = require('./base/levels')
@@ -303,6 +304,7 @@ bot.context.items = items
 bot.context.cache = myCache
 bot.context.badges = badges.get
 bot.context.quest = quest
+bot.context.classes = classes
 bot.context.tags = (id) => {
 	let output = badges.get(id)
 	if (output.length > 0) {
@@ -383,11 +385,6 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		maxLevel: levels.length,
 		levelPoc: 0,
 		maxTroops: 7,
-		plusAtack: 0,
-		plusShield: 0,
-		plusLife: 0,
-		plusXp: 0,
-		plusMoney: 0,
 		moneyPerHour: 0,
 		city: [
 			0, 0, 0, 0, 0,
@@ -414,6 +411,9 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	}
 
 	const keysItems = Object.keys(items)
+
+	const cl = classes[data.type]
+	data.cl = cl
 
 	data.inventory = data.inventory.reduce((total, id) => {
 		if (id != 0 && keysItems.includes(id.toString())) {
@@ -458,7 +458,13 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 			data = item.doTime(data, item)
 		}
 	}
+
+	data.attack += Math.floor((data.attack / 100) * cl.attack)
+	data.shield += Math.floor((data.shield / 100) * cl.shield)
+	data.life += Math.floor((data.life / 100) * cl.life)
+
 	data.money = Math.floor(data.money)
+
 	if (data.run) {
 		if (data.timerunning >= 604800) {//7 days in s
 			data.xp = 0
