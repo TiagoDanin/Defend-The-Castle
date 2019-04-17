@@ -51,8 +51,12 @@ const showInventory = (ctx, pos) => {
 				callback_data: `city:up:${pos}:1`
 			},
 			{
-				text: ctx._`✅ Upgrade (+15)`,
-				callback_data: `city:up:${pos}:max`
+				text: ctx._`✅ Upgrade (+10)`,
+				callback_data: `city:up:${pos}:10`
+			},
+			{
+				text: ctx._`✅ Upgrade (+25)`,
+				callback_data: `city:up:${pos}:25`
 			}]
 		]
 	}
@@ -95,7 +99,7 @@ const infoText = (ctx) => {
 	if (item.upgrade) {
 		const row = `qt_${item.upgrade[1]}`
 		const value = Number(ctx.db[row]) + 1
-		const price = Math.floor(
+		const price = ctx.nl(
 			(item.upgrade[0] * value) +
 			(
 				(item.upgrade[0] * value) -
@@ -147,8 +151,8 @@ const base = async (ctx) => {
 			)
 		)
 
-		if (ctx.match[4] == 'max') {
-			for (let i = 0; i < 14; i++) {
+		if (Number(ctx.match[4]) > 1) {
+			for (let i = 0; i < Number(ctx.match[4]); i++) {
 				value++
 				let addPrice = Math.floor(
 					(item.upgrade[0] * value) +

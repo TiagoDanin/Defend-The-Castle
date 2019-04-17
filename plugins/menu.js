@@ -52,7 +52,7 @@ const base = async (ctx) => {
 		[
 			{text: ctx._`${ctx.db.castle} City` , callback_data: 'city'},
 			{text: ctx._`🌇 Clan` , callback_data: 'clan'},
-			{text: ctx._`❤️ Badges (Beta)` , callback_data: 'badges'}
+			{text: ctx._`❤️ Badges` , callback_data: 'badges'}
 		],
 		[
 			{text: ctx._`💳 Store VIP` , callback_data: 'vip'},
