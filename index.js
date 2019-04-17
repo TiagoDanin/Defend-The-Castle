@@ -398,7 +398,6 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		log: [],
 		old: {...db},
 		...db,
-		...config.class[db.type],
 		castle: config.castles[db.city[12]] || '🏰'
 	}
 	data.cache = await myCache(data.id)

@@ -26,7 +26,7 @@ const base = async (ctx) => {
 		ctx.quest.select.inventory.map(id => {
 			const item = ctx.items[id]
 			const name = ctx._(item.name)
-			ctx.db.inventory.push(id)
+			ctx.db.inventory.push(String(id))
 			text += `${item.icon} ${name} +1\n`
 		})
 		await ctx.database.saveUser(ctx)

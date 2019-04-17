@@ -1,5 +1,5 @@
 const base = async (ctx) => {
-	let text = '.'
+	let text = ctx._`<b>Select:</b>`
 	let keyboard = [[]]
 
 	Object.keys(ctx.classes).map((key) => {

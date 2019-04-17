@@ -761,6 +761,10 @@ msgstr "Espere 24 horas para fazer isso novamente!"
 msgid "Leaving!"
 msgstr "Saindo!"
 
+#: plugins/class.js:2:17
+msgid "<b>Select:</b>"
+msgstr "<b>Selecione:</b>"
+
 #: plugins/class.js:9:18
 msgid "class:${0}"
 msgstr "class:${0}"
