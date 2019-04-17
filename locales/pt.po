@@ -162,19 +162,27 @@ msgstr "Super Escudo"
 msgid "3x +Shield & +150 Xp"
 msgstr "3x +Escudo & +150 Xp"
 
-#: itemsAllText.js:35:22
+#: itemsAllText.js:35:20
+msgid "Syringe"
+msgstr "Seringa"
+
+#: itemsAllText.js:36:20
+msgid "2x +Shield & 2x +Life"
+msgstr "2x +Escudo & 2x +Vida"
+
+#: itemsAllText.js:38:22
 msgid "Detonated"
 msgstr "Detonado"
 
-#: itemsAllText.js:36:22
+#: itemsAllText.js:39:22
 msgid "The Strongest!"
 msgstr "O mais forte!"
 
-#: itemsAllText.js:38:23
+#: itemsAllText.js:41:23
 msgid "Newbies"
 msgstr "Iniciantes"
 
-#: itemsAllText.js:39:23
+#: itemsAllText.js:42:23
 msgid ""
 "Everyone starts from somewhere, but where you start doesn't have to be where "
 "you end"
@@ -182,91 +190,91 @@ msgstr ""
 "Todo mundo começam de algum lugar, mas onde você começa não tem que ser onde "
 "você termina"
 
-#: itemsAllText.js:41:25
+#: itemsAllText.js:44:25
 msgid "Warriors"
 msgstr "Guerreiros "
 
-#: itemsAllText.js:42:25
+#: itemsAllText.js:45:25
 msgid "Living from fights!"
 msgstr "Vivendo de lutas!"
 
-#: itemsAllText.js:44:23
+#: itemsAllText.js:47:23
 msgid "Master"
 msgstr "Patrão"
 
-#: itemsAllText.js:45:23
+#: itemsAllText.js:48:23
 msgid "Money is no problem 😜"
 msgstr "Dinheiro não é problema 😜"
 
-#: itemsAllText.js:47:23
+#: itemsAllText.js:50:23
 msgid "Mr.Future"
 msgstr "Sr.Futuro"
 
-#: itemsAllText.js:48:23
+#: itemsAllText.js:51:23
 msgid "Also known as leaders"
 msgstr "Também conhecidos como líderes"
 
-#: itemsAllText.js:50:24
+#: itemsAllText.js:53:24
 msgid "Admins/Developer"
 msgstr "Admins/Desenvolvedor"
 
-#: itemsAllText.js:51:24
+#: itemsAllText.js:54:24
 msgid "Game Creators"
 msgstr "Criadores do Jogo"
 
-#: itemsAllText.js:53:22
+#: itemsAllText.js:56:22
 msgid "Moderators"
 msgstr "Moderadores"
 
-#: itemsAllText.js:54:22
+#: itemsAllText.js:57:22
 msgid "Game Moderators"
 msgstr "Moderadores do jogo"
 
-#: itemsAllText.js:56:24
+#: itemsAllText.js:59:24
 msgid "Fan"
 msgstr "Fã"
 
-#: itemsAllText.js:57:24
+#: itemsAllText.js:60:24
 msgid "Fans of Defend The Castle"
 msgstr "Fãs do Defend The Castle"
 
-#: itemsAllText.js:59:24
+#: itemsAllText.js:62:24
 msgid "Be the King of Emblems"
 msgstr "Seja o rei dos emblemas"
 
-#: itemsAllText.js:61:25
+#: itemsAllText.js:64:25
 msgid "🎁 Find the best present!"
 msgstr "🎁 Encontre o melhor presente!"
 
-#: itemsAllText.js:63:23
+#: itemsAllText.js:66:23
 msgid "Show your power to the other castles 🤔😉"
 msgstr "Mostre seu poder aos outros castelos 🤔😉"
 
-#: itemsAllText.js:65:21
+#: itemsAllText.js:68:21
 msgid "Find the key (🔑) to the Castle vault."
 msgstr "Encontre a chave (🔑) para o cofre do castelo."
 
-#: itemsAllText.js:67:25
+#: itemsAllText.js:70:25
 msgid "Warrior"
 msgstr "Guerreiro"
 
-#: itemsAllText.js:68:25
+#: itemsAllText.js:71:25
 msgid "Perfect for Fights!"
 msgstr "Perfeito para lutas!"
 
-#: itemsAllText.js:70:24
+#: itemsAllText.js:73:24
 msgid "Banker"
 msgstr "Banqueiro"
 
-#: itemsAllText.js:71:24
+#: itemsAllText.js:74:24
 msgid "Money move the world!"
 msgstr "O dinheiro move o mundo!"
 
-#: itemsAllText.js:73:28
+#: itemsAllText.js:76:28
 msgid "Adventurer"
 msgstr "Aventureiro"
 
-#: itemsAllText.js:74:28
+#: itemsAllText.js:77:28
 msgid "Everyone seeks something!"
 msgstr "Todo mundo procura alguma coisa!"
 
@@ -321,6 +329,10 @@ msgstr "🚀 Acho que podemos escapar a tempo."
 #: items/shield.js:14:9
 msgid "🛡 Super Shield used!"
 msgstr "🛡 Super Escudo foi usado!"
+
+#: items/syringe.js:14:9
+msgid "💉 Syringe used!"
+msgstr "💉 Seringa foi usado!"
 
 #: items/tower.js:10:10
 msgid "🗿 Trap...."
@@ -1191,7 +1203,7 @@ msgstr "<b>📔 Missão (#Soon)</b>\n"
 
 #: plugins/quests.js:20:14
 msgid "<b>Quest Complete!</b>\n"
-msgstr "<b>Missão Completa!<\b>\n"
+msgstr "<b>Missão Completa!</b>\n"
 
 #: plugins/quests.js:24:15
 msgid ""

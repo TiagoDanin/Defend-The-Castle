@@ -1,16 +1,17 @@
 const fs = require('fs')
 
 const items = {
-	...require('../items/bank'),
-	...require('../items/bomb'),
-	...require('../items/clone'),
-	...require('../items/diamond'),
-	...require('../items/hospital'),
-	...require('../items/null'),
-	...require('../items/rocket'),
-	...require('../items/shield'),
-	...require('../items/tower'),
-	...require('../items/zones')
+	...require('../items/bank'), //5
+	...require('../items/bomb'), //1
+	...require('../items/clone'), //10
+	...require('../items/diamond'), //11
+	...require('../items/hospital'), //7
+	...require('../items/null'), //0
+	...require('../items/rocket'), //4
+	...require('../items/shield'), //12
+	...require('../items/syringe'), //13
+	...require('../items/tower'), //6
+	...require('../items/zones') //2, 3
 }
 const badges = require('../base/badges').list
 const quests = require('../base/quest').list
