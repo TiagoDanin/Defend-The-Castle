@@ -1,4 +1,4 @@
-const Diamond = (data, numb) => {
+const diamond = (data, numb) => {
 	let add = 1
 	if (numb > 1) {
 		add = Math.floor(numb / 1.5)
@@ -9,13 +9,18 @@ const Diamond = (data, numb) => {
 	return data
 }
 
-const Clone = (data) => {
+const clone = (data) => {
 	data.inventory.push('10')
 	return data
 }
 
-const SuperShield = (data) => {
+const superShield = (data) => {
 	data.inventory.push('12')
+	return data
+}
+
+const syringe = (data) => {
+	data.inventory.push('13')
 	return data
 }
 
@@ -34,31 +39,42 @@ const troops = (data, numb) => {
 	return data
 }
 
+const superTroops = (data, numb) => {
+	data.troops += 3
+	data.troops += numb * 2
+	return data
+}
+
 const base = async (ctx) => {
 	const presents = [
 		money,
 		xp,
 		troops,
 		troops,
-		Diamond,
-		SuperShield,
-		SuperShield,
-		Clone
+		diamond,
+		superShield,
+		superShield,
+		clone,
+		syringe,
+		syringe,
+		superTroops
 	]
 
-	const Quest = ctx.quest.check('present', ctx)
-	if (Quest) {
-		presents.push(Quest)
+	const quest = ctx.quest.check('present', ctx)
+	if (quest) {
+		presents.push(quest)
 	}
 
 	const i18nPresents = {
-		money: ctx._('money'),
-		xp: ctx._('xp'),
-		troops: ctx._('troops'),
-		Diamond: ctx._('Diamond'),
-		SuperShield: ctx._('SuperShield'),
-		Clone: ctx._('Clone'),
-		Quest: ctx._('Quest')
+		money: ctx._('Money'),
+		xp: ctx._('XP'),
+		troops: ctx._('Troops'),
+		superTroops: ctx._('SuperTroops'),
+		diamond: ctx._('Diamond'),
+		superShield: ctx._('SuperShield'),
+		clone: ctx._('Clone'),
+		quest: ctx._('Quest'),
+		syringe: ctx._('Syringe')
 	}
 
 	const text = ctx._`
@@ -74,11 +90,16 @@ ${ctx.tips(ctx)}`
 			if (present.name == 'Quest' && ctx.session.quest) {
 				present = Diamond
 			}
-			ctx.db = present(
+
+			const data = present(
 				ctx.db,
 				Math.floor(Math.random() * (6 - 1) + 1), //Range: 1-5
 				ctx
 			)
+
+			if (data) { //No bug :)
+				ctx.db = data
+			}
 			await ctx.database.saveUser(ctx)
 			if (ctx.db[present.name]) {
 				ctx.answerCbQuery(ctx._`

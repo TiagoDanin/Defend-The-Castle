@@ -138,7 +138,7 @@ msgstr "Hospital"
 msgid "Increases a health."
 msgstr "Aumenta a saúde."
 
-#: itemsAllText.js:26:20 plugins/presents.js:60:15
+#: itemsAllText.js:26:20 plugins/presents.js:75:15
 msgid "Clone"
 msgstr "Clone"
 
@@ -146,7 +146,7 @@ msgstr "Clone"
 msgid "2x Attack, Shield and Life & +350xp"
 msgstr "2x +Ataque, +Escudo & +Vida & +350xp"
 
-#: itemsAllText.js:29:20 plugins/presents.js:58:17
+#: itemsAllText.js:29:20 plugins/presents.js:73:17
 msgid "Diamond"
 msgstr "Diamante"
 
@@ -162,7 +162,7 @@ msgstr "Super Escudo"
 msgid "3x +Shield & +150 Xp"
 msgstr "3x +Escudo & +150 Xp"
 
-#: itemsAllText.js:35:20
+#: itemsAllText.js:35:20 plugins/presents.js:77:17
 msgid "Syringe"
 msgstr "Seringa"
 
@@ -386,7 +386,7 @@ msgstr "${0} ${1}"
 #: plugins/clan.js:312:16 plugins/class.js:53:13 plugins/config.js:18:15
 #: plugins/fight.js:151:17 plugins/fight.js:161:17 plugins/fight.js:376:20
 #: plugins/fight.js:391:22 plugins/fight.js:529:14 plugins/menu.js:69:16
-#: plugins/presents.js:103:15 plugins/quests.js:37:15 plugins/ranks.js:86:15
+#: plugins/presents.js:124:15 plugins/quests.js:37:15 plugins/ranks.js:86:15
 msgid "📜 Menu"
 msgstr "📜 Menu"
 
@@ -1130,27 +1130,31 @@ msgstr "📊 Estatísticas"
 msgid "❓ Tutorial"
 msgstr "❓ Tutorial"
 
-#: plugins/presents.js:55:15
-msgid "money"
-msgstr "dinheiro"
+#: plugins/presents.js:69:15
+msgid "Money"
+msgstr "Dinheiro"
 
-#: plugins/presents.js:56:12
-msgid "xp"
-msgstr "xp"
+#: plugins/presents.js:70:12
+msgid "XP"
+msgstr "XP"
 
-#: plugins/presents.js:57:16
-msgid "troops"
-msgstr "tropas"
+#: plugins/presents.js:71:16
+msgid "Troops"
+msgstr "Tropas"
 
-#: plugins/presents.js:59:21
+#: plugins/presents.js:72:21
+msgid "SuperTroops"
+msgstr "SuperTropas"
+
+#: plugins/presents.js:74:21
 msgid "SuperShield"
 msgstr "SuperEscudo"
 
-#: plugins/presents.js:61:15
+#: plugins/presents.js:76:15
 msgid "Quest"
 msgstr "Missão"
 
-#: plugins/presents.js:64:19
+#: plugins/presents.js:80:19
 msgid ""
 "\n"
 "<b>🎁 Present</b>\n"
@@ -1160,7 +1164,7 @@ msgstr ""
 "<b>🎁 Presente</b>\n"
 "${0}"
 
-#: plugins/presents.js:84:27
+#: plugins/presents.js:105:27
 msgid ""
 "\n"
 "\tPresent(${0}): +${1}\n"
@@ -1170,7 +1174,7 @@ msgstr ""
 "\tPresente(${0}): +${1}\n"
 "\t\t\t\t"
 
-#: plugins/presents.js:88:27
+#: plugins/presents.js:109:27
 msgid "Present: ${0}!"
 msgstr "Presente: ${0}!"
 
@@ -1451,6 +1455,9 @@ msgstr "▶️ Próximo"
 #: plugins/tutorial.js:88:14
 msgid "Finalized!"
 msgstr "Finalizado!"
+
+#~ msgid "xp"
+#~ msgstr "xp"
 
 #~ msgid ""
 #~ "\n"
