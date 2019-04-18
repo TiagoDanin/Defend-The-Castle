@@ -418,7 +418,8 @@ const updateClan = async (clan) => {
 		'money',
 		'level',
 		'members',
-		'chat'
+		'chat',
+		'desc'
 	]
 	let listKeys = Object.keys(clan).filter((e) => whiteList.includes(e))
 
@@ -426,7 +427,7 @@ const updateClan = async (clan) => {
 		UPDATE clans
 			SET
 				${listKeys.reduce((total, e, index) => `${total},
-				${e} = $${index+2}`, 'time = now()')}
+				"${e}" = $${index+2}`, 'time = now()')}
 			WHERE id = $1
 		RETURNING *;
 	`

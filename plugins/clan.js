@@ -73,15 +73,22 @@ const processView = (ctx, clan, view) => {
 	}
 	let output = ctx._`<b>🌇 Name:</b> ${clan.name} [${clan.flag}]\n`
 	output += ctx._`<b>🏅 Level:</b> ${clan.level}${level}\n`
+	if (clan.desc == '') {
+		if (ctx.from.id == clan.id) {
+			output += ctx._`<b>✉️ Add a description:</b> /clan desc my description\n`
+		}
+	} else {
+		output += ctx._`<b>✉️ description:</b> ${clan.desc}\n`
+	}
 	if (!view) {
 		output += ctx._`<b>🎖 Experience:</b> ${ctx.nl(clan.xp)}\n`
 		output += ctx._`<b>⚖️ My Points:</b> ${pts}\n`
 		output += ctx._`<b>💰 Money:</b> ${ctx.nl(clan.money)} (${ctx.nl(ctx.clan[clan.level].money)}/hour)\n`
-
 	}
+
 	output += ctx._`<b>👥 Members:</b> ${clan.members.length}/${ctx.clan[clan.level].members}\n\n`
-	output += ctx._`<b>❇️ Invite Clan URL:</b> https://telegram.me/DefendTheCastleBot?start=join-clan-${ctx.from.id}\n`
-	if (!view) {
+	output += ctx._`<b>❇️ Invite Clan URL:</b> https://telegram.me/DefendTheCastleBot?start=join-clan-${clan.id}\n`
+	if (!view && ctx.from.id != clan.id) {
 		output += ctx._`<b>❌ Exit:</b> <a href="https://telegram.me/DefendTheCastleBot?start=exit-clan">[Click Here]</a>\n`
 	}
 	return output
@@ -190,6 +197,17 @@ const base = async (ctx) => {
 			} else {
 				text += ctx._`<b>NOTE:</b> Not a Telegram URL`
 			}
+		}
+	} else if (ctx.match[2] == 'desc') {
+		const input = String(ctx.match[3])
+		if (input.match(/[<>\[\]\(\)\*#@]/g) || input.length < 12 || input.length > 200) {
+			text = ctx._`<b>Text must have only letter and number with 12-160 characters!</b>`
+		} else {
+			text = ctx._`<b>Updated description!</b>`
+			await ctx.database.updateClan({
+				id: clan.id,
+				desc: input
+			})
 		}
 	} else if (ctx.match[2] == 'money') {
 		text += ctx._`\n<b>Select:</b>`
@@ -382,5 +400,6 @@ module.exports = {
 		/^(\/)(members) (del) (\d+)/i,
 		/^(\/)(exit) clan/i,
 		/^\/(clan) (chat) (.*)/i,
+		/^\/(clan) (desc) (.*)/i,
 	]
 }
