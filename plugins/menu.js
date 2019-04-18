@@ -44,10 +44,17 @@ const base = async (ctx) => {
 		ctx.session.dual = false
 	}
 	const boxTime = moment(+new Date()).to(ctx.session.box)
+	let online = ''
+	const onlineDual = await ctx.database.getDual()
+	if (onlineDual.length > 0) {
+		online += ' ('
+		online += ctx._`${onlineDual.length} online`
+		online += ')'
+	}
 	let keyboard = [
 		[
 			{text: ctx._`⚔️ Normal` , callback_data: 'fight'},
-			{text: ctx._`⚔️ Dual` , callback_data: 'fight:dual'}
+			{text: ctx._`⚔️ Dual${online}` , callback_data: 'fight:dual'}
 		],
 		[
 			{text: ctx._`${ctx.db.castle} City` , callback_data: 'city'},
