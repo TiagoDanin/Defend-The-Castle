@@ -78,7 +78,7 @@ const processView = (ctx, clan, view) => {
 			output += ctx._`<b>✉️ Add a description:</b> /clan desc my description\n`
 		}
 	} else {
-		output += ctx._`<b>✉️ description:</b> ${clan.desc}\n`
+		output += ctx._`<b>✉️ Description:</b> ${clan.desc}\n`
 	}
 	if (!view) {
 		output += ctx._`<b>🎖 Experience:</b> ${ctx.nl(clan.xp)}\n`
@@ -129,7 +129,7 @@ const base = async (ctx) => {
 		clan: clan.flag
 	})
 	ctx.quest.check('points', ctx)
-	
+
 	let text = '.'
 	let keyboard = [[]]
 
@@ -203,7 +203,7 @@ const base = async (ctx) => {
 	} else if (ctx.match[2] == 'desc') {
 		const input = String(ctx.match[3])
 		if (input.match(/[<>\[\]\(\)\*#@]/g) || input.length < 12 || input.length > 200) {
-			text = ctx._`<b>Text must have only letter and number with 12-160 characters!</b>`
+			text = ctx._`<b>Text must have only letter and number with 12-200 characters!</b>`
 		} else {
 			text = ctx._`<b>Updated description!</b>`
 			await ctx.database.updateClan({

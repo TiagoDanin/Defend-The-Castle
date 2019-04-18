@@ -64,7 +64,7 @@ const list = [
 		text: 'Earn points for your clan.',
 		validation: (ctx) => {
 			const pts = ctx.caches[ctx.from.id].pts
-			if (pts > 1) {
+			if (pts > 330) {
 				done(ctx)
 			}
 			return
