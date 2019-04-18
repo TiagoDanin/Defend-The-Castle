@@ -1,4 +1,23 @@
-const base = async (ctx) => {
+const showRank = async (ctx, type) => {
+	let db = await ctx.database.topUsers(type, ctx.from.id)
+	let list = db.filter((e) => {
+		if (e.id == ctx.from.id) return true
+	})[0].position
+	let text = ctx._`🥇 You Rank is: ${list}\n`
+	let n = 0
+	ctx.caches.top[type] = []
+	for (let user of db) {
+		if (n <= 9) {
+			n++
+			text += `<b>${n}</b> • ${user.name} <b>(${user[type]})</b>\n`
+			ctx.caches.top[type].push(Number(user.id))
+		}
+	}
+
+	return text
+}
+
+const showBattle = async (ctx) => {
 	const sortWins = Object.keys(ctx.caches).sort((a, b) => {
 		return ctx.caches[b].wins - ctx.caches[a].wins
 	}).map(e => ctx.caches[e])
@@ -41,25 +60,57 @@ const base = async (ctx) => {
 
 <b>Note:</b> Restarted every week or day :)
 `
+	return text
+}
+
+const showOnline = async (ctx) => {
+	let text = ''
+	const sortOnline = Object.keys(ctx.caches).sort((a, b) => {
+		return ctx.caches[b].count - ctx.caches[a].count
+	}).map(e => ctx.caches[e])
+	for (var i = 0; i < 10; i++) {
+		text += `${i+1} • ${sortOnline[i].name} : ${sortOnline[i].id} (${sortOnline[i].count})\n`
+	}
+	return text
+}
+
+const base = async (ctx) => {
+	let text = ctx._`🥇 Rank by:`
+	const keyboard = [
+		[
+			{text: ctx._`🏅 Level`, callback_data: 'ranks:level'},
+			{text: ctx._`💰 Money`, callback_data: 'ranks:money'},
+			{text: ctx._`⚔️ Battles`, callback_data: 'ranks:battles'},
+			{text: ctx._`🌇 Clans` , callback_data: 'clan:ranks'}
+		],
+		[{text: ctx._`📜 Menu`, callback_data: 'menu:main'}]
+	]
+	if (ctx.privilege >= 2) {
+		keyboard[0].push({text: ctx._`❇️ Online` , callback_data: 'ranks:online'})
+	}
+
+	if (ctx.match[2]) {
+		if (ctx.match[2] == 'level') {
+			text = await showRank(ctx, 'level')
+		} else if (ctx.match[2] == 'money') {
+			text = await showRank(ctx, 'money')
+		} else if (ctx.match[2] == 'battles') {
+			text = await showBattle(ctx)
+		} else if (ctx.match[2] == 'online') {
+			text = await showOnline(ctx)
+		}
+	}
 
 	return ctx.editMessageText(text + ctx.fixKeyboard, {
 		parse_mode: 'HTML',
 		reply_markup: {
-			inline_keyboard: [
-				[
-					{text: ctx._`🏅 Level`, callback_data: 'menu:rank:level'},
-					{text: ctx._`💰 Money`, callback_data: 'menu:rank:money'},
-					{text: ctx._`⚔️ Battles`, callback_data: 'battles'},
-					{text: ctx._`🌇 Clans` , callback_data: 'clan:ranks'}
-				],
-				[{text: ctx._`📜 Menu`, callback_data: 'menu:main'}]
-			]
+			inline_keyboard: keyboard
 		}
 	})
 }
 
 module.exports = {
-	id: 'battles',
+	id: 'ranks',
 	callback: base,
 	onlyUser: true,
 }

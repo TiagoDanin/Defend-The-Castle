@@ -11,18 +11,24 @@ const clansRanks = async (ctx, clan) => {
 			text += ctx._`<b>${n}.</b> ${clan.name} [${clan.flag}] (${clan.members.length}/${ctx.clan[clan.level].members}) - lvl ${clan.level}\n`
 		}
 	}
+
+	const keyboard = [
+		[
+			{text: ctx._`🏅 Level`, callback_data: 'ranks:level'},
+			{text: ctx._`💰 Money`, callback_data: 'ranks:money'},
+			{text: ctx._`⚔️ Battles`, callback_data: 'ranks:battles'},
+			{text: ctx._`🌇 Clans` , callback_data: 'clan:ranks'}
+		],
+		[{text: ctx._`📜 Menu`, callback_data: 'menu:main'}]
+	]
+	if (ctx.privilege <= 2) {
+		keyboard[0].push({text: ctx._`❇️ Online` , callback_data: 'ranks:online'})
+	}
+
 	return ctx.editMessageText(text + ctx.fixKeyboard, {
 		parse_mode: 'HTML',
 		reply_markup: {
-			inline_keyboard: [
-				[
-					{text: ctx._`🏅 Level`, callback_data: 'menu:rank:level'},
-					{text: ctx._`💰 Money`, callback_data: 'menu:rank:money'},
-					{text: ctx._`⚔️ Battles`, callback_data: 'battles'},
-					{text: ctx._`🌇 Clans` , callback_data: 'clan:ranks'}
-				],
-				[{text: ctx._`📜 Menu`, callback_data: 'menu:main'}]
-			]
+			inline_keyboard: keyboard
 		}
 	})
 }

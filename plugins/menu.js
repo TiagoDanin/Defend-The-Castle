@@ -1,22 +1,4 @@
 const moment = require('moment')
-const showRank = async (ctx, type) => {
-	let db = await ctx.database.topUsers(type, ctx.from.id)
-	let list = db.filter((e) => {
-		if (e.id == ctx.from.id) return true
-	})[0].position
-	let text = ctx._`🥇 You Rank is: ${list}\n`
-	let n = 0
-	ctx.caches.top[type] = []
-	for (let user of db) {
-		if (n <= 9) {
-			n++
-			text += `<b>${n}.</b> ${user.name} <b>(${user[type]})</b>\n`
-			ctx.caches.top[type].push(Number(user.id))
-		}
-	}
-
-	return text
-}
 
 const base = async (ctx) => {
 	moment.locale(ctx.db.lang)
@@ -63,7 +45,7 @@ const base = async (ctx) => {
 		],
 		[
 			{text: ctx._`💳 Store VIP` , callback_data: 'vip'},
-			{text: ctx._`🥇 Rank` , callback_data: 'menu:rank'},
+			{text: ctx._`🥇 Rank` , callback_data: 'ranks'},
 			{text: ctx._`📔 Quests` , callback_data: 'quests'},
 		],
 		[
@@ -73,23 +55,7 @@ const base = async (ctx) => {
 		]
 	]
 
-	if (ctx.match[2] == 'rank') {
-		text = ctx._`🥇 Rank by:`
-		keyboard = [
-			[
-				{text: ctx._`🏅 Level` , callback_data: 'menu:rank:level'},
-				{text: ctx._`💰 Money` , callback_data: 'menu:rank:money'},
-				{text: ctx._`⚔️ Battles` , callback_data: 'battles'},
-				{text: ctx._`🌇 Clans` , callback_data: 'clan:ranks'}
-			],
-			[{text: ctx._`📜 Menu` , callback_data: 'menu:main' }]
-		]
-		if (ctx.match[3] == 'level') {
-			text = await showRank(ctx, 'level')
-		} else if (ctx.match[3] == 'money') {
-			text = await showRank(ctx, 'money')
-		}
-	} else if (ctx.match[2] == 'about') {
+	if (ctx.match[2] == 'about') {
 		text = ctx._`
 👤 <b>Developer:</b> @TiagoEDGE (Tiago Danin)
 🗣 <b>Channel:</b> @DefendTheCastle

@@ -2,7 +2,6 @@ module.exports = {
 	plugins: [
 		'backup',
 		'badges',
-		'battles',
 		'city',
 		'clan',
 		'class',
@@ -13,6 +12,7 @@ module.exports = {
 		'ping',
 		'presents',
 		'quests',
+		'ranks',
 		'singup',
 		'stats',
 		'storevip',
