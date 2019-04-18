@@ -59,10 +59,23 @@ const list = [
 		inventory: [11, 12],
 		money: 1500,
 		xp: 500
+	}, {
+		id: 'points',
+		text: 'Earn points for your clan.',
+		validation: (ctx) => {
+			const pts = ctx.caches[ctx.from.id].pts
+			if (pts > 1) {
+				done(ctx)
+			}
+			return
+		},
+		inventory: [13, 13, 13],
+		money: 500,
+		xp: 500
 	}
 ]
 const date = new Date()
-const select = list[Math.floor((Math.random() * list.length))]
+const select = list[4] //list[Math.floor((Math.random() * list.length))]
 select.key = `${select.id}${Math.floor(Math.random() * (900000 - 100000) + 100000)}`
 date.setDate(date.getDate() + 7)
 select.date = +date

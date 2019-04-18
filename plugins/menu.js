@@ -36,22 +36,22 @@ const base = async (ctx) => {
 	let keyboard = [
 		[
 			{text: ctx._`⚔️ Normal` , callback_data: 'fight'},
-			{text: ctx._`⚔️ Dual${online}` , callback_data: 'fight:dual'}
+			{text: ctx._`⚔️ Dual${online}`, callback_data: 'fight:dual'}
 		],
 		[
-			{text: ctx._`${ctx.db.castle} City` , callback_data: 'city'},
-			{text: ctx._`🌇 Clan` , callback_data: 'clan'},
-			{text: ctx._`❤️ Badges` , callback_data: 'badges'}
+			{text: ctx._`${ctx.db.castle} City`, callback_data: 'city'},
+			{text: ctx._`🌇 Clan`, callback_data: 'clan'},
+			{text: ctx._`❤️ Badges`, callback_data: 'badges'}
 		],
 		[
 			{text: ctx._`💳 Store VIP` , callback_data: 'vip'},
-			{text: ctx._`🥇 Rank` , callback_data: 'ranks'},
-			{text: ctx._`📔 Quests` , callback_data: 'quests'},
+			{text: ctx._`🥇 Rank`, callback_data: 'ranks'},
+			{text: ctx._`📔 Quests`, callback_data: 'quests'},
 		],
 		[
-			{text: ctx._`🎁 ${boxTime}` , callback_data: 'box'},
+			{text: ctx._`🎁 ${boxTime}`, callback_data: 'box'},
 			{text: ctx._`⚙️ Settings`, callback_data: 'config'},
-			{text: ctx._`🗞 About` , callback_data: 'menu:about' }
+			{text: ctx._`🗞 About`, callback_data: 'menu:about' }
 		]
 	]
 

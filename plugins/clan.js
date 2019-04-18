@@ -128,6 +128,8 @@ const base = async (ctx) => {
 		tgname: `${ctx.from.first_name}_${ctx.from.last_name}`,
 		clan: clan.flag
 	})
+	ctx.quest.check('points', ctx)
+	
 	let text = '.'
 	let keyboard = [[]]
 
