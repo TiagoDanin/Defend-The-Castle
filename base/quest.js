@@ -75,7 +75,7 @@ const list = [
 	}
 ]
 const date = new Date()
-const select = list[4] //list[Math.floor((Math.random() * list.length))]
+const select = list[Math.floor((Math.random() * list.length))]
 select.key = `${select.id}${Math.floor(Math.random() * (900000 - 100000) + 100000)}`
 date.setDate(date.getDate() + 7)
 select.date = +date
