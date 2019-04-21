@@ -85,7 +85,7 @@ const base = async (ctx) => {
 		],
 		[{text: ctx._`📜 Menu`, callback_data: 'menu:main'}]
 	]
-	if (ctx.privilege >= 2) {
+	if (ctx.privilege > 2) { 
 		keyboard[0].push({text: ctx._`❇️ Online` , callback_data: 'ranks:online'})
 	}
 
