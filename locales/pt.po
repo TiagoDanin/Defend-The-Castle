@@ -629,7 +629,7 @@ msgstr "• Batalhas Ganhas: +5pts\n"
 
 #: plugins/clan.js:186:15
 msgid "• Battles Lost: -3pts\n"
-msgstr "• Banhas Perdidas: -3pts\n"
+msgstr "• Batalhas Perdidas: -3pts\n"
 
 #: plugins/clan.js:187:15
 msgid "• Experience donated: +0.18pts\n"
