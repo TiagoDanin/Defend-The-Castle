@@ -11,7 +11,8 @@ let id = -1001303884163
 let ia
 
 const addContext = async function () {
-	const msgId = await this.reply('[CALL]').then(res => res.message_id)
+	const ctx = this
+	const msgId = await ctx.reply('[CALL]').then(res => res.message_id)
 	const update = {
 		callback_query: {
 			message: {
@@ -20,16 +21,23 @@ const addContext = async function () {
 			data: ''
 		}
 	}
-	this.from.id = id
-	this.chat.id = id
-	this.update = lodash.merge(this.update, update)
+	ctx.from.id = id
+	ctx.chat.id = id
+	ctx.update = lodash.merge(ctx.update, update)
 
-	const ctx = new Context(this.update, this.tg, this.options)
+	const context = new Context(ctx.update, ctx.tg, ctx.options)
 
-	this.db = await this.userInfo(ctx)
-	Object.assign(ctx, this.context)
+	ctx.privilege = 0
+	ctx.session = {}
+	delete ctx.session
+	ctx.match = []
 
-	return lodash.merge(this, ctx)
+	ctx.db = await ctx.userInfo(ctx)
+
+	Object.assign(context, ctx.context)
+	Object.assign(this, ctx)
+
+	return lodash.merge(ctx, context)
 }
 
 const loop = async (ctx) => {
@@ -49,7 +57,6 @@ const base = async (ctx) => {
 	ctx.reply(`IA ${enable ? 'on' : 'off'}`)
 	ctx.from.id = id
 	ctx.chat.id = id
-	ctx.privilege = 0
 	ctx.addContext = addContext
 
 	return loop(ctx)
