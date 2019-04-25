@@ -301,6 +301,11 @@ bot.use((ctx, next) => {
 
 bot.use((ctx, next) => {
 	ctx.privilege = 0
+	if (!ctx.from || !ctx.from.id) {
+		ctx.from = {
+			id: 0
+		}
+	}
 	if (config.ids.admins.includes(ctx.from.id)) {
 		ctx.privilege = 7
 	} else if (config.ids.mods.includes(ctx.from.id)) {

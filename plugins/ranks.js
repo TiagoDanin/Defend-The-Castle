@@ -69,7 +69,7 @@ const showOnline = async (ctx) => {
 		return ctx.caches[b].count - ctx.caches[a].count
 	}).filter(e => !ctx.config.ids.bots.map(c => Number(c)).includes(Number(ctx.caches[e].id))).map(e => ctx.caches[e])
 	for (var i = 0; i < 10; i++) {
-		text += `${i+1} • ${sortOnline[i].name} : ${sortOnline[i].id} (${sortOnline[i].count}) : @${ctx.db.cache.tgusername} - ${ctx.db.cache.tgname}\n`
+		text += `${i+1} • ${sortOnline[i].name} : ${sortOnline[i].id} (${sortOnline[i].count}) : @${sortOnline[i].tgusername} - ${sortOnline[i].tgname}\n`
 	}
 	return text
 }
