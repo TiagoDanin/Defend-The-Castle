@@ -24,7 +24,6 @@ const getResult = (ctx) => getResults(ctx)[0].id
 
 const base = async (ctx) => {
 	const id = getResult(ctx)
-	console.log(id)
 	await ctx.addContext()
 
 	ctx.session = {

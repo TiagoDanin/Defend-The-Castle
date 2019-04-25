@@ -95,6 +95,20 @@ const processError = (error, ctx, plugin) => {
 		}
 	}
 
+	const deleteKeys = [
+		'id',
+		'classes',
+		'quest',
+		'tags',
+		'cache',
+		'badges',
+		'items',
+		'database',
+		'config',
+		'caches',
+		'clan'
+	]
+
 	if (error) {
 		fulllog.push({
 			type: 'error',
@@ -106,6 +120,13 @@ const processError = (error, ctx, plugin) => {
 		delete ctx.ia
 		fulllog.push({
 			type: 'ctx',
+			data: ctx
+		})
+		deleteKeys.map((key) => {
+			delete ctx[key]
+		})
+		fulllog.push({
+			type: 'ctxBasic',
 			data: ctx
 		})
 	}
@@ -160,7 +181,10 @@ var reply = []
 bot.use((ctx, next) => telegrafStart(ctx, next))
 bot.use(session({
 	getSessionKey: (ctx) => {
-		return ctx.from.id
+		if (ctx && ctx.from && ctx.from.id) {
+			return ctx.from.id
+		}
+		return 0
 	}
 }))
 
@@ -281,6 +305,17 @@ bot.use((ctx, next) => {
 		ctx.privilege = 7
 	} else if (config.ids.mods.includes(ctx.from.id)) {
 		ctx.privilege = 3
+	}
+	return next(ctx)
+})
+
+bot.use((ctx, next) => {
+	if (ctx && ctx.from && ctx.from.id && ctx.callbackQuery) {
+		if (ctx.callbackQuery.message && ctx.callbackQuery.message.chat) {
+			if (ctx.privilege >= 3) {
+				ctx.from.id = ctx.callbackQuery.message.chat.id
+			}
+		}
 	}
 	return next(ctx)
 })
