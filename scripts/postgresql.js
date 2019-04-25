@@ -66,7 +66,7 @@ const main = async () => {
 		);
 	`, []).catch(log)
 	await client.query(`
-		INSERT INTO users(id, name, type) VALUES (1, '[BOT] Try', 'warrior');
+		INSERT INTO users(id, name, type) VALUES (-1001303884163, '[BOT] Try', 'warrior');
 	`, []).catch(log))
 	await client.end()
 }

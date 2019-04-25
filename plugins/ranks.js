@@ -20,16 +20,16 @@ const showRank = async (ctx, type) => {
 const showBattle = async (ctx) => {
 	const sortWins = Object.keys(ctx.caches).sort((a, b) => {
 		return ctx.caches[b].wins - ctx.caches[a].wins
-	}).map(e => ctx.caches[e])
+	}).filter(e => !ctx.config.ids.bots.map(c => Number(c)).includes(Number(ctx.caches[e].id))).map(e => ctx.caches[e])
 	const sortLosts = Object.keys(ctx.caches).sort((a, b) => {
 		return ctx.caches[b].losts - ctx.caches[a].losts
-	}).map(e => ctx.caches[e])
+	}).filter(e => !ctx.config.ids.bots.map(c => Number(c)).includes(Number(ctx.caches[e].id))).map(e => ctx.caches[e])
 	const sortBattles = Object.keys(ctx.caches).sort((a, b) => {
 		return ctx.caches[b].battles - ctx.caches[a].battles
-	}).map(e => ctx.caches[e])
+	}).filter(e => !ctx.config.ids.bots.map(c => Number(c)).includes(Number(ctx.caches[e].id))).map(e => ctx.caches[e])
 	const sortOnline = Object.keys(ctx.caches).sort((a, b) => {
 		return ctx.caches[b].count - ctx.caches[a].count
-	}).map(e => ctx.caches[e])
+	}).filter(e => !ctx.config.ids.bots.map(c => Number(c)).includes(Number(ctx.caches[e].id))).map(e => ctx.caches[e])
 
 	ctx.caches.top.online = []
 	ctx.caches.top.wins = []
@@ -67,9 +67,9 @@ const showOnline = async (ctx) => {
 	let text = ''
 	const sortOnline = Object.keys(ctx.caches).sort((a, b) => {
 		return ctx.caches[b].count - ctx.caches[a].count
-	}).map(e => ctx.caches[e])
+	}).filter(e => !ctx.config.ids.bots.map(c => Number(c)).includes(Number(ctx.caches[e].id))).map(e => ctx.caches[e])
 	for (var i = 0; i < 10; i++) {
-		text += `${i+1} • ${sortOnline[i].name} : ${sortOnline[i].id} (${sortOnline[i].count})\n`
+		text += `${i+1} • ${sortOnline[i].name} : ${sortOnline[i].id} (${sortOnline[i].count}) : @${ctx.db.cache.tgusername} - ${ctx.db.cache.tgname}\n`
 	}
 	return text
 }
@@ -86,7 +86,7 @@ const base = async (ctx) => {
 		],
 		[{text: ctx._`📜 Menu`, callback_data: 'menu:main'}]
 	]
-	if (ctx.privilege > 2) { 
+	if (ctx.privilege > 2) {
 		keyboard[0].push({text: ctx._`❇️ Online` , callback_data: 'ranks:online'})
 	}
 
