@@ -21,25 +21,10 @@ const main = async () => {
 		bot.telegram.sendMessage(db.id,
 			`
 *Global Notification!*
-• *New Version 1.2.2*
-- Add Badges
-- Add FLAG of Clan in Battles
-- Add New Quests
-- Fix Bugs
-
-• *Event (05/APR ~> 07/APR)*:
-Best of the Global Battles Rank.
-Duration: ~3 Days
-
-Awards (Battles Wins):
--1º: +7 Diamonds
--2º: +23k Money
--3º: +3 Clones
-
-Awards (Battles Total):
--1º: +7 Diamonds
--2º: +23k Money
--3º: +3 Clones
+• *New Version 1.3.x*
+- Add Bots wiht Neural Network 😍
+- Add New Item in StoreVIP: Troops
+- Improved Performance of Bot
 
 More Update: @DefendTheCastle
 			`, {
