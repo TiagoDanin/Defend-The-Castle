@@ -51,7 +51,7 @@ const dlogInline = debug("bot:inline")
 const dlogCallback = debug("bot:callback")
 const dlogError = debug("bot:error")
 const dlogLang = debug("bot:lang")
-const dlogQuest = debug("bot:Quest")
+const dlogQuest = debug("bot:quest")
 
 dlogBot('Start bot')
 dlogQuest(quest.select)
@@ -348,6 +348,9 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 			lang: 'en',
 			from: {
 				id: ctx //ctx == id
+			},
+			chat: {
+				id: ctx
 			}
 		}
 	}
@@ -533,7 +536,7 @@ config.plugins.forEach(p => {
 			try {
 				ctx.db = await ctx.userInfo(ctx, _.onlyUser)
 				if (!ctx.db && _.onlyUser) return false
-				await _.plugin(ctx)
+				_.plugin(ctx).catch((e) => processError(e, ctx, _))
 			} catch (e) {
 				processError(e, ctx, _)
 			}
@@ -565,7 +568,7 @@ bot.on('message', async (ctx) => {
 			try {
 				ctx.db = await ctx.userInfo(ctx)
 				//if (!ctx.db) return false
-				await _.reply(ctx)
+				_.reply(ctx).catch((e) => processError(e, ctx, _))
 			} catch (e) {
 				processError(e, ctx, _)
 			}
@@ -582,8 +585,7 @@ bot.on('callback_query', async (ctx) => {
 				dlogCallback(`Runnig callback plugin: ${_.id}`)
 				try {
 					ctx.db = await ctx.userInfo(ctx)
-					//if (!ctx.db) return false
-					await _.callback(ctx)
+					_.callback(ctx).catch((e) => processError(e, ctx, _))
 				} catch (e) {
 					processError(e, ctx, _)
 				}

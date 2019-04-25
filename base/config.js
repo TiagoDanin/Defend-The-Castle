@@ -7,6 +7,7 @@ module.exports = {
 		'class',
 		'config',
 		'fight',
+		'ia',
 		'invite',
 		'menu',
 		'ping',

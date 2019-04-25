@@ -65,6 +65,9 @@ const main = async () => {
 			PRIMARY KEY (id)
 		);
 	`, []).catch(log)
+	await client.query(`
+		INSERT INTO users(id, name, type) VALUES (1, '[BOT] Try', 'warrior');
+	`, []).catch(log))
 	await client.end()
 }
 main()

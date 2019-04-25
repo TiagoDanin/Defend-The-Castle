@@ -48,15 +48,15 @@ const getUser = async (id) => {
 	return data.rows[0]
 }
 
-const setUser = async (id, name, type) => {
+const setUser = async (id, name) => {
 	let data = {}
 	let client = await pool.connect()
 	data = await client.query(`
 		INSERT
-			INTO users(id, name, type)
-			VALUES ($1, $2, $3)
+			INTO users(id, name)
+			VALUES ($1, $2)
 		RETURNING *;
-	`, [id, name, type]).catch(error)
+	`, [id, name]).catch(error)
 	client.query(`
 		INSERT
 		INTO stats(id, time)
