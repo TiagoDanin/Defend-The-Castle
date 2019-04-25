@@ -3,6 +3,7 @@ const debug = require('debug')
 const log = debug('bot:ia')
 
 const ias = [
+	require('./attack'),
 	require('./dual')
 ].map((ia) => {
 	ia.network = new brain.NeuralNetwork(ia.network)

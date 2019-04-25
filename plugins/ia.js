@@ -30,6 +30,7 @@ const addContext = async function () {
 	ctx.match = []
 
 	ctx.db = await ctx.userInfo(ctx)
+	ctx.db.troops = 5
 
 	Object.assign(context, ctx.context)
 	Object.assign(this, ctx)

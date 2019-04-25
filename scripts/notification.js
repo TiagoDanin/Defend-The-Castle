@@ -23,7 +23,6 @@ const main = async () => {
 *Global Notification!*
 • *New Version 1.3.x*
 - Add Bots wiht Neural Network 😍
-- Add New Item in StoreVIP: Troops
 - Improved Performance of Bot
 
 More Update: @DefendTheCastle

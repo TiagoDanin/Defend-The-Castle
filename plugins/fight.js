@@ -355,6 +355,10 @@ ${textReply}`
 		ctx.caches[ctx.from.id].losts++
 	}
 
+	if (ctx.ia.select(ctx, 'attack')) {
+		ctx.ia.train(ctx, Number(ctx.match[3]), win)
+	}
+
 	ctx.db.money = Math.floor(ctx.db.money)
 	ctx.db.xp = Math.floor(ctx.db.xp)
 	play.xp = Math.floor(play.xp)
