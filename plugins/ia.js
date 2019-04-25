@@ -2,9 +2,6 @@ const Context = require('telegraf/core/context')
 const lodash = require('lodash')
 const debug = require('debug')
 const log = debug('bot:ia')
-const ias = [
-	require('../ia/dual')
-]
 
 let enable = false
 let id = -1001303884163
@@ -42,7 +39,8 @@ const addContext = async function () {
 
 const loop = async (ctx) => {
 	while (enable) {
-		ia = ias[Math.floor((Math.random() * ias.length))]
+		ia = ctx.ia.list[Math.floor((Math.random() * ctx.ia.list.length))]
+		ctx.ia.select(ctx, ia.id)
 		log('Runnig:', ia.name, 'with id:', id)
 		ia.base(ctx)
 		await ctx.sleep(60 * 1000) //10s

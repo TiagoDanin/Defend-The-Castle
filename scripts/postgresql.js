@@ -10,11 +10,11 @@ const main = async () => {
 	await client.connect()
 	await client.query(`
 		CREATE TABLE users(
-			id               INT        NOT NULL,
+			id               BIGINT     NOT NULL,
 			name             TEXT       NOT NULL,
 			lang             TEXT       DEFAULT 'en',
-			opponent         INT        DEFAULT 1,
-			dual             INT        DEFAULT 50,
+			opponent         BIGINT     DEFAULT 1,
+			dual             BIGINT     DEFAULT 50,
 			reply            BOOLEAN    DEFAULT true,
 			notification     BOOLEAN    DEFAULT true,
 			type             TEXT       DEFAULT 'warrior',

@@ -34,6 +34,7 @@
     "README.md"
   ],
   "dependencies": {
+    "brain.js": "^1.6.1",
     "debug": "4.1.1",
     "json-stringify-safe": "5.0.1",
     "lodash": "^4.17.11",

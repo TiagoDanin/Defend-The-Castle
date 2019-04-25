@@ -62,6 +62,9 @@ const dualAttack = async (ctx, play1) => {
 	let winName1 = play1._`Draw`
 	let winName2 = play2._`Draw`
 
+	play1.win = false
+	play2.win = false
+
 	play1.life = doAttack(play1, play2)
 	play2.life = doAttack(play2, play1)
 
@@ -75,6 +78,7 @@ const dualAttack = async (ctx, play1) => {
 	ctx.caches[play1.id].battles++
 	ctx.caches[play2.id].battles++
 	if (play1.life > play2.life) {
+		play1.win = true
 		winName1 = play1.name
 		winName2 = play1.name
 		play1.winXp = winXp
@@ -84,6 +88,7 @@ const dualAttack = async (ctx, play1) => {
 		ctx.caches[play1.id].wins++
 		ctx.caches[play2.id].losts++
 	} else if (play1.life < play2.life) {
+		play2.win = true
 		winName1 = play2.name
 		winName2 = play2.name
 		play1.winXp = winXp / 3.3
@@ -164,6 +169,11 @@ ${ctx.nl(play1.money)} (+${play1.winMoney}) 💰 ${ctx.nl(play2.money)} (+${play
 		],
 		...play2Data.map
 	]
+
+	if (ctx.ia.select(ctx, 'dual')) {
+		ctx.ia.train(ctx, play1.dual, play1.win)
+		ctx.ia.train(ctx, play2.dual, play2.win)
+	}
 
 	play1.dual = 50
 	play2.dual = 50
@@ -487,7 +497,7 @@ const fightTypes = [{
 	}
 }]
 
-const base = async(ctx) => {
+const base = async (ctx) => {
 	if (!ctx.session.ftype) {
 		ctx.session.ftype = 0
 	}

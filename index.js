@@ -14,6 +14,8 @@ const database = require('./base/database')
 const levels = require('./base/levels')
 const quest = require('./base/quest')
 const tips = require('./base/tips')
+const items = require('./items')
+const ia = require('./ia')
 
 let cache = {
 	top: {
@@ -24,20 +26,6 @@ let cache = {
 		level: [],
 		online: []
 	}
-}
-
-const items = {
-	...require('./items/bank'), //5
-	...require('./items/bomb'), //1
-	...require('./items/clone'), //10
-	...require('./items/diamond'), //11
-	...require('./items/hospital'), //7
-	...require('./items/null'), //0
-	...require('./items/rocket'), //4
-	...require('./items/shield'), //12
-	...require('./items/syringe'), //13
-	...require('./items/tower'), //6
-	...require('./items/zones') //2, 3
 }
 
 const bot = new Telegraf(process.env.telegram_token, {
@@ -115,6 +103,7 @@ const processError = (error, ctx, plugin) => {
 		dlogError(`Oooops`, error)
 	}
 	if (ctx) {
+		delete ctx.ia
 		fulllog.push({
 			type: 'ctx',
 			data: ctx
@@ -302,6 +291,7 @@ bot.context.config = config
 bot.context.database = database
 bot.context.castles = config.castles
 bot.context.items = items
+bot.context.ia = ia
 bot.context.cache = myCache
 bot.context.badges = badges.get
 bot.context.quest = quest
