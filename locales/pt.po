@@ -386,11 +386,11 @@ msgstr "Você não tem emblemas!"
 msgid "${0} ${1}"
 msgstr "${0} ${1}"
 
-#: plugins/badges.js:31:15 plugins/city.js:223:14 plugins/clan.js:22:15
-#: plugins/clan.js:312:16 plugins/class.js:53:13 plugins/config.js:18:15
-#: plugins/fight.js:151:17 plugins/fight.js:161:17 plugins/fight.js:376:20
-#: plugins/fight.js:391:22 plugins/fight.js:529:14 plugins/menu.js:69:16
-#: plugins/presents.js:124:15 plugins/quests.js:37:15 plugins/ranks.js:86:15
+#: plugins/badges.js:31:15 plugins/city.js:223:14 plugins/clan.js:23:15
+#: plugins/clan.js:313:16 plugins/class.js:53:13 plugins/config.js:18:15
+#: plugins/fight.js:156:17 plugins/fight.js:166:17 plugins/fight.js:386:20
+#: plugins/fight.js:401:22 plugins/fight.js:539:14 plugins/menu.js:69:16
+#: plugins/presents.js:124:15 plugins/quests.js:37:15 plugins/ranks.js:87:15
 msgid "📜 Menu"
 msgstr "📜 Menu"
 
@@ -481,7 +481,7 @@ msgstr "<b>${0} Cidade:</b> ${1}${2}\n"
 #. ${0} = "ctx.nl.ctx.db.money"
 #. ${1} = "ctx.nl.ctx.db.moneyPerHour"
 #: plugins/city.js:117:14 plugins/city.js:133:15 plugins/city.js:183:16
-#: plugins/city.js:206:16 plugins/clan.js:86:17 plugins/menu.js:10:14
+#: plugins/city.js:206:16 plugins/clan.js:87:17 plugins/menu.js:10:14
 msgid "<b>💰 Money:</b> ${0} (${1}/hour)\n"
 msgstr "<b>💰 Dinheiro:</b> ${0} (${1}/hora)\n"
 
@@ -566,53 +566,53 @@ msgstr "🏅 Nível"
 msgid "💰 Money"
 msgstr "💰 Dinheiro"
 
-#: plugins/clan.js:19:15 plugins/ranks.js:83:15
+#: plugins/clan.js:20:15 plugins/ranks.js:84:15
 msgid "⚔️ Battles"
 msgstr "⚔️ Batalhas"
 
-#: plugins/clan.js:20:15 plugins/ranks.js:84:15
+#: plugins/clan.js:21:15 plugins/ranks.js:85:15
 msgid "🌇 Clans"
 msgstr "🌇 Clans"
 
-#: plugins/clan.js:25:31 plugins/ranks.js:89:31
+#: plugins/clan.js:26:31 plugins/ranks.js:90:31
 msgid "❇️ Online"
 msgstr "❇️ Online"
 
 #. ${0} = "clan.name"
 #. ${1} = "clan.flag"
-#: plugins/clan.js:74:19
+#: plugins/clan.js:75:19
 msgid "<b>🌇 Name:</b> ${0} [${1}]\n"
 msgstr "<b>🌇 Nome:</b> ${0} [${1}]\n"
 
 #. ${0} = "clan.level"
 #. ${1} = "level"
-#: plugins/clan.js:75:16
+#: plugins/clan.js:76:16
 msgid "<b>🏅 Level:</b> ${0}${1}\n"
 msgstr "<b>🏅 Nível:</b> ${0}${1}\n"
 
-#: plugins/clan.js:78:18
+#: plugins/clan.js:79:18
 msgid "<b>✉️ Add a description:</b> /clan desc my description\n"
 msgstr "<b>✉️ Adicione uma descrição:</b> /clan desc minha descrição"
 
 #. ${0} = "clan.desc"
-#: plugins/clan.js:81:17
+#: plugins/clan.js:82:17
 msgid "<b>✉️ Description:</b> ${0}\n"
 msgstr "<b>✉️ Descrição:</b> ${0}\n"
 
 #. ${0} = "ctx.nl.clan.xp"
 #. ${0} = "ctx.nl.ctx.db.xp"
-#: plugins/clan.js:84:17 plugins/menu.js:8:14
+#: plugins/clan.js:85:17 plugins/menu.js:8:14
 msgid "<b>🎖 Experience:</b> ${0}\n"
 msgstr "<b>🎖 Experiência:</b> ${0}\n"
 
 #. ${0} = "pts"
-#: plugins/clan.js:85:17
+#: plugins/clan.js:86:17
 msgid "<b>⚖️ My Points:</b> ${0}\n"
 msgstr "<b>⚖️ Meus Pontos:</b> ${0}\n"
 
 #. ${0} = "clan.members.length"
 #. ${1} = "ctx.clan.clan.level.members"
-#: plugins/clan.js:89:16
+#: plugins/clan.js:90:16
 msgid ""
 "<b>👥 Members:</b> ${0}/${1}\n"
 "\n"
@@ -621,7 +621,7 @@ msgstr ""
 "\n"
 
 #. ${0} = "clan.id"
-#: plugins/clan.js:90:16
+#: plugins/clan.js:91:16
 msgid ""
 "<b>❇️ Invite Clan URL:</b> https://telegram.me/DefendTheCastleBot?start=join-"
 "clan-${0}\n"
@@ -629,7 +629,7 @@ msgstr ""
 "<b>❇️ Link de Convite do Clan:</b> https://telegram.me/DefendTheCastleBot?"
 "start=join-clan-${0}\n"
 
-#: plugins/clan.js:92:17
+#: plugins/clan.js:93:17
 msgid ""
 "<b>❌ Exit:</b> <a href=\"https://telegram.me/DefendTheCastleBot?start=exit-"
 "clan\">[Click Here]</a>\n"
@@ -637,109 +637,109 @@ msgstr ""
 "<b>❌ Sair:</b> <a href=\"https://telegram.me/DefendTheCastleBot?start=exit-"
 "clan\">[Clique Aqui]</a>\n"
 
-#: plugins/clan.js:105:37
+#: plugins/clan.js:106:37
 msgid "*Done!*"
 msgstr "*Feito!*"
 
-#: plugins/clan.js:109:19 plugins/clan.js:343:18
+#: plugins/clan.js:110:19 plugins/clan.js:344:18
 msgid "🌇 Open Clan"
 msgstr "🌇 Abrir Clan"
 
-#: plugins/clan.js:115:33
+#: plugins/clan.js:116:33
 msgid "<b>NOTE:</b> Flag{3}-Name{1,15}; examle: <code>TNT-TNTClan</code>"
 msgstr "<b>NOTA:</b> Tag{3}-Nome{1,15}; exemplo: <code>TNT-TNTClan</code>"
 
-#: plugins/clan.js:137:14
+#: plugins/clan.js:138:14
 msgid "Join or create a new clan!"
 msgstr "Entre ou crie um novo clan!"
 
-#: plugins/clan.js:140:16 plugins/clan.js:369:18
+#: plugins/clan.js:141:16 plugins/clan.js:370:18
 msgid "✏️ Create"
 msgstr "✏️ Criar"
 
-#: plugins/clan.js:141:16 plugins/clan.js:166:16 plugins/clan.js:370:18
+#: plugins/clan.js:142:16 plugins/clan.js:167:16 plugins/clan.js:371:18
 msgid "📝 List Clans"
 msgstr "📝 Lista de Clans"
 
-#: plugins/clan.js:150:24
+#: plugins/clan.js:151:24
 msgid "👪 Group"
 msgstr "👪 Grupo"
 
-#: plugins/clan.js:152:24
+#: plugins/clan.js:153:24
 msgid "👪 Add Group Url"
 msgstr "👪 Adicionar Url do Grupo"
 
-#: plugins/clan.js:159:16
+#: plugins/clan.js:160:16
 msgid "💰 Get Money"
 msgstr "💰 Obter Dinheiro"
 
-#: plugins/clan.js:160:16
+#: plugins/clan.js:161:16
 msgid "✨ Donate Experience"
 msgstr "✨ Doar Experiência"
 
-#: plugins/clan.js:161:16
+#: plugins/clan.js:162:16
 msgid "👥 Members"
 msgstr "👥 Membros"
 
-#: plugins/clan.js:164:16
+#: plugins/clan.js:165:16
 msgid "⚖️ Points"
 msgstr "⚖️ Pontos"
 
-#: plugins/clan.js:169:16 plugins/clan.js:235:16 plugins/clan.js:260:16
+#: plugins/clan.js:170:16 plugins/clan.js:236:16 plugins/clan.js:261:16
 msgid "🌇 Clan Menu"
 msgstr "🌇 Menu Clan"
 
-#: plugins/clan.js:170:16 plugins/clan.js:236:16 plugins/clan.js:261:16
+#: plugins/clan.js:171:16 plugins/clan.js:237:16 plugins/clan.js:262:16
 msgid "📜 Main Menu"
 msgstr "📜 Menu Principal"
 
 #. ${0} = "pts"
-#: plugins/clan.js:184:14
+#: plugins/clan.js:185:14
 msgid "<b>Points</b>: ${0}\n"
 msgstr "<b>Pontos</b>: ${0}\n"
 
-#: plugins/clan.js:185:15
+#: plugins/clan.js:186:15
 msgid "• Battles Won: +5pts\n"
 msgstr "• Batalhas Ganhas: +5pts\n"
 
-#: plugins/clan.js:186:15
+#: plugins/clan.js:187:15
 msgid "• Battles Lost: -3pts\n"
 msgstr "• Batalhas Perdidas: -3pts\n"
 
-#: plugins/clan.js:187:15
+#: plugins/clan.js:188:15
 msgid "• Experience donated: +0.18pts\n"
 msgstr "• Experiência doada: +0.18pts\n"
 
-#: plugins/clan.js:188:15
+#: plugins/clan.js:189:15
 msgid "• Cash Withdrawal: -0.12pts\n"
 msgstr "• Dinheiro retirado: -0.12pts\n"
 
-#: plugins/clan.js:189:15
+#: plugins/clan.js:190:15
 msgid "<b>Note:</b> Restarted every week or day :)"
 msgstr "<b>Note:</b> Reiniciado a cada semana ou dia:)"
 
-#: plugins/clan.js:191:14
+#: plugins/clan.js:192:14
 msgid "<b>Set link with command:</b> /clan chat https://telegram.me/mychat\n"
 msgstr ""
 "<b>Definir link com o comando:</b> /clan chat https://telegram.me/mychat\n"
 
-#: plugins/clan.js:194:16
+#: plugins/clan.js:195:16
 msgid "Done!"
 msgstr "Feito!"
 
-#: plugins/clan.js:200:17
+#: plugins/clan.js:201:17
 msgid "<b>NOTE:</b> Not a Telegram URL"
 msgstr "<b>NOTE:</b> Não é uma URL do Telegram"
 
-#: plugins/clan.js:206:15
+#: plugins/clan.js:207:15
 msgid "<b>Text must have only letter and number with 12-200 characters!</b>"
 msgstr "<b>O texto deve ter apenas letras e números com 12-200 caracteres!</b>"
 
-#: plugins/clan.js:208:15
+#: plugins/clan.js:209:15
 msgid "<b>Updated description!</b>"
 msgstr "<b>Descrição atualizada!</b>"
 
-#: plugins/clan.js:215:15 plugins/clan.js:240:15
+#: plugins/clan.js:216:15 plugins/clan.js:241:15
 msgid ""
 "\n"
 "<b>Select:</b>"
@@ -748,16 +748,16 @@ msgstr ""
 "<b>Selecione:</b>"
 
 #. ${0} = "ctx.nl.money"
-#: plugins/clan.js:221:15
+#: plugins/clan.js:222:15
 msgid "💰 Transferred to your account: ${0}"
 msgstr "💰 Transferido para a sua conta: ${0}"
 
 #. ${0} = "ctx.nl.xp"
-#: plugins/clan.js:246:15
+#: plugins/clan.js:247:15
 msgid "✨ Transferred to clan: ${0}"
 msgstr "✨ Transferido para o clan: ${0}"
 
-#: plugins/clan.js:265:14
+#: plugins/clan.js:266:14
 msgid ""
 "<b>Members (Points):\n"
 "</b>"
@@ -765,7 +765,7 @@ msgstr ""
 "<b>Membros (Pontos):\n"
 "</b>"
 
-#: plugins/clan.js:294:14
+#: plugins/clan.js:295:14
 msgid ""
 "\n"
 "Name and Flag (reply):\n"
@@ -779,7 +779,7 @@ msgstr ""
 "EXEMPLO: TNT-TNTClan\n"
 "\t\t"
 
-#: plugins/clan.js:306:14
+#: plugins/clan.js:307:14
 msgid ""
 "<b>Clans:\n"
 "</b>"
@@ -787,19 +787,19 @@ msgstr ""
 "<b>Clans:\n"
 "</b>"
 
-#: plugins/clan.js:313:16
+#: plugins/clan.js:314:16
 msgid "🌇 More Clans"
 msgstr "🌇 Mais Clans"
 
-#: plugins/clan.js:322:15
+#: plugins/clan.js:323:15
 msgid "Join:"
 msgstr "Entrar:"
 
-#: plugins/clan.js:327:15
+#: plugins/clan.js:328:15
 msgid "<b>VIEW CLAN:</b>\n"
 msgstr "<b>VER CLAN:</b>\n"
 
-#: plugins/clan.js:329:16
+#: plugins/clan.js:330:16
 msgid ""
 "\n"
 "<b>NOTE</b>: You already have a clan!"
@@ -809,25 +809,25 @@ msgstr ""
 
 #. ${0} = "clan.members.length"
 #. ${1} = "ctx.clan.clan.level.members"
-#: plugins/clan.js:333:16
+#: plugins/clan.js:334:16
 msgid "Clan is full! (${0}/${1})"
 msgstr "Clan está cheio! (${0}/${1})"
 
 #. ${0} = "clan.members.length"
 #. ${1} = "ctx.clan.clan.level.members"
-#: plugins/clan.js:340:17
+#: plugins/clan.js:341:17
 msgid "Welcome!\n"
 msgstr "Bem-Vindo\n"
 
-#: plugins/clan.js:350:15
+#: plugins/clan.js:351:15
 msgid "<b>Owner cannot leave!</b>"
 msgstr "<b>Dono não pode sair!</b>"
 
-#: plugins/clan.js:353:15
+#: plugins/clan.js:354:15
 msgid "Wait 24 hours to do this again!"
 msgstr "Espere 24 horas para fazer isso novamente!"
 
-#: plugins/clan.js:357:16 plugins/clan.js:366:16
+#: plugins/clan.js:358:16 plugins/clan.js:367:16
 msgid "Leaving!"
 msgstr "Saindo!"
 
@@ -958,7 +958,7 @@ msgstr "Empate"
 #. ${12} = "ctx.nl.play2.money"
 #. ${13} = "play2.winMoney"
 #. ${14} = "winName2"
-#: plugins/fight.js:120:17 plugins/fight.js:130:17
+#: plugins/fight.js:125:17 plugins/fight.js:135:17
 msgid ""
 "\n"
 "➖➖➖RESULT➖➖➖\n"
@@ -982,15 +982,15 @@ msgstr ""
 
 #. ${0} = "winName1"
 #. ${0} = "winName2"
-#: plugins/fight.js:152:17 plugins/fight.js:162:17
+#: plugins/fight.js:157:17 plugins/fight.js:167:17
 msgid "🏆 ${0}"
 msgstr "🏆 ${0}"
 
-#: plugins/fight.js:153:17 plugins/fight.js:163:17 plugins/fight.js:522:14
+#: plugins/fight.js:158:17 plugins/fight.js:168:17 plugins/fight.js:532:14
 msgid "⚔️ Next"
 msgstr "⚔️ Próximo"
 
-#: plugins/fight.js:195:32 plugins/fight.js:610:34
+#: plugins/fight.js:205:32 plugins/fight.js:620:34
 msgid "You have no troops, wait two minutos!"
 msgstr "Você não tem tropas, espere dois minutos!"
 
@@ -1020,7 +1020,7 @@ msgstr "Você não tem tropas, espere dois minutos!"
 #. ${10} = "play.level"
 #. ${11} = "ctx.nl.play.xp"
 #. ${12} = "ctx.nl.play.money"
-#: plugins/fight.js:201:17 plugins/fight.js:211:23
+#: plugins/fight.js:211:17 plugins/fight.js:221:23
 msgid ""
 "<b>${0} City:</b> ${1}${2}\n"
 "<b>🏅 Level:</b> ${3}\n"
@@ -1048,7 +1048,7 @@ msgstr ""
 #. ${3} = "ctx.nl.play.shield"
 #. ${4} = "ctx.nl.ctx.db.life"
 #. ${5} = "ctx.nl.play.life"
-#: plugins/fight.js:274:20
+#: plugins/fight.js:284:20
 msgid ""
 "\n"
 "➖➖➖➖➖➖\n"
@@ -1066,7 +1066,7 @@ msgstr ""
 #. ${1} = "text"
 #. ${0} = "ctx.db.name"
 #. ${1} = "textReply"
-#: plugins/fight.js:304:14 plugins/fight.js:309:20
+#: plugins/fight.js:314:14 plugins/fight.js:319:20
 msgid ""
 "\n"
 "${0} LOST!\n"
@@ -1084,7 +1084,7 @@ msgstr ""
 #. ${1} = "text"
 #. ${0} = "ctx.db.name"
 #. ${1} = "textReply"
-#: plugins/fight.js:322:14 plugins/fight.js:326:20
+#: plugins/fight.js:332:14 plugins/fight.js:336:20
 msgid ""
 "\n"
 "${0} WIN!\n"
@@ -1100,7 +1100,7 @@ msgstr ""
 #. ${1} = "text"
 #. ${0} = "ctx.db.name"
 #. ${1} = "textReply"
-#: plugins/fight.js:335:14 plugins/fight.js:339:20
+#: plugins/fight.js:345:14 plugins/fight.js:349:20
 msgid ""
 "\n"
 "${0} LOST!\n"
@@ -1114,13 +1114,13 @@ msgstr ""
 
 #. ${0} = "ctx.db.name"
 #. ${1} = "textReply"
-#: plugins/fight.js:369:19
+#: plugins/fight.js:379:19
 msgid "WIN!"
 msgstr "GANHOU!"
 
 #. ${0} = "ctx.db.name"
 #. ${1} = "textReply"
-#: plugins/fight.js:369:35
+#: plugins/fight.js:379:35
 msgid "LOST!"
 msgstr "PERDEU!"
 
@@ -1128,7 +1128,7 @@ msgstr "PERDEU!"
 #. ${1} = "ctx.db.id"
 #. ${2} = "textReply"
 #. ${3} = "ctx.fixKeyboard"
-#: plugins/fight.js:383:48
+#: plugins/fight.js:393:48
 msgid ""
 "\n"
 "<b>Reply attack of ${0} (${1}):</b>\n"
@@ -1139,11 +1139,11 @@ msgstr ""
 "${2}${3}"
 
 #. ${0} = "fightTypes.ctx.session.ftype.name"
-#: plugins/fight.js:525:14
+#: plugins/fight.js:535:14
 msgid "🔍 ${0}"
 msgstr "🔍 ${0}"
 
-#: plugins/fight.js:532:14
+#: plugins/fight.js:542:14
 msgid "⚡️ PowerUp"
 msgstr "⚡️ Poderes"
 
@@ -1173,7 +1173,7 @@ msgstr "⚡️ Poderes"
 #. ${10} = "opponent.level"
 #. ${11} = "ctx.nl.opponent.xp"
 #. ${12} = "ctx.nl.opponent.money"
-#: plugins/fight.js:548:17 plugins/fight.js:637:15
+#: plugins/fight.js:558:17 plugins/fight.js:647:15
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}${2}\n"
@@ -1204,7 +1204,7 @@ msgstr ""
 #. ${4} = "ctx.nl.ctx.db.xp"
 #. ${5} = "ctx.db.troops"
 #. ${6} = "ctx.db.maxTroops"
-#: plugins/fight.js:563:14
+#: plugins/fight.js:573:14
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}${2}\n"
@@ -1222,11 +1222,11 @@ msgstr ""
 "➖➖➖DUAL➖➖➖\n"
 "Selecione:"
 
-#: plugins/fight.js:575:14
+#: plugins/fight.js:585:14
 msgid "<b>Select PowerUp:</b>"
 msgstr "<b>Selecione um Poder:</b>"
 
-#: plugins/fight.js:595:15 plugins/menu.js:47:15
+#: plugins/fight.js:605:15 plugins/menu.js:47:15
 msgid "💳 Store VIP"
 msgstr "💳 Loja VIP"
 
@@ -1237,7 +1237,7 @@ msgstr "💳 Loja VIP"
 #. ${4} = "ctx.nl.ctx.db.xp"
 #. ${5} = "ctx.db.troops"
 #. ${6} = "ctx.db.maxTroops"
-#: plugins/fight.js:621:16
+#: plugins/fight.js:631:16
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}${2}\n"

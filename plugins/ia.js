@@ -43,7 +43,7 @@ const loop = async (ctx) => {
 		ctx.ia.select(ctx, ia.id)
 		log('Runnig:', ia.name, 'with id:', id)
 		ia.base(ctx)
-		await ctx.sleep(60 * 1000) //10s
+		await ctx.sleep(2 * 60 * 1000) //2min
 	}
 }
 

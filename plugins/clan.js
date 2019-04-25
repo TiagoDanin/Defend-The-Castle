@@ -16,6 +16,7 @@ const clansRanks = async (ctx, clan) => {
 		[
 			{text: ctx._`🏅 Level`, callback_data: 'ranks:level'},
 			{text: ctx._`💰 Money`, callback_data: 'ranks:money'},
+		], [
 			{text: ctx._`⚔️ Battles`, callback_data: 'ranks:battles'},
 			{text: ctx._`🌇 Clans` , callback_data: 'clan:ranks'}
 		],
