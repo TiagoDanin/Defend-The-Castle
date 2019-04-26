@@ -4,6 +4,8 @@ const log = debug('bot:ia')
 
 const ias = [
 	require('./attack'),
+	require('./city'),
+	require('./dual'), //Dual 50%
 	require('./dual')
 ].map((ia) => {
 	ia.network = new brain.NeuralNetwork(ia.network)

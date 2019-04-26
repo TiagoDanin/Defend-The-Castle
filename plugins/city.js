@@ -149,6 +149,8 @@ const base = async (ctx) => {
 		text += infoText(ctx)
 		const item = ctx.items[ctx.db.city[id]]
 		const row = `qt_${item.upgrade[1]}`
+
+		let isUpgraded = false
 		let value = Number(ctx.db[row]) + 1
 		let price = Math.floor(
 			(item.upgrade[0] * value) +
@@ -197,9 +199,14 @@ const base = async (ctx) => {
 			text += ctx._`Upgraded!`
 			mainKeyboard = showInventory(ctx, id)
 			ctx.answerCbQuery(ctx._`Upgraded!`)
+			isUpgraded = true
 		} else {
 			ctx.answerCbQuery(ctx._`❌ Your money ${ctx.db.money} | Price ${price}`, true)
 			text += ctx._`\nFailed!`
+		}
+
+		if (ctx.ia.select(ctx, 'city')) {
+			ctx.ia.train(ctx, id, isUpgraded)
 		}
 	} else if (ctx.match[2] == 'inv' && ctx.match[3]) {
 		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
