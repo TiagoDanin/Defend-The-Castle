@@ -138,9 +138,16 @@ const base = async (ctx) => {
 		text += `➖➖➖➖➖➖\n`
 		text += ctx._`<b>New castle!</b>`
 	} else if (ctx.match[2] == 'up' && ctx.match[3] && ctx.match[4]) {
-		mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
+		const id = Number(ctx.match[3])
+		const qt = Number(ctx.match[4])
+
+		if (id == 12) {
+			return //Hack ?
+		}
+
+		mainKeyboard = showInventory(ctx, id)
 		text += infoText(ctx)
-		const item = ctx.items[ctx.db.city[Number(ctx.match[3])]]
+		const item = ctx.items[ctx.db.city[id]]
 		const row = `qt_${item.upgrade[1]}`
 		let value = Number(ctx.db[row]) + 1
 		let price = Math.floor(
@@ -151,8 +158,8 @@ const base = async (ctx) => {
 			)
 		)
 
-		if (Number(ctx.match[4]) > 1) {
-			for (let i = 0; i < Number(ctx.match[4]); i++) {
+		if (qt > 1) {
+			for (let i = 1; i < qt; i++) {
 				value++
 				let addPrice = Math.floor(
 					(item.upgrade[0] * value) +
@@ -188,7 +195,7 @@ const base = async (ctx) => {
 			text += `➖➖➖➖➖➖\n`
 			text += `${infoText(ctx)}`
 			text += ctx._`Upgraded!`
-			mainKeyboard = showInventory(ctx, Number(ctx.match[3]))
+			mainKeyboard = showInventory(ctx, id)
 			ctx.answerCbQuery(ctx._`Upgraded!`)
 		} else {
 			ctx.answerCbQuery(ctx._`❌ Your money ${ctx.db.money} | Price ${price}`, true)
