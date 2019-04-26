@@ -3,11 +3,15 @@ const showRank = async (ctx, type) => {
 	let list = db.filter((e) => {
 		if (e.id == ctx.from.id) return true
 	})[0].position
+
 	let text = ctx._`🥇 You Rank is: ${list}\n`
 	let n = 0
 	ctx.caches.top[type] = []
+
+	const bots = ctx.config.ids.bots.map(c => Number(c))
+
 	for (let user of db) {
-		if (n <= 9) {
+		if (!bots.includes(Number(user.id)) && n <= 9) {
 			n++
 			text += `<b>${n}</b> • ${user.name} <b>(${user[type]})</b>\n`
 			ctx.caches.top[type].push(Number(user.id))
