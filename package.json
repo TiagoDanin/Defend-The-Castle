@@ -34,10 +34,10 @@
     "README.md"
   ],
   "dependencies": {
-    "brain.js": "^1.6.1",
+    "brain.js": "1.6.1",
     "debug": "4.1.1",
     "json-stringify-safe": "5.0.1",
-    "lodash": "^4.17.11",
+    "lodash": "4.17.11",
     "minimist": "1.2.0",
     "moment": "2.24.0",
     "moment-timezone": "0.5.23",
