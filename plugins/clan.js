@@ -70,7 +70,7 @@ const processView = (ctx, clan, view) => {
 	const level = clan.levelPoc ? ` (${clan.levelPoc}%)` : ''
 	let pts = `+${ctx.nl(ctx.caches[ctx.from.id].pts)}`
 	if (ctx.caches[ctx.from.id].pts < 0) {
-		pts = `-${ctx.nl(ctx.caches[ctx.from.id].pts)}`
+		pts = `-${ctx.nl(Math.abs(ctx.caches[ctx.from.id].pts))}`
 	}
 	let output = ctx._`<b>🌇 Name:</b> ${clan.name} [${clan.flag}]\n`
 	output += ctx._`<b>🏅 Level:</b> ${clan.level}${level}\n`
