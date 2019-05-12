@@ -5,6 +5,7 @@ module.exports = {
 	...require('./diamond'), // 11
 	...require('./hospital'), // 7
 	...require('./null'), // 0
+	...require('./presents'), // 15
 	...require('./rocket'), // 4
 	...require('./shield'), // 12
 	...require('./syringe'), // 13

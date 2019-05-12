@@ -33,7 +33,7 @@ ${ctx.tips(ctx)}`
 					}
 				}
 
-				if (item.box) {
+				if (item.do) {
 					await ctx.database.saveUser(ctx)
 				} else {
 					await ctx.database.updateUser(ctx.from.id, 'inventory', ctx.db.inventory)

@@ -82,43 +82,64 @@ const base = async (ctx) => {
 ${ctx.tips(ctx)}`
 	const date = new Date()
 	let boxs = []
+
+	let qtPresents = ctx.db.inventory.filter(id => id == 15).length || 0
 	if (ctx.session.box < +date) {
-		if (ctx.match[2]) {
+		qtPresents += 1
+	}
+
+	if (qtPresents > 0 && ctx.match[2]) {
+		qtPresents -= 1
+		if (ctx.session.box < +date) {
 			date.setDate(date.getDate() + 1)
 			ctx.session.box = +date
-			let present = presents[Math.floor((Math.random() * presents.length))]
-			if (present.name == 'Quest' && ctx.session.quest) {
-				present = Diamond
-			}
-
-			const data = present(
-				ctx.db,
-				Math.floor(Math.random() * (6 - 1) + 1), //Range: 1-5
-				ctx
-			)
-
-			if (data) { //No bug :)
-				ctx.db = data
-			}
-			await ctx.database.saveUser(ctx)
-			if (ctx.db.old[present.name]) {
-				ctx.answerCbQuery(ctx._`
-	Present(${i18nPresents[present.name]}): +${ctx.db[present.name] - ctx.db.old[present.name]}
-				`, true)
-			} else {
-				ctx.answerCbQuery(ctx._`Present: ${i18nPresents[present.name]}!`, true)
-			}
-
 		} else {
-			boxs = [
-				[
-					{text: `🎁` , callback_data: 'box:1' },
-					{text: `🎁` , callback_data: 'box:2' },
-					{text: `🎁` , callback_data: 'box:3' }
-				]
-			]
+			const index = ctx.db.inventory.indexOf('15')
+			ctx.db.inventory = ctx.db.inventory.filter((_, i) => {
+				return i != index // -1 item of id 15
+			})
+		}
+
+		let present = presents[Math.floor((Math.random() * presents.length))]
+		if (present.name == 'Quest' && ctx.session.quest) {
+			present = Diamond
+		}
+
+		const data = present(
+			ctx.db,
+			Math.floor(Math.random() * (6 - 1) + 1), //Range: 1-5
+			ctx
+		)
+
+		if (data) { //No bug :)
+			ctx.db = data
+		}
+		await ctx.database.saveUser(ctx)
+		if (ctx.db.old[present.name]) {
+			ctx.answerCbQuery(ctx._`
+Present(${i18nPresents[present.name]}): +${ctx.db[present.name] - ctx.db.old[present.name]}
+			`, true)
+		} else {
+			ctx.answerCbQuery(ctx._`Present: ${i18nPresents[present.name]}!`, true)
 		}
 	}
+
+	if (qtPresents > 0) {
+		boxs = [
+			[
+				{text: `🎁` , callback_data: 'box:1' },
+				{text: `🎁` , callback_data: 'box:2' },
+				{text: `🎁` , callback_data: 'box:3' }
+			]
+		]
+	} else {
+		boxs = [
+			[
+				{text: `-3 💎 => 🎁 +1` , callback_data: 'vip:15:up'}
+			]
+		]
+	}
+
 	const keyboard = [
 		...boxs,
 		[{text: ctx._`📜 Menu`, callback_data: 'menu:main' }]

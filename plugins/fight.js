@@ -546,8 +546,11 @@ const base = async (ctx) => {
 			text: ctx._`⚡️ PowerUp`,
 			callback_data: 'fight:powerup'
 		}]
-
 	]
+
+	if (ctx.db.troops <= 0) {
+		menu[0][0] = {text: `-3 💎 => 👮 +5` , callback_data: 'vip:14:up'}
+	}
 
 	if (ctx.match[2] == 'powerup' && ctx.match[3] && ctx.db.inventory.includes(ctx.match[3])) {
 		ctx.session.powerup = ctx.items[ctx.match[3]]
@@ -645,9 +648,11 @@ Waiting for players!`
 			}
 		} else {
 			checkAttack = await attack(ctx, opponent)
-			if (ctx.db.troops < 0) {
+			if (ctx.db.troops <= 0) {
 				ctx.db.troops = 0
+				menu[0][0] = {text: `-3 💎 => 👮 +5` , callback_data: 'vip:14:up'}
 			}
+
 			text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
 <b>🏅 Level:</b> ${ctx.db.level}
