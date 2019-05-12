@@ -183,10 +183,10 @@ const base = async (ctx) => {
 			pts = `-${ctx.nl(member.pts)}`
 		}
 		text = ctx._`<b>Points</b>: ${pts}\n`
-		text += ctx._`• Battles Won: +5pts\n`
-		text += ctx._`• Battles Lost: -3pts\n`
-		text += ctx._`• Experience donated: +0.18pts\n`
-		text += ctx._`• Cash Withdrawal: -0.12pts\n`
+		text += ctx._`• Battles Won: + 12.2pts\n`
+		text += ctx._`• Battles Lost: - 7.2pts\n`
+		text += ctx._`• Experience donated: + 0.18pts\n`
+		text += ctx._`• Cash Withdrawal: - 0.12pts\n`
 		text += ctx._`<b>Note:</b> Restarted every week or day :)`
 	} else if (ctx.match[2] == 'chat') {
 		text = ctx._`<b>Set link with command:</b> /clan chat https://telegram.me/mychat\n`

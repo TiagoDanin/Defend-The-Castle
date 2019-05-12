@@ -95,8 +95,8 @@ const dualAttack = async (ctx, play1) => {
 		play1.winMoney = winMoney / 3.3
 		play2.winXp = winXp
 		play2.winMoney = winMoney
-		ctx.caches[play1.id].wins++
-		ctx.caches[play2.id].losts++
+		ctx.caches[play1.id].losts++
+		ctx.caches[play2.id].wins++
 	} else { //play1 == play2
 		play1.winXp = winXp / 3.3
 		play1.winMoney = winMoney / 3.3
