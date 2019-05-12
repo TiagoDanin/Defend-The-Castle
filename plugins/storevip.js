@@ -4,10 +4,7 @@ const base = async (ctx) => {
 <b>💎 Diamonds:</b> ${ctx.db.diamond}
 ${ctx.tips(ctx)}`
 
-	const itemsIds = Object.keys(ctx.items).filter((id) => {
-		if (ctx.items[id].qt) return true
-		return false
-	})
+	const itemsIds = Object.keys(ctx.items).filter((id) => ctx.items[id].qt)
 	let items = {}
 	itemsIds.forEach((id) => {
 		items[id] = ctx.items[id]
@@ -24,12 +21,24 @@ ${ctx.tips(ctx)}`
 					} else {
 						total.push(id)
 					}
+
 					return total
 				}, [])
+
 				for (let i = 0; i < item.qt; i++) {
-					ctx.db.inventory.push(ctx.match[2])
+					if (item.do) {
+						ctx.db = item.do(ctx.db, ctx)
+					} else {
+						ctx.db.inventory.push(ctx.match[2])
+					}
 				}
-				await ctx.database.updateUser(ctx.from.id, 'inventory', ctx.db.inventory)
+
+				if (item.box) {
+					await ctx.database.saveUser(ctx)
+				} else {
+					await ctx.database.updateUser(ctx.from.id, 'inventory', ctx.db.inventory)
+				}
+
 				ctx.answerCbQuery(ctx._`Inventory update!`)
 			} else {
 				ctx.answerCbQuery(ctx._`💎 Your diamonds: ${ctx.db.diamond} | Price: ${item.price}`, true)
@@ -50,8 +59,12 @@ ${item.desc}
 
 	const mainKeyboard = itemsIds.reduce((total, id, index) => {
 		let qt = ctx.db.allItems.filter(i => i.id == id).length || 0
+		if (items[id.toString()].view) {
+			qt = items[id.toString()].view(ctx.db, ctx) || 0
+		}
+		const icon = items[id.toString()].battle ? '⚡️' : (items[id.toString()].box ? '📦' : ctx.db.castle)
 		total.push([{
-			text: `${items[id.toString()].battle ? '⚡️' : ctx.db.castle} ${items[id.toString()].icon} ${items[id.toString()].name} (${qt})`,
+			text: `${icon} ${items[id.toString()].icon} ${items[id.toString()].name} (${qt})`,
 			callback_data: `vip:${id}`
 		}, {
 			text: `💎 ${items[id.toString()].price}`,
