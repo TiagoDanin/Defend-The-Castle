@@ -13,10 +13,12 @@ module.exports = {
 			return data
 		},
 		doDefend: (data, ctx) => {
+			const qt = data.city.filter((id, index) => id == '7' && index != 12).length
+			console.log(qt)
 			ctx.db.log.push([
 				ctx._`🏨 🚑`
 			])
-			data.life += Math.floor(70 * data.qt_hospital)
+			data.life += Math.floor(70 * (data.qt_hospital / qt))
 			return data
 		},
 		upgrade: [100, 'hospital']

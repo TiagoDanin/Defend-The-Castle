@@ -13,18 +13,19 @@ module.exports = {
 			return data
 		},
 		doDefend: (data, ctx) => {
+			const qt = data.city.filter((id, index) => id == '2' && index != 12).length
 			if (Math.floor((Math.random() * 3)) == 0) {
 				ctx.db.log.push([
 					ctx._`⚔️ We take the zone with the facility!`,
 					ctx._`⚔️ Easy!`
 				])
-				data.attack += Math.floor(5 * data.qt_zonewar)
+				data.attack += Math.floor(5 * (data.qt_zonewar / qt))
 			} else {
 				ctx.db.log.push([
 					ctx._`⚔️ Trap....`,
 					ctx._`⚔️ Oh! No... Trap..`
 				])
-				data.attack += Math.floor(38 * data.qt_zonewar)
+				data.attack += Math.floor(38 * (data.qt_zonewar / qt))
 			}
 			return data
 		},
@@ -44,14 +45,15 @@ module.exports = {
 			return data
 		},
 		doDefend: (data, ctx) => {
+			const qt = data.city.filter((id, index) => id == '3' && index != 12).length
 			if (Math.floor((Math.random() * 3)) == 0) {
 				//ctx.db.log.push(['🛡 '])
-				data.shield += Math.floor(20 * data.qt_zonedefense)
+				data.shield += Math.floor(20 * (data.qt_zonedefense / qt))
 			} else {
 				ctx.db.log.push([
 					ctx._`🛡 The defense is down!`
 				])
-				data.shield += Math.floor(4 * data.qt_zonedefense)
+				data.shield += Math.floor(4 * (data.qt_zonedefense / qt))
 			}
 			return data
 		},

@@ -13,13 +13,14 @@ module.exports = {
 			return data
 		},
 		doDefend: (data, ctx) => {
+			const qt = data.city.filter((id, index) => id == '5' && index != 12).length
 			ctx.db.log.push([
 				ctx._`🏦 Found money!`,
 				ctx._`🏦 MONEEEEY!`,
 				ctx._`🏦 💰`
 			])
 			let moreMoney = Math.floor(
-				(60 * data.qt_bank) / 4.2
+				(60 * (data.qt_bank / qt)) / 4.2
 			)
 			if (moreMoney > data.money) {
 				moreMoney = data.money / 3
