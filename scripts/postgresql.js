@@ -8,6 +8,7 @@ const log = (text) => console.log('>>', text)
 //ALTER TABLE users ADD COLUMN reply BOOLEAN DEFAULT true;
 const main = async () => {
 	await client.connect()
+
 	await client.query(`
 		CREATE TABLE users(
 			id               BIGINT     NOT NULL,
@@ -45,18 +46,24 @@ const main = async () => {
 			}',
 			PRIMARY KEY (id)
 		);
+	`, []).catch(log)
+
+	await client.query(`
 		CREATE TABLE stats(
 			id               INT        NOT NULL,
 			time             TIMESTAMP  DEFAULT now(),
 			invite           INT        DEFAULT 1,
 			PRIMARY KEY (id)
 		);
+	`, []).catch(log)
+
+	await client.query(`
 		CREATE TABLE clans(
 			id               INT        NOT NULL,
 			name             TEXT       NOT NULL,
 			flag             TEXT       NOT NULL,
 			chat             TEXT       DEFAULT '',
-			desc             TEXT       DEFAULT '',
+			"desc"           TEXT       DEFAULT '',
 			members          INT[]      DEFAULT '{}',
 			level            INT        DEFAULT 1,
 			xp               INT        DEFAULT 1,
@@ -65,9 +72,11 @@ const main = async () => {
 			PRIMARY KEY (id)
 		);
 	`, []).catch(log)
+
 	await client.query(`
 		INSERT INTO users(id, name, type) VALUES (-1001303884163, '[BOT] Try', 'warrior');
-	`, []).catch(log))
+	`, []).catch(log)
+
 	await client.end()
 }
 main()
