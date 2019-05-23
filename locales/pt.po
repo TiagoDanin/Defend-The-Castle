@@ -404,8 +404,8 @@ msgstr "${0} ${1}"
 
 #: plugins/badges.js:31:15 plugins/city.js:237:14 plugins/clan.js:23:15
 #: plugins/clan.js:313:16 plugins/class.js:53:13 plugins/config.js:18:15
-#: plugins/fight.js:156:17 plugins/fight.js:166:17 plugins/fight.js:390:20
-#: plugins/fight.js:405:22 plugins/fight.js:543:14 plugins/menu.js:69:16
+#: plugins/fight.js:156:17 plugins/fight.js:166:17 plugins/fight.js:392:20
+#: plugins/fight.js:407:22 plugins/fight.js:549:14 plugins/menu.js:69:16
 #: plugins/presents.js:145:15 plugins/quests.js:37:15 plugins/ranks.js:91:15
 msgid "📜 Menu"
 msgstr "📜 Menu"
@@ -1002,11 +1002,11 @@ msgstr ""
 msgid "🏆 ${0}"
 msgstr "🏆 ${0}"
 
-#: plugins/fight.js:158:17 plugins/fight.js:168:17 plugins/fight.js:536:14
+#: plugins/fight.js:158:17 plugins/fight.js:168:17 plugins/fight.js:542:14
 msgid "⚔️ Next"
 msgstr "⚔️ Próximo"
 
-#: plugins/fight.js:205:32 plugins/fight.js:627:34
+#: plugins/fight.js:205:32 plugins/fight.js:633:34
 msgid "You have no troops, wait two minutos!"
 msgstr "Você não tem tropas, espere dois minutos!"
 
@@ -1064,7 +1064,7 @@ msgstr ""
 #. ${3} = "ctx.nl.play.shield"
 #. ${4} = "ctx.nl.ctx.db.life"
 #. ${5} = "ctx.nl.play.life"
-#: plugins/fight.js:284:20
+#: plugins/fight.js:286:20
 msgid ""
 "\n"
 "➖➖➖➖➖➖\n"
@@ -1082,7 +1082,7 @@ msgstr ""
 #. ${1} = "text"
 #. ${0} = "ctx.db.name"
 #. ${1} = "textReply"
-#: plugins/fight.js:314:14 plugins/fight.js:319:20
+#: plugins/fight.js:316:14 plugins/fight.js:321:20
 msgid ""
 "\n"
 "${0} LOST!\n"
@@ -1100,7 +1100,7 @@ msgstr ""
 #. ${1} = "text"
 #. ${0} = "ctx.db.name"
 #. ${1} = "textReply"
-#: plugins/fight.js:332:14 plugins/fight.js:336:20
+#: plugins/fight.js:334:14 plugins/fight.js:338:20
 msgid ""
 "\n"
 "${0} WIN!\n"
@@ -1116,7 +1116,7 @@ msgstr ""
 #. ${1} = "text"
 #. ${0} = "ctx.db.name"
 #. ${1} = "textReply"
-#: plugins/fight.js:345:14 plugins/fight.js:349:20
+#: plugins/fight.js:347:14 plugins/fight.js:351:20
 msgid ""
 "\n"
 "${0} LOST!\n"
@@ -1130,13 +1130,13 @@ msgstr ""
 
 #. ${0} = "ctx.db.name"
 #. ${1} = "textReply"
-#: plugins/fight.js:383:19
+#: plugins/fight.js:385:19
 msgid "WIN!"
 msgstr "GANHOU!"
 
 #. ${0} = "ctx.db.name"
 #. ${1} = "textReply"
-#: plugins/fight.js:383:35
+#: plugins/fight.js:385:35
 msgid "LOST!"
 msgstr "PERDEU!"
 
@@ -1144,7 +1144,7 @@ msgstr "PERDEU!"
 #. ${1} = "ctx.db.id"
 #. ${2} = "textReply"
 #. ${3} = "ctx.fixKeyboard"
-#: plugins/fight.js:397:48
+#: plugins/fight.js:399:48
 msgid ""
 "\n"
 "<b>Reply attack of ${0} (${1}):</b>\n"
@@ -1155,11 +1155,11 @@ msgstr ""
 "${2}${3}"
 
 #. ${0} = "fightTypes.ctx.session.ftype.name"
-#: plugins/fight.js:539:14
+#: plugins/fight.js:545:14
 msgid "🔍 ${0}"
 msgstr "🔍 ${0}"
 
-#: plugins/fight.js:546:14
+#: plugins/fight.js:552:14
 msgid "⚡️ PowerUp"
 msgstr "⚡️ Poderes"
 
@@ -1189,7 +1189,7 @@ msgstr "⚡️ Poderes"
 #. ${10} = "opponent.level"
 #. ${11} = "ctx.nl.opponent.xp"
 #. ${12} = "ctx.nl.opponent.money"
-#: plugins/fight.js:565:17 plugins/fight.js:656:15
+#: plugins/fight.js:571:17 plugins/fight.js:662:15
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}${2}\n"
@@ -1220,7 +1220,7 @@ msgstr ""
 #. ${4} = "ctx.nl.ctx.db.xp"
 #. ${5} = "ctx.db.troops"
 #. ${6} = "ctx.db.maxTroops"
-#: plugins/fight.js:580:14
+#: plugins/fight.js:586:14
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}${2}\n"
@@ -1238,11 +1238,11 @@ msgstr ""
 "➖➖➖DUAL➖➖➖\n"
 "Selecione:"
 
-#: plugins/fight.js:592:14
+#: plugins/fight.js:598:14
 msgid "<b>Select PowerUp:</b>"
 msgstr "<b>Selecione um Poder:</b>"
 
-#: plugins/fight.js:612:15 plugins/menu.js:47:15
+#: plugins/fight.js:618:15 plugins/menu.js:47:15
 msgid "💳 Store VIP"
 msgstr "💳 Loja VIP"
 
@@ -1253,7 +1253,7 @@ msgstr "💳 Loja VIP"
 #. ${4} = "ctx.nl.ctx.db.xp"
 #. ${5} = "ctx.db.troops"
 #. ${6} = "ctx.db.maxTroops"
-#: plugins/fight.js:638:16
+#: plugins/fight.js:644:16
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}${2}\n"
@@ -1714,7 +1714,7 @@ msgstr ""
 #: plugins/tutorial.js:56:14
 msgid ""
 "\n"
-"* Updagrade troops in:\n"
+"* Upgrade troops in:\n"
 "• ⚔️ Zone War (Attack)\n"
 "• 🛡 Zone Defense (Shield)\n"
 "• 🏨 Hospital (Life)\n"
