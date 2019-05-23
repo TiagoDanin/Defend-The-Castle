@@ -244,11 +244,13 @@ const attack = async (ctx, opponent) => {
 	const v = Math.floor((Number(ctx.match[3])) / 5)
 	const h = (Number(ctx.match[3])) % 5
 	const data = showMap(ctx, play, h, v)
+
 	for (let item of data.items) {
 		if (item.doDefend) {
 			play = item.doDefend(play, ctx)
 		}
 	}
+
 	for (let item of ctx.db.inventory) {
 		if (item.doAttack) {
 			ctx.db = item.doAttack(ctx.db)
@@ -450,12 +452,16 @@ const showMap = (ctx, opponent, h, v) => {
 			keys.reduce((totalH, key, indexH) => {
 				if (indexV == v || indexV - 1 == v || indexV + 1 == v) {
 					if (indexH == h || indexH - 1 == h || indexH + 1 == h) {
-						let id = opponent.city[index]
-						items.push(ctx.items[id])
-						if (id == 0) {
-							key.text = forest()
+						if (indexV === 2 && indexH === 2) {
+							key.text = ctx.castles[opponent.city[12]]
 						} else {
-							key.text = ctx.items[id].icon
+							let id = opponent.city[index]
+							items.push(ctx.items[id])
+							if (id == 0) {
+								key.text = forest()
+							} else {
+								key.text = ctx.items[id].icon
+							}
 						}
 					}
 				}
@@ -467,7 +473,7 @@ const showMap = (ctx, opponent, h, v) => {
 		)]]
 		return totalV
 	}, [])
-	map[2][2].text = ctx.castles[opponent.city[12]]
+
 	return {
 		map: map,
 		items: items

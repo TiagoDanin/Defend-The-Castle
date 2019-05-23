@@ -38,8 +38,9 @@ const dlogReply = debug("bot:reply")
 const dlogInline = debug("bot:inline")
 const dlogCallback = debug("bot:callback")
 const dlogError = debug("bot:error")
-const dlogLang = debug("bot:lang")
 const dlogQuest = debug("bot:quest")
+const dlogLang = (id) => debug(`user:${id}:lang`)
+const dlogInfo = (id) => debug(`user:${id}:info`)
 
 dlogBot('Start bot')
 dlogQuest(quest.select)
@@ -295,7 +296,7 @@ bot.use((ctx, next) => {
 	var i18n = new Translation(langCode)
 	ctx._ = i18n._.bind(i18n)
 	ctx.lang = langCode
-	dlogLang(ctx.lang)
+	dlogLang(ctx.from.id)(ctx.lang)
 	return next(ctx)
 })
 
@@ -545,6 +546,8 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	data.moneyLabel = nl.convert(data.money, 'symbol', {
 		start: 1000
 	})
+	
+	dlogInfo(ctx.from.id)(data)
 	return data
 }
 
