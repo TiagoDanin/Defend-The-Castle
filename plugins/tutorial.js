@@ -54,7 +54,7 @@ Best possition to drop of troops!
 • Upgrade or Change Zone`
 	} else if (id == 3) {
 		text = ctx._`
-* Updagrade troops in:
+* Upgrade troops in:
 • ⚔️ Zone War (Attack)
 • 🛡 Zone Defense (Shield)
 • 🏨 Hospital (Life)

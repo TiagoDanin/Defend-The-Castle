@@ -11,7 +11,7 @@ const showRank = async (ctx, type) => {
 	const bots = ctx.config.ids.bots.map(c => Number(c))
 
 	for (let user of db) {
-		if (!bots.includes(Number(user.id)) && n <= 9) {
+		if (n <= 9) { // !bots.includes(Number(user.id)) && 
 			n++
 			text += `<b>${n}</b> • ${user.name} <b>(${user[type]})</b>\n`
 			ctx.caches.top[type].push(Number(user.id))
