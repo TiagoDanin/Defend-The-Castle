@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@types/node@^11.12.1":
-  version "11.13.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.13.0.tgz#b0df8d6ef9b5001b2be3a94d909ce3c29a80f9e1"
-  integrity sha512-rx29MMkRdVmzunmiA4lzBYJNnXsW/PhG4kMBy2ATsYaDjGGR75dCFEVVROKpNwlVdcUX3xxlghKQOeDPBJobng==
+"@types/node@^12.0.4":
+  version "12.0.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.0.4.tgz#46832183115c904410c275e34cf9403992999c32"
+  integrity sha512-j8YL2C0fXq7IONwl/Ud5Kt0PeXw22zGERt+HSSnwbKOJVsAGkEz3sFCYwaF9IOuoG1HOtE0vKCj6sXF7Q0+Vaw==
 
 abbrev@1:
   version "1.1.1"
@@ -1822,12 +1822,12 @@ telegraf-start-parts@1.0.0:
   resolved "https://registry.yarnpkg.com/telegraf-start-parts/-/telegraf-start-parts-1.0.0.tgz#0412f5ea8f9e0bce7cc50dc7063f971c7140259f"
   integrity sha512-NSTV4t5HUwoylPmw59FrXrZk1RkDUyDiVI4/cwccEysY0rBkt3WxTqfl7aNE02bZQfQS0tsjw4NU958C5RvEcw==
 
-telegraf@3.29.0:
-  version "3.29.0"
-  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-3.29.0.tgz#0655d02b9a2d72d53ff20787947aa10ad54a747c"
-  integrity sha512-zvlY2Wnls7D/sJDTD21tORR9S1Exe6NThUCvYhdhCoKx7+OOZlplSd4yhSZbRI4bViuFdyhxCE+IuWS/ZmAElg==
+telegraf@3.30.1:
+  version "3.30.1"
+  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-3.30.1.tgz#981e5cfe0a8dba1e0bfd0fffeff97929f33cbe01"
+  integrity sha512-XN/3l6ebTvsL6jMzKqkP4Nq26qw76lEd3jlM8vL40yPoA4nlCAoweTVsislS9e0i7bcqTLgr8tj+3zX6vRZAZw==
   dependencies:
-    "@types/node" "^11.12.1"
+    "@types/node" "^12.0.4"
     debug "^4.0.1"
     node-fetch "^2.2.0"
     sandwich-stream "^2.0.1"

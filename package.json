@@ -45,7 +45,7 @@
     "numberlabel": "1.0.1",
     "pg": "7.10.0",
     "pg-native": "3.0.0",
-    "telegraf": "3.29.0",
+    "telegraf": "3.30.1",
     "telegraf-start-parts": "1.0.0"
   },
   "devDependencies": {
