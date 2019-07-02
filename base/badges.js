@@ -9,7 +9,7 @@ module.exports = {
 		losts: {
 			id: 'losts',
 			title: 'Newbies',
-			desc: `Everyone starts from somewhere, but where you start doesn't have to be where you end`,
+			desc: 'Everyone starts from somewhere, but where you start doesn\'t have to be where you end',
 			icon: '😆'
 		},
 		battles: {

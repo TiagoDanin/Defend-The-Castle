@@ -1,18 +1,20 @@
-const base = async (ctx) => {
+const base = async ctx => {
 	if (ctx.privilege <= 6) {
 		return
 	}
+
 	let id = 0
 	if (ctx.match[5]) {
 		id = ctx.match[5]
 	} else {
 		id = ctx.update.message.reply_to_message.from.id || ctx.update.message.reply_to_message.forward_from.id
 	}
+
 	const play = await ctx.database.getUser(id)
 	if (play && id) {
-		let user = {
+		const user = {
 			from: {
-				id: id
+				id
 			},
 			db: play
 		}
@@ -35,12 +37,12 @@ const base = async (ctx) => {
 					user.db[ctx.match[2]] += Number(ctx.match[3])
 				}
 			}
+
 			ctx.replyWithHTML(`<b>ADD:</b> ${ctx.match[2]} += ${ctx.match[3]} * ${ctx.match[4]}`)
 		}
+
 		await ctx.database.saveUser(user)
-		return
 	}
-	return
 }
 
 module.exports = {

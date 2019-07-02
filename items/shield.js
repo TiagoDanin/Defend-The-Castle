@@ -1,5 +1,5 @@
 module.exports = {
-	'12': {
+	12: {
 		icon: '🛡',
 		name: 'Super Shield',
 		desc: '3x +Shield & +150 Xp',

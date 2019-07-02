@@ -1,11 +1,12 @@
-const { Client } = require('pg')
+const {Client} = require('pg')
+
 const client = new Client({
-	database: 'test'//'defendthecastle'
+	database: 'test'// 'defendthecastle'
 })
 
-const log = (text) => console.log('>>', text)
+const log = text => console.log('>>', text)
 
-//ALTER TABLE users ADD COLUMN reply BOOLEAN DEFAULT true;
+// ALTER TABLE users ADD COLUMN reply BOOLEAN DEFAULT true;
 const main = async () => {
 	await client.connect()
 
@@ -79,4 +80,5 @@ const main = async () => {
 
 	await client.end()
 }
+
 main()

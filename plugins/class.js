@@ -1,8 +1,8 @@
-const base = async (ctx) => {
+const base = async ctx => {
 	let text = ctx._`<b>Select:</b>`
-	let keyboard = [[]]
+	const keyboard = [[]]
 
-	Object.keys(ctx.classes).map((key) => {
+	Object.keys(ctx.classes).map(key => {
 		const cl = ctx.classes[key]
 		keyboard[0].push({
 			text: ctx._(cl.name),

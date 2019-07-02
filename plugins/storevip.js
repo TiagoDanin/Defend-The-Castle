@@ -1,17 +1,17 @@
-const base = async (ctx) => {
+const base = async ctx => {
 	let text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>💎 Diamonds:</b> ${ctx.db.diamond}
 ${ctx.tips(ctx)}`
 
-	const itemsIds = Object.keys(ctx.items).filter((id) => ctx.items[id].qt)
-	let items = {}
-	itemsIds.forEach((id) => {
+	const itemsIds = Object.keys(ctx.items).filter(id => ctx.items[id].qt)
+	const items = {}
+	itemsIds.forEach(id => {
 		items[id] = ctx.items[id]
 	})
 
 	if (ctx.match[2]) {
-		let item = {...items[ctx.match[2]]}
+		const item = {...items[ctx.match[2]]}
 		if (ctx.match[3] == 'up') {
 			if (ctx.db.diamond - item.price >= 0) {
 				ctx.db.diamond = ctx.db.diamond - item.price
@@ -45,6 +45,7 @@ ${ctx.tips(ctx)}`
 				text += ctx._`\nFailed!`
 			}
 		}
+
 		text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>💎 Diamonds:</b> ${ctx.db.diamond}
@@ -62,6 +63,7 @@ ${item.desc}
 		if (items[id.toString()].view) {
 			qt = items[id.toString()].view(ctx.db, ctx) || 0
 		}
+
 		const icon = items[id.toString()].battle ? '⚡️' : (items[id.toString()].box ? '📦' : ctx.db.castle)
 		total.push([{
 			text: `${icon} ${items[id.toString()].icon} ${items[id.toString()].name} (${qt})`,

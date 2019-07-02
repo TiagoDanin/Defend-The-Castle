@@ -1,5 +1,5 @@
 module.exports = {
-	'1': {
+	1: {
 		icon: '💣',
 		name: 'Bomb',
 		city: true,
@@ -22,6 +22,7 @@ module.exports = {
 				])
 				data.attack += ctx.db.attack / 12
 			}
+
 			return data
 		},
 		upgrade: [350, 'bomb']

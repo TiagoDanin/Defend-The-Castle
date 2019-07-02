@@ -1,8 +1,10 @@
 const stringify = require('json-stringify-safe')
-const base = async (ctx) => {
+
+const base = async ctx => {
 	if (ctx.privilege <= 6) {
 		return
 	}
+
 	ctx.telegram.sendMessage(ctx.config.ids.log, '#Backup')
 	ctx.telegram.sendDocument(
 		ctx.config.ids.log,
@@ -40,7 +42,6 @@ const base = async (ctx) => {
 			), 'utf8')
 		}
 	)
-	return
 }
 
 module.exports = {

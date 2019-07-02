@@ -1,28 +1,30 @@
 const city = require('../plugins/city')
+
 const ids = [6, 7, 8, 11, 13, 16, 17, 18]
 
-const input = (id) => ids.map(i => i == Number(id) ? 1 : 0)
+const input = id => ids.map(i => i == Number(id) ? 1 : 0)
 
 const randomId = () => ids[Math.floor((Math.random() * ids.length))]
 
-const getResults = (ctx) => [0, 0, 0, 0].map(i => {
+const getResults = ctx => [0, 0, 0, 0].map(i => {
 	const id = randomId()
 	const output = ctx.ia.network.run(input(id))
 	if (output) {
 		return {
-			id: id,
+			id,
 			output: output[0]
 		}
 	}
+
 	return {
-		id: id,
+		id,
 		output: i
 	}
 }).sort((a, b) => b.output - a.output)
 
-const getResult = (ctx) => getResults(ctx)[0].id
+const getResult = ctx => getResults(ctx)[0].id
 
-const base = async (ctx) => {
+const base = async ctx => {
 	const id = getResult(ctx)
 	await ctx.addContext()
 
@@ -44,8 +46,8 @@ const train = (ctx, id, done) => {
 module.exports = {
 	id: 'city',
 	name: 'City',
-	base: base,
-	train: train,
+	base,
+	train,
 	network: {
 		activation: 'sigmoid'
 	}

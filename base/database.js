@@ -3,25 +3,25 @@ const pg = require('pg').native
 
 const dlogError = debug('bot:error')
 const dlogPgQuery = debug('bot:database:query')
-const dlogPgValues= debug('bot:database:values')
+const dlogPgValues = debug('bot:database:values')
 
-const Query = pg.Query;
-const submit = Query.prototype.submit;
-Query.prototype.submit = function() {
-	const text = this.text
-	const values = this.values
+const {Query} = pg
+const {submit} = Query.prototype
+Query.prototype.submit = function () {
+	const {text} = this
+	const {values} = this
 	const query = values.reduce((q, v, i) => q.replace(`$${i + 1}`, v), text)
 	dlogPgValues(values)
 	dlogPgQuery(query)
 	submit.apply(this, arguments)
 }
 
-const { Pool } = pg
+const {Pool} = pg
 const pool = new pg.Pool({
 	database: 'test'
 })
 
-const error = (res) => {
+const error = res => {
 	dlogError(res)
 	return {
 		rowCount: 0,
@@ -30,9 +30,9 @@ const error = (res) => {
 	}
 }
 
-const getUser = async (id) => {
+const getUser = async id => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		SELECT
 			*,
@@ -45,12 +45,13 @@ const getUser = async (id) => {
 	if (data.rowCount != 1) {
 		return false
 	}
+
 	return data.rows[0]
 }
 
 const setUser = async (id, name) => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		INSERT
 			INTO users(id, name)
@@ -66,12 +67,13 @@ const setUser = async (id, name) => {
 	if (data.rowCount != 1) {
 		return false
 	}
+
 	return data.rows[0]
 }
 
 const updateUser = async (id, row, value) => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		UPDATE users
 			SET ${row} = $1
@@ -82,12 +84,13 @@ const updateUser = async (id, row, value) => {
 	if (data.rowCount != 1) {
 		return false
 	}
+
 	return data.rows[0]
 }
 
 const randomUser = async (max = 10) => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		SELECT *
 		FROM users
@@ -100,7 +103,7 @@ const randomUser = async (max = 10) => {
 
 const topUsers = async (row, id) => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		SELECT *
 			FROM (
@@ -114,17 +117,17 @@ const topUsers = async (row, id) => {
 			) users
 		WHERE users.id = $1 OR position <= 10;
 	`, [id]).catch(error)
-	//LIMIT 15; ?
-	//WHERE ${row} >= $1
+	// LIMIT 15; ?
+	// WHERE ${row} >= $1
 	client.release()
 	return data.rows
 }
 
 const setCity = async (ctx, pos, id) => {
 	let data = {}
-	let city = ctx.db.city
+	const {city} = ctx.db
 	city[pos] = id
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		UPDATE users
 			SET city = $1
@@ -135,18 +138,20 @@ const setCity = async (ctx, pos, id) => {
 	if (data.rowCount != 1) {
 		return false
 	}
+
 	return data.rows[0]
 }
 
 const replaceInventory = async (ctx, pos, to) => {
 	let data = {}
-	var inventory = ctx.db.inventory.map(e => Number(e))
-	var index = inventory.indexOf(to)
+	const inventory = ctx.db.inventory.map(e => Number(e))
+	const index = inventory.indexOf(to)
 	if (index < 0) {
 		return false
 	}
+
 	inventory[index] = ctx.db.city[pos]
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		UPDATE users
 			SET inventory = $1
@@ -157,12 +162,13 @@ const replaceInventory = async (ctx, pos, to) => {
 	if (data.rowCount != 1) {
 		return false
 	}
+
 	return data.rows[0]
 }
 
-const saveUser = async (ctx) => {
+const saveUser = async ctx => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	const whiteList = [
 		'dual',
 		'lang',
@@ -189,13 +195,14 @@ const saveUser = async (ctx) => {
 		'city',
 		'invite'
 	]
-	let listKeys = Object.keys(ctx.db.old).filter((e) => whiteList.includes(e))
+	let listKeys = Object.keys(ctx.db.old).filter(e => whiteList.includes(e))
 	listKeys = listKeys.reduce((total, key, index) => {
-		if (typeof ctx.db[key] == 'object') {
+		if (typeof ctx.db[key] === 'object') {
 			total.push(key)
 		} else if (ctx.db.old[key] != ctx.db[key]) {
 			total.push(key)
 		}
+
 		return total
 	}, [])
 
@@ -203,7 +210,7 @@ const saveUser = async (ctx) => {
 		UPDATE users
 			SET
 				${listKeys.reduce((total, e, index) => `${total},
-				${e} = $${index+2}`, 'time = now()')}
+				${e} = $${index + 2}`, 'time = now()')}
 			WHERE id = $1
 		RETURNING *;
 	`
@@ -218,12 +225,13 @@ const saveUser = async (ctx) => {
 	if (data.rowCount != 1) {
 		return false
 	}
+
 	return data.rows[0]
 }
 
 const saveAtack = async (playId, playXp, ctx, opponent) => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		UPDATE users
 			SET xp = $1,
@@ -248,16 +256,18 @@ const saveAtack = async (playId, playXp, ctx, opponent) => {
 					 EXTRACT(EPOCH FROM ( now() - time ) ) > 120 AS run;
 		`, [playXp, playId]).catch(error)
 	}
+
 	client.release()
 	if (data.rowCount != 1) {
 		return false
 	}
+
 	return data.rows[0]
 }
 
 const getStats24 = async () => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		SELECT *
 		FROM users
@@ -274,21 +284,21 @@ const getStats24 = async () => {
 
 const getJoin24 = async () => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		SELECT *
 		FROM stats
 		WHERE
 			EXTRACT(EPOCH FROM ( now() - time ) ) < 86400;
 	`, []).catch(error)
-	//86400 = EXTRACT( EPOCH FROM ( INTERVAL '24 hour' );
+	// 86400 = EXTRACT( EPOCH FROM ( INTERVAL '24 hour' );
 	client.release()
 	return data.rows
 }
 
 const getAllUsers = async () => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		SELECT
 			*,
@@ -301,7 +311,7 @@ const getAllUsers = async () => {
 
 const joinUserInvite = async (id, invite) => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		INSERT
 		INTO stats(id, time, invite)
@@ -311,12 +321,13 @@ const joinUserInvite = async (id, invite) => {
 	if (data.rowCount != 1) {
 		return false
 	}
-	return data.rows;
+
+	return data.rows
 }
 
-const findAllTable = async (name) => {
+const findAllTable = async name => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		SELECT *
 		FROM ${name};
@@ -327,7 +338,7 @@ const findAllTable = async (name) => {
 
 const getDual = async () => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		SELECT
 			*,
@@ -342,7 +353,7 @@ const getDual = async () => {
 
 const saveAtackDual = async (play1, play2) => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		UPDATE users
 			SET xp = $2,
@@ -367,16 +378,18 @@ const saveAtackDual = async (play1, play2) => {
 					EXTRACT(EPOCH FROM ( now() - time ) ) > 120 AS run;
 		`, [play2.id, play2.xp, play2.money, play2.dual, play2.troops]).catch(error)
 	}
+
 	client.release()
 	if (data.rowCount != 1) {
 		return false
 	}
+
 	return data.rows[0]
 }
 
-const getClan = async (id) => {
+const getClan = async id => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		SELECT
 			*,
@@ -389,12 +402,13 @@ const getClan = async (id) => {
 	if (data.rowCount != 1) {
 		return false
 	}
+
 	return data.rows[0]
 }
 
-const createClan = async (clan) => {
+const createClan = async clan => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		INSERT
 			INTO clans(id, name, flag, members)
@@ -405,12 +419,13 @@ const createClan = async (clan) => {
 	if (data.rowCount != 1) {
 		return false
 	}
+
 	return data.rows[0]
 }
 
-const updateClan = async (clan) => {
+const updateClan = async clan => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	const whiteList = [
 		'name',
 		'flag',
@@ -421,13 +436,13 @@ const updateClan = async (clan) => {
 		'chat',
 		'desc'
 	]
-	let listKeys = Object.keys(clan).filter((e) => whiteList.includes(e))
+	const listKeys = Object.keys(clan).filter(e => whiteList.includes(e))
 
 	const query = `
 		UPDATE clans
 			SET
 				${listKeys.reduce((total, e, index) => `${total},
-				"${e}" = $${index+2}`, 'time = now()')}
+				"${e}" = $${index + 2}`, 'time = now()')}
 			WHERE id = $1
 		RETURNING *;
 	`
@@ -442,12 +457,13 @@ const updateClan = async (clan) => {
 	if (data.rowCount != 1) {
 		return false
 	}
+
 	return data.rows[0]
 }
 
 const getClans = async (max = 10) => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		SELECT *
 		FROM clans
@@ -458,9 +474,9 @@ const getClans = async (max = 10) => {
 	return data.rows
 }
 
-const topClans = async (id) => {
+const topClans = async id => {
 	let data = {}
-	let client = await pool.connect()
+	const client = await pool.connect()
 	data = await client.query(`
 		SELECT *
 			FROM (
@@ -476,8 +492,8 @@ const topClans = async (id) => {
 			) clans
 		WHERE clans.id = $1 OR position <= 10;
 	`, [id]).catch(error)
-	//LIMIT 15; ?
-	//WHERE ${row} >= $1
+	// LIMIT 15; ?
+	// WHERE ${row} >= $1
 	client.release()
 	return data.rows
 }

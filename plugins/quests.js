@@ -1,20 +1,22 @@
 const moment = require('moment')
-const base = async (ctx) => {
+
+const base = async ctx => {
 	moment.locale(ctx.db.lang)
 	const quest = ctx.quest.select
-	const time = moment(+new Date()).to(quest.date)
+	const time = moment(Number(new Date())).to(quest.date)
 	let text = ctx._`<b>📔 Quest (end ${time})</b>\n`
 	if (quest) {
 		text += ctx._`${quest.text}`
 		text += '\n'
 	}
+
 	if (ctx.session.quest) {
 		text += ctx._`Status: Done`
 	} else {
 		text += ctx._`Status: Open`
 	}
 
-	if (+new Date() > quest.date) {
+	if (Number(new Date()) > quest.date) {
 		text = ctx._`<b>📔 Quest (#Soon)</b>\n`
 	} else if (!ctx.session.quest && ctx.match[2] && ctx.quest.select.key == ctx.match[2]) {
 		text = ctx._`<b>Quest Complete!</b>\n`
@@ -34,7 +36,7 @@ const base = async (ctx) => {
 	}
 
 	const keyboard = [
-		[{text: ctx._`📜 Menu` , callback_data: 'menu:main' }]
+		[{text: ctx._`📜 Menu`, callback_data: 'menu:main'}]
 	]
 
 	if (ctx.updateType == 'callback_query') {
@@ -46,6 +48,7 @@ const base = async (ctx) => {
 			disable_web_page_preview: true
 		})
 	}
+
 	return ctx.replyWithHTML(text + ctx.fixKeyboard, {
 		reply_markup: {
 			inline_keyboard: keyboard

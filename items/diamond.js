@@ -1,5 +1,5 @@
 module.exports = {
-	'11': {
+	11: {
 		icon: '💎',
 		name: 'Diamond',
 		desc: 'Diamond!',

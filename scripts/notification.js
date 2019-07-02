@@ -1,15 +1,16 @@
 const fs = require('fs')
 const Telegraf = require('telegraf')
-const { Pool } = require('pg')
+const {Pool} = require('pg')
+
 const pool = new Pool({
-	database: 'test'//'defendthecastle'
+	database: 'test'// 'defendthecastle'
 })
 
 const bot = new Telegraf(process.env.telegram_token, {
 	username: 'DefendTheCastleBot'
 })
 
-const log = (text) => console.log('>>', text)
+const log = text => console.log('>>', text)
 
 const main = async () => {
 	let data = {}
@@ -17,7 +18,7 @@ const main = async () => {
 	const query = 'select id, name, notification from users where notification;'
 	data = await client.query(query, [])
 	await client.release()
-	data.rows.forEach((db) => {
+	data.rows.forEach(db => {
 		bot.telegram.sendMessage(db.id,
 			`
 *Global Notification!*
@@ -32,6 +33,6 @@ More Update: @DefendTheCastle
 		)
 	})
 	console.log('Done!')
-	return
 }
+
 main()

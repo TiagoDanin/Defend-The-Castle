@@ -1,5 +1,5 @@
 module.exports = {
-	'4': {
+	4: {
 		icon: '🚀',
 		name: 'Rocket',
 		city: true,
@@ -14,7 +14,7 @@ module.exports = {
 				(
 					50 * (data.qt_rocket / qt)
 				) / (
-					Math.floor((Math.random() * 3)) + 3 //random
+					Math.floor((Math.random() * 3)) + 3 // Random
 				)
 			)
 			return data

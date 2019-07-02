@@ -1,13 +1,14 @@
 const brain = require('brain.js')
 const debug = require('debug')
+
 const log = debug('bot:ia')
 
 const ias = [
 	require('./attack'),
 	require('./city'),
-	require('./dual'), //Dual 50%
+	require('./dual'), // Dual 50%
 	require('./dual')
-].map((ia) => {
+].map(ia => {
 	ia.network = new brain.NeuralNetwork(ia.network)
 	ia.log = log
 	return ia
@@ -22,12 +23,13 @@ const select = (ctx, id) => {
 		ctx.ia.network = ia.network
 		return ctx.ia.train
 	}
+
 	return false
 }
 
 module.exports = {
-	select: select,
+	select,
 	list: ias,
 	id: 0,
-	log: log
+	log
 }

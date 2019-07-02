@@ -1,5 +1,5 @@
 module.exports = {
-	'14': {
+	14: {
 		icon: '‍👮',
 		name: 'Troops',
 		desc: '+5 Troops',

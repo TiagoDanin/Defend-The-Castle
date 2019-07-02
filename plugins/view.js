@@ -1,11 +1,14 @@
 const stringify = require('json-stringify-safe')
-const base = async (ctx) => {
+
+const base = async ctx => {
 	if (ctx.privilege <= 2) {
 		return
 	}
+
 	if (!ctx.update.message.reply_to_message.forward_from) {
 		ctx.update.message.reply_to_message.forward_from = {}
 	}
+
 	const id = ctx.update.message.reply_to_message.forward_from.id || ctx.update.message.reply_to_message.from.id
 	ctx.from.id = id
 	ctx.db = await ctx.userInfo(ctx)
@@ -13,9 +16,9 @@ const base = async (ctx) => {
 	ctx.replyWithHTML(`
 <b>Telegram: @${ctx.db.cache.tgusername} - ${ctx.db.cache.tgname}</b>
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
-<b>🏅 Level:</b> ${ctx.db.level+1 >= ctx.db.maxLevel ? `${ctx.db.level} (MAX)` : `${ctx.db.level} (${ctx.db.levelPoc}%)`}
+<b>🏅 Level:</b> ${ctx.db.level + 1 >= ctx.db.maxLevel ? `${ctx.db.level} (MAX)` : `${ctx.db.level} (${ctx.db.levelPoc}%)`}
 <b>🎖 Experience:</b> ${ctx.db.xp}
-<b>📝 Badges:</b> ${ctx.badges(ctx.from.id).map((el) => el.icon).join(', ')}
+<b>📝 Badges:</b> ${ctx.badges(ctx.from.id).map(el => el.icon).join(', ')}
 
 <b>💰 Money:</b> ${ctx.db.money} (${ctx.db.moneyPerHour}/hour)
 <b>💎 Diamonds:</b> ${ctx.db.diamond}
@@ -46,7 +49,6 @@ const base = async (ctx) => {
 			), 'utf8')
 		}
 	)
-	return
 }
 
 module.exports = {

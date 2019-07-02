@@ -1,11 +1,12 @@
 const fs = require('fs')
 
-const { Pool } = require('pg')
+const {Pool} = require('pg')
+
 const pool = new Pool({
-	database: 'test'//'defendthecastle'
+	database: 'test'// 'defendthecastle'
 })
 
-const log = (text) => console.log('>>', text)
+const log = text => console.log('>>', text)
 
 const users = async () => {
 	let data = {}
@@ -13,12 +14,11 @@ const users = async () => {
 	const query = 'select * from users;'
 	data = await client.query(query, [])
 	await client.release()
-	data.rows.forEach((db) => insert(db))
+	data.rows.forEach(db => insert(db))
 	console.log('Done!')
-	return
 }
 
-const insert = async (db) => {
+const insert = async db => {
 	db.money += Math.floor(
 		(db.attack + db.shield + db.life) * 1.23124
 	)

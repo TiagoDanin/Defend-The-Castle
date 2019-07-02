@@ -1,55 +1,88 @@
 {
-  "name": "defend-the-castle",
-  "main": "index.js",
-  "version": "1.3.0",
-  "description": "Telegram bot @defendthecastlebot",
-  "author": {
-    "name": "Tiago Danin",
-    "email": "TiagoDanin@outlook.com",
-    "url": "https://TiagoDanin.github.io"
-  },
-  "license": "MIT",
-  "keywords": [
-    "bot",
-    "telegram",
-    "telegraf"
-  ],
-  "scripts": {
-    "dev": "env-cmd .env nodemon rs",
-    "start": "env-cmd .env node index.js",
-    "test": "echo \"Nice Test :)\"",
-    "i18n": "bash scripts/i18n.sh",
-    "notification": "env-cmd .env node scripts/notification.js"
-  },
-  "private": true,
-  "repository": "https://github.com/TiagoDanin/Defend-The-Castle.git",
-  "homepage": "https://TiagoDanin.github.io/Defend-The-Castle",
-  "bugs": "https://github.com/TiagoDanin/Defend-The-Castle/issues",
-  "github": {
-    "name": "Defend-The-Castle",
-    "owner": "TiagoDanin"
-  },
-  "files": [
-    "LICENSE",
-    "README.md"
-  ],
-  "dependencies": {
-    "brain.js": "1.6.1",
-    "debug": "4.1.1",
-    "json-stringify-safe": "5.0.1",
-    "lodash": "4.17.11",
-    "minimist": "1.2.0",
-    "moment": "2.24.0",
-    "moment-timezone": "0.5.25",
-    "nodejs-i18n": "2.3.0",
-    "numberlabel": "1.0.1",
-    "pg": "7.11.0",
-    "pg-native": "3.0.0",
-    "telegraf": "3.30.1",
-    "telegraf-start-parts": "1.0.0"
-  },
-  "devDependencies": {
-    "env-cmd": "9.0.3",
-    "nodemon": "1.19.0"
-  }
+	"name": "defend-the-castle",
+	"main": "index.js",
+	"preferGlobal": false,
+	"version": "1.3.0",
+	"description": "Telegram bot @defendthecastlebot",
+	"author": {
+		"email": "TiagoDanin@outlook.com",
+		"name": "Tiago Danin",
+		"url": "https://TiagoDanin.github.io"
+	},
+	"license": "MIT",
+	"keywords": [
+		"bot",
+		"telegraf",
+		"telegram"
+	],
+	"scripts": {
+		"start": "env-cmd .env node index.js",
+		"dev": "env-cmd .env nodemon rs",
+		"test": "xo",
+		"i18n": "bash scripts/i18n.sh",
+		"notification": "env-cmd .env node scripts/notification.js"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/TiagoDanin/Defend-The-Castle.git"
+	},
+	"homepage": "https://TiagoDanin.github.io/Defend-The-Castle",
+	"bugs": {
+		"url": "https://github.com/TiagoDanin/Defend-The-Castle/issues"
+	},
+	"github": {
+		"name": "Defend-The-Castle",
+		"owner": "TiagoDanin"
+	},
+	"files": [
+		"LICENSE",
+		"README.md",
+		"base",
+		"ia",
+		"index.js",
+		"items",
+		"itemsAllText.js",
+		"locales",
+		"package.json",
+		"plugins",
+		"scripts",
+		"test.js"
+	],
+	"dependencies": {
+		"brain.js": "1.6.1",
+		"debug": "4.1.1",
+		"json-stringify-safe": "5.0.1",
+		"lodash": "4.17.11",
+		"minimist": "1.2.0",
+		"moment": "2.24.0",
+		"moment-timezone": "0.5.25",
+		"nodejs-i18n": "2.3.0",
+		"numberlabel": "1.0.1",
+		"pg": "7.11.0",
+		"pg-native": "3.0.0",
+		"telegraf": "3.30.1",
+		"telegraf-start-parts": "1.0.0"
+	},
+	"devDependencies": {
+		"env-cmd": "9.0.3",
+		"nodemon": "1.19.0",
+		"xo": "0.24.0"
+	},
+	"xo": {
+		"rules": {
+			"quote-props": "warn",
+			"eqeqeq": "off",
+			"array-callback-return": "warn",
+			"require-atomic-updates": "warn",
+			"no-else-return": "warn",
+			"camelcase": "off",
+			"no-unused-vars": "warn",
+			"no-return-await": "warn"
+		},
+		"semicolon": false
+	}
 }

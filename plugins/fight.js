@@ -3,7 +3,7 @@ const forest = () => {
 	return items[Math.floor((Math.random() * items.length))]
 }
 
-const hack = (ctx) => {
+const hack = ctx => {
 	return ctx.answerCbQuery(ctx._`:) Start a new game!`, true)
 }
 
@@ -35,16 +35,16 @@ const dualAttack = async (ctx, play1) => {
 <b>${ctx.castles[Number(play2.city[12])]} City:</b> ${play2.name}${ctx.tags(play2.id)}
 <b>🏅 Level:</b> ${play2.level}`
 
-	play1.attack = play1.attack / 3.2
-	play1.shield = play1.shield / 2.4
+	play1.attack /= 3.2
+	play1.shield /= 2.4
 
-	play2.attack = play2.attack / 3.2
-	play2.shield = play2.shield / 2.4
+	play2.attack /= 3.2
+	play2.shield /= 2.4
 
 	play1.v = Math.floor((Number(play1.dual)) / 5)
 	play1.h = (Number(play1.dual)) % 5
 	const play1Data = showMap(ctx, play1, play1.h, play1.v)
-	for (let item of play1Data.items) {
+	for (const item of play1Data.items) {
 		if (item.doDefend) {
 			play1 = item.doDefend(play1, ctx)
 		}
@@ -53,7 +53,7 @@ const dualAttack = async (ctx, play1) => {
 	play2.v = Math.floor((Number(play2.dual)) / 5)
 	play2.h = (Number(play2.dual)) % 5
 	const play2Data = showMap(ctx, play2, play2.h, play2.v)
-	for (let item of play2Data.items) {
+	for (const item of play2Data.items) {
 		if (item.doDefend) {
 			play2 = item.doDefend(play2, ctx)
 		}
@@ -97,7 +97,7 @@ const dualAttack = async (ctx, play1) => {
 		play2.winMoney = winMoney
 		ctx.caches[play1.id].losts++
 		ctx.caches[play2.id].wins++
-	} else { //play1 == play2
+	} else { // Play1 == play2
 		play1.winXp = winXp / 3.3
 		play1.winMoney = winMoney / 3.3
 		play2.winXp = winXp / 3.3
@@ -155,7 +155,7 @@ ${ctx.nl(play1.money)} (+${play1.winMoney}) 💰 ${ctx.nl(play2.money)} (+${play
 		[
 			{text: play1._`📜 Menu`, callback_data: 'menu'},
 			{text: play1._`🏆 ${winName1}`, callback_data: 'fight:dual'},
-			{text: play1._`⚔️ Next` , callback_data: 'fight:dual'}
+			{text: play1._`⚔️ Next`, callback_data: 'fight:dual'}
 		],
 		...play2Data.map
 	]
@@ -165,7 +165,7 @@ ${ctx.nl(play1.money)} (+${play1.winMoney}) 💰 ${ctx.nl(play2.money)} (+${play
 		[
 			{text: play2._`📜 Menu`, callback_data: 'menu'},
 			{text: play2._`🏆 ${winName2}`, callback_data: 'fight:dual'},
-			{text: play2._`⚔️ Next` , callback_data: 'fight:dual'}
+			{text: play2._`⚔️ Next`, callback_data: 'fight:dual'}
 		],
 		...play2Data.map
 	]
@@ -238,20 +238,20 @@ const attack = async (ctx, opponent) => {
 		user: ctx.db.xp
 	}
 
-	play.attack = play.attack / 3.2
-	play.shield = play.shield / 2.4
+	play.attack /= 3.2
+	play.shield /= 2.4
 
 	const v = Math.floor((Number(ctx.match[3])) / 5)
 	const h = (Number(ctx.match[3])) % 5
 	const data = showMap(ctx, play, h, v)
 
-	for (let item of data.items) {
+	for (const item of data.items) {
 		if (item.doDefend) {
 			play = item.doDefend(play, ctx)
 		}
 	}
 
-	for (let item of ctx.db.inventory) {
+	for (const item of ctx.db.inventory) {
 		if (item.doAttack) {
 			ctx.db = item.doAttack(ctx.db)
 		}
@@ -261,7 +261,7 @@ const attack = async (ctx, opponent) => {
 		ctx.db = ctx.session.powerup.summon(ctx.db, ctx, play)
 	}
 
-	ctx.db.log = ctx.db.log.map((table) => {
+	ctx.db.log = ctx.db.log.map(table => {
 		return table[Math.floor((Math.random() * table.length))]
 	})
 
@@ -297,7 +297,7 @@ ${ctx.nl(ctx.db.life)} ❤️ ${ctx.nl(play.life)}`
 	if (addMoney < 0) {
 		addMoney = 0
 	} else if (play.money < addMoney) {
-		addMoney = play.money/1.4
+		addMoney = play.money / 1.4
 	}
 
 	let xp = (
@@ -324,7 +324,7 @@ ${ctx.db.name} LOST!
 ➖➖➖➖➖➖
 ${textReply}`
 		play.xp += xp / 16
-		ctx.db.money -= addMoney/3.1
+		ctx.db.money -= addMoney / 3.1
 		ctx.caches[play.id].wins++
 		ctx.caches[ctx.from.id].losts++
 	} else if (ctx.db.life > play.life) {
@@ -352,7 +352,7 @@ ${text}`
 ${ctx.db.name} LOST!
 ➖➖➖➖➖➖
 ${textReply}`
-		ctx.db.money -= addMoney/3.6
+		ctx.db.money -= addMoney / 3.6
 		ctx.caches[play.id].wins++
 		ctx.caches[ctx.from.id].losts++
 	}
@@ -389,11 +389,10 @@ ${textReply}`
 			inline_keyboard: [...map, [{
 				text: `✨XP ${ctx.db.xp - xps.user}${money} : ⚖️ ${win}`,
 				callback_data: 'fight:done'
-			}], [{text: ctx._`📜 Menu` , callback_data: 'menu:main' }]]
+			}], [{text: ctx._`📜 Menu`, callback_data: 'menu:main'}]]
 		},
 		disable_web_page_preview: true
 	})
-
 
 	if (res.reply && res.run) {
 		await ctx.telegram.sendMessage(play.id, play._`
@@ -404,20 +403,21 @@ ${textReply}${ctx.fixKeyboard}`, {
 				inline_keyboard: [...map, [{
 					text: `✨XP ${play.xp - xps.play}`,
 					callback_data: 'fight:done'
-				}], [{text: play._`📜 Menu` , callback_data: 'menu:main' }]]
+				}], [{text: play._`📜 Menu`, callback_data: 'menu:main'}]]
 			},
 			disable_web_page_preview: true
-		}).catch((e) => {
+		}).catch(error => {
 			ctx.database.updateUser(play.id, 'reply', false)
 		})
 	}
-	await ctx.sleep(1300) //await 1.3s
+
+	await ctx.sleep(1300) // Await 1.3s
 	return true
 }
 
 const mapHide = (ctx, opponent) => {
 	return opponent.city.reduce((total, id, index) => {
-		var key = {}
+		let key = {}
 		if (index == 12) {
 			key = {
 				text: ctx.castles[id],
@@ -429,10 +429,12 @@ const mapHide = (ctx, opponent) => {
 				callback_data: `fight:ack:${index}:${opponent.id}`
 			}
 		}
+
 		total[total.length - 1].push(key)
 		if (total[total.length - 1].length >= 5 && !(index >= opponent.city.length - 1)) {
 			total.push([])
 		}
+
 		return total
 	}, [
 		[]
@@ -440,9 +442,9 @@ const mapHide = (ctx, opponent) => {
 }
 
 const showMap = (ctx, opponent, h, v) => {
-	var items = []
-	var index = 0
-	var map = mapHide(ctx, opponent)
+	const items = []
+	let index = 0
+	let map = mapHide(ctx, opponent)
 	map[2][2] = {
 		text: '🏠',
 		callback_data: 'fight:done'
@@ -455,7 +457,7 @@ const showMap = (ctx, opponent, h, v) => {
 						if (indexV === 2 && indexH === 2) {
 							key.text = ctx.castles[opponent.city[12]]
 						} else {
-							let id = opponent.city[index]
+							const id = opponent.city[index]
 							items.push(ctx.items[id])
 							if (id == 0) {
 								key.text = forest()
@@ -465,6 +467,7 @@ const showMap = (ctx, opponent, h, v) => {
 						}
 					}
 				}
+
 				index++
 				key.callback_data = 'fight:done'
 				totalH.push(key)
@@ -475,8 +478,8 @@ const showMap = (ctx, opponent, h, v) => {
 	}, [])
 
 	return {
-		map: map,
-		items: items
+		map,
+		items
 	}
 }
 
@@ -487,51 +490,53 @@ const fightTypes = [{
 	}
 }, {
 	name: 'Random',
-	select: (data) => {
+	select: data => {
 		return data
 	}
 }, {
 	name: 'Max Money',
-	select: (data) => {
+	select: data => {
 		return data.sort((a, b) => b.money - a.money)
 	}
 }, {
 	name: 'Max Level',
-	select: (data) => {
+	select: data => {
 		return data.sort((a, b) => b.level - a.level)
 	}
 }, {
 	name: 'Min Level',
-	select: (data) => {
+	select: data => {
 		return data.sort((a, b) => a.level - b.level)
 	}
 }]
 
-const base = async (ctx) => {
+const base = async ctx => {
 	if (!ctx.session.ftype) {
 		ctx.session.ftype = 0
 	}
+
 	if (!ctx.session.dual) {
 		ctx.session.dual = false
 	}
+
 	if (!ctx.session.flast) {
 		ctx.session.flast = [0, 0, 0]
 	}
 
 	let checkAttack = false
 	let opponent = await ctx.database.randomUser(60)
-	opponent = opponent.filter((e) => {
+	opponent = opponent.filter(e => {
 		return e.id != ctx.from.id &&
 					e.id != ctx.match[4] &&
 					!ctx.session.flast.includes(e.id) &&
-					e.dual == 50 //disable dual
+					e.dual == 50 // Disable dual
 	})
 
 	if (ctx.match[2] == 'type') {
 		ctx.session.ftype++
-			if (ctx.session.ftype >= fightTypes.length) {
-				ctx.session.ftype = 0
-			}
+		if (ctx.session.ftype >= fightTypes.length) {
+			ctx.session.ftype = 0
+		}
 	}
 
 	opponent = fightTypes[ctx.session.ftype].select(opponent, ctx)
@@ -555,7 +560,7 @@ const base = async (ctx) => {
 	]
 
 	if (ctx.db.troops <= 0) {
-		menu[0][0] = {text: `-3 💎 => 👮 +5` , callback_data: 'vip:14:up'}
+		menu[0][0] = {text: '-3 💎 => 👮 +5', callback_data: 'vip:14:up'}
 	}
 
 	if (ctx.match[2] == 'powerup' && ctx.match[3] && ctx.db.inventory.includes(ctx.match[3])) {
@@ -582,7 +587,9 @@ const base = async (ctx) => {
 	let map = []
 	if (ctx.match[2] == 'done') {
 		return hack(ctx)
-	} else if (ctx.match[2] == 'dual') {
+	}
+
+	if (ctx.match[2] == 'dual') {
 		text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
 <b>🏅 Level:</b> ${ctx.db.level}
@@ -597,14 +604,14 @@ Select:`
 	} else if (ctx.match[2] == 'powerup' && !ctx.match[3]) {
 		text = ctx._`<b>Select PowerUp:</b>`
 		opponent.id = ctx.db.opponent
-		let check = ctx.db.inventory.filter((id) => {
+		const check = ctx.db.inventory.filter(id => {
 			return ctx.items[id].battle
 		})
 
-		let addsItems = []
-		check.forEach((id) => {
+		const addsItems = []
+		check.forEach(id => {
 			if (!addsItems.includes(id)) {
-				let length = ctx.db.inventory.filter(i => i == id).length || 0
+				const length = ctx.db.inventory.filter(i => i == id).length || 0
 				map.push([{
 					text: `${ctx.items[id.toString()].icon} ${ctx.items[id.toString()].name} (${length})`,
 					callback_data: `fight:powerup:${id}`
@@ -616,47 +623,49 @@ Select:`
 		if (check.length <= 0) {
 			map.push([{
 				text: ctx._`💳 Store VIP`,
-				callback_data: `vip`
+				callback_data: 'vip'
 			}])
 		} else {
 			map = map.reduce((total, next, index) => {
 				if (total[total.length - 1].length >= 4) {
 					total.push([])
 				}
+
 				total[total.length - 1].push(next[0])
 				return total
 			}, [[]])
 		}
 	} else if (ctx.match[2] == 'ack' && ctx.match[3] && ctx.match[4]) {
 		if (ctx.session.dual) {
-			if (ctx.db.troops-1 < 0) {
+			if (ctx.db.troops - 1 < 0) {
 				return ctx.answerCbQuery(ctx._`You have no troops, wait two minutos!`, true)
 			}
+
 			let opponentDual = await ctx.database.getDual()
-			opponentDual = opponentDual.filter((e) => e.id != ctx.from.id)
+			opponentDual = opponentDual.filter(e => e.id != ctx.from.id)
 
 			if (opponentDual.length >= 1) {
 				ctx.db.dual = Number(ctx.match[3])
 				opponentDual = opponentDual[Math.floor((Math.random() * opponentDual.length))]
 				return await dualAttack(ctx, opponentDual)
-			} else {
-				await ctx.database.updateUser(ctx.from.id, 'dual', Number(ctx.match[3]))
-				text = ctx._`
+			}
+
+			await ctx.database.updateUser(ctx.from.id, 'dual', Number(ctx.match[3]))
+			text = ctx._`
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}
 <b>🏅 Level:</b> ${ctx.db.level}
 <b>🎖 Experience:</b> ${ctx.nl(ctx.db.xp)}
 <b>‍👮‍ Troops:</b> ${ctx.db.troops}/${ctx.db.maxTroops}
 ➖➖➖DUAL➖➖➖
 Waiting for players!`
-				menu = [
-					[{text: '📜 Menu', callback_data: 'menu'}]
-				]
-			}
+			menu = [
+				[{text: '📜 Menu', callback_data: 'menu'}]
+			]
 		} else {
 			checkAttack = await attack(ctx, opponent)
 			if (ctx.db.troops <= 0) {
 				ctx.db.troops = 0
-				menu[0][0] = {text: `-3 💎 => 👮 +5` , callback_data: 'vip:14:up'}
+				menu[0][0] = {text: '-3 💎 => 👮 +5', callback_data: 'vip:14:up'}
 			}
 
 			text = ctx._`
@@ -676,7 +685,7 @@ Waiting for players!`
 		map = mapHide(ctx, opponent)
 	}
 
-	let keyboard = [
+	const keyboard = [
 		...map, ...menu
 	]
 
@@ -687,9 +696,9 @@ Waiting for players!`
 			},
 			disable_web_page_preview: true
 		})
-	} else {
-		await ctx.database.updateUser(ctx.from.id, 'opponent', opponent.id)
 	}
+
+	await ctx.database.updateUser(ctx.from.id, 'opponent', opponent.id)
 
 	return ctx.editMessageText(text + ctx.fixKeyboard, {
 		parse_mode: 'HTML',

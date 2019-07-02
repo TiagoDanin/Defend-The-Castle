@@ -3,23 +3,25 @@ const diamond = (data, numb) => {
 	if (numb > 1) {
 		add = Math.floor(numb / 1.5)
 	}
+
 	for (let i = 0; i < add; i++) {
 		data.inventory.push('11')
 	}
+
 	return data
 }
 
-const clone = (data) => {
+const clone = data => {
 	data.inventory.push('10')
 	return data
 }
 
-const superShield = (data) => {
+const superShield = data => {
 	data.inventory.push('12')
 	return data
 }
 
-const syringe = (data) => {
+const syringe = data => {
 	data.inventory.push('13')
 	return data
 }
@@ -45,7 +47,7 @@ const superTroops = (data, numb) => {
 	return data
 }
 
-const base = async (ctx) => {
+const base = async ctx => {
 	const presents = [
 		money,
 		xp,
@@ -84,15 +86,15 @@ ${ctx.tips(ctx)}`
 	let boxs = []
 
 	let qtPresents = ctx.db.inventory.filter(id => id == 15).length || 0
-	if (ctx.session.box < +date) {
+	if (ctx.session.box < Number(date)) {
 		qtPresents += 1
 	}
 
 	if (qtPresents > 0 && ctx.match[2]) {
 		qtPresents -= 1
-		if (ctx.session.box < +date) {
+		if (ctx.session.box < Number(date)) {
 			date.setDate(date.getDate() + 1)
-			ctx.session.box = +date
+			ctx.session.box = Number(date)
 		} else {
 			const index = ctx.db.inventory.indexOf('15')
 			ctx.db.inventory = ctx.db.inventory.filter((_, i) => {
@@ -107,13 +109,14 @@ ${ctx.tips(ctx)}`
 
 		const data = present(
 			ctx.db,
-			Math.floor(Math.random() * (6 - 1) + 1), //Range: 1-5
+			Math.floor(Math.random() * (6 - 1) + 1), // Range: 1-5
 			ctx
 		)
 
-		if (data) { //No bug :)
+		if (data) { // No bug :)
 			ctx.db = data
 		}
+
 		await ctx.database.saveUser(ctx)
 		if (ctx.db.old[present.name]) {
 			ctx.answerCbQuery(ctx._`
@@ -127,22 +130,22 @@ Present(${i18nPresents[present.name]}): +${ctx.db[present.name] - ctx.db.old[pre
 	if (qtPresents > 0) {
 		boxs = [
 			[
-				{text: `🎁` , callback_data: 'box:1' },
-				{text: `🎁` , callback_data: 'box:2' },
-				{text: `🎁` , callback_data: 'box:3' }
+				{text: '🎁', callback_data: 'box:1'},
+				{text: '🎁', callback_data: 'box:2'},
+				{text: '🎁', callback_data: 'box:3'}
 			]
 		]
 	} else {
 		boxs = [
 			[
-				{text: `-3 💎 => 🎁 +1` , callback_data: 'vip:15:up'}
+				{text: '-3 💎 => 🎁 +1', callback_data: 'vip:15:up'}
 			]
 		]
 	}
 
 	const keyboard = [
 		...boxs,
-		[{text: ctx._`📜 Menu`, callback_data: 'menu:main' }]
+		[{text: ctx._`📜 Menu`, callback_data: 'menu:main'}]
 	]
 
 	return ctx.editMessageText(text + ctx.fixKeyboard, {

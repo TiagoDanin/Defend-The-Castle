@@ -1,7 +1,9 @@
 const showRank = async (ctx, type) => {
-	let db = await ctx.database.topUsers(type, ctx.from.id)
-	let list = db.filter((e) => {
-		if (e.id == ctx.from.id) return true
+	const db = await ctx.database.topUsers(type, ctx.from.id)
+	const list = db.filter(e => {
+		if (e.id == ctx.from.id) {
+			return true
+		}
 	})[0].position
 
 	let text = ctx._`🥇 You Rank is: ${list}\n`
@@ -10,8 +12,8 @@ const showRank = async (ctx, type) => {
 
 	const bots = ctx.config.ids.bots.map(c => Number(c))
 
-	for (let user of db) {
-		if (n <= 9) { // !bots.includes(Number(user.id)) && 
+	for (const user of db) {
+		if (n <= 9) { // !bots.includes(Number(user.id)) &&
 			n++
 			text += `<b>${n}</b> • ${user.name} <b>(${user[type]})</b>\n`
 			ctx.caches.top[type].push(Number(user.id))
@@ -21,7 +23,7 @@ const showRank = async (ctx, type) => {
 	return text
 }
 
-const showBattle = async (ctx) => {
+const showBattle = async ctx => {
 	const sortWins = Object.keys(ctx.caches).sort((a, b) => {
 		return ctx.caches[b].wins - ctx.caches[a].wins
 	}).filter(e => !ctx.config.ids.bots.map(c => Number(c)).includes(Number(ctx.caches[e].id))).map(e => ctx.caches[e])
@@ -39,7 +41,7 @@ const showBattle = async (ctx) => {
 	ctx.caches.top.wins = []
 	ctx.caches.top.losts = []
 	ctx.caches.top.battles = []
-	for (var i = 0; i < 9; i++) {
+	for (let i = 0; i < 9; i++) {
 		ctx.caches.top.online.push(Number(sortOnline[i].id))
 		ctx.caches.top.wins.push(Number(sortWins[i].id))
 		ctx.caches.top.losts.push(Number(sortLosts[i].id))
@@ -67,31 +69,33 @@ const showBattle = async (ctx) => {
 	return text
 }
 
-const showOnline = async (ctx) => {
+const showOnline = async ctx => {
 	let text = ''
 	const sortOnline = Object.keys(ctx.caches).sort((a, b) => {
 		return ctx.caches[b].count - ctx.caches[a].count
 	}).filter(e => !ctx.config.ids.bots.map(c => Number(c)).includes(Number(ctx.caches[e].id))).map(e => ctx.caches[e])
-	for (var i = 0; i < 10; i++) {
-		text += `${i+1} • ${sortOnline[i].name} : ${sortOnline[i].id} (${sortOnline[i].count}) : @${sortOnline[i].tgusername} - ${sortOnline[i].tgname}\n`
+	for (let i = 0; i < 10; i++) {
+		text += `${i + 1} • ${sortOnline[i].name} : ${sortOnline[i].id} (${sortOnline[i].count}) : @${sortOnline[i].tgusername} - ${sortOnline[i].tgname}\n`
 	}
+
 	return text
 }
 
-const base = async (ctx) => {
+const base = async ctx => {
 	let text = ctx._`🥇 Rank by:`
 	const keyboard = [
 		[
 			{text: ctx._`🏅 Level`, callback_data: 'ranks:level'},
-			{text: ctx._`💰 Money`, callback_data: 'ranks:money'},
-		], [
+			{text: ctx._`💰 Money`, callback_data: 'ranks:money'}
+		],
+		[
 			{text: ctx._`⚔️ Battles`, callback_data: 'ranks:battles'},
-			{text: ctx._`🌇 Clans` , callback_data: 'clan:ranks'}
+			{text: ctx._`🌇 Clans`, callback_data: 'clan:ranks'}
 		],
 		[{text: ctx._`📜 Menu`, callback_data: 'menu:main'}]
 	]
 	if (ctx.privilege > 2) {
-		keyboard[0].push({text: ctx._`❇️ Online` , callback_data: 'ranks:online'})
+		keyboard[0].push({text: ctx._`❇️ Online`, callback_data: 'ranks:online'})
 	}
 
 	if (ctx.match[2]) {
@@ -117,5 +121,5 @@ const base = async (ctx) => {
 module.exports = {
 	id: 'ranks',
 	callback: base,
-	onlyUser: true,
+	onlyUser: true
 }

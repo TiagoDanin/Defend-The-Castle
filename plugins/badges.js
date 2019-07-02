@@ -1,6 +1,6 @@
 const badges = require('../base/badges').list
 
-const base = async (ctx) => {
+const base = async ctx => {
 	let text = ctx._`<b>My badges:</b>\n`
 	const myBadges = ctx.badges(ctx.from.id)
 	if (myBadges.length <= 0) {
@@ -21,6 +21,7 @@ const base = async (ctx) => {
 		if (total[total.length - 1].length >= 5) {
 			total.push([])
 		}
+
 		return total
 	}, [
 		[]
@@ -28,7 +29,7 @@ const base = async (ctx) => {
 	const keyboard = [
 		...keyBadges,
 		[
-			{text: ctx._`📜 Menu` , callback_data: 'menu'},
+			{text: ctx._`📜 Menu`, callback_data: 'menu'}
 		]
 	]
 
@@ -51,6 +52,7 @@ ${desc}`
 			disable_web_page_preview: true
 		})
 	}
+
 	return ctx.replyWithHTML(text + ctx.fixKeyboard, {
 		reply_markup: {
 			inline_keyboard: keyboard
@@ -65,6 +67,6 @@ module.exports = {
 	plugin: base,
 	onlyUser: true,
 	regex: [
-		/^\/(badges) (\w+)/i,
+		/^\/(badges) (\w+)/i
 	]
 }

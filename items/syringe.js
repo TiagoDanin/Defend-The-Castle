@@ -1,5 +1,5 @@
 module.exports = {
-	'13': {
+	13: {
 		icon: '💉',
 		name: 'Syringe',
 		desc: '2x +Shield & 2x +Life',

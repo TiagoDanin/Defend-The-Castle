@@ -1,5 +1,5 @@
 module.exports = {
-	'10': {
+	10: {
 		icon: '👽',
 		name: 'Clone',
 		desc: '2x Attack, Shield and Life & +350xp',

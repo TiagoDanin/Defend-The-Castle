@@ -1,5 +1,5 @@
 module.exports = {
-	'0': {
+	0: {
 		icon: '🚧',
 		name: 'Void',
 		city: true,

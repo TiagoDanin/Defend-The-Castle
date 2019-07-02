@@ -1,12 +1,12 @@
-const buildMap = (keys) => {
-	return keys.map((key) => {
-		return key.map((k) => {
+const buildMap = keys => {
+	return keys.map(key => {
+		return key.map(k => {
 			return {text: k, callback_data: 'tutorial:done'}
 		})
 	})
 }
 
-const base = async (ctx) => {
+const base = async ctx => {
 	let keyboard = []
 	let text = ''
 	const id = ctx.match[2] || 0
@@ -74,23 +74,25 @@ TIP: +1 troop per 120s`
 	let back = []
 	if (id > 0) {
 		back = [
-			{text: ctx._`◀️ Back` , callback_data: `tutorial:${Number(id)-1}` }
+			{text: ctx._`◀️ Back`, callback_data: `tutorial:${Number(id) - 1}`}
 		]
 	}
+
 	keyboard = [
 		...keyboard,
 		[
 			...back,
-			{text: ctx._`▶️ Next` , callback_data: `tutorial:${Number(id)+1}` }
+			{text: ctx._`▶️ Next`, callback_data: `tutorial:${Number(id) + 1}`}
 		]
 	]
 	if (id >= 5) {
 		text = ctx._`Finalized!`
 		keyboard = [
-			[{text: ctx._`◀️ Back` , callback_data: `tutorial:${Number(id)-1}` }],
-			[{text: ctx._`✅ Let's Go!` , callback_data: 'menu:main' }]
+			[{text: ctx._`◀️ Back`, callback_data: `tutorial:${Number(id) - 1}`}],
+			[{text: ctx._`✅ Let's Go!`, callback_data: 'menu:main'}]
 		]
 	}
+
 	if (ctx.updateType == 'callback_query') {
 		return ctx.editMessageText(text + ctx.fixKeyboard, {
 			parse_mode: 'HTML',
@@ -100,13 +102,13 @@ TIP: +1 troop per 120s`
 			disable_web_page_preview: true
 		})
 	}
+
 	return ctx.replyWithHTML(text + ctx.fixKeyboard, {
 		reply_markup: {
 			inline_keyboard: keyboard
 		},
 		disable_web_page_preview: true
 	})
-	return
 }
 
 module.exports = {

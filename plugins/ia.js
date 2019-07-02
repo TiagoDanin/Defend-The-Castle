@@ -1,10 +1,11 @@
 const Context = require('telegraf/core/context')
 const lodash = require('lodash')
 const debug = require('debug')
+
 const log = debug('bot:ia')
 
 let enable = false
-let id = -1001303884163
+const id = -1001303884163
 let ia
 
 const addContext = async function () {
@@ -30,7 +31,7 @@ const addContext = async function () {
 	ctx.match = []
 
 	ctx.db = await ctx.userInfo(ctx)
-	ctx.db.troops = Math.floor(Math.random() * (7 - 2) + 2), //Range: 2-6
+	ctx.db.troops = Math.floor(Math.random() * (7 - 2) + 2), // Range: 2-6
 
 	Object.assign(context, ctx.context)
 	Object.assign(this, ctx)
@@ -38,7 +39,7 @@ const addContext = async function () {
 	return lodash.merge(ctx, context)
 }
 
-const loop = async (ctx) => {
+const loop = async ctx => {
 	while (enable) {
 		ia = ctx.ia.list[Math.floor((Math.random() * ctx.ia.list.length))]
 		ctx.ia.select(ctx, ia.id)
@@ -48,11 +49,12 @@ const loop = async (ctx) => {
 	}
 }
 
-const base = async (ctx) => {
+const base = async ctx => {
 	if (ctx.privilege <= 6) {
 		return
 	}
-	enable = enable ? false : true
+
+	enable = !enable
 	ctx.reply(`IA ${enable ? 'on' : 'off'}`)
 	ctx.from.id = id
 	ctx.chat.id = id

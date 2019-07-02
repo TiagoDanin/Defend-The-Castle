@@ -1,4 +1,4 @@
-const base = async (ctx) => {
+const base = async ctx => {
 	const text = ctx._`What's the name of your town?`
 	ctx.replyWithMarkdown(`*${text}*`, {
 		reply_markup: {
@@ -9,7 +9,7 @@ const base = async (ctx) => {
 	const res = await ctx.database.joinUserInvite(ctx.from.id, inviteId)
 	const play = await ctx.userInfo(inviteId)
 	if (res && play && ctx.from.id != inviteId) {
-		let user = {
+		const user = {
 			from: {
 				id: inviteId
 			},
@@ -34,7 +34,6 @@ const base = async (ctx) => {
 			parse_mode: 'HTML'
 		})
 	}
-	return
 }
 
 module.exports = {

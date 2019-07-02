@@ -1,5 +1,5 @@
 module.exports = {
-	'6': {
+	6: {
 		icon: '🗿',
 		name: 'Tower Defense',
 		city: true,
@@ -18,6 +18,7 @@ module.exports = {
 				])
 				data.shield += Math.floor(12 * (data.qt_towerdefense / qt))
 			}
+
 			return data
 		},
 		upgrade: [190, 'towerdefense']
