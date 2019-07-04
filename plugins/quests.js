@@ -4,6 +4,11 @@ const base = async ctx => {
 	moment.locale(ctx.db.lang)
 	const quest = ctx.quest.select
 	const time = moment(Number(new Date())).to(quest.date)
+
+	if (ctx.session.quest && ctx.quest.select.key == ctx.session.quest) {
+		ctx.session.quest = false
+	}
+
 	let text = ctx._`<b>📔 Quest (end ${time})</b>\n`
 	if (quest) {
 		text += ctx._`${quest.text}`
@@ -32,7 +37,7 @@ const base = async ctx => {
 			text += `${item.icon} ${name} +1\n`
 		})
 		await ctx.database.saveUser(ctx)
-		ctx.session.quest = true
+		ctx.session.quest = ctx.quest.select.key
 	}
 
 	const keyboard = [

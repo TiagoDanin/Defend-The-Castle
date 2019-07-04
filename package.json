@@ -16,11 +16,11 @@
 		"telegram"
 	],
 	"scripts": {
-		"start": "env-cmd .env node index.js",
-		"dev": "env-cmd .env nodemon rs",
+		"start": "env-cmd node index.js",
+		"dev": "env-cmd nodemon rs",
 		"test": "xo",
 		"i18n": "bash scripts/i18n.sh",
-		"notification": "env-cmd .env node scripts/notification.js"
+		"notification": "env-cmd node scripts/notification.js"
 	},
 	"engines": {
 		"node": ">=8"
@@ -54,6 +54,7 @@
 	],
 	"dependencies": {
 		"brain.js": "1.6.1",
+		"cron": "^1.7.1",
 		"debug": "4.1.1",
 		"json-stringify-safe": "5.0.1",
 		"lodash": "4.17.11",

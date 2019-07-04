@@ -5,6 +5,7 @@ const stringify = require('json-stringify-safe')
 const nl = require('numberlabel')
 const session = require('telegraf/session')
 const {Resources, Translation} = require('nodejs-i18n')
+const CronJob = require('cron').CronJob
 
 const badges = require('./base/badges')
 const clan = require('./base/clan')
@@ -12,10 +13,11 @@ const classes = require('./base/classes')
 const config = require('./base/config')
 const database = require('./base/database')
 const levels = require('./base/levels')
-const quest = require('./base/quest')
+let quest = require('./base/quest')
 const tips = require('./base/tips')
 const items = require('./items')
 const ia = require('./ia')
+const season = require('./base/season')
 
 const cache = {
 	top: {
@@ -226,8 +228,8 @@ const checkLanguage = ctx => {
 	return language
 }
 
-const myCache = async (id, update) => {
-	if (!cache[id]) {
+const myCache = async (id, update, reset) => {
+	if (!cache[id] || reset) {
 		const user = await database.getUser(id)
 		let castle = config.castles[0]
 		if (user.city) {
@@ -270,11 +272,55 @@ const myCache = async (id, update) => {
 	return cache[id]
 }
 
-for (let i = 0; i < 10; i++) {
-	// 0 = Null User
-	// 0 > BOT IA User
-	myCache(i)
+let isFirtStart = true
+const load = async () => {
+	const ids = Object.keys(cache).filter(element => element !== 'top')
+
+	cache.top = {
+		wins: [],
+		losts: [],
+		battles: [],
+		money: [],
+		level: [],
+		online: []
+	}
+
+	for (let i = 0; i < 10; i++) {
+		// 0 = Null User
+		// 0 > BOT IA User
+		await myCache(i, false, true)
+	}
+
+
+	season.done()
+
+	quest = {...quest, select: quest.reload()}
+	bot.context.quest = quest
+
+	if (!isFirtStart) {
+		for (let id of ids) {
+			await myCache(id, false, true)
+		}
+
+		dlogBot('Reload Bot')
+		dlogQuest(quest.select)
+		bot.telegram.sendMessage(config.ids.log,
+			`
+	#Reload
+	<b>BOT START (RELOAD)</b>
+	<b>Username:</b> @DefendTheCastleBot
+			`, {
+				parse_mode: 'HTML'
+			}
+		)
+	} else {
+		isFirtStart = false
+	}
+
+	bot.context.caches = cache
+	bot.context.cache = myCache
 }
+load()
 
 badges.get = id => {
 	const output = []
@@ -352,16 +398,19 @@ bot.use((ctx, next) => {
 })
 
 bot.context.clan = clan
-bot.context.caches = cache
 bot.context.config = config
 bot.context.database = database
 bot.context.castles = config.castles
 bot.context.items = items
+
 bot.context.ia = ia
+bot.context.caches = cache
 bot.context.cache = myCache
-bot.context.badges = badges.get
 bot.context.quest = quest
+
+bot.context.badges = badges.get
 bot.context.classes = classes
+
 bot.context.tags = id => {
 	let output = badges.get(id)
 	if (output.length > 0) {
@@ -631,7 +680,7 @@ config.plugins.forEach(p => {
 					return false
 				}
 
-				_.plugin(ctx).catch(error => processError(e, ctx, _))
+				_.plugin(ctx).catch(error => processError(error, ctx, _))
 			} catch (error) {
 				processError(error, ctx, _)
 			}
@@ -663,7 +712,7 @@ bot.on('message', async ctx => {
 			try {
 				ctx.db = await ctx.userInfo(ctx)
 				// If (!ctx.db) return false
-				_.reply(ctx).catch(error => processError(e, ctx, _))
+				_.reply(ctx).catch(error => processError(error, ctx, _))
 			} catch (error) {
 				processError(error, ctx, _)
 			}
@@ -680,7 +729,7 @@ bot.on('callback_query', async ctx => {
 				dlogCallback(`Runnig callback plugin: ${_.id}`)
 				try {
 					ctx.db = await ctx.userInfo(ctx)
-					_.callback(ctx).catch(error => processError(e, ctx, _))
+					_.callback(ctx).catch(error => processError(error, ctx, _))
 				} catch (error) {
 					processError(error, ctx, _)
 				}
@@ -698,5 +747,6 @@ bot.catch(err => {
 	}
 })
 
-// Bot.startWebhook('/secret-path', null, 3000)
 bot.launch()
+
+new CronJob('0,20,40,60 * * * * *', load, null, true, 'America/Los_Angeles')

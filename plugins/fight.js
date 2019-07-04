@@ -308,7 +308,7 @@ ${ctx.nl(ctx.db.life)} ❤️ ${ctx.nl(play.life)}`
 
 	await ctx.cache(play.id)
 	await ctx.cache(ctx.from.id)
-
+	console.log(ctx.caches)
 	ctx.caches[ctx.from.id].battles++
 	ctx.caches[play.id].battles++
 	let win = false
