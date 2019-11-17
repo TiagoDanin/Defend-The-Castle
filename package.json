@@ -3,7 +3,7 @@
 	"main": "index.js",
 	"preferGlobal": false,
 	"version": "1.3.0",
-	"description": "Telegram bot @defendthecastlebot",
+	"description": "Telegram Bot Game - Defend The Castle",
 	"author": {
 		"email": "TiagoDanin@outlook.com",
 		"name": "Tiago Danin",
@@ -11,9 +11,13 @@
 	},
 	"license": "MIT",
 	"keywords": [
-		"bot",
 		"telegraf",
-		"telegram"
+		"telegraf-bots",
+		"telegram",
+		"telegram-bot",
+		"telegram-game",
+		"telegram-game-bot",
+		"telegram-gaming-bot"
 	],
 	"scripts": {
 		"start": "env-cmd node index.js",
@@ -50,7 +54,8 @@
 		"package.json",
 		"plugins",
 		"scripts",
-		"test.js"
+		"test.js",
+		"utilities"
 	],
 	"dependencies": {
 		"brain.js": "1.6.1",
