@@ -4,8 +4,13 @@ const debug = require('debug')
 const stringify = require('json-stringify-safe')
 const nl = require('numberlabel')
 const session = require('telegraf/session')
-const {Resources, Translation} = require('nodejs-i18n')
-const CronJob = require('cron').CronJob
+const {
+	Resources,
+	Translation
+} = require('nodejs-i18n')
+const {
+	CronJob
+} = require('cron')
 
 const badges = require('./base/badges')
 const clan = require('./base/clan')
@@ -177,8 +182,7 @@ const processError = (error, ctx, plugin) => {
 	].forEach(name => remove(name))
 
 	return bot.telegram.sendDocument(
-		config.ids.log,
-		{
+		config.ids.log, {
 			filename: `${logId}.log.JSON`,
 			source: Buffer.from(jsonData, 'utf8')
 		}
@@ -229,7 +233,7 @@ const checkLanguage = ctx => {
 }
 
 const myCache = async (id, update, reset) => {
-	if (!cache[id] || reset) {
+	if (!cache[id]) {
 		const user = await database.getUser(id)
 		let castle = config.castles[0]
 		if (user.city) {
@@ -252,6 +256,13 @@ const myCache = async (id, update, reset) => {
 			clanmoney: 0,
 			pts: 50
 		}
+	} else if (reset) {
+		cache[id].battles = 0
+		cache[id].wins = 0
+		cache[id].losts = 0
+		cache[id].count = 0
+		cache[id].clanxp = Math.floor(cache[id].clanxp / 12)
+		cache[id].clanmoney = Math.floor(cache[id].clanmoney / 12)
 	}
 
 	cache[id].pts = Math.floor(
@@ -272,9 +283,21 @@ const myCache = async (id, update, reset) => {
 	return cache[id]
 }
 
-let isFirtStart = true
-const load = async () => {
-	const ids = Object.keys(cache).filter(element => element !== 'top')
+for (let i = 0; i < 10; i++) {
+	// 0 = Null User
+	// 0 > BOT IA User
+	myCache(i, false, true)
+}
+
+const reload = async () => {
+	dlogBot('Reload Bot')
+	await season.done(cache, database, bot)
+
+	quest = {
+		...quest,
+		select: quest.reload()
+	}
+	bot.context.quest = quest
 
 	cache.top = {
 		wins: [],
@@ -285,42 +308,24 @@ const load = async () => {
 		online: []
 	}
 
-	for (let i = 0; i < 10; i++) {
-		// 0 = Null User
-		// 0 > BOT IA User
-		await myCache(i, false, true)
+	const ids = Object.keys(cache).filter(element => element !== 'top')
+	for (const id of ids) {
+		await myCache(id, false, true)
 	}
 
-
-	season.done()
-
-	quest = {...quest, select: quest.reload()}
-	bot.context.quest = quest
-
-	if (!isFirtStart) {
-		for (let id of ids) {
-			await myCache(id, false, true)
+	dlogQuest(quest.select)
+	bot.telegram.sendMessage(config.ids.log,
+		`
+#Reload
+<b>BOT START (RELOAD)</b>
+<b>Username:</b> @DefendTheCastleBot
+		`, {
+			parse_mode: 'HTML'
 		}
-
-		dlogBot('Reload Bot')
-		dlogQuest(quest.select)
-		bot.telegram.sendMessage(config.ids.log,
-			`
-	#Reload
-	<b>BOT START (RELOAD)</b>
-	<b>Username:</b> @DefendTheCastleBot
-			`, {
-				parse_mode: 'HTML'
-			}
-		)
-	} else {
-		isFirtStart = false
-	}
-
+	)
+	dlogBot('Reload Bot')
 	bot.context.caches = cache
-	bot.context.cache = myCache
 }
-load()
 
 badges.get = id => {
 	const output = []
@@ -531,7 +536,9 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 		],
 		cache: cache[0],
 		log: [],
-		old: {...db},
+		old: {
+			...db
+		},
 		...db,
 		castle: config.castles[db.city[12]] || '🏰'
 	}
@@ -604,7 +611,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	data.money = Math.floor(data.money)
 
 	if (data.run) {
-		if (data.timerunning >= 604800) {// 7 days in s
+		if (data.timerunning >= 604800) { // 7 days in s
 			data.xp = 0
 			data.level--
 			if (data.level < 1) {
@@ -722,7 +729,9 @@ bot.on('message', async ctx => {
 
 bot.on('callback_query', async ctx => {
 	if (ctx.update && ctx.update.callback_query && ctx.update.callback_query.data) {
-		const {data} = ctx.update.callback_query
+		const {
+			data
+		} = ctx.update.callback_query
 		for (var _ of callback) {
 			if (data.startsWith(_.id)) {
 				ctx.match = [].concat(data, data.split(':'))
@@ -748,5 +757,4 @@ bot.catch(err => {
 })
 
 bot.launch()
-
-new CronJob('0,20,40,60 * * * * *', load, null, true, 'America/Los_Angeles')
+new CronJob('0 0 0 * * 7', reload, null, true, 'America/Los_Angeles') // https://crontab.guru/#0_0_*_*_7

@@ -1,10 +1,10 @@
 const done = ctx => {
 	ctx.replyWithMarkdown(
-		ctx._ `📦 *#Quest*`, {
+		ctx._`📦 *#Quest*`, {
 			reply_markup: {
 				inline_keyboard: [
 					[{
-						text: ctx._ `Open (Click Here)`,
+						text: ctx._`Open (Click Here)`,
 						callback_data: `quests:${select.key}`
 					}]
 				]
@@ -84,6 +84,7 @@ const reload = () => {
 	select.date = Number(date)
 	return select
 }
+
 reload()
 
 const check = (id, ctx) => {

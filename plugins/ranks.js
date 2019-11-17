@@ -1,3 +1,5 @@
+const sortCaches = require('../utilities/sort-caches.js')
+
 const showRank = async (ctx, type) => {
 	const db = await ctx.database.topUsers(type, ctx.from.id)
 	const list = db.filter(e => {
@@ -24,18 +26,10 @@ const showRank = async (ctx, type) => {
 }
 
 const showBattle = async ctx => {
-	const sortWins = Object.keys(ctx.caches).sort((a, b) => {
-		return ctx.caches[b].wins - ctx.caches[a].wins
-	}).filter(e => !ctx.config.ids.bots.map(c => Number(c)).includes(Number(ctx.caches[e].id))).map(e => ctx.caches[e])
-	const sortLosts = Object.keys(ctx.caches).sort((a, b) => {
-		return ctx.caches[b].losts - ctx.caches[a].losts
-	}).filter(e => !ctx.config.ids.bots.map(c => Number(c)).includes(Number(ctx.caches[e].id))).map(e => ctx.caches[e])
-	const sortBattles = Object.keys(ctx.caches).sort((a, b) => {
-		return ctx.caches[b].battles - ctx.caches[a].battles
-	}).filter(e => !ctx.config.ids.bots.map(c => Number(c)).includes(Number(ctx.caches[e].id))).map(e => ctx.caches[e])
-	const sortOnline = Object.keys(ctx.caches).sort((a, b) => {
-		return ctx.caches[b].count - ctx.caches[a].count
-	}).filter(e => !ctx.config.ids.bots.map(c => Number(c)).includes(Number(ctx.caches[e].id))).map(e => ctx.caches[e])
+	const sortWins = sortCaches.wins(ctx.caches)
+	const sortLosts = sortCaches.losts(ctx.caches)
+	const sortBattles = sortCaches.battles(ctx.caches)
+	const sortOnline = sortCaches.online(ctx.caches)
 
 	ctx.caches.top.online = []
 	ctx.caches.top.wins = []
@@ -71,9 +65,7 @@ const showBattle = async ctx => {
 
 const showOnline = async ctx => {
 	let text = ''
-	const sortOnline = Object.keys(ctx.caches).sort((a, b) => {
-		return ctx.caches[b].count - ctx.caches[a].count
-	}).filter(e => !ctx.config.ids.bots.map(c => Number(c)).includes(Number(ctx.caches[e].id))).map(e => ctx.caches[e])
+	const sortOnline = sortCaches.online(ctx.caches)
 	for (let i = 0; i < 10; i++) {
 		text += `${i + 1} • ${sortOnline[i].name} : ${sortOnline[i].id} (${sortOnline[i].count}) : @${sortOnline[i].tgusername} - ${sortOnline[i].tgname}\n`
 	}
