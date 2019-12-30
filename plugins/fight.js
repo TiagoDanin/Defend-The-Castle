@@ -377,6 +377,14 @@ ${textReply}`
 		money = `: 💰 ${ctx.nl(addMoney)}`
 	}
 
+	if (ctx.session.ftype == 4) {
+		ctx.session.countConsecutiveWin = 0
+	} else if (win) {
+		ctx.session.countConsecutiveWin = ctx.session.countConsecutiveWin + 1 | 1
+	} else {
+		ctx.session.countConsecutiveWin = 0
+	}
+	ctx.quest.check('consecutiveBattles', ctx)
 	ctx.quest.check('fight', ctx)
 	ctx.session.powerup = false
 	ctx.session.flast = [ctx.session.flast[1], ctx.session.flast[2], play.id]

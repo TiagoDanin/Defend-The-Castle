@@ -280,27 +280,31 @@ msgstr "Ganhe pontos para seu clan."
 msgid "Upgrade a building with +20 levels (instantly)."
 msgstr "Atualize um edifício com níveis de +20 (instantaneamente)."
 
-#: itemsAllText.js:80:25
+#: itemsAllText.js:80:36
+msgid "Win +30 consecutive battles."
+msgstr "Ganhe +30 batalhas consecutivas."
+
+#: itemsAllText.js:82:25
 msgid "Warrior"
 msgstr "Guerreiro"
 
-#: itemsAllText.js:81:25
+#: itemsAllText.js:83:25
 msgid "Perfect for Fights!"
 msgstr "Perfeito para lutas!"
 
-#: itemsAllText.js:83:24
+#: itemsAllText.js:85:24
 msgid "Banker"
 msgstr "Banqueiro"
 
-#: itemsAllText.js:84:24
+#: itemsAllText.js:86:24
 msgid "Money move the world!"
 msgstr "O dinheiro move o mundo!"
 
-#: itemsAllText.js:86:28
+#: itemsAllText.js:88:28
 msgid "Adventurer"
 msgstr "Aventureiro"
 
-#: itemsAllText.js:87:28
+#: itemsAllText.js:89:28
 msgid "Everyone seeks something!"
 msgstr "Todo mundo procura alguma coisa!"
 
@@ -408,8 +412,8 @@ msgstr "${0} ${1}"
 
 #: plugins/badges.js:32:15 plugins/city.js:249:14 plugins/clan.js:26:15
 #: plugins/clan.js:331:16 plugins/class.js:53:13 plugins/config.js:20:15
-#: plugins/fight.js:156:17 plugins/fight.js:166:17 plugins/fight.js:392:20
-#: plugins/fight.js:406:22 plugins/fight.js:554:14 plugins/menu.js:71:16
+#: plugins/fight.js:156:17 plugins/fight.js:166:17 plugins/fight.js:400:20
+#: plugins/fight.js:414:22 plugins/fight.js:562:14 plugins/menu.js:71:16
 #: plugins/presents.js:148:15 plugins/quests.js:44:15 plugins/ranks.js:87:15
 msgid "📜 Menu"
 msgstr "📜 Menu"
@@ -1006,11 +1010,11 @@ msgstr ""
 msgid "🏆 ${0}"
 msgstr "🏆 ${0}"
 
-#: plugins/fight.js:158:17 plugins/fight.js:168:17 plugins/fight.js:547:14
+#: plugins/fight.js:158:17 plugins/fight.js:168:17 plugins/fight.js:555:14
 msgid "⚔️ Next"
 msgstr "⚔️ Próximo"
 
-#: plugins/fight.js:205:32 plugins/fight.js:641:34
+#: plugins/fight.js:205:32 plugins/fight.js:649:34
 msgid "You have no troops, wait two minutos!"
 msgstr "Você não tem tropas, espere dois minutos!"
 
@@ -1134,13 +1138,13 @@ msgstr ""
 
 #. ${0} = "ctx.db.name"
 #. ${1} = "textReply"
-#: plugins/fight.js:385:19
+#: plugins/fight.js:393:19
 msgid "WIN!"
 msgstr "GANHOU!"
 
 #. ${0} = "ctx.db.name"
 #. ${1} = "textReply"
-#: plugins/fight.js:385:35
+#: plugins/fight.js:393:35
 msgid "LOST!"
 msgstr "PERDEU!"
 
@@ -1148,7 +1152,7 @@ msgstr "PERDEU!"
 #. ${1} = "ctx.db.id"
 #. ${2} = "textReply"
 #. ${3} = "ctx.fixKeyboard"
-#: plugins/fight.js:398:48
+#: plugins/fight.js:406:48
 msgid ""
 "\n"
 "<b>Reply attack of ${0} (${1}):</b>\n"
@@ -1159,11 +1163,11 @@ msgstr ""
 "${2}${3}"
 
 #. ${0} = "fightTypes.ctx.session.ftype.name"
-#: plugins/fight.js:550:14
+#: plugins/fight.js:558:14
 msgid "🔍 ${0}"
 msgstr "🔍 ${0}"
 
-#: plugins/fight.js:557:14
+#: plugins/fight.js:565:14
 msgid "⚡️ PowerUp"
 msgstr "⚡️ Poderes"
 
@@ -1193,7 +1197,7 @@ msgstr "⚡️ Poderes"
 #. ${10} = "opponent.level"
 #. ${11} = "ctx.nl.opponent.xp"
 #. ${12} = "ctx.nl.opponent.money"
-#: plugins/fight.js:576:17 plugins/fight.js:671:15
+#: plugins/fight.js:584:17 plugins/fight.js:679:15
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}${2}\n"
@@ -1224,7 +1228,7 @@ msgstr ""
 #. ${4} = "ctx.nl.ctx.db.xp"
 #. ${5} = "ctx.db.troops"
 #. ${6} = "ctx.db.maxTroops"
-#: plugins/fight.js:593:14
+#: plugins/fight.js:601:14
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}${2}\n"
@@ -1242,11 +1246,11 @@ msgstr ""
 "➖➖➖DUAL➖➖➖\n"
 "Selecione:"
 
-#: plugins/fight.js:605:14
+#: plugins/fight.js:613:14
 msgid "<b>Select PowerUp:</b>"
 msgstr "<b>Selecione um Poder:</b>"
 
-#: plugins/fight.js:625:15 plugins/menu.js:49:15
+#: plugins/fight.js:633:15 plugins/menu.js:49:15
 msgid "💳 Store VIP"
 msgstr "💳 Loja VIP"
 
@@ -1257,7 +1261,7 @@ msgstr "💳 Loja VIP"
 #. ${4} = "ctx.nl.ctx.db.xp"
 #. ${5} = "ctx.db.troops"
 #. ${6} = "ctx.db.maxTroops"
-#: plugins/fight.js:654:15
+#: plugins/fight.js:662:15
 msgid ""
 "\n"
 "<b>${0} City:</b> ${1}${2}\n"

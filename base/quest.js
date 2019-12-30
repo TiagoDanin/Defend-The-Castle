@@ -77,10 +77,21 @@ const list = [{
 	text: 'Upgrade a building with +20 levels (instantly).',
 	validation: ctx => {
 		if (ctx.qt && ctx.qt >= 20) {
-			done()
+			done(ctx)
 		}
 	},
 	inventory: [11, 15, 14],
+	money: 1000,
+	xp: 50
+}, {
+	id: 'consecutiveBattles',
+	text: 'Win +30 consecutive battles.',
+	validation: ctx => {
+		if (ctx.session.countConsecutiveWin >= 30) {
+			done(ctx)
+		}
+	},
+	inventory: [14, 14, 14],
 	money: 1000,
 	xp: 50
 }]
@@ -90,7 +101,7 @@ const date = new Date()
 let select = {}
 const reload = findId => {
 	if (findId) {
-		select = list.find(element => element.id == findId)
+		select = list.find(element => element.id === findId)
 	} else {
 		select = list[Math.floor((Math.random() * list.length))]
 	}
