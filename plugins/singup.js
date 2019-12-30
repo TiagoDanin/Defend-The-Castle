@@ -213,6 +213,7 @@ const reply = async ctx => {
 	}
 
 	if (ctx.match[0].match(text)) {
+		console.log('ss')
 		if (!ctx.match[1].match(/^([a-zA-Z0-9-]{1,12})$/)) {
 			return ctx.replyWithMarkdown(ctx._`
 *Name must have only letter and number with a maximum of 12 characters!*

@@ -473,7 +473,7 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	const db = await database.getUser(ctx.from.id)
 	if (!db) {
 		if (typeof ctx === 'object' && onlyUser) {
-			await ctx.replyWithMarkdown('*What\'s the name of your town?*', {
+			await ctx.replyWithMarkdown(ctx._`What's the name of your town?`, {
 				reply_markup: {
 					force_reply: true
 				}

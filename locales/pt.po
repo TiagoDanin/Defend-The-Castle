@@ -1551,7 +1551,7 @@ msgid "✅ Let's Go!"
 msgstr "✅ Vamos Lá!"
 
 #. ${0} = "text"
-#: plugins/singup.js:217:37
+#: plugins/singup.js:220:37
 msgid ""
 "\n"
 "*Name must have only letter and number with a maximum of 12 characters!*\n"
@@ -1565,23 +1565,23 @@ msgstr ""
 
 #. ${0} = "ctx.match"
 #. ${1} = "ctx.fixKeyboard"
-#: plugins/singup.js:235:24
+#: plugins/singup.js:240:24
 msgid "Are you sure the name of your city is ${0}?.${1}"
 msgstr "Tem certeza que o nome da sua cidade é ${0}?.${1}"
 
-#: plugins/singup.js:239:18
+#: plugins/singup.js:244:18
 msgid "✅ Yes"
 msgstr "✅ Sim"
 
-#: plugins/singup.js:240:18
+#: plugins/singup.js:245:18
 msgid "❌ No"
 msgstr "❌ Não"
 
-#: plugins/singup.js:247:32
+#: plugins/singup.js:252:32
 msgid "Use the <code>/start</code>"
 msgstr "Use o <code>/start</code>"
 
-#: plugins/singup.js:251:18
+#: plugins/singup.js:256:18
 msgid "Or Click Here (Menu)"
 msgstr "Ou Clique Aqui (Menu)"
 
