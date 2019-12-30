@@ -1,4 +1,4 @@
-const Context = require('telegraf/core/context')
+const Context = require('telegraf/scenes/context')
 const lodash = require('lodash')
 const debug = require('debug')
 
