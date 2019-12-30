@@ -707,6 +707,14 @@ config.plugins.forEach(p => {
 	}
 })
 
+bot.hears(/reload/, async ctx => {
+	if (ctx.privilege <= 6) {
+		return
+	}
+	
+	reload()
+})
+
 bot.on('message', async ctx => {
 	const msg = ctx.message
 	if (msg.reply_to_message && msg.reply_to_message.text && msg.text) {
