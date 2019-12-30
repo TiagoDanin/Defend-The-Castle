@@ -39,7 +39,7 @@ const list = [{
 	xp: 140
 }, {
 	id: 'fight',
-	text: 'Show your power to the other castles 🤔😉',
+	text: 'Show your power to the other castles 🤔😉 (+15 Batles)',
 	validation: ctx => {
 		ctx.session.count = ctx.session.count + 1 || 1
 		if (ctx.session.count >= 15) {
@@ -49,6 +49,18 @@ const list = [{
 	inventory: [10, 10, 12, 12],
 	money: 500,
 	xp: 100
+}, {
+	id: 'fightSuper',
+	text: 'Show your power to the other castles 🤔😉 (+200 Batles)',
+	validation: ctx => {
+		// Count in `fight`
+		if (ctx.session.count >= 200) {
+			done(ctx)
+		}
+	},
+	inventory: [11, 15, 15, 15],
+	money: 1300,
+	xp: 3000
 }, {
 	id: 'key',
 	text: 'Find the key (🔑) to the Castle vault.',

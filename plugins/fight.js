@@ -386,6 +386,7 @@ ${textReply}`
 	}
 	ctx.quest.check('consecutiveBattles', ctx)
 	ctx.quest.check('fight', ctx)
+	ctx.quest.check('fightSuper', ctx)
 	ctx.session.powerup = false
 	ctx.session.flast = [ctx.session.flast[1], ctx.session.flast[2], play.id]
 
