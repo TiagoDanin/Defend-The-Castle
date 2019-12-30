@@ -707,12 +707,24 @@ config.plugins.forEach(p => {
 	}
 })
 
-bot.hears(/reload/, async ctx => {
+bot.hears(/^\/reload$/i, async ctx => {
 	if (ctx.privilege <= 6) {
 		return
 	}
 
 	reload()
+})
+
+bot.hears(/^\/quest (\w*)/i, async ctx => {
+	if (ctx.privilege <= 6) {
+		return
+	}
+
+	quest = {
+		...quest,
+		select: quest.reload(ctx.match[1])
+	}
+	bot.context.quest = quest
 })
 
 bot.on('message', async ctx => {
