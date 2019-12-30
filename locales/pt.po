@@ -277,26 +277,30 @@ msgid "Earn points for your clan."
 msgstr "Ganhe pontos para seu clan."
 
 #: itemsAllText.js:78:25
+msgid "Upgrade a building with +20 levels (instantly)."
+msgstr "Atualize um edifício com níveis de +20 (instantaneamente)."
+
+#: itemsAllText.js:80:25
 msgid "Warrior"
 msgstr "Guerreiro"
 
-#: itemsAllText.js:79:25
+#: itemsAllText.js:81:25
 msgid "Perfect for Fights!"
 msgstr "Perfeito para lutas!"
 
-#: itemsAllText.js:81:24
+#: itemsAllText.js:83:24
 msgid "Banker"
 msgstr "Banqueiro"
 
-#: itemsAllText.js:82:24
+#: itemsAllText.js:84:24
 msgid "Money move the world!"
 msgstr "O dinheiro move o mundo!"
 
-#: itemsAllText.js:84:28
+#: itemsAllText.js:86:28
 msgid "Adventurer"
 msgstr "Aventureiro"
 
-#: itemsAllText.js:85:28
+#: itemsAllText.js:87:28
 msgid "Everyone seeks something!"
 msgstr "Todo mundo procura alguma coisa!"
 
@@ -402,7 +406,7 @@ msgstr "Você não tem emblemas!"
 msgid "${0} ${1}"
 msgstr "${0} ${1}"
 
-#: plugins/badges.js:32:15 plugins/city.js:246:14 plugins/clan.js:26:15
+#: plugins/badges.js:32:15 plugins/city.js:249:14 plugins/clan.js:26:15
 #: plugins/clan.js:331:16 plugins/class.js:53:13 plugins/config.js:20:15
 #: plugins/fight.js:156:17 plugins/fight.js:166:17 plugins/fight.js:392:20
 #: plugins/fight.js:406:22 plugins/fight.js:554:14 plugins/menu.js:71:16
@@ -479,8 +483,8 @@ msgstr "<b>💶 Melhorar:</b> ${0} Moedas"
 #. ${0} = "ctx.db.castle"
 #. ${1} = "ctx.db.name"
 #. ${2} = "ctx.tags.ctx.from.id"
-#: plugins/city.js:123:17 plugins/city.js:139:14 plugins/city.js:198:15
-#: plugins/city.js:226:15 plugins/menu.js:6:17
+#: plugins/city.js:123:17 plugins/city.js:139:14 plugins/city.js:201:15
+#: plugins/city.js:229:15 plugins/menu.js:6:17
 msgid "<b>${0} City:</b> ${1}${2}\n"
 msgstr "<b>${0} Cidade:</b> ${1}${2}\n"
 
@@ -496,8 +500,8 @@ msgstr "<b>${0} Cidade:</b> ${1}${2}\n"
 #. ${1} = "ctx.nl.ctx.clan.clan.level.money"
 #. ${0} = "ctx.nl.ctx.db.money"
 #. ${1} = "ctx.nl.ctx.db.moneyPerHour"
-#: plugins/city.js:124:14 plugins/city.js:140:15 plugins/city.js:199:16
-#: plugins/city.js:227:16 plugins/clan.js:95:17 plugins/menu.js:10:14
+#: plugins/city.js:124:14 plugins/city.js:140:15 plugins/city.js:202:16
+#: plugins/city.js:230:16 plugins/clan.js:95:17 plugins/menu.js:10:14
 msgid "<b>💰 Money:</b> ${0} (${1}/hour)\n"
 msgstr "<b>💰 Dinheiro:</b> ${0} (${1}/hora)\n"
 
@@ -505,8 +509,8 @@ msgstr "<b>💰 Dinheiro:</b> ${0} (${1}/hora)\n"
 #. ${0} = "ctx.nl.ctx.db.attack"
 #. ${0} = "ctx.nl.ctx.db.attack"
 #. ${0} = "ctx.nl.ctx.db.attack"
-#: plugins/city.js:125:14 plugins/city.js:141:15 plugins/city.js:200:16
-#: plugins/city.js:228:16
+#: plugins/city.js:125:14 plugins/city.js:141:15 plugins/city.js:203:16
+#: plugins/city.js:231:16
 msgid "<b>⚔️ Attack:</b> ${0}\n"
 msgstr "<b>⚔️ Ataque:</b> ${0}\n"
 
@@ -514,8 +518,8 @@ msgstr "<b>⚔️ Ataque:</b> ${0}\n"
 #. ${0} = "ctx.nl.ctx.db.shield"
 #. ${0} = "ctx.nl.ctx.db.shield"
 #. ${0} = "ctx.nl.ctx.db.shield"
-#: plugins/city.js:126:14 plugins/city.js:142:15 plugins/city.js:201:16
-#: plugins/city.js:229:16
+#: plugins/city.js:126:14 plugins/city.js:142:15 plugins/city.js:204:16
+#: plugins/city.js:232:16
 msgid "<b>🛡 Shield:</b> ${0}\n"
 msgstr "<b>🛡 Escudo:</b> ${0}\n"
 
@@ -523,8 +527,8 @@ msgstr "<b>🛡 Escudo:</b> ${0}\n"
 #. ${0} = "ctx.nl.ctx.db.life"
 #. ${0} = "ctx.nl.ctx.db.life"
 #. ${0} = "ctx.nl.ctx.db.life"
-#: plugins/city.js:127:14 plugins/city.js:143:15 plugins/city.js:202:16
-#: plugins/city.js:230:16
+#: plugins/city.js:127:14 plugins/city.js:143:15 plugins/city.js:205:16
+#: plugins/city.js:233:16
 msgid "<b>❤️ Life:</b> ${0}\n"
 msgstr "<b>❤️ Vida:</b> ${0}\n"
 
@@ -536,17 +540,17 @@ msgstr "<b>Selecione o seu novo castelo:</b>"
 msgid "<b>New castle!</b>"
 msgstr "<b>Novo castelo!</b>"
 
-#: plugins/city.js:206:16 plugins/city.js:208:26
+#: plugins/city.js:209:16 plugins/city.js:211:26
 msgid "Upgraded!"
 msgstr "Melhorado!"
 
 #. ${0} = "ctx.db.money"
 #. ${1} = "price"
-#: plugins/city.js:211:26
+#: plugins/city.js:214:26
 msgid "❌ Your money ${0} | Price ${1}"
 msgstr "❌ Seu dinheiro ${0} | Preço ${1}"
 
-#: plugins/city.js:212:16 plugins/storevip.js:45:17
+#: plugins/city.js:215:16 plugins/storevip.js:45:17
 msgid ""
 "\n"
 "Failed!"
@@ -554,7 +558,7 @@ msgstr ""
 "\n"
 "Falha!"
 
-#: plugins/city.js:235:16
+#: plugins/city.js:238:16
 msgid "Hack?"
 msgstr "Hack?"
 
@@ -1551,7 +1555,7 @@ msgid "✅ Let's Go!"
 msgstr "✅ Vamos Lá!"
 
 #. ${0} = "text"
-#: plugins/singup.js:220:37
+#: plugins/singup.js:218:37
 msgid ""
 "\n"
 "*Name must have only letter and number with a maximum of 12 characters!*\n"
@@ -1565,23 +1569,23 @@ msgstr ""
 
 #. ${0} = "ctx.match"
 #. ${1} = "ctx.fixKeyboard"
-#: plugins/singup.js:240:24
+#: plugins/singup.js:236:24
 msgid "Are you sure the name of your city is ${0}?.${1}"
 msgstr "Tem certeza que o nome da sua cidade é ${0}?.${1}"
 
-#: plugins/singup.js:244:18
+#: plugins/singup.js:240:18
 msgid "✅ Yes"
 msgstr "✅ Sim"
 
-#: plugins/singup.js:245:18
+#: plugins/singup.js:241:18
 msgid "❌ No"
 msgstr "❌ Não"
 
-#: plugins/singup.js:252:32
+#: plugins/singup.js:248:32
 msgid "Use the <code>/start</code>"
 msgstr "Use o <code>/start</code>"
 
-#: plugins/singup.js:256:18
+#: plugins/singup.js:252:18
 msgid "Or Click Here (Menu)"
 msgstr "Ou Clique Aqui (Menu)"
 

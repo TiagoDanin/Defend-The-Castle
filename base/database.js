@@ -13,7 +13,7 @@ Query.prototype.submit = function () {
 	const query = values.reduce((q, v, i) => q.replace(`$${i + 1}`, v), text)
 	dlogPgValues(values)
 	dlogPgQuery(query)
-	submit.apply(this, arguments)
+	Reflect.apply(submit, this, arguments)
 }
 
 const {Pool} = pg

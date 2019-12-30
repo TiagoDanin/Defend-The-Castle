@@ -72,6 +72,17 @@ const list = [{
 	inventory: [13, 13, 13],
 	money: 500,
 	xp: 500
+}, {
+	id: 'upgrade',
+	text: 'Upgrade a building with +20 levels (instantly).',
+	validation: ctx => {
+		if (ctx.qt && ctx.qt >= 20) {
+			done()
+		}
+	},
+	inventory: [11, 15, 14],
+	money: 1000,
+	xp: 50
 }]
 
 const date = new Date()

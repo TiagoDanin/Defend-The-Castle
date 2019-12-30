@@ -25,8 +25,8 @@ const base = async ctx => {
 		text = ctx._`<b>📔 Quest (#Soon)</b>\n`
 	} else if (!ctx.session.quest && ctx.match[2] && ctx.quest.select.key == ctx.match[2]) {
 		text = ctx._`<b>Quest Complete!</b>\n`
-		ctx.db.xp += ctx.quest.select.xp
-		ctx.db.money += ctx.quest.select.money
+		ctx.db.xp += ctx.quest.select.xp * ctx.db.level
+		ctx.db.money += ctx.quest.select.money * ctx.db.level
 
 		text += ctx._`⭐️ ${ctx.quest.select.xp} +XP\n💰 ${ctx.quest.select.money} +Money\n`
 

@@ -66,7 +66,7 @@ bot.telegram.sendMessage(config.ids.log,
 const processError = (error, ctx, plugin) => {
 	if (error) {
 		if (`${error}`.match('400: Bad Request: message is not modified')) {
-			return ctx.answerCbQuery('You have already selected is option!', true).catch(error2 => {
+			return ctx.answerCbQuery('You have already selected is option!', true).catch(error_ => {
 				return dlogError(e)
 			})
 		}
@@ -711,7 +711,7 @@ bot.hears(/reload/, async ctx => {
 	if (ctx.privilege <= 6) {
 		return
 	}
-	
+
 	reload()
 })
 

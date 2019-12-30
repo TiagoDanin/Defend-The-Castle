@@ -187,6 +187,9 @@ const base = async ctx => {
 		}
 
 		if (ctx.db.money >= price) {
+			ctx.qt = qt
+			ctx.quest.check('upgrade', ctx)
+
 			ctx.db.money -= price
 			ctx.db.money = Math.floor(ctx.db.money)
 			await ctx.database.updateUser(ctx.from.id, row, value).then(async res => {
