@@ -74,7 +74,7 @@
 		"telegraf-start-parts": "1.0.0"
 	},
 	"devDependencies": {
-		"env-cmd": "10.0.1",
+		"env-cmd": "10.1.0",
 		"nodemon": "2.0.2",
 		"xo": "0.25.3"
 	},
