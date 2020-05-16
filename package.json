@@ -68,7 +68,7 @@
 		"moment-timezone": "0.5.28",
 		"nodejs-i18n": "2.3.0",
 		"numberlabel": "1.0.1",
-		"pg": "8.0.3",
+		"pg": "8.2.1",
 		"pg-native": "3.0.0",
 		"telegraf": "3.36.0",
 		"telegraf-start-parts": "1.0.0"
