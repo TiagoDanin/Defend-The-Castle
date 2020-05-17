@@ -65,7 +65,7 @@
 		"lodash": "4.17.15",
 		"minimist": "1.2.5",
 		"moment": "2.25.1",
-		"moment-timezone": "0.5.28",
+		"moment-timezone": "0.5.31",
 		"nodejs-i18n": "2.3.0",
 		"numberlabel": "1.0.1",
 		"pg": "8.0.3",
