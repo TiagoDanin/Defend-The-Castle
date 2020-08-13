@@ -62,7 +62,7 @@
 		"cron": "^1.7.1",
 		"debug": "4.1.1",
 		"json-stringify-safe": "5.0.1",
-		"lodash": "4.17.19",
+		"lodash": "4.17.20",
 		"minimist": "1.2.5",
 		"moment": "2.26.0",
 		"moment-timezone": "0.5.31",
