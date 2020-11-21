@@ -3,14 +3,10 @@ const badges = require('../base/badges').list
 const base = async ctx => {
 	let text = ctx._`<b>My badges:</b>\n`
 	const myBadges = ctx.badges(ctx.from.id)
-	if (myBadges.length <= 0) {
-		text += ctx._`You don't have badges!`
-	} else {
-		text += '• ' + myBadges.map(el => {
-			const title = ctx._(el.title)
-			return `${el.icon} ${title}`
-		}).join('\n• ')
-	}
+	text += myBadges.length <= 0 ? ctx._`You don't have badges!` : '• ' + myBadges.map(element => {
+		const title = ctx._(element.title)
+		return `${element.icon} ${title}`
+	}).join('\n• ')
 
 	ctx.quest.check('badges', ctx)
 

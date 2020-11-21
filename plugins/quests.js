@@ -5,7 +5,7 @@ const base = async ctx => {
 	const quest = ctx.quest.select
 	const time = moment(Number(new Date())).to(quest.date)
 
-	if (ctx.session.quest && ctx.quest.select.key == ctx.session.quest) {
+	if (ctx.session.quest && ctx.quest.select.key != ctx.session.quest) {
 		ctx.session.quest = false
 	}
 
@@ -15,11 +15,7 @@ const base = async ctx => {
 		text += '\n'
 	}
 
-	if (ctx.session.quest) {
-		text += ctx._`Status: Done`
-	} else {
-		text += ctx._`Status: Open`
-	}
+	text += ctx.session.quest ? ctx._`Status: Done` : ctx._`Status: Open`
 
 	if (Number(new Date()) > quest.date) {
 		text = ctx._`<b>📔 Quest (#Soon)</b>\n`

@@ -127,21 +127,17 @@ Present(${i18nPresents[present.name]}): +${ctx.db[present.name] - ctx.db.old[pre
 		}
 	}
 
-	if (qtPresents > 0) {
-		boxs = [
-			[
-				{text: '🎁', callback_data: 'box:1'},
-				{text: '🎁', callback_data: 'box:2'},
-				{text: '🎁', callback_data: 'box:3'}
-			]
+	boxs = qtPresents > 0 ? [
+		[
+			{text: '🎁', callback_data: 'box:1'},
+			{text: '🎁', callback_data: 'box:2'},
+			{text: '🎁', callback_data: 'box:3'}
 		]
-	} else {
-		boxs = [
-			[
-				{text: '-3 💎 => 🎁 +1', callback_data: 'vip:15:up'}
-			]
+	] : [
+		[
+			{text: '-3 💎 => 🎁 +1', callback_data: 'vip:15:up'}
 		]
-	}
+	]
 
 	const keyboard = [
 		...boxs,

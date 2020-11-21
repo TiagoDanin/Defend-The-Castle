@@ -33,11 +33,7 @@ ${ctx.tips(ctx)}`
 					}
 				}
 
-				if (item.do) {
-					await ctx.database.saveUser(ctx)
-				} else {
-					await ctx.database.updateUser(ctx.from.id, 'inventory', ctx.db.inventory)
-				}
+				await (item.do ? ctx.database.saveUser(ctx) : ctx.database.updateUser(ctx.from.id, 'inventory', ctx.db.inventory))
 
 				ctx.answerCbQuery(ctx._`Inventory update!`)
 			} else {

@@ -2,11 +2,11 @@ const sortCaches = require('../utilities/sort-caches.js')
 
 const showRank = async (ctx, type) => {
 	const db = await ctx.database.topUsers(type, ctx.from.id)
-	const list = db.filter(e => {
+	const list = db.find(e => {
 		if (e.id == ctx.from.id) {
 			return true
 		}
-	})[0].position
+	}).position
 
 	let text = ctx._`🥇 You Rank is: ${list}\n`
 	let n = 0

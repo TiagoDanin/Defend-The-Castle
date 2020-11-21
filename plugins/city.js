@@ -1,16 +1,12 @@
 const city = ctx => {
 	const keyboard = ctx.db.city.reduce((total, id, index) => {
 		let key = {}
-		if (index == 12) {
-			key = {
-				text: ctx.db.castle,
-				callback_data: 'city:castle'
-			}
-		} else {
-			key = {
-				text: ctx.items[id.toString()].icon,
-				callback_data: `city:inv:${index}`
-			}
+		key = index == 12 ? {
+			text: ctx.db.castle,
+			callback_data: 'city:castle'
+		} : {
+			text: ctx.items[id.toString()].icon,
+			callback_data: `city:inv:${index}`
 		}
 
 		total[total.length - 1].push(key)

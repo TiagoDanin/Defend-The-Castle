@@ -27,7 +27,7 @@
 		"notification": "env-cmd node scripts/notification.js"
 	},
 	"engines": {
-		"node": ">=8"
+		"node": ">=12"
 	},
 	"private": false,
 	"repository": {
@@ -81,13 +81,15 @@
 	"xo": {
 		"rules": {
 			"quote-props": "warn",
-			"eqeqeq": "off",
-			"array-callback-return": "warn",
-			"require-atomic-updates": "warn",
+			"eqeqeq": "warn",
+			"array-callback-return": "off",
+			"require-atomic-updates": "off",
 			"no-else-return": "warn",
 			"camelcase": "off",
-			"no-unused-vars": "warn",
-			"no-return-await": "warn"
+			"no-unused-vars": "off",
+			"no-return-await": "off",
+			"unicorn/no-reduce": "off",
+			"unicorn/prevent-abbreviation": "off"
 		},
 		"semicolon": false
 	}

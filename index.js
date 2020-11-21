@@ -78,29 +78,25 @@ const processError = (error, ctx, plugin) => {
 
 	const fulllog = []
 	let logId = `${Number(new Date())}_`
-	if (ctx && ctx.update && ctx.update.update_id) {
-		logId += `${ctx.update.update_id}`
-	} else {
-		logId += 'NoUpdate'
-	}
+	logId += ctx && ctx.update && ctx.update.update_id ? `${ctx.update.update_id}` : 'NoUpdate'
 
-	let errorMsg = 'ERROR'
+	let errorMessage = 'ERROR'
 	if (ctx && ctx._) {
-		errorMsg = ctx._('ERROR')
+		errorMessage = ctx._('ERROR')
 	}
 
-	errorMsg += ` \`ID:${logId}\``
+	errorMessage += ` \`ID:${logId}\``
 
 	if (ctx && ctx.updateType) {
 		if (ctx.updateType == 'message') {
-			ctx.replyWithMarkdown(errorMsg)
+			ctx.replyWithMarkdown(errorMessage)
 		} else if (ctx.updateType == 'callback_query' || ctx.updateType == 'edited_message') {
-			ctx.reply(errorMsg, { // EditMessageText
+			ctx.reply(errorMessage, { // EditMessageText
 				parse_mode: 'Markdown'
 			})
 		} else if (ctx.updateType == '') {
 			ctx.answerCbQuery(
-				errorMsg.replace(/\*/g, '').replace(/`/g, ''),
+				errorMessage.replace(/\*/g, '').replace(/`/g, ''),
 				true
 			)
 		}
@@ -169,7 +165,7 @@ const processError = (error, ctx, plugin) => {
 		text += `\nCHAT ~>\n${clearUser(ctx.chat)}`
 	}
 
-	bot.telegram.sendMessage(config.ids.log, text.substring(0, 4000))
+	bot.telegram.sendMessage(config.ids.log, text.slice(0, 4000))
 
 	let jsonData = stringify(fulllog)
 	const remove = name => {
@@ -211,7 +207,7 @@ config.locales.forEach(id => {
 	r.load(id, `locales/${id}.po`)
 })
 
-const locales = [...config.locales, config.defaultLang]
+const locales = new Set([...config.locales, config.defaultLang])
 const checkLanguage = ctx => {
 	let language = config.defaultLang
 	const types = [
@@ -222,10 +218,10 @@ const checkLanguage = ctx => {
 	]
 	const type = types.find(t => ctx.update[t])
 	if (type && ctx.update[type] && ctx.update[type].from && ctx.update[type].from.language_code) {
-		language = ctx.update[type].from.language_code.substr(0, 2)
+		language = ctx.update[type].from.language_code.slice(0, 2)
 	}
 
-	if (!locales.includes(language)) {
+	if (!locales.has(language)) {
 		language = config.defaultLang
 	}
 
@@ -544,11 +540,11 @@ bot.context.userInfo = async (ctx, onlyUser) => {
 	}
 	data.cache = await myCache(data.id)
 
-	if (locales.includes(ctx.lang)) {
+	if (locales.has(ctx.lang)) {
 		data.lang = ctx.lang
 	}
 
-	if (!locales.includes(data.lang)) {
+	if (!locales.has(data.lang)) {
 		data.lang = config.defaultLang
 	}
 
@@ -728,13 +724,13 @@ bot.hears(/^\/quest (\w*)/i, async ctx => {
 })
 
 bot.on('message', async ctx => {
-	const msg = ctx.message
-	if (msg.reply_to_message && msg.reply_to_message.text && msg.text) {
+	const {message} = ctx
+	if (message.reply_to_message && message.reply_to_message.text && message.text) {
 		for (var _ of reply) {
 			dlogReply(`Runnig Reply plugin: ${_.id}`)
 			ctx.match = [
-				msg.reply_to_message.text,
-				msg.text
+				message.reply_to_message.text,
+				message.text
 			]
 			try {
 				ctx.db = await ctx.userInfo(ctx)
@@ -767,12 +763,12 @@ bot.on('callback_query', async ctx => {
 	}
 })
 
-bot.catch(err => {
+bot.catch(error => {
 	try {
-		processError(err, false, false)
-	} catch (e) {
-		dlogError(`Oooops ${err}`)
-		dlogError(`OH!!! ${e}`)
+		processError(error, false, false)
+	} catch (error_) {
+		dlogError(`Oooops ${error}`)
+		dlogError(`OH!!! ${error_}`)
 	}
 })
 

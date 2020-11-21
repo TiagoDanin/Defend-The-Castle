@@ -18,7 +18,7 @@ const list = [{
 	id: 'badges',
 	text: 'Be the King of Emblems',
 	validation: ctx => {
-		if (ctx.badges(ctx.from.id).length >= 1) {
+		if (ctx.badges(ctx.from.id).length > 0) {
 			done(ctx)
 		}
 	},
@@ -112,11 +112,7 @@ const date = new Date()
 
 let select = {}
 const reload = findId => {
-	if (findId) {
-		select = list.find(element => element.id === findId)
-	} else {
-		select = list[Math.floor((Math.random() * list.length))]
-	}
+	select = findId ? list.find(element => element.id === findId) : list[Math.floor((Math.random() * list.length))]
 
 	select.key = `${select.id}${Math.floor(Math.random() * (900000 - 100000) + 100000)}`
 	date.setDate(date.getDate() + 7)

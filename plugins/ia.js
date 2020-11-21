@@ -10,11 +10,11 @@ let ia
 
 const addContext = async function () {
 	const ctx = this
-	const msgId = await ctx.reply('[CALL]').then(res => res.message_id)
+	const messageId = await ctx.reply('[CALL]').then(res => res.message_id)
 	const update = {
 		callback_query: {
 			message: {
-				message_id: msgId
+				message_id: messageId
 			},
 			data: ''
 		}

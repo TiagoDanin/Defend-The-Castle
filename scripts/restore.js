@@ -19,11 +19,10 @@ const insert = async (db, table) => {
 	const listKeys = Object.keys(db)
 	const query = `
 		INSERT
-		INTO ${table}(${
-	listKeys.join(', ')
-})
-		VALUES (${
-	listKeys.reduce((t, e, i) => {
+		INTO ${table}("${
+	listKeys.join('", "')
+}")
+		VALUES (${listKeys.reduce((t, e, i) => {
 		if (i == 0) {
 			return '$1'
 		}

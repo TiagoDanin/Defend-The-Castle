@@ -169,7 +169,7 @@ const replaceInventory = async (ctx, pos, to) => {
 const saveUser = async ctx => {
 	let data = {}
 	const client = await pool.connect()
-	const whiteList = [
+	const whiteList = new Set([
 		'dual',
 		'lang',
 		'inventory',
@@ -194,8 +194,8 @@ const saveUser = async ctx => {
 		'inventory',
 		'city',
 		'invite'
-	]
-	let listKeys = Object.keys(ctx.db.old).filter(e => whiteList.includes(e))
+	])
+	let listKeys = Object.keys(ctx.db.old).filter(e => whiteList.has(e))
 	listKeys = listKeys.reduce((total, key, index) => {
 		if (typeof ctx.db[key] === 'object') {
 			total.push(key)
@@ -426,7 +426,7 @@ const createClan = async clan => {
 const updateClan = async clan => {
 	let data = {}
 	const client = await pool.connect()
-	const whiteList = [
+	const whiteList = new Set([
 		'name',
 		'flag',
 		'xp',
@@ -435,8 +435,8 @@ const updateClan = async clan => {
 		'members',
 		'chat',
 		'desc'
-	]
-	const listKeys = Object.keys(clan).filter(e => whiteList.includes(e))
+	])
+	const listKeys = Object.keys(clan).filter(e => whiteList.has(e))
 
 	const query = `
 		UPDATE clans

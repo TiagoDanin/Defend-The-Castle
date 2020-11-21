@@ -1,11 +1,11 @@
 const clansRanks = async (ctx, clan) => {
 	const db = await ctx.database.topClans(ctx.from.id)
-	const list = db.filter(e => {
+	const list = db.find(e => {
 		if (e.members.includes(ctx.from.id)) {
 			return true
 		}
 	})
-	let text = ctx._`🥇 You Rank is: ${list[0].position || 9999999}\n`
+	let text = ctx._`🥇 You Rank is: ${list.position || 9999999}\n`
 	let n = 0
 	for (const clan of db) {
 		if (n <= 9) {
@@ -106,7 +106,7 @@ const processView = (ctx, clan, view) => {
 
 const reply = async ctx => {
 	if (ctx.session.newclan) {
-		const match = ctx.match[1].match(/^([a-zA-Z]{3})-([a-zA-Z0-9-]{1,15})$/)
+		const match = ctx.match[1].match(/^([a-zA-Z]{3})-([a-zA-Z\d-]{1,15})$/)
 		if (match) {
 			ctx.session.newclan.flag = match[1]
 			ctx.session.newclan.name = match[2]
@@ -217,7 +217,7 @@ const base = async ctx => {
 		}
 	} else if (ctx.match[2] == 'desc') {
 		const input = String(ctx.match[3])
-		if (input.match(/[<>\[\]\(\)\*#@]/g) || input.length < 12 || input.length > 200) {
+		if (input.match(/[<>[\]()*#@]/g) || input.length < 12 || input.length > 200) {
 			text = ctx._`<b>Text must have only letter and number with 12-200 characters!</b>`
 		} else {
 			text = ctx._`<b>Updated description!</b>`

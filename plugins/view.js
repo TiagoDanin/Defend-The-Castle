@@ -18,7 +18,7 @@ const base = async ctx => {
 <b>${ctx.db.castle} City:</b> ${ctx.db.name}
 <b>🏅 Level:</b> ${ctx.db.level + 1 >= ctx.db.maxLevel ? `${ctx.db.level} (MAX)` : `${ctx.db.level} (${ctx.db.levelPoc}%)`}
 <b>🎖 Experience:</b> ${ctx.db.xp}
-<b>📝 Badges:</b> ${ctx.badges(ctx.from.id).map(el => el.icon).join(', ')}
+<b>📝 Badges:</b> ${ctx.badges(ctx.from.id).map(element => element.icon).join(', ')}
 
 <b>💰 Money:</b> ${ctx.db.money} (${ctx.db.moneyPerHour}/hour)
 <b>💎 Diamonds:</b> ${ctx.db.diamond}

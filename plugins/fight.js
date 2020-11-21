@@ -384,6 +384,7 @@ ${textReply}`
 	} else {
 		ctx.session.countConsecutiveWin = 0
 	}
+
 	ctx.quest.check('consecutiveBattles', ctx)
 	ctx.quest.check('fight', ctx)
 	ctx.quest.check('fightSuper', ctx)
@@ -427,16 +428,12 @@ ${textReply}${ctx.fixKeyboard}`, {
 const mapHide = (ctx, opponent) => {
 	return opponent.city.reduce((total, id, index) => {
 		let key = {}
-		if (index == 12) {
-			key = {
-				text: ctx.castles[id],
-				callback_data: 'fight:castle'
-			}
-		} else {
-			key = {
-				text: '🏠',
-				callback_data: `fight:ack:${index}:${opponent.id}`
-			}
+		key = index == 12 ? {
+			text: ctx.castles[id],
+			callback_data: 'fight:castle'
+		} : {
+			text: '🏠',
+			callback_data: `fight:ack:${index}:${opponent.id}`
 		}
 
 		total[total.length - 1].push(key)
@@ -653,7 +650,7 @@ Select:`
 			let opponentDual = await ctx.database.getDual()
 			opponentDual = opponentDual.filter(e => e.id != ctx.from.id)
 
-			if (opponentDual.length >= 1) {
+			if (opponentDual.length > 0) {
 				ctx.db.dual = Number(ctx.match[3])
 				opponentDual = opponentDual[Math.floor((Math.random() * opponentDual.length))]
 				return await dualAttack(ctx, opponentDual)

@@ -4,11 +4,7 @@ const base = async ctx => {
 	}
 
 	let id = 0
-	if (ctx.match[5]) {
-		id = ctx.match[5]
-	} else {
-		id = ctx.update.message.reply_to_message.from.id || ctx.update.message.reply_to_message.forward_from.id
-	}
+	id = ctx.match[5] ? ctx.match[5] : ctx.update.message.reply_to_message.from.id || ctx.update.message.reply_to_message.forward_from.id
 
 	const play = await ctx.database.getUser(id)
 	if (play && id) {
