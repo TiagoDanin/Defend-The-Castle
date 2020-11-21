@@ -352,18 +352,111 @@ EXAMPLE: TNT-TNTClan
 			if (clan.members.length >= ctx.clan[clan.level].members) {
 				text = ctx._`Clan is full! (${clan.members.length}/${ctx.clan[clan.level].members})`
 			} else {
-				clan.members.push(ctx.from.id)
-				ctx.database.updateClan({
-					id: clan.id,
-					members: clan.members
-				})
-				text = ctx._('Welcome!\n') + processView(ctx, clan)
+				text = ctx._('Request submitted, wait for an approval!\n') + processView(ctx, clan, true)
 				keyboard = [
 					[
-						{text: ctx._`🌇 Open Clan`, callback_data: 'clan'}
+						{text: ctx._`📜 Main Menu`, callback_data: 'menu'},
+						{text: ctx._`📝 List Clans`, callback_data: 'clan:list'}
 					]
 				]
+
+				if (!ctx.caches[ctx.from.id].clanInviteSends) {
+					ctx.caches[ctx.from.id].clanInviteSends = []
+				}
+
+				if (!ctx.caches[ctx.from.id].clanInviteSends.includes(clan.id)) {
+					ctx.caches[ctx.from.id].clanInviteSends.push(clan.id)
+
+					const adminMember = await ctx.database.getUser(clan.id)
+					adminMember._ = ctx.loadLang(adminMember.lang)
+
+					let textToAdmin = adminMember._`<b>A new city that joins your clan:</b>\n`
+					textToAdmin += adminMember._`<b>${ctx.db.castle} City:</b> ${ctx.db.name}${ctx.tags(ctx.from.id)}\n`
+					textToAdmin += adminMember._`<b>🏅 Level:</b> ${ctx.db.level}\n`
+
+					const adminMemberkeyboard = [
+						[
+							{text: adminMember._`✅ Accept`, callback_data: `clan:accept:${ctx.from.id}`},
+							{text: adminMember._`❌ Deny`, callback_data: `clan:deny:${ctx.from.id}`}
+						],
+						[
+							{text: adminMember._`📜 Main Menu`, callback_data: 'menu'},
+							{text: adminMember._`🌇 Open Clan`, callback_data: 'clan'}
+						]
+					]
+
+					ctx.telegram.sendMessage(adminMember.id, `${textToAdmin}${ctx.fixKeyboard}`, {
+						parse_mode: 'HTML',
+						reply_markup: {
+							inline_keyboard: adminMemberkeyboard
+						},
+						disable_web_page_preview: true
+					})
+				}
 			}
+		}
+	} else if (ctx.match[2] == 'deny') {
+		const newMember = await ctx.database.getUser(ctx.match[3])
+		newMember._ = ctx.loadLang(newMember.lang)
+		const clanMember = await ctx.database.getClan(newMember.id)
+		if (clanMember || clan.members.length >= ctx.clan[clan.level].members) {
+			text = ctx._('Member denied!\n') + processView(ctx, clan)
+			keyboard = [
+				[
+					{text: ctx._`🌇 Open Clan`, callback_data: 'clan'}
+				]
+			]
+		} else {
+			const textWelcome = newMember._('Unfortunately you were not accepted to join the clan\n') + newMember._`<b>🌇 Name:</b> ${clan.name} [${clan.flag}]\n`
+			const newMemberkeyboard = [
+				[
+					{text: newMember._`🌇 Open Clan`, callback_data: 'clan'}
+				]
+			]
+
+			ctx.telegram.sendMessage(newMember.id, `${textWelcome}${ctx.fixKeyboard}`, {
+				parse_mode: 'HTML',
+				reply_markup: {
+					inline_keyboard: newMemberkeyboard
+				},
+				disable_web_page_preview: true
+			})
+		}
+	} else if (ctx.match[2] == 'accept') {
+		const newMember = await ctx.database.getUser(ctx.match[3])
+		newMember._ = ctx.loadLang(newMember.lang)
+		const clanMember = await ctx.database.getClan(newMember.id)
+		if (clanMember) {
+			text = ctx._`This member has been accepted into another clan` + processView(ctx, clan)
+		} else if (clan.members.length >= ctx.clan[clan.level].members) {
+			text = ctx._`Clan is full! (${clan.members.length}/${ctx.clan[clan.level].members})` + processView(ctx, clan)
+		} else {
+			clan.members.push(newMember.id)
+			ctx.database.updateClan({
+				id: clan.id,
+				members: clan.members
+			})
+			text = ctx._('Member accepted!\n') + processView(ctx, clan)
+			keyboard = [
+				[
+					{text: ctx._`🌇 Open Clan`, callback_data: 'clan'}
+				]
+			]
+
+			const textWelcome = newMember._('Welcome! You have been accepted into the clan\n') + newMember._`<b>🌇 Name:</b> ${clan.name} [${clan.flag}]\n`
+			const newMemberkeyboard = [
+				[
+					{text: newMember._`🌇 Open Clan`, callback_data: 'clan'}
+				]
+			]
+
+			ctx.telegram.sendMessage(newMember.id, `${textWelcome}${ctx.fixKeyboard}`, {
+				parse_mode: 'HTML',
+				reply_markup: {
+					inline_keyboard: newMemberkeyboard
+				},
+				disable_web_page_preview: true
+			})
 		}
 	} else if (ctx.match[2] == 'exit') {
 		if (ctx.from.id == clan.id) {
@@ -419,6 +512,8 @@ module.exports = {
 	plugin: base,
 	onlyUser: true,
 	regex: [
+		/^\/(clan) (deny) (\d+)/i,
+		/^\/(clan) (accept) (\d+)/i,
 		/^(\/)(join) clan (\d+)/i,
 		/^(\/)(members) (del) (\d+)/i,
 		/^(\/)(exit) clan/i,

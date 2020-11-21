@@ -365,22 +365,22 @@ bot.use((ctx, next) => {
 	const i18n = new Translation(langCode)
 	ctx._ = i18n._.bind(i18n)
 	ctx.lang = langCode
-	dlogLang(ctx.from.id)(ctx.lang)
+	if (ctx.from && ctx.from.id) {
+		dlogLang(ctx.from.id)(ctx.lang)
+	}
+
 	return next(ctx)
 })
 
 bot.use((ctx, next) => {
 	ctx.privilege = 0
-	if (!ctx.from || !ctx.from.id) {
-		ctx.from = {
-			id: 0
-		}
-	}
 
-	if (config.ids.admins.includes(ctx.from.id)) {
-		ctx.privilege = 7
-	} else if (config.ids.mods.includes(ctx.from.id)) {
-		ctx.privilege = 3
+	if (ctx.from && ctx.from.id) {
+		if (config.ids.admins.includes(ctx.from.id)) {
+			ctx.privilege = 7
+		} else if (config.ids.mods.includes(ctx.from.id)) {
+			ctx.privilege = 3
+		}
 	}
 
 	return next(ctx)

@@ -60,12 +60,12 @@ const main = async () => {
 
 	await client.query(`
 		CREATE TABLE clans(
-			id               INT        NOT NULL,
+			id               BIGINT     NOT NULL,
 			name             TEXT       NOT NULL,
 			flag             TEXT       NOT NULL,
 			chat             TEXT       DEFAULT '',
 			"desc"           TEXT       DEFAULT '',
-			members          INT[]      DEFAULT '{}',
+			members          BIGINT[]   DEFAULT '{}',
 			level            INT        DEFAULT 1,
 			xp               INT        DEFAULT 1,
 			money            INT        DEFAULT 1,

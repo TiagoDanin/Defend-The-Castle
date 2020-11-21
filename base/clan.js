@@ -23,5 +23,15 @@ module.exports = {
 		xp: 50000 * 5,
 		members: 6,
 		money: 7000
+	},
+	6: {
+		xp: 150000 * 5,
+		members: 7,
+		money: 10000
+	},
+	7: {
+		xp: 400000 * 6,
+		members: 7,
+		money: 15000
 	}
 }

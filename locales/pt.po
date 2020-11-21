@@ -491,8 +491,11 @@ msgstr "<b>💶 Melhorar:</b> ${0} Moedas"
 #. ${0} = "ctx.db.castle"
 #. ${1} = "ctx.db.name"
 #. ${2} = "ctx.tags.ctx.from.id"
+#. ${0} = "ctx.db.castle"
+#. ${1} = "ctx.db.name"
+#. ${2} = "ctx.tags.ctx.from.id"
 #: plugins/city.js:119:17 plugins/city.js:135:14 plugins/city.js:197:15
-#: plugins/city.js:225:15 plugins/menu.js:6:17
+#: plugins/city.js:225:15 plugins/clan.js:374:33 plugins/menu.js:6:17
 msgid "<b>${0} City:</b> ${1}${2}\n"
 msgstr "<b>${0} Cidade:</b> ${1}${2}\n"
 
@@ -608,7 +611,11 @@ msgstr "❇️ Online"
 
 #. ${0} = "clan.name"
 #. ${1} = "clan.flag"
-#: plugins/clan.js:82:19
+#. ${0} = "clan.name"
+#. ${1} = "clan.flag"
+#. ${0} = "clan.name"
+#. ${1} = "clan.flag"
+#: plugins/clan.js:82:19 plugins/clan.js:410:106 plugins/clan.js:446:99
 msgid "<b>🌇 Name:</b> ${0} [${1}]\n"
 msgstr "<b>🌇 Nome:</b> ${0} [${1}]\n"
 
@@ -669,7 +676,8 @@ msgstr ""
 msgid "*Done!*"
 msgstr "*Feito!*"
 
-#: plugins/clan.js:119:19 plugins/clan.js:363:18
+#: plugins/clan.js:119:19 plugins/clan.js:384:27 plugins/clan.js:406:17
+#: plugins/clan.js:413:23 plugins/clan.js:442:17 plugins/clan.js:449:23
 msgid "🌇 Open Clan"
 msgstr "🌇 Abrir Clan"
 
@@ -681,11 +689,12 @@ msgstr "<b>NOTA:</b> Tag{3}-Nome{1,15}; exemplo: <code>TNT-TNTClan</code>"
 msgid "Join or create a new clan!"
 msgstr "Entre ou crie um novo clan!"
 
-#: plugins/clan.js:150:16 plugins/clan.js:389:18
+#: plugins/clan.js:150:16 plugins/clan.js:482:18
 msgid "✏️ Create"
 msgstr "✏️ Criar"
 
-#: plugins/clan.js:151:16 plugins/clan.js:179:16 plugins/clan.js:390:18
+#: plugins/clan.js:151:16 plugins/clan.js:179:16 plugins/clan.js:359:18
+#: plugins/clan.js:483:18
 msgid "📝 List Clans"
 msgstr "📝 Lista de Clans"
 
@@ -718,6 +727,7 @@ msgid "🌇 Clan Menu"
 msgstr "🌇 Menu Clan"
 
 #: plugins/clan.js:183:16 plugins/clan.js:252:16 plugins/clan.js:278:16
+#: plugins/clan.js:358:18 plugins/clan.js:383:27
 msgid "📜 Main Menu"
 msgstr "📜 Menu Principal"
 
@@ -837,25 +847,69 @@ msgstr ""
 
 #. ${0} = "clan.members.length"
 #. ${1} = "ctx.clan.clan.level.members"
-#: plugins/clan.js:353:16
+#. ${0} = "clan.members.length"
+#. ${1} = "ctx.clan.clan.level.members"
+#: plugins/clan.js:353:16 plugins/clan.js:432:15
 msgid "Clan is full! (${0}/${1})"
 msgstr "Clan está cheio! (${0}/${1})"
 
 #. ${0} = "clan.members.length"
 #. ${1} = "ctx.clan.clan.level.members"
-#: plugins/clan.js:360:17
-msgid "Welcome!\n"
-msgstr "Bem-Vindo\n"
+#: plugins/clan.js:355:17
+msgid "Request submitted, wait for an approval!\n"
+msgstr "Pedido enviado, aguarde uma aprovação!\n"
 
-#: plugins/clan.js:370:15
+#: plugins/clan.js:373:36
+msgid "<b>A new city that joins your clan:</b>\n"
+msgstr "<b>Uma nova cidade que se junta ao seu clã:</b>\n"
+
+#. ${0} = "ctx.db.level"
+#. ${0} = "level"
+#: plugins/clan.js:375:33 plugins/menu.js:7:14
+msgid "<b>🏅 Level:</b> ${0}\n"
+msgstr "<b>🏅 Nível:</b> ${0}\n"
+
+#: plugins/clan.js:379:27
+msgid "✅ Accept"
+msgstr "✅ Aceitar"
+
+#: plugins/clan.js:380:27
+msgid "❌ Deny"
+msgstr "❌ Negar"
+
+#. ${0} = "ctx.loadLang.newMember.lang.clanMember.await.ctx.database.getClan.newMember.id.clanMember.clan.members.length.ctx.clan.clan.level.members.text.ctx"
+#: plugins/clan.js:403:16
+#, fuzzy
+msgid "Member denied!\n"
+msgstr "Membro aceito!\n"
+
+#: plugins/clan.js:410:35
+msgid "Unfortunately you were not accepted to join the clan\n"
+msgstr "Infelizmente você não foi aceito para entrar no clãn\n"
+
+#: plugins/clan.js:430:15
+msgid "This member has been accepted into another clan"
+msgstr "Este membro já foi aceito em outro clã."
+
+#. ${0} = "clan.members.length"
+#. ${1} = "ctx.clan.clan.level.members"
+#: plugins/clan.js:439:16
+msgid "Member accepted!\n"
+msgstr "Membro aceito!\n"
+
+#: plugins/clan.js:446:35
+msgid "Welcome! You have been accepted into the clan\n"
+msgstr "Bem-vindo! Você foi aceito no clã\n"
+
+#: plugins/clan.js:463:15
 msgid "<b>Owner cannot leave!</b>"
 msgstr "<b>Dono não pode sair!</b>"
 
-#: plugins/clan.js:373:15
+#: plugins/clan.js:466:15
 msgid "Wait 24 hours to do this again!"
 msgstr "Espere 24 horas para fazer isso novamente!"
 
-#: plugins/clan.js:377:16 plugins/clan.js:386:16
+#: plugins/clan.js:470:16 plugins/clan.js:479:16
 msgid "Leaving!"
 msgstr "Saindo!"
 
@@ -1308,11 +1362,6 @@ msgstr ""
 "+ 1 Super Escudo\n"
 "\t\t"
 
-#. ${0} = "level"
-#: plugins/menu.js:7:14
-msgid "<b>🏅 Level:</b> ${0}\n"
-msgstr "<b>🏅 Nível:</b> ${0}\n"
-
 #. ${0} = "ctx.db.diamond"
 #: plugins/menu.js:11:14
 msgid "<b>💎 Diamonds:</b> ${0}\n"
@@ -1454,10 +1503,11 @@ msgstr "Presente: ${0}!"
 msgid "<b>📔 Quest (end ${0})</b>\n"
 msgstr "<b>📔 Missão (terminar ${0})</b>\n"
 
-#. ${0} = "quest.text"
-#: plugins/quests.js:14:15
-msgid "${0}"
-msgstr "${0}"
+#. ${0} = "time"
+#. ${1} = "quest.text.text"
+#: plugins/quests.js:15:10
+msgid "\n"
+msgstr "\n"
 
 #: plugins/quests.js:18:34
 msgid "Status: Done"
@@ -1774,6 +1824,12 @@ msgstr "▶️ Próximo"
 #: plugins/tutorial.js:89:14
 msgid "Finalized!"
 msgstr "Finalizado!"
+
+#~ msgid "Welcome!\n"
+#~ msgstr "Bem-Vindo\n"
+
+#~ msgid "${0}"
+#~ msgstr "${0}"
 
 #~ msgid "xp"
 #~ msgstr "xp"
