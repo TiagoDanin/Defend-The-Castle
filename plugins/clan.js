@@ -374,7 +374,7 @@ EXAMPLE: TNT-TNTClan
 			if (!ctx.session.clanExit) {
 				ctx.session.clanExit = Number(date)
 			} else if (!clan) {
-				text = ctx._`Leaving!` // TODO Update text
+				text = ctx._`Leaving!`
 			} else if (ctx.session.clanExit < Number(date)) {
 				date.setDate(date.getDate() + 1)
 				ctx.session.clanExit = Number(date)

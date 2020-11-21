@@ -81,7 +81,7 @@
 	"xo": {
 		"rules": {
 			"quote-props": "warn",
-			"eqeqeq": "warn",
+			"eqeqeq": "off",
 			"array-callback-return": "off",
 			"require-atomic-updates": "off",
 			"no-else-return": "warn",

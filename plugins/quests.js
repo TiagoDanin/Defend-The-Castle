@@ -11,7 +11,7 @@ const base = async ctx => {
 
 	let text = ctx._`<b>📔 Quest (end ${time})</b>\n`
 	if (quest) {
-		text += ctx._`${quest.text}`
+		text += ctx._(quest.text)
 		text += '\n'
 	}
 
